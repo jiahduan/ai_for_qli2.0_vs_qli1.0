@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html -->
+<html class="writer-html5" lang="en" data-content_root="../"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation</title>
+      <link rel="stylesheet" type="text/css" href="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/pygments.css">
+      <link rel="stylesheet" type="text/css" href="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/theme.css">
+      <link rel="stylesheet" type="text/css" href="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/copybutton.css">
+      <link rel="stylesheet" type="text/css" href="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/theme_overrides.css">
+
+  
+    <link rel="shortcut icon" href="https://docs.yoctoproject.org/next/_static/favicon.ico">
+      <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/jquery.js.下载"></script>
+      <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/_sphinx_javascript_frameworks_compat.js.下载"></script>
+      <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/documentation_options.js.下载"></script>
+      <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/doctools.js.下载"></script>
+      <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/sphinx_highlight.js.下载"></script>
+      <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/clipboard.min.js.下载"></script>
+      <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/copybutton.js.下载"></script>
+      <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/switchers.js.下载"></script>
+    <script src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/theme.js.下载"></script>
+    <link rel="index" title="Index" href="https://docs.yoctoproject.org/next/genindex.html">
+    <link rel="search" title="Search" href="https://docs.yoctoproject.org/next/search.html">
+    <link rel="next" title="Release notes for Yocto-5.0.1 (Scarthgap)" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.1.html">
+    <link rel="prev" title="Release 5.0 LTS (scarthgap)" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.0.html"> 
+</head>
+
+<body class="wy-body-for-nav">
+<div id="outdated-warning" style="text-align: center; background-color: #FFBABA; color: #6A0E0E;">
+</div>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="https://docs.yoctoproject.org/next/index.html" class="icon icon-home">
+            The Yocto Project ®
+              <img src="./Release notes for 5.0 (scarthgap) — The Yocto Project ® next documentation_files/YoctoProject_Logo_RGB.jpg" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://docs.yoctoproject.org/next/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction and Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/brief-yoctoprojectqs/index.html">Quick Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/what-i-wish-id-known.html">What I wish I’d known about Yocto Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/transitioning-to-a-custom-environment.html">Transitioning to a custom environment for systems development</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/overview-manual/index.html">Overview and Concepts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributor Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/contributor-guide/index.html">Contributor Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/index.html">Reference Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/bsp-manual/index.html">Board Support Package (BSP) Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/dev-manual/index.html">Development Tasks Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/kernel-dev/index.html">Linux Kernel Development Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/security-manual/index.html">Security Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/profile-manual/index.html">Profile and Tracing Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/sdk-manual/index.html">Application Development and SDKs Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/toaster-manual/index.html">Toaster Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/test-manual/index.html">Test Environment Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/bitbake.html">BitBake User Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Security Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/security-reference/index.html">Yocto Project Security Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Information</span></p>
+<ul class="current" aria-expanded="true">
+<li class="toctree-l1 current" aria-expanded="true"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/index.html"><button class="toctree-expand" title="Open/close menu"></button>Release Notes and Migration Guides</a><ul class="" aria-expanded="false">
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-general.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-6.1.html">Release 6.1 (blacksail)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-6.0.html">Release 6.0 (wrynose)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.3.html">Release 5.3 (whinlatter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.2.html">Release 5.2 (walnascar)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.1.html">Release 5.1 (styhead)</a></li>
+<li class="toctree-l2 current" aria-expanded="true"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.0.html"><button class="toctree-expand" title="Open/close menu"></button>Release 5.0 (scarthgap)</a><ul class="" aria-expanded="false">
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.0.html">Release 5.0 LTS (scarthgap)</a></li>
+<li class="toctree-l3 current" aria-expanded="true"><a class="reference internal current" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#" aria-expanded="true"><button class="toctree-expand" title="Open/close menu"></button>Release notes for 5.0 (scarthgap)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#new-features-enhancements-in-5-0">New Features / Enhancements in 5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#known-issues-in-5-0">Known Issues in 5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#recipe-license-changes-in-5-0">Recipe License changes in 5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#security-fixes-in-5-0">Security Fixes in 5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#recipe-upgrades-in-5-0">Recipe Upgrades in 5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#contributors-to-5-0">Contributors to 5.0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#repositories-downloads-for-yocto-5-0">Repositories / Downloads for Yocto-5.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.1.html">Release notes for Yocto-5.0.1 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.2.html">Release notes for Yocto-5.0.2 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.3.html">Release notes for Yocto-5.0.3 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.4.html">Release notes for Yocto-5.0.4 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.5.html">Release notes for Yocto-5.0.5 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.6.html">Release notes for Yocto-5.0.6 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.7.html">Release notes for Yocto-5.0.7 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.8.html">Release notes for Yocto-5.0.8 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.9.html">Release notes for Yocto-5.0.9 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.10.html">Release notes for Yocto-5.0.10 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.11.html">Release notes for Yocto-5.0.11 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.12.html">Release notes for Yocto-5.0.12 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.13.html">Release notes for Yocto-5.0.13 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.14.html">Release notes for Yocto-5.0.14 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.15.html">Release notes for Yocto-5.0.15 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.16.html">Release notes for Yocto-5.0.16 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.17.html">Release notes for Yocto-5.0.17 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.18.html">Release notes for Yocto-5.0.18 (Scarthgap)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.19.html">Release notes for Yocto-5.0.19 (Scarthgap)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.3.html">Release 4.3 (nanbield)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.2.html">Release 4.2 (mickledore)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.1.html">Release 4.1 (langdale)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.0.html">Release 4.0 (kirkstone)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-3.4.html">Release 3.4 (honister)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.3.html">Release 3.3 (hardknott)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.2.html">Release 3.2 (gatesgarth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.1.html">Release 3.1 (dunfell)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.0.html">Release 3.0 (zeus)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.7.html">Release 2.7 (warrior)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.6.html">Release 2.6 (thud)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.5.html">Release 2.5 (sumo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.4.html">Release 2.4 (rocko)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.3.html">Release 2.3 (pyro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.2.html">Release 2.2 (morty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.1.html">Release 2.1 (krogoth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.0.html">Release 2.0 (jethro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.8.html">Release 1.8 (fido)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.7.html">Release 1.7 (dizzy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.6.html">Release 1.6 (daisy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.5.html">Release 1.5 (dora)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.4.html">Release 1.4 (dylan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.3.html">Release 1.3 (danny)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/releases.html">Supported Release Manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/releases.html#outdated-release-manuals">Outdated Release Manuals</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation Downloads</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/downloads.html">Documentation Downloads</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://docs.yoctoproject.org/next/index.html">The Yocto Project ®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+    <li>
+      <span class="doctype_switcher_placeholder"><select><option value="single" selected="selected">Individual Webpages</option><option value="mega">All-in-one 'Mega' Manual</option></select></span>
+      <span class="version_switcher_placeholder"><select><option value="outdated" selected="selected">Outdated release manuals</option><option value="dev" selected="selected">Unstable (dev)</option><option value="6.0-tip" selected="selected">Wrynose (6.0.2)</option><option value="5.0-tip" selected="selected">Scarthgap (5.0.19)</option><option value="next" selected="selected">next</option></select></span>
+    </li>
+    <li> »</li>
+    
+      <li><a href="https://docs.yoctoproject.org/next/migration-guides/index.html">Release Information</a> »</li>
+    
+      <li><a href="https://docs.yoctoproject.org/next/migration-guides/release-5.0.html">Release 5.0 (scarthgap)</a> »</li>
+    
+    <li>Release notes for 5.0 (scarthgap)</li>
+
+      <li class="wy-breadcrumbs-aside">
+            <a href="https://docs.yoctoproject.org/next/_sources/migration-guides/release-notes-5.0.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-notes-for-5-0-scarthgap">
+<h1>Release notes for 5.0 (scarthgap)<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#release-notes-for-5-0-scarthgap" title="Link to this heading"></a></h1>
+<section id="new-features-enhancements-in-5-0">
+<h2>New Features / Enhancements in 5.0<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#new-features-enhancements-in-5-0" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Linux kernel 6.6, gcc 13.2, glibc 2.39, LLVM 18.1, and over 300 other recipe upgrades</p></li>
+<li><p>New variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CVE_DB_INCR_UPDATE_AGE_THRES</span></code>: Configure the maximum age of the
+internal CVE database for incremental update (instead of a full
+redownload).</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-RPMBUILD_EXTRA_PARAMS"><span class="xref std std-term">RPMBUILD_EXTRA_PARAMS</span></a>: support extra user-defined fields without
+crashing the RPM package creation.</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-OPKG_MAKE_INDEX_EXTRA_PARAMS"><span class="xref std std-term">OPKG_MAKE_INDEX_EXTRA_PARAMS</span></a>: support extra parameters for
+<code class="docutils literal notranslate"><span class="pre">opkg-make-index</span></code>.</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-EFI_UKI_PATH"><span class="xref std std-term">EFI_UKI_PATH</span></a>, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-EFI_UKI_DIR"><span class="xref std std-term">EFI_UKI_DIR</span></a>: define the location of UKI
+image in the EFI System partition.</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-TARGET_DBGSRC_DIR"><span class="xref std std-term">TARGET_DBGSRC_DIR</span></a>: specifies the target path to debug source files</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-USERADD_DEPENDS"><span class="xref std std-term">USERADD_DEPENDS</span></a>: provides a way to declare dependencies on the users
+and/or groups created by other recipes, resolving a long-standing build
+ordering issue</p></li>
+</ul>
+</li>
+<li><p>Architecture-specific enhancements:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">genericarm64</span></code>: a new <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-MACHINE"><span class="xref std std-term">MACHINE</span></a> to represent a 64-bit General Arm
+SystemReady platform.</p></li>
+<li><p>Add Power8 tune to PowerPC architecture.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arch-armv9</span></code>: remove CRC and SVE tunes, since FEAT_CRC32 is now mandatory
+and SVE/SVE2 are enabled by default in GCC’s <code class="docutils literal notranslate"><span class="pre">-march=armv9-a</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arm/armv*</span></code>: add all of the additional Arm tunes in GCC 13.2.0</p></li>
+</ul>
+</li>
+<li><p>Kernel-related enhancements:</p>
+<ul class="simple">
+<li><p>The default kernel is the current LTS (6.6).</p></li>
+<li><p>Add support for <code class="docutils literal notranslate"><span class="pre">genericarm64</span></code>.</p></li>
+</ul>
+</li>
+<li><p>New core recipes:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/yoctoproject/bmaptool">bmaptool</a>: a tool for
+creating block maps for files and flashing images, being now under the
+Yocto Project umbrella.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">core-image-initramfs-boot</span></code>: a minimal initramfs image, containing just
+<code class="docutils literal notranslate"><span class="pre">udev</span></code> and <code class="docutils literal notranslate"><span class="pre">init</span></code>, designed to find the main root filesystem and
+pivot to it.</p></li>
+<li><p><a class="reference external" href="https://www.nongnu.org/lzip/lzlib.html">lzlib</a>: a data compression
+library that provides LZMA compression and decompression functions.</p></li>
+<li><p><a class="reference external" href="https://www.lzop.org/">lzop</a>: a compression utility based on the LZO
+library, that was brought back after a (now reverted) removal.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/jsonschema-specifications/">python3-jsonschema-specifications</a>:
+support files for JSON Schema Specifications (meta-schemas and
+vocabularies), added as a new dependency of <code class="docutils literal notranslate"><span class="pre">python3-jsonschema</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/pyo3/maturin">python3-maturin</a>: a project that
+allows building and publishing Rust crates as Python packages.</p></li>
+<li><p><a class="reference external" href="https://github.com/mesonbuild/meson-python">python3-meson-python</a>: a
+Python build backend that enables the Meson build-system for Python packages.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pyproject-metadata/">python3-pyproject-metadata</a>:
+a class to handle PEP 621 metadata, and a dependency for
+<code class="docutils literal notranslate"><span class="pre">python3-meson-python</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/python-jsonschema/referencing">python3-referencing</a>:
+another dependency of <code class="docutils literal notranslate"><span class="pre">python3-jsonschema</span></code>, it provides an
+implementation of JSON reference resolution.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/rpds-py/">python3-rpds-py</a>: Python bindings
+to the Rust rpds crate, and a runtime dependency for <code class="docutils literal notranslate"><span class="pre">python3-referencing</span></code>.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-jquery/">python3-sphinxcontrib-jquery</a>:
+a Sphinx extension to include jQuery on newer Sphinx releases. Recent
+versions of <code class="docutils literal notranslate"><span class="pre">python3-sphinx-rtd-theme</span></code> depend on it.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/websockets/">python3-websockets</a>: a
+library for building WebSocket servers and clients in Python.</p></li>
+<li><p><a class="reference external" href="https://github.com/adrienverge/yamllint">python3-yamllint</a>: a linter
+for YAML files. In U-Boot, the <code class="docutils literal notranslate"><span class="pre">binman</span></code> tool uses this linter to verify the
+configurations at compile time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd-boot-native</span></code>: a UEFI boot manager, this time built as native to
+provide the <code class="docutils literal notranslate"><span class="pre">ukify</span></code> tool.</p></li>
+<li><p><a class="reference external" href="https://github.com/nemtrif/utfcpp">utfcpp</a>: a C++ library to handle
+UTF-8 encoded strings. It was added as a dependency for <code class="docutils literal notranslate"><span class="pre">taglib</span></code> after
+its upgrade to v2.0.</p></li>
+<li><p><a class="reference external" href="https://github.com/KhronosGroup/Vulkan-Utility-Libraries">vulkan-utility-libraries</a>:
+a set of libraries to share code across various Vulkan repositories.</p></li>
+<li><p><a class="reference external" href="https://github.com/zeux/volk">vulkan-volk</a>: a meta-loader for Vulkan,
+needed to support building the latest <code class="docutils literal notranslate"><span class="pre">vulkan-tools</span></code>.</p></li>
+</ul>
+</li>
+<li><p>QEMU / <code class="docutils literal notranslate"><span class="pre">runqemu</span></code> enhancements:</p>
+<ul class="simple">
+<li><p>QEMU has been upgraded to version 8.2.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qemuboot</span></code>: support predictable network interface names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">runqemu</span></code>: match “.rootfs.” in addition to “-image-” for the root
+filesystem.</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-cmake-qemu"><span class="std std-ref">cmake-qemu</span></a>: a new class allowing to execute cross-compiled
+binaries using QEMU user-mode emulation.</p></li>
+</ul>
+</li>
+<li><p>Rust improvements:</p>
+<ul class="simple">
+<li><p>Rust has been upgraded to version 1.75</p></li>
+<li><p>The Rust profiler (i.e., PGO - Profile-Guided Optimization) options were
+enabled back.</p></li>
+<li><p>The Rust <code class="docutils literal notranslate"><span class="pre">oe-selftest</span></code> were enabled, except for <code class="docutils literal notranslate"><span class="pre">mips32</span></code> whose tests
+are skipped.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rust-cross-canadian</span></code>: added <code class="docutils literal notranslate"><span class="pre">riscv64</span></code> to cross-canadian hosts.</p></li>
+</ul>
+</li>
+<li><p>wic Image Creator enhancements:</p>
+<ul class="simple">
+<li><p>Allow the imager’s output file extension to match the imager’s name,
+instead of hardcoding it to <code class="docutils literal notranslate"><span class="pre">direct</span></code> (i.e., the default imager)</p></li>
+<li><p>For GPT-based disks, add reproducible Disk GUID generation</p></li>
+<li><p>Allow generating reproducible ext4 images</p></li>
+<li><p>Add feature to fill a specific range of a partition with zeros</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bootimg-efi</span></code>: add <code class="docutils literal notranslate"><span class="pre">install-kernel-into-boot-dir</span></code> parameter to
+configure kernel installation point(s) (i.e., rootfs and/or boot partition)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rawcopy</span></code>: add support for zstd decompression</p></li>
+</ul>
+</li>
+<li><p>SDK-related improvements:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nativesdk</span></code>: let <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-MACHINE_FEATURES"><span class="xref std std-term">MACHINE_FEATURES</span></a> be set by <code class="docutils literal notranslate"><span class="pre">machine-sdk</span></code>
+configuration files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nativesdk</span></code>: prevent <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-MACHINE_FEATURES"><span class="xref std std-term">MACHINE_FEATURES</span></a> and <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-DISTRO_FEATURES"><span class="xref std std-term">DISTRO_FEATURES</span></a>
+from being backfilled.</p></li>
+<li><p>Support for <code class="docutils literal notranslate"><span class="pre">riscv64</span></code> as an SDK host architecture</p></li>
+<li><p>Extend recipes to <code class="docutils literal notranslate"><span class="pre">nativesdk</span></code>: <code class="docutils literal notranslate"><span class="pre">acpica</span></code>, <code class="docutils literal notranslate"><span class="pre">libpcap</span></code>, <code class="docutils literal notranslate"><span class="pre">python3-setuptools-rust</span></code></p></li>
+</ul>
+</li>
+<li><p>Testing:</p>
+<ul class="simple">
+<li><p>Move <cite>patchtest</cite> to the core (as <code class="docutils literal notranslate"><span class="pre">scripts/patchtest</span></code>, test cases under
+<code class="docutils literal notranslate"><span class="pre">meta/lib/patchtest/tests</span></code>) and make a number of improvements to enable
+it to validate patches submitted on the mailing list again. Additionally,
+make it work with the original upstream version of
+<a class="reference external" href="https://web.archive.org/web/20250823174533/http://jk.ozlabs.org/projects/patchwork/">Patchwork</a>.</p></li>
+<li><p>Add an optional <code class="docutils literal notranslate"><span class="pre">unimplemented-ptest</span></code> QA warning to detect upstream
+packages with tests, that do not use ptest.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">testimage</span></code>: retrieve the ptests directory, especially for the logs,
+upon ptest failure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oeqa</span></code>, <code class="docutils literal notranslate"><span class="pre">oe-selftest</span></code>: add test cases for Maturin (SDK and runtime).</p></li>
+<li><p>Proof-of-concept of screenshot-based runtime UI test
+(<code class="docutils literal notranslate"><span class="pre">meta/lib/oeqa/runtime/cases/login.py</span></code>)</p></li>
+<li><p>Enable ptests for <code class="docutils literal notranslate"><span class="pre">python3-attrs</span></code>, <code class="docutils literal notranslate"><span class="pre">python3-pyyaml</span></code>, <code class="docutils literal notranslate"><span class="pre">xz</span></code></p></li>
+</ul>
+</li>
+<li><p>Utility script changes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">oe-init-build-env</span></code> can generate a initial configuration (<code class="docutils literal notranslate"><span class="pre">.vscode</span></code>)
+for VSCode and its “Yocto Project BitBake” extension.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">sstate-cache-management</span></code> script has been rewritten in python for better performance and maintainability</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitbake-layers</span></code>: added an option to update the reference of repositories in layer setup</p></li>
+</ul>
+</li>
+<li><p>BitBake improvements:</p>
+<ul>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">inherit_defer</span></code> statement which works as
+<a class="reference external" href="https://docs.yoctoproject.org/bitbake/next/bitbake-user-manual/bitbake-user-manual-metadata.html#inherit-directive" title="(in Bitbake Version: next)"><span class="xref std std-ref">inherit</span></a>
+does, except that it is only evaluated at the end of parsing
+— recommended where a conditional expression is used, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell0"><span></span>inherit_defer ${@bb.utils.contains('PACKAGECONFIG', 'python', 'python3targetconfig', '', d)}
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>This allows conditional expressions to be evaluated ‘late’ meaning changes
+to the variable after the line is parsed will take effect - with inherit this
+is not the case.</p>
+</li>
+<li><p>Add support for <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BB_LOADFACTOR_MAX"><span class="xref std std-term">BB_LOADFACTOR_MAX</span></a>, so Bitbake can stop running
+extra tasks if the system load is too high, especially in distributions
+where <code class="docutils literal notranslate"><span class="pre">/proc/pressure</span></code> is disabled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskexp_ncurses</span></code>: add ncurses version of <code class="docutils literal notranslate"><span class="pre">taskexp</span></code>, the dependency
+explorer originally implemented with GTK.</p></li>
+<li><p>Improve <code class="docutils literal notranslate"><span class="pre">runqueue</span></code> performance by adding a cache mechanism in
+<code class="docutils literal notranslate"><span class="pre">build_taskdepdata</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitbake.conf</span></code>: add <code class="docutils literal notranslate"><span class="pre">runtimedir</span></code> to represent the path to the runtime
+state directory (i.e., <code class="docutils literal notranslate"><span class="pre">/run</span></code>).</p></li>
+<li><p>Allow to disable colored text output through the
+<code class="docutils literal notranslate"><span class="pre">NO_COLOR</span></code> environment variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git-make-shallow</span></code> script: add support for Git’s <code class="docutils literal notranslate"><span class="pre">safe.bareRepository=explicit</span></code>
+configuration setting.</p></li>
+<li><p>Hash equivalence gained a number of scalability improvements including:</p>
+<ul class="simple">
+<li><p>Support for a wide range of database backends through <cite>SQLAlchemy</cite></p></li>
+<li><p>Support for hash equivalence server and client to communicate over websockets</p></li>
+<li><p>Support for per-user permissions in the hashserver, and on the client side
+specifying credentials via the environment or <code class="docutils literal notranslate"><span class="pre">.netrc</span></code></p></li>
+<li><p>Add garbage collection to remove unused unihashes from the database.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>devtool improvements:</p>
+<ul class="simple">
+<li><p>Introduce a new <code class="docutils literal notranslate"><span class="pre">ide-sdk</span></code> plugin to generate a configuration to use
+the eSDK through an IDE.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">--no-pypi</span></code> option for Python projects that are not hosted on PyPI.</p></li>
+<li><p>Add support for Git submodules.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ide</span></code>: <code class="docutils literal notranslate"><span class="pre">vscode</span></code>: generate files from recipe sysroots and debug the
+root filesystem in read-only mode to avoid confusion.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">modify</span></code>: add support for multiple sources in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRC_URI"><span class="xref std std-term">SRC_URI</span></a>.</p></li>
+<li><p>Support plugins within plugins.</p></li>
+</ul>
+</li>
+<li><p>recipetool improvements:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">appendsrcfile(s)</span></code>: add a mode to update the recipe itself.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">appendsrcfile(s)</span></code>: add <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create</span></code>: add handler to create Go recipes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create</span></code>: improve identification of licenses.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create</span></code>: add support for modern Python PEP-517 build systems including
+hatchling, maturin, meson-python.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create</span></code>: add PyPi support.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create</span></code>: prefix created Python recipes with <code class="docutils literal notranslate"><span class="pre">python3-</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Packaging changes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">package_rpm</span></code>: the RPM package compressor’s mode can now be overridden.</p></li>
+<li><p>ipk packaging (using <code class="docutils literal notranslate"><span class="pre">opkg</span></code>) now uses <code class="docutils literal notranslate"><span class="pre">zstd</span></code> compression instead of
+<code class="docutils literal notranslate"><span class="pre">xz</span></code> for better compression and performance.</p></li>
+</ul>
+</li>
+<li><p>Security improvements:</p>
+<ul class="simple">
+<li><p>Improve incremental CVE database download from NVD. Rejected CVEs are
+removed, configuration is kept up-to-date. The age threshold for
+incremental update can be configured with <code class="docutils literal notranslate"><span class="pre">CVE_DB_INCR_UPDATE_AGE_THRES</span></code>
+variable.</p></li>
+</ul>
+</li>
+<li><p>Toaster Web UI improvements:</p>
+<ul class="simple">
+<li><p>Numerous bugfixes, and additional input validation</p></li>
+<li><p>Add <cite>pytest</cite> support and add/update test cases</p></li>
+</ul>
+</li>
+<li><p>Prominent documentation updates:</p>
+<ul class="simple">
+<li><p>Documentation for using the new <code class="docutils literal notranslate"><span class="pre">devtool</span> <span class="pre">ide-sdk</span></code> command and features.
+See <a class="reference internal" href="https://docs.yoctoproject.org/next/sdk-manual/extensible.html#using-devtool"><span class="std std-ref">Using devtool in Your SDK Workflow</span></a> for details.</p></li>
+<li><p>New “<a class="reference external" href="https://docs.yoctoproject.org/bitbake/next/bitbake-user-manual/bitbake-user-manual-ref-variables-context.html" title="(in Bitbake Version: next)"><span>Variable Context</span></a>”
+section in the BitBake User Manual.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">stylecheck</span></code> command to run <a class="reference external" href="https://vale.sh/">Vale</a>,
+to perform text style checks and comply with text writing standards in
+the industry.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">sphinx-lint</span></code> command to run <a class="reference external" href="https://github.com/sphinx-contrib/sphinx-lint">sphinx-lint</a>. After customization,
+this will allow us to enforce Sphinx syntax style choices.</p></li>
+</ul>
+</li>
+<li><p>Miscellaneous changes:</p>
+<ul class="simple">
+<li><p>Systemd’s following <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGECONFIG"><span class="xref std std-term">PACKAGECONFIG</span></a> options were added:
+<code class="docutils literal notranslate"><span class="pre">cryptsetup-plugins</span></code>, <code class="docutils literal notranslate"><span class="pre">no-ntp-fallback</span></code>, and <code class="docutils literal notranslate"><span class="pre">p11kit</span></code>.</p></li>
+<li><p>New PACKAGECONFIG options added to <code class="docutils literal notranslate"><span class="pre">libarchive</span></code>, <code class="docutils literal notranslate"><span class="pre">libinput</span></code>,
+<code class="docutils literal notranslate"><span class="pre">libunwind</span></code>, <code class="docutils literal notranslate"><span class="pre">mesa</span></code>, <code class="docutils literal notranslate"><span class="pre">mesa-gl</span></code>, <code class="docutils literal notranslate"><span class="pre">openssh</span></code>, <code class="docutils literal notranslate"><span class="pre">perf</span></code>,
+<code class="docutils literal notranslate"><span class="pre">python3-pyyaml</span></code>, <code class="docutils literal notranslate"><span class="pre">qemu</span></code>, <code class="docutils literal notranslate"><span class="pre">rpm</span></code>, <code class="docutils literal notranslate"><span class="pre">shadow</span></code>, <code class="docutils literal notranslate"><span class="pre">strace</span></code>,
+<code class="docutils literal notranslate"><span class="pre">syslinux</span></code>, <code class="docutils literal notranslate"><span class="pre">systemd</span></code>, <code class="docutils literal notranslate"><span class="pre">vte</span></code>, <code class="docutils literal notranslate"><span class="pre">webkitgtk</span></code>, <code class="docutils literal notranslate"><span class="pre">xserver-xorg</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd-boot</span></code> can, from now on, be compiled as <code class="docutils literal notranslate"><span class="pre">native</span></code>, thus
+providing <code class="docutils literal notranslate"><span class="pre">ukify</span></code> tool to build UKI images.</p></li>
+<li><p>systemd: split bash completion for <code class="docutils literal notranslate"><span class="pre">udevadm</span></code> in a new
+<code class="docutils literal notranslate"><span class="pre">udev-bash-completion</span></code> package.</p></li>
+<li><p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-go-vendor"><span class="std std-ref">go-vendor</span></a> class was added to support offline builds
+(i.e., vendoring). It can also handle modules from the same repository,
+taking into account their versions.</p></li>
+<li><p>Disable strace support of bluetooth by default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssh</span></code> now has a systemd service: <code class="docutils literal notranslate"><span class="pre">sshd.service</span></code>.</p></li>
+<li><p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-python-mesonpy"><span class="std std-ref">python_mesonpy</span></a> class was added (moved in from
+<code class="docutils literal notranslate"><span class="pre">meta-python</span></code>) to support Python package builds using the meson-python
+PEP-517 build backend.</p></li>
+<li><p>Support for unpacking <code class="docutils literal notranslate"><span class="pre">.7z</span></code> archives in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRC_URI"><span class="xref std std-term">SRC_URI</span></a> using <code class="docutils literal notranslate"><span class="pre">p7zip</span></code>.</p></li>
+<li><p>Add minimal VS Code configuration to avoid VS Code’s indexer from choking
+on build directories.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="known-issues-in-5-0">
+<h2>Known Issues in 5.0<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#known-issues-in-5-0" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gpgme</span></code> has had Python binding support disabled since upstream does not yet support Python 3.12.</p></li>
+</ul>
+</section>
+<section id="recipe-license-changes-in-5-0">
+<h2>Recipe License changes in 5.0<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#recipe-license-changes-in-5-0" title="Link to this heading"></a></h2>
+<p>The following corrections have been made to the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LICENSE"><span class="xref std std-term">LICENSE</span></a> values set by recipes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">elfutils</span></code>: split license for libraries &amp; backend and utilities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ghostscript</span></code>: correct <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LICENSE"><span class="xref std std-term">LICENSE</span></a> to <code class="docutils literal notranslate"><span class="pre">AGPL-3.0-or-later</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kbd</span></code>: update license for consolefont and keymaps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libsystemd</span></code>: set its own <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LICENSE"><span class="xref std std-term">LICENSE</span></a> value (<code class="docutils literal notranslate"><span class="pre">LGPL-2.1-or-later</span></code>) to add more granularity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libtest-warnings-perl</span></code>: update <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LICENSE"><span class="xref std std-term">LICENSE</span></a> <code class="docutils literal notranslate"><span class="pre">Artistic-1.0</span></code> to <code class="docutils literal notranslate"><span class="pre">Artistic-1.0-Perl</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-firmware</span></code>: set package <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LICENSE"><span class="xref std std-term">LICENSE</span></a> appropriately for <code class="docutils literal notranslate"><span class="pre">carl9170</span></code>, <code class="docutils literal notranslate"><span class="pre">rockchip</span></code> and <code class="docutils literal notranslate"><span class="pre">powerpr</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">newlib</span></code>: add license <code class="docutils literal notranslate"><span class="pre">Apache-2.0-with-LLVM-exception</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-poetry-core</span></code>: add license <code class="docutils literal notranslate"><span class="pre">BSD-3-Clause</span></code> for <code class="docutils literal notranslate"><span class="pre">fastjsonschema</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd</span></code>: make the scope of <code class="docutils literal notranslate"><span class="pre">LGPL</span></code> more accurate (<code class="docutils literal notranslate"><span class="pre">LGPL-2.1</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">LGPL-2.1-or-later</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util-linux</span></code>: add <code class="docutils literal notranslate"><span class="pre">GPL-1.0-or-later</span></code> license for fdisk and <code class="docutils literal notranslate"><span class="pre">MIT</span></code> license for <code class="docutils literal notranslate"><span class="pre">flock</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zstd</span></code>: set to dual-licensed <code class="docutils literal notranslate"><span class="pre">BSD-3-Clause</span></code> or <code class="docutils literal notranslate"><span class="pre">GPL-2.0-only</span></code>.</p></li>
+</ul>
+</section>
+<section id="security-fixes-in-5-0">
+<h2>Security Fixes in 5.0<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#security-fixes-in-5-0" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>avahi: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-1981">CVE-2023-1981</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-38469">CVE-2023-38469</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-38470">CVE-2023-38470</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-38471">CVE-2023-38471</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-38469">CVE-2023-38469</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-38470">CVE-2023-38470</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-38471">CVE-2023-38471</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-38472">CVE-2023-38472</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-38473">CVE-2023-38473</a></p></li>
+<li><p>bind: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4408">CVE-2023-4408</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-5517">CVE-2023-5517</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-5679">CVE-2023-5679</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-50387">CVE-2023-50387</a></p></li>
+<li><p>bluez5: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-45866">CVE-2023-45866</a></p></li>
+<li><p>coreutils: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0684">CVE-2024-0684</a></p></li>
+<li><p>cups: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4504">CVE-2023-4504</a></p></li>
+<li><p>curl: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-46218">CVE-2023-46218</a></p></li>
+<li><p>expat: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-28757">CVE-2024-28757</a></p></li>
+<li><p>gcc: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4039">CVE-2023-4039</a></p></li>
+<li><p>glibc: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-5156">CVE-2023-5156</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-0687">CVE-2023-0687</a></p></li>
+<li><p>gnutls: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0553">CVE-2024-0553</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0567">CVE-2024-0567</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-28834">CVE-2024-28834</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-28835">CVE-2024-28835</a></p></li>
+<li><p>go: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-45288">CVE-2023-45288</a></p></li>
+<li><p>grub: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4692">CVE-2023-4692</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4693">CVE-2023-4693</a></p></li>
+<li><p>grub2: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4001">CVE-2023-4001</a> (ignored), <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-1048">CVE-2024-1048</a> (ignored)</p></li>
+<li><p>libgit2: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-24575">CVE-2024-24575</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-24577">CVE-2024-24577</a></p></li>
+<li><p>libsndfile1: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2022-33065">CVE-2022-33065</a></p></li>
+<li><p>libssh2: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48795">CVE-2023-48795</a></p></li>
+<li><p>libuv: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-24806">CVE-2024-24806</a></p></li>
+<li><p>libxml2: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-45322">CVE-2023-45322</a> (ignored)</p></li>
+<li><p>linux-yocto/6.6: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2020-16119">CVE-2020-16119</a></p></li>
+<li><p>openssh: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48795">CVE-2023-48795</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-51384">CVE-2023-51384</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-51385">CVE-2023-51385</a></p></li>
+<li><p>openssl: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-5678">CVE-2023-5678</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-6129">CVE-2023-6129</a>, <a class="extlink-cve_mitre reference external" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-6237">CVE-2023-6237</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0727">CVE-2024-0727</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-2511">CVE-2024-2511</a></p></li>
+<li><p>perl: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-47100">CVE-2023-47100</a></p></li>
+<li><p>pixman: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-37769">CVE-2023-37769</a> (ignored)</p></li>
+<li><p>python3-cryptography{-vectors}: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-49083">CVE-2023-49083</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-26130">CVE-2024-26130</a></p></li>
+<li><p>python3-urllib3: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-45803">CVE-2023-45803</a></p></li>
+<li><p>shadow: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4641">CVE-2023-4641</a></p></li>
+<li><p>sudo: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-42456">CVE-2023-42456</a></p></li>
+<li><p>tiff: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-6228">CVE-2023-6228</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-6277">CVE-2023-6277</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-52355">CVE-2023-52355</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-52356">CVE-2023-52356</a></p></li>
+<li><p>vim: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-46246">CVE-2023-46246</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48231">CVE-2023-48231</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48232">CVE-2023-48232</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48233">CVE-2023-48233</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48234">CVE-2023-48234</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48235">CVE-2023-48235</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48236">CVE-2023-48236</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-48237">CVE-2023-48237</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-22667">CVE-2024-22667</a></p></li>
+<li><p>wpa-supplicant: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-52160">CVE-2023-52160</a></p></li>
+<li><p>xserver-xorg: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-5574">CVE-2023-5574</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-6816">CVE-2023-6816</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0229">CVE-2024-0229</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0408">CVE-2024-0408</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0409">CVE-2024-0409</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-21885">CVE-2024-21885</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-21886">CVE-2024-21886</a></p></li>
+<li><p>xwayland: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-5367">CVE-2023-5367</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0408">CVE-2024-0408</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0409">CVE-2024-0409</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-6816">CVE-2023-6816</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0229">CVE-2024-0229</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-21885">CVE-2024-21885</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-21886">CVE-2024-21886</a></p></li>
+<li><p>zlib: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-45853">CVE-2023-45853</a> (ignored), <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-6992">CVE-2023-6992</a> (ignored)</p></li>
+</ul>
+</section>
+<section id="recipe-upgrades-in-5-0">
+<h2>Recipe Upgrades in 5.0<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#recipe-upgrades-in-5-0" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>acl 2.3.1 -&gt; 2.3.2</p></li>
+<li><p>acpica 20230628 -&gt; 20240322</p></li>
+<li><p>alsa-lib 1.2.10 -&gt; 1.2.11</p></li>
+<li><p>alsa-tools 1.2.5 -&gt; 1.2.11</p></li>
+<li><p>alsa-ucm-conf 1.2.10 -&gt; 1.2.11</p></li>
+<li><p>alsa-utils 1.2.10 -&gt; 1.2.11</p></li>
+<li><p>appstream 0.16.3 -&gt; 1.0.2</p></li>
+<li><p>autoconf 2.72c -&gt; 2.72e</p></li>
+<li><p>bash 5.2.15 -&gt; 5.2.21</p></li>
+<li><p>bash-completion 2.11 -&gt; 2.12.0</p></li>
+<li><p>binutils 2.41 -&gt; 2.42</p></li>
+<li><p>bluez5 5.69 -&gt; 5.72</p></li>
+<li><p>boost 1.83.0 -&gt; 1.84.0</p></li>
+<li><p>boost-build-native 1.83.0 -&gt; 1.84.0</p></li>
+<li><p>btrfs-tools 6.5.1 -&gt; 6.7.1</p></li>
+<li><p>cairo 1.16.0 -&gt; 1.18.0</p></li>
+<li><p>cargo 1.70.0 -&gt; 1.75.0</p></li>
+<li><p>cargo-c-native 0.9.18 -&gt; 0.9.30+cargo-0.77.0</p></li>
+<li><p>ccache 4.8.3 -&gt; 4.9.1</p></li>
+<li><p>cmake 3.27.7 -&gt; 3.28.3</p></li>
+<li><p>cmake-native 3.27.7 -&gt; 3.28.3</p></li>
+<li><p>createrepo-c 1.0.0 -&gt; 1.0.4</p></li>
+<li><p>cronie 1.6.1 -&gt; 1.7.1</p></li>
+<li><p>cross-localedef-native 2.38+git -&gt; 2.39+git</p></li>
+<li><p>cups 2.4.6 -&gt; 2.4.7</p></li>
+<li><p>curl 8.4.0 -&gt; 8.7.1</p></li>
+<li><p>dbus-wait 0.1+git (6cc6077a36fe…) -&gt; 0.1+git (64bc7c8fae61…)</p></li>
+<li><p>debianutils 5.13 -&gt; 5.16</p></li>
+<li><p>desktop-file-utils 0.26 -&gt; 0.27</p></li>
+<li><p>dhcpcd 10.0.2 -&gt; 10.0.6</p></li>
+<li><p>diffoscope 249 -&gt; 259</p></li>
+<li><p>diffstat 1.65 -&gt; 1.66</p></li>
+<li><p>dnf 4.17.0 -&gt; 4.19.0</p></li>
+<li><p>dos2unix 7.5.1 -&gt; 7.5.2</p></li>
+<li><p>ed 1.19 -&gt; 1.20.1</p></li>
+<li><p>efivar 38+39+git -&gt; 39+39+git</p></li>
+<li><p>elfutils 0.189 -&gt; 0.191</p></li>
+<li><p>ell 0.60 -&gt; 0.63</p></li>
+<li><p>enchant2 2.6.2 -&gt; 2.6.7</p></li>
+<li><p>epiphany 44.6 -&gt; 46.0</p></li>
+<li><p>erofs-utils 1.6 -&gt; 1.7.1</p></li>
+<li><p>ethtool 6.5 -&gt; 6.7</p></li>
+<li><p>eudev 3.2.12 -&gt; 3.2.14</p></li>
+<li><p>expat 2.5.0 -&gt; 2.6.2</p></li>
+<li><p>ffmpeg 6.0 -&gt; 6.1.1</p></li>
+<li><p>fontconfig 2.14.2 -&gt; 2.15.0</p></li>
+<li><p>gawk 5.2.2 -&gt; 5.3.0</p></li>
+<li><p>gcr 4.1.0 -&gt; 4.2.0</p></li>
+<li><p>gdb 13.2 -&gt; 14.2</p></li>
+<li><p>gettext 0.22 -&gt; 0.22.5</p></li>
+<li><p>gettext-minimal-native 0.22 -&gt; 0.22.5</p></li>
+<li><p>gi-docgen 2023.1 -&gt; 2023.3</p></li>
+<li><p>git 2.42.0 -&gt; 2.44.0</p></li>
+<li><p>glib-2.0 2.78.3 -&gt; 2.78.4</p></li>
+<li><p>glib-networking 2.76.1 -&gt; 2.78.1</p></li>
+<li><p>glibc 2.38+git -&gt; 2.39+git</p></li>
+<li><p>glibc-locale 2.38 -&gt; 2.39+git</p></li>
+<li><p>glibc-mtrace 2.38 -&gt; 2.39+git</p></li>
+<li><p>glibc-scripts 2.38 -&gt; 2.39+git</p></li>
+<li><p>glibc-testsuite 2.38+git -&gt; 2.39+git</p></li>
+<li><p>glibc-y2038-tests 2.38+git -&gt; 2.39+git</p></li>
+<li><p>glslang 1.3.261.1 -&gt; 1.3.275.0</p></li>
+<li><p>gnu-config 20230216+git -&gt; 20240101+git</p></li>
+<li><p>gnupg 2.4.3 -&gt; 2.4.4</p></li>
+<li><p>gnutls 3.8.3 -&gt; 3.8.4</p></li>
+<li><p>go 1.20.12 -&gt; 1.22.2</p></li>
+<li><p>go-binary-native 1.20.12 -&gt; 1.22.2</p></li>
+<li><p>go-native 1.20.12 -&gt; 1.22.2</p></li>
+<li><p>go-runtime 1.20.12 -&gt; 1.22.2</p></li>
+<li><p>gpgme 1.22.0 -&gt; 1.23.2</p></li>
+<li><p>grub 2.06 -&gt; 2.12</p></li>
+<li><p>grub-efi 2.06 -&gt; 2.12</p></li>
+<li><p>gsettings-desktop-schemas 44.0 -&gt; 46.0</p></li>
+<li><p>gst-devtools 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-libav 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-omx 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-plugins-bad 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-plugins-base 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-plugins-good 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-plugins-ugly 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-python 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-rtsp-server 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gstreamer1.0-vaapi 1.22.9 -&gt; 1.22.11</p></li>
+<li><p>gtk+3 3.24.38 -&gt; 3.24.41</p></li>
+<li><p>gtk4 4.12.3 -&gt; 4.14.1</p></li>
+<li><p>harfbuzz 8.2.2 -&gt; 8.3.0</p></li>
+<li><p>hwlatdetect 2.5 -&gt; 2.6</p></li>
+<li><p>icu 73-2 -&gt; 74-1</p></li>
+<li><p>inetutils 2.4 -&gt; 2.5</p></li>
+<li><p>init-system-helpers 1.65.2 -&gt; 1.66</p></li>
+<li><p>iproute2 6.5.0 -&gt; 6.7.0</p></li>
+<li><p>iptables 1.8.9 -&gt; 1.8.10</p></li>
+<li><p>iputils 20221126 -&gt; 20240117</p></li>
+<li><p>iso-codes 4.15.0 -&gt; 4.16.0</p></li>
+<li><p>iw 5.19 -&gt; 6.7</p></li>
+<li><p>json-glib 1.6.6 -&gt; 1.8.0</p></li>
+<li><p>kbd 2.6.3 -&gt; 2.6.4</p></li>
+<li><p>kexec-tools 2.0.27 -&gt; 2.0.28</p></li>
+<li><p>kmod 30 -&gt; 31</p></li>
+<li><p>kmscube git -&gt; 0.0.1+git</p></li>
+<li><p>libadwaita 1.4.2 -&gt; 1.5.0</p></li>
+<li><p>libbsd 0.11.7 -&gt; 0.12.1</p></li>
+<li><p>libcap-ng 0.8.3 -&gt; 0.8.4</p></li>
+<li><p>libcap-ng-python 0.8.3 -&gt; 0.8.4</p></li>
+<li><p>libcomps 0.1.19 -&gt; 0.1.20</p></li>
+<li><p>libdnf 0.71.0 -&gt; 0.73.0</p></li>
+<li><p>libdrm 2.4.116 -&gt; 2.4.120</p></li>
+<li><p>libffi 3.4.4 -&gt; 3.4.6</p></li>
+<li><p>libgit2 1.7.1 -&gt; 1.7.2</p></li>
+<li><p>libgloss 4.3.0+git -&gt; 4.4.0+git</p></li>
+<li><p>libgpg-error 1.47 -&gt; 1.48</p></li>
+<li><p>libhandy 1.8.2 -&gt; 1.8.3</p></li>
+<li><p>libical 3.0.16 -&gt; 3.0.17</p></li>
+<li><p>libidn2 2.3.4 -&gt; 2.3.7</p></li>
+<li><p>libinput 1.24.0 -&gt; 1.25.0</p></li>
+<li><p>libksba 1.6.4 -&gt; 1.6.6</p></li>
+<li><p>libmicrohttpd 0.9.77 -&gt; 1.0.1</p></li>
+<li><p>libnl 3.8.0 -&gt; 3.9.0</p></li>
+<li><p>libnotify 0.8.2 -&gt; 0.8.3</p></li>
+<li><p>libpciaccess 0.17 -&gt; 0.18</p></li>
+<li><p>libpcre2 10.42 -&gt; 10.43</p></li>
+<li><p>libpng 1.6.40 -&gt; 1.6.42</p></li>
+<li><p>libproxy 0.5.3 -&gt; 0.5.4</p></li>
+<li><p>libpsl 0.21.2 -&gt; 0.21.5</p></li>
+<li><p>librepo 1.16.0 -&gt; 1.17.0</p></li>
+<li><p>librsvg 2.56.3 -&gt; 2.57.1</p></li>
+<li><p>libsdl2 2.28.4 -&gt; 2.30.0</p></li>
+<li><p>libseccomp 2.5.4 -&gt; 2.5.5</p></li>
+<li><p>libsecret 0.21.1 -&gt; 0.21.4</p></li>
+<li><p>libsolv 0.7.26 -&gt; 0.7.28</p></li>
+<li><p>libsoup 3.4.2 -&gt; 3.4.4</p></li>
+<li><p>libstd-rs 1.70.0 -&gt; 1.75.0</p></li>
+<li><p>libtest-warnings-perl 0.031 -&gt; 0.033</p></li>
+<li><p>libtirpc 1.3.3 -&gt; 1.3.4</p></li>
+<li><p>libubootenv 0.3.4 -&gt; 0.3.5</p></li>
+<li><p>libunistring 1.1 -&gt; 1.2</p></li>
+<li><p>liburi-perl 5.21 -&gt; 5.27</p></li>
+<li><p>libusb1 1.0.26 -&gt; 1.0.27</p></li>
+<li><p>libuv 1.46.0 -&gt; 1.48.0</p></li>
+<li><p>libva 2.19.0 -&gt; 2.20.0</p></li>
+<li><p>libva-initial 2.19.0 -&gt; 2.20.0</p></li>
+<li><p>libwpe 1.14.1 -&gt; 1.14.2</p></li>
+<li><p>libxext 1.3.5 -&gt; 1.3.6</p></li>
+<li><p>libxkbcommon 1.5.0 -&gt; 1.6.0</p></li>
+<li><p>libxkbfile 1.1.2 -&gt; 1.1.3</p></li>
+<li><p>libxml-parser-perl 2.46 -&gt; 2.47</p></li>
+<li><p>libxml2 2.11.7 -&gt; 2.12.5</p></li>
+<li><p>libxmlb 0.3.14 -&gt; 0.3.15</p></li>
+<li><p>libxrandr 1.5.3 -&gt; 1.5.4</p></li>
+<li><p>libxvmc 1.0.13 -&gt; 1.0.14</p></li>
+<li><p>lighttpd 1.4.71 -&gt; 1.4.74</p></li>
+<li><p>linux-firmware 20240220 -&gt; 20240312</p></li>
+<li><p>linux-libc-headers 6.5 -&gt; 6.6</p></li>
+<li><p>linux-yocto 6.1.78+git, 6.5.13+git -&gt; 6.6.23+git</p></li>
+<li><p>linux-yocto-dev 6.6+git -&gt; 6.9+git</p></li>
+<li><p>linux-yocto-rt 6.1.78+git, 6.5.13+git -&gt; 6.6.23+git</p></li>
+<li><p>linux-yocto-tiny 6.1.78+git, 6.5.13+git -&gt; 6.6.23+git</p></li>
+<li><p>llvm 17.0.3 -&gt; 18.1.3</p></li>
+<li><p>lsof 4.98.0 -&gt; 4.99.3</p></li>
+<li><p>ltp 20230516 -&gt; 20240129</p></li>
+<li><p>lttng-modules 2.13.10 -&gt; 2.13.12</p></li>
+<li><p>lttng-ust 2.13.6 -&gt; 2.13.7</p></li>
+<li><p>lzip 1.23 -&gt; 1.24</p></li>
+<li><p>makedepend 1.0.8 -&gt; 1.0.9</p></li>
+<li><p>man-db 2.11.2 -&gt; 2.12.0</p></li>
+<li><p>man-pages 6.05.01 -&gt; 6.06</p></li>
+<li><p>mc 4.8.30 -&gt; 4.8.31</p></li>
+<li><p>mesa 23.2.1 -&gt; 24.0.2</p></li>
+<li><p>mesa-gl 23.2.1 -&gt; 24.0.2</p></li>
+<li><p>meson 1.2.2 -&gt; 1.3.1</p></li>
+<li><p>minicom 2.8 -&gt; 2.9</p></li>
+<li><p>mmc-utils 0.1+git (613495ecaca9…) -&gt; 0.1+git (b5ca140312d2…)</p></li>
+<li><p>mpg123 1.31.3 -&gt; 1.32.5</p></li>
+<li><p>newlib 4.3.0+git -&gt; 4.4.0+git</p></li>
+<li><p>nghttp2 1.57.0 -&gt; 1.61.0</p></li>
+<li><p>numactl 2.0.16 -&gt; 2.0.18</p></li>
+<li><p>ofono 2.1 -&gt; 2.4</p></li>
+<li><p>opensbi 1.2 -&gt; 1.4</p></li>
+<li><p>openssh 9.5p1 -&gt; 9.6p1</p></li>
+<li><p>openssl 3.1.5 -&gt; 3.2.1</p></li>
+<li><p>opkg 0.6.2 -&gt; 0.6.3</p></li>
+<li><p>opkg-utils 0.6.2 -&gt; 0.6.3</p></li>
+<li><p>orc 0.4.34 -&gt; 0.4.38</p></li>
+<li><p>ovmf edk2-stable202308 -&gt; edk2-stable202402</p></li>
+<li><p>p11-kit 0.25.0 -&gt; 0.25.3</p></li>
+<li><p>pango 1.51.0 -&gt; 1.52.0</p></li>
+<li><p>pciutils 3.10.0 -&gt; 3.11.1</p></li>
+<li><p>piglit 1.0+gitr (71c21b1157c4…) -&gt; 1.0+gitr (22eaf6a91cfd…)</p></li>
+<li><p>pkgconf 2.0.3 -&gt; 2.1.1</p></li>
+<li><p>psplash 0.1+git (44afb7506d43…) -&gt; 0.1+git (ecc191375669…)</p></li>
+<li><p>ptest-runner 2.4.2+git -&gt; 2.4.3+git</p></li>
+<li><p>pulseaudio 16.1 -&gt; 17.0</p></li>
+<li><p>puzzles 0.0+git (2d9e414ee316…) -&gt; 0.0+git (80aac3104096…)</p></li>
+<li><p>python3 3.11.5 -&gt; 3.12.3</p></li>
+<li><p>python3-alabaster 0.7.13 -&gt; 0.7.16</p></li>
+<li><p>python3-attrs 23.1.0 -&gt; 23.2.0</p></li>
+<li><p>python3-babel 2.12.1 -&gt; 2.14.0</p></li>
+<li><p>python3-bcrypt 4.0.1 -&gt; 4.1.2</p></li>
+<li><p>python3-beartype 0.15.0 -&gt; 0.17.2</p></li>
+<li><p>python3-build 1.0.3 -&gt; 1.1.1</p></li>
+<li><p>python3-certifi 2023.7.22 -&gt; 2024.2.2</p></li>
+<li><p>python3-cffi 1.15.1 -&gt; 1.16.0</p></li>
+<li><p>python3-cryptography 41.0.4 -&gt; 42.0.5</p></li>
+<li><p>python3-cryptography-vectors 41.0.4 -&gt; 42.0.5</p></li>
+<li><p>python3-cython 0.29.36 -&gt; 3.0.8</p></li>
+<li><p>python3-dbusmock 0.29.1 -&gt; 0.31.1</p></li>
+<li><p>python3-dtschema 2023.7 -&gt; 2024.2</p></li>
+<li><p>python3-git 3.1.36 -&gt; 3.1.42</p></li>
+<li><p>python3-gitdb 4.0.10 -&gt; 4.0.11</p></li>
+<li><p>python3-hatch-fancy-pypi-readme 23.1.0 -&gt; 24.1.0</p></li>
+<li><p>python3-hatch-vcs 0.3.0 -&gt; 0.4.0</p></li>
+<li><p>python3-hatchling 1.18.0 -&gt; 1.21.1</p></li>
+<li><p>python3-hypothesis 6.86.2 -&gt; 6.98.15</p></li>
+<li><p>python3-idna 3.4 -&gt; 3.6</p></li>
+<li><p>python3-importlib-metadata 6.8.0 -&gt; 7.0.1</p></li>
+<li><p>python3-iso8601 2.0.0 -&gt; 2.1.0</p></li>
+<li><p>python3-jsonschema 4.17.3 -&gt; 4.21.1</p></li>
+<li><p>python3-license-expression 30.1.1 -&gt; 30.2.0</p></li>
+<li><p>python3-lxml 4.9.3 -&gt; 5.0.0</p></li>
+<li><p>python3-mako 1.2.4 -&gt; 1.3.2</p></li>
+<li><p>python3-markdown 3.4.4 -&gt; 3.5.2</p></li>
+<li><p>python3-markupsafe 2.1.3 -&gt; 2.1.5</p></li>
+<li><p>python3-more-itertools 10.1.0 -&gt; 10.2.0</p></li>
+<li><p>python3-numpy 1.26.0 -&gt; 1.26.4</p></li>
+<li><p>python3-packaging 23.1 -&gt; 23.2</p></li>
+<li><p>python3-pathspec 0.11.2 -&gt; 0.12.1</p></li>
+<li><p>python3-pbr 5.11.1 -&gt; 6.0.0</p></li>
+<li><p>python3-pip 23.2.1 -&gt; 24.0</p></li>
+<li><p>python3-pluggy 1.3.0 -&gt; 1.4.0</p></li>
+<li><p>python3-poetry-core 1.7.0 -&gt; 1.9.0</p></li>
+<li><p>python3-psutil 5.9.5 -&gt; 5.9.8</p></li>
+<li><p>python3-pyasn1 0.5.0 -&gt; 0.5.1</p></li>
+<li><p>python3-pycairo 1.24.0 -&gt; 1.26.0</p></li>
+<li><p>python3-pycryptodome 3.19.0 -&gt; 3.20.0</p></li>
+<li><p>python3-pycryptodomex 3.19.0 -&gt; 3.20.0</p></li>
+<li><p>python3-pygments 2.16.1 -&gt; 2.17.2</p></li>
+<li><p>python3-pyopenssl 23.2.0 -&gt; 24.0.0</p></li>
+<li><p>python3-pyrsistent 0.19.3 -&gt; 0.20.0</p></li>
+<li><p>python3-pytest 7.4.2 -&gt; 8.0.2</p></li>
+<li><p>python3-pytest-runner 6.0.0 -&gt; 6.0.1</p></li>
+<li><p>python3-pytz 2023.3 -&gt; 2024.1</p></li>
+<li><p>python3-ruamel-yaml 0.17.32 -&gt; 0.18.6</p></li>
+<li><p>python3-scons 4.5.2 -&gt; 4.6.0</p></li>
+<li><p>python3-setuptools 68.2.2 -&gt; 69.1.1</p></li>
+<li><p>python3-setuptools-rust 1.7.0 -&gt; 1.9.0</p></li>
+<li><p>python3-setuptools-scm 7.1.0 -&gt; 8.0.4</p></li>
+<li><p>python3-spdx-tools 0.8.1 -&gt; 0.8.2</p></li>
+<li><p>python3-sphinx-rtd-theme 1.3.0 -&gt; 2.0.0</p></li>
+<li><p>python3-sphinxcontrib-applehelp 1.0.4 -&gt; 1.0.8</p></li>
+<li><p>python3-sphinxcontrib-devhelp 1.0.2 -&gt; 1.0.6</p></li>
+<li><p>python3-sphinxcontrib-htmlhelp 2.0.1 -&gt; 2.0.5</p></li>
+<li><p>python3-sphinxcontrib-qthelp 1.0.3 -&gt; 1.0.7</p></li>
+<li><p>python3-sphinxcontrib-serializinghtml 1.1.5 -&gt; 1.1.10</p></li>
+<li><p>python3-subunit 1.4.2 -&gt; 1.4.4</p></li>
+<li><p>python3-testtools 2.6.0 -&gt; 2.7.1</p></li>
+<li><p>python3-trove-classifiers 2023.9.19 -&gt; 2024.2.23</p></li>
+<li><p>python3-typing-extensions 4.8.0 -&gt; 4.10.0</p></li>
+<li><p>python3-unittest-automake-output 0.1 -&gt; 0.2</p></li>
+<li><p>python3-urllib3 2.0.7 -&gt; 2.2.1</p></li>
+<li><p>python3-wcwidth 0.2.6 -&gt; 0.2.13</p></li>
+<li><p>python3-wheel 0.41.2 -&gt; 0.42.0</p></li>
+<li><p>qemu 8.1.4 -&gt; 8.2.1</p></li>
+<li><p>qemu-native 8.1.4 -&gt; 8.2.1</p></li>
+<li><p>qemu-system-native 8.1.4 -&gt; 8.2.1</p></li>
+<li><p>repo 2.36.1 -&gt; 2.42</p></li>
+<li><p>resolvconf 1.91 -&gt; 1.92</p></li>
+<li><p>rpm 4.18.1 -&gt; 4.19.1</p></li>
+<li><p>rt-tests 2.5 -&gt; 2.6</p></li>
+<li><p>rust 1.70.0 -&gt; 1.75.0</p></li>
+<li><p>rust-cross-canadian 1.70.0 -&gt; 1.75.0</p></li>
+<li><p>rust-llvm 1.70.0 -&gt; 1.75.0</p></li>
+<li><p>shaderc 2023.6 -&gt; 2023.8</p></li>
+<li><p>shadow 4.13 -&gt; 4.14.2</p></li>
+<li><p>shared-mime-info 2.2 -&gt; 2.4</p></li>
+<li><p>socat 1.7.4.4 -&gt; 1.8.0.0</p></li>
+<li><p>spirv-headers 1.3.261.1 -&gt; 1.3.275.0</p></li>
+<li><p>spirv-tools 1.3.261.1 -&gt; 1.3.275.0</p></li>
+<li><p>sqlite3 3.43.2 -&gt; 3.45.1</p></li>
+<li><p>strace 6.5 -&gt; 6.7</p></li>
+<li><p>stress-ng 0.16.05 -&gt; 0.17.05</p></li>
+<li><p>subversion 1.14.2 -&gt; 1.14.3</p></li>
+<li><p>swig 4.1.1 -&gt; 4.2.1</p></li>
+<li><p>sysstat 12.7.4 -&gt; 12.7.5</p></li>
+<li><p>systemd 254.4 -&gt; 255.4</p></li>
+<li><p>systemd-boot 254.4 -&gt; 255.4</p></li>
+<li><p>systemd-bootchart 234 -&gt; 235</p></li>
+<li><p>systemtap 4.9 -&gt; 5.0</p></li>
+<li><p>systemtap-native 4.9 -&gt; 5.0</p></li>
+<li><p>taglib 1.13.1 -&gt; 2.0</p></li>
+<li><p>ttyrun 2.29.0 -&gt; 2.31.0</p></li>
+<li><p>u-boot 2023.10 -&gt; 2024.01</p></li>
+<li><p>u-boot-tools 2023.10 -&gt; 2024.01</p></li>
+<li><p>update-rc.d 0.8 (8636cf478d42…) -&gt; 0.8 (b8f950105010…)</p></li>
+<li><p>usbutils 015 -&gt; 017</p></li>
+<li><p>util-linux 2.39.2 -&gt; 2.39.3</p></li>
+<li><p>util-linux-libuuid 2.39.2 -&gt; 2.39.3</p></li>
+<li><p>vala 0.56.13 -&gt; 0.56.15</p></li>
+<li><p>valgrind 3.21.0 -&gt; 3.22.0</p></li>
+<li><p>vim 9.0.2190 -&gt; 9.1.0114</p></li>
+<li><p>vim-tiny 9.0.2190 -&gt; 9.1.0114</p></li>
+<li><p>virglrenderer 0.10.4 -&gt; 1.0.1</p></li>
+<li><p>vte 0.72.2 -&gt; 0.74.2</p></li>
+<li><p>vulkan-headers 1.3.261.1 -&gt; 1.3.275.0</p></li>
+<li><p>vulkan-loader 1.3.261.1 -&gt; 1.3.275.0</p></li>
+<li><p>vulkan-tools 1.3.261.1 -&gt; 1.3.275.0</p></li>
+<li><p>vulkan-validation-layers 1.3.261.1 -&gt; 1.3.275.0</p></li>
+<li><p>wayland-protocols 1.32 -&gt; 1.33</p></li>
+<li><p>webkitgtk 2.40.5 -&gt; 2.44.0</p></li>
+<li><p>weston 12.0.2 -&gt; 13.0.0</p></li>
+<li><p>xkbcomp 1.4.6 -&gt; 1.4.7</p></li>
+<li><p>xkeyboard-config 2.39 -&gt; 2.41</p></li>
+<li><p>xprop 1.2.6 -&gt; 1.2.7</p></li>
+<li><p>xwayland 23.2.4 -&gt; 23.2.5</p></li>
+<li><p>xz 5.4.4 -&gt; 5.4.6</p></li>
+<li><p>zlib 1.3 -&gt; 1.3.1</p></li>
+</ul>
+</section>
+<section id="contributors-to-5-0">
+<h2>Contributors to 5.0<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#contributors-to-5-0" title="Link to this heading"></a></h2>
+<p>Thanks to the following people who contributed to this release:</p>
+<ul class="simple">
+<li><p>Adam Johnston</p></li>
+<li><p>Adithya Balakumar</p></li>
+<li><p>Adrian Freihofer</p></li>
+<li><p>Alassane Yattara</p></li>
+<li><p>Alejandro Hernandez Samaniego</p></li>
+<li><p>Aleksey Smirnov</p></li>
+<li><p>Alexander Kanavin</p></li>
+<li><p>Alexander Lussier-Cullen</p></li>
+<li><p>Alexander Sverdlin</p></li>
+<li><p>Alexandre Belloni</p></li>
+<li><p>Alexandre Truong</p></li>
+<li><p>Alex Bennée</p></li>
+<li><p>Alexis Lothoré</p></li>
+<li><p>Alex Kiernan</p></li>
+<li><p>Alex Stewart</p></li>
+<li><p>André Draszik</p></li>
+<li><p>Anibal Limon</p></li>
+<li><p>Anuj Mittal</p></li>
+<li><p>Archana Polampalli</p></li>
+<li><p>Arne Schwerdt</p></li>
+<li><p>Bartosz Golaszewski</p></li>
+<li><p>Baruch Siach</p></li>
+<li><p>Bastian Krause</p></li>
+<li><p>BELHADJ SALEM Talel</p></li>
+<li><p>BELOUARGA Mohamed</p></li>
+<li><p>Bruce Ashfield</p></li>
+<li><p>Changhyeok Bae</p></li>
+<li><p>Changqing Li</p></li>
+<li><p>Charlie Johnston</p></li>
+<li><p>Chen Qi</p></li>
+<li><p>Chi Xu</p></li>
+<li><p>Chris Laplante</p></li>
+<li><p>Christian Taedcke</p></li>
+<li><p>Christoph Vogtländer</p></li>
+<li><p>Claus Stovgaard</p></li>
+<li><p>Clay Chang</p></li>
+<li><p>Clément Péron</p></li>
+<li><p>Colin McAllister</p></li>
+<li><p>Corentin Guillevic</p></li>
+<li><p>Daniel Ammann</p></li>
+<li><p>david d zuhn</p></li>
+<li><p>David Reyna</p></li>
+<li><p>Deepthi Hemraj</p></li>
+<li><p>Denys Dmytriyenko</p></li>
+<li><p>Derek Erdmann</p></li>
+<li><p>Desone Burns</p></li>
+<li><p>Dhairya Nagodra</p></li>
+<li><p>Dmitry Baryshkov</p></li>
+<li><p>Eero Aaltonen</p></li>
+<li><p>Eilís ‘pidge’ Ní Fhlannagáin</p></li>
+<li><p>Emil Kronborg</p></li>
+<li><p>Enguerrand de Ribaucourt</p></li>
+<li><p>Enrico Jörns</p></li>
+<li><p>Enrico Scholz</p></li>
+<li><p>Etienne Cordonnier</p></li>
+<li><p>Fabien Mahot</p></li>
+<li><p>Fabio Estevam</p></li>
+<li><p>Fahad Arslan</p></li>
+<li><p>Felix Moessbauer</p></li>
+<li><p>Florian Wickert</p></li>
+<li><p>Geoff Parker</p></li>
+<li><p>Glenn Strauss</p></li>
+<li><p>Harish Sadineni</p></li>
+<li><p>Hongxu Jia</p></li>
+<li><p>Ilya A. Kriveshko</p></li>
+<li><p>Jamin Lin</p></li>
+<li><p>Jan Vermaete</p></li>
+<li><p>Jason Andryuk</p></li>
+<li><p>Javier Tia</p></li>
+<li><p>Jeremy A. Puhlman</p></li>
+<li><p>Jérémy Rosen</p></li>
+<li><p>Jermain Horsman</p></li>
+<li><p>Jiang Kai</p></li>
+<li><p>Joakim Tjernlund</p></li>
+<li><p>Joao Marcos Costa</p></li>
+<li><p>Joe Slater</p></li>
+<li><p>Johan Bezem</p></li>
+<li><p>Johannes Schneider</p></li>
+<li><p>Jonathan GUILLOT</p></li>
+<li><p>Jon Mason</p></li>
+<li><p>Jörg Sommer</p></li>
+<li><p>Jose Quaresma</p></li>
+<li><p>Joshua Watt</p></li>
+<li><p>Julien Stephan</p></li>
+<li><p>Justin Bronder</p></li>
+<li><p>Kai Kang</p></li>
+<li><p>Kareem Zarka</p></li>
+<li><p>Kevin Hao</p></li>
+<li><p>Khem Raj</p></li>
+<li><p>Konrad Weihmann</p></li>
+<li><p>Lee Chee Yang</p></li>
+<li><p>Lei Maohui</p></li>
+<li><p>lixiaoyong</p></li>
+<li><p>Logan Gunthorpe</p></li>
+<li><p>Luca Ceresoli</p></li>
+<li><p>luca fancellu</p></li>
+<li><p>Lucas Stach</p></li>
+<li><p>Ludovic Jozeau</p></li>
+<li><p>Lukas Funke</p></li>
+<li><p>Maanya Goenka</p></li>
+<li><p>Malte Schmidt</p></li>
+<li><p>Marcel Ziswiler</p></li>
+<li><p>Marco Felsch</p></li>
+<li><p>Marcus Folkesson</p></li>
+<li><p>Marek Vasut</p></li>
+<li><p>Mark Asselstine</p></li>
+<li><p>Mark Hatle</p></li>
+<li><p>Markus Fuchs</p></li>
+<li><p>Markus Volk</p></li>
+<li><p>Marlon Rodriguez Garcia</p></li>
+<li><p>Marta Rybczynska</p></li>
+<li><p>Martin Hundebøll</p></li>
+<li><p>Martin Jansa</p></li>
+<li><p>Massimiliano Minella</p></li>
+<li><p>Maxin B. John</p></li>
+<li><p>Max Krummenacher</p></li>
+<li><p>Meenali Gupta</p></li>
+<li><p>Michael Halstead</p></li>
+<li><p>Michael Opdenacker</p></li>
+<li><p>Michal Sieron</p></li>
+<li><p>Mikko Rapeli</p></li>
+<li><p>Ming Liu</p></li>
+<li><p>Mingli Yu</p></li>
+<li><p>Munehisa Kamata</p></li>
+<li><p>Nick Owens</p></li>
+<li><p>Niko Mauno</p></li>
+<li><p>Ola x Nilsson</p></li>
+<li><p>Oleh Matiusha</p></li>
+<li><p>Patrick Williams</p></li>
+<li><p>Paul Barker</p></li>
+<li><p>Paul Eggleton</p></li>
+<li><p>Paul Gortmaker</p></li>
+<li><p>Pavel Zhukov</p></li>
+<li><p>Peter A. Bigot</p></li>
+<li><p>Peter Kjellerstedt</p></li>
+<li><p>Peter Marko</p></li>
+<li><p>Petr Vorel</p></li>
+<li><p>Philip Balister</p></li>
+<li><p>Philip Lorenz</p></li>
+<li><p>Philippe Rivest</p></li>
+<li><p>Piotr Łobacz</p></li>
+<li><p>Priyal Doshi</p></li>
+<li><p>Quentin Schulz</p></li>
+<li><p>Ragesh Nair</p></li>
+<li><p>Randolph Sapp</p></li>
+<li><p>Randy MacLeod</p></li>
+<li><p>Rasmus Villemoes</p></li>
+<li><p>Renat Khalikov</p></li>
+<li><p>Richard Haar</p></li>
+<li><p>Richard Purdie</p></li>
+<li><p>Robert Berger</p></li>
+<li><p>Robert Joslyn</p></li>
+<li><p>Robert P. J. Day</p></li>
+<li><p>Robert Yang</p></li>
+<li><p>Rodrigo M. Duarte</p></li>
+<li><p>Ross Burton</p></li>
+<li><p>Rouven Czerwinski</p></li>
+<li><p>Ryan Eatmon</p></li>
+<li><p>Sam Van Den Berge</p></li>
+<li><p>Saul Wold</p></li>
+<li><p>Sava Jakovljev</p></li>
+<li><p>Sean Nyekjaer</p></li>
+<li><p>Sergei Zhmylev</p></li>
+<li><p>Shinji Matsunaga</p></li>
+<li><p>Shubham Kulkarni</p></li>
+<li><p>Simone Weiß</p></li>
+<li><p>Siong W.LIM</p></li>
+<li><p>Soumya Sambu</p></li>
+<li><p>Sourav Kumar Pramanik</p></li>
+<li><p>Stefan Herbrechtsmeier</p></li>
+<li><p>Stéphane Veyret</p></li>
+<li><p>Steve Sakoman</p></li>
+<li><p>Sundeep KOKKONDA</p></li>
+<li><p>Thomas Perrot</p></li>
+<li><p>Thomas Wolber</p></li>
+<li><p>Timon Bergelt</p></li>
+<li><p>Tim Orling</p></li>
+<li><p>Timotheus Giuliani</p></li>
+<li><p>Tobias Hagelborn</p></li>
+<li><p>Tom Hochstein</p></li>
+<li><p>Tom Rini</p></li>
+<li><p>Toni Lammi</p></li>
+<li><p>Trevor Gamblin</p></li>
+<li><p>Trevor Woerner</p></li>
+<li><p>Ulrich Ölmann</p></li>
+<li><p>Valek Andrej</p></li>
+<li><p>venkata pyla</p></li>
+<li><p>Victor Kamensky</p></li>
+<li><p>Vijay Anusuri</p></li>
+<li><p>Vikas Katariya</p></li>
+<li><p>Vincent Davis Jr</p></li>
+<li><p>Viswanath Kraleti</p></li>
+<li><p>Vyacheslav Yurkov</p></li>
+<li><p>Wang Mingyu</p></li>
+<li><p>William A. Kennington III</p></li>
+<li><p>William Hauser</p></li>
+<li><p>William Lyu</p></li>
+<li><p>Xiangyu Chen</p></li>
+<li><p>Xiaotian Wu</p></li>
+<li><p>Yang Xu</p></li>
+<li><p>Yannick Rodriguez</p></li>
+<li><p>Yash Shinde</p></li>
+<li><p>Yi Zhao</p></li>
+<li><p>Yoann Congal</p></li>
+<li><p>Yogesh Tyagi</p></li>
+<li><p>Yogita Urade</p></li>
+<li><p>Zahir Hussain</p></li>
+<li><p>Zang Ruochen</p></li>
+<li><p>Zoltan Boszormenyi</p></li>
+</ul>
+</section>
+<section id="repositories-downloads-for-yocto-5-0">
+<h2>Repositories / Downloads for Yocto-5.0<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.0.html#repositories-downloads-for-yocto-5-0" title="Link to this heading"></a></h2>
+<p>poky</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky">https://git.yoctoproject.org/poky</a></p></li>
+<li><p>Branch: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky/log/?h=scarthgap">scarthgap</a></p></li>
+<li><p>Tag:  <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky/log/?h=yocto-5.0">yocto-5.0</a></p></li>
+<li><p>Git Revision: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky/commit/?id=fb91a49387cfb0c8d48303bb3354325ba2a05587">fb91a49387cfb0c8d48303bb3354325ba2a05587</a></p></li>
+<li><p>Release Artefact: poky-fb91a49387cfb0c8d48303bb3354325ba2a05587</p></li>
+<li><p>sha: 8a0dff4b677b9414ab814ed35d1880196123732ea16ab2fafa388bcc509b32ab</p></li>
+<li><p>Download Locations:
+<a class="reference external" href="http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/poky-fb91a49387cfb0c8d48303bb3354325ba2a05587.tar.bz2">http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/poky-fb91a49387cfb0c8d48303bb3354325ba2a05587.tar.bz2</a>
+<a class="reference external" href="http://mirrors.kernel.org/yocto/yocto/yocto-5.0/poky-fb91a49387cfb0c8d48303bb3354325ba2a05587.tar.bz2">http://mirrors.kernel.org/yocto/yocto/yocto-5.0/poky-fb91a49387cfb0c8d48303bb3354325ba2a05587.tar.bz2</a></p></li>
+</ul>
+<p>openembedded-core</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core">https://git.openembedded.org/openembedded-core</a></p></li>
+<li><p>Branch: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/log/?h=scarthgap">scarthgap</a></p></li>
+<li><p>Tag:  <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/log/?h=yocto-5.0">yocto-5.0</a></p></li>
+<li><p>Git Revision: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/commit/?id=b65b4e5a8e4473d8ca43835ba17bc8bd4bdca277">b65b4e5a8e4473d8ca43835ba17bc8bd4bdca277</a></p></li>
+<li><p>Release Artefact: oecore-b65b4e5a8e4473d8ca43835ba17bc8bd4bdca277</p></li>
+<li><p>sha: c7fd05d1a00c70acba2540e60dce01a1bdc4701ebff9a808784960240c69261d</p></li>
+<li><p>Download Locations:
+<a class="reference external" href="http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/oecore-b65b4e5a8e4473d8ca43835ba17bc8bd4bdca277.tar.bz2">http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/oecore-b65b4e5a8e4473d8ca43835ba17bc8bd4bdca277.tar.bz2</a>
+<a class="reference external" href="http://mirrors.kernel.org/yocto/yocto/yocto-5.0/oecore-b65b4e5a8e4473d8ca43835ba17bc8bd4bdca277.tar.bz2">http://mirrors.kernel.org/yocto/yocto/yocto-5.0/oecore-b65b4e5a8e4473d8ca43835ba17bc8bd4bdca277.tar.bz2</a></p></li>
+</ul>
+<p>meta-mingw</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-mingw">https://git.yoctoproject.org/meta-mingw</a></p></li>
+<li><p>Branch: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-mingw/log/?h=scarthgap">scarthgap</a></p></li>
+<li><p>Tag:  <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-mingw/log/?h=yocto-5.0">yocto-5.0</a></p></li>
+<li><p>Git Revision: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-mingw/commit/?id=acbba477893ef87388effc4679b7f40ee49fc852">acbba477893ef87388effc4679b7f40ee49fc852</a></p></li>
+<li><p>Release Artefact: meta-mingw-acbba477893ef87388effc4679b7f40ee49fc852</p></li>
+<li><p>sha: 3b7c2f475dad5130bace652b150367f587d44b391218b1364a8bbc430b48c54c</p></li>
+<li><p>Download Locations:
+<a class="reference external" href="http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/meta-mingw-acbba477893ef87388effc4679b7f40ee49fc852.tar.bz2">http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/meta-mingw-acbba477893ef87388effc4679b7f40ee49fc852.tar.bz2</a>
+<a class="reference external" href="http://mirrors.kernel.org/yocto/yocto/yocto-5.0/meta-mingw-acbba477893ef87388effc4679b7f40ee49fc852.tar.bz2">http://mirrors.kernel.org/yocto/yocto/yocto-5.0/meta-mingw-acbba477893ef87388effc4679b7f40ee49fc852.tar.bz2</a></p></li>
+</ul>
+<p>bitbake</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake">https://git.openembedded.org/bitbake</a></p></li>
+<li><p>Branch: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake/log/?h=2.8">2.8</a></p></li>
+<li><p>Tag:  <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake/log/?h=yocto-5.0">yocto-5.0</a></p></li>
+<li><p>Git Revision: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake/commit/?id=c86466d51e8ff14e57a734c1eec5bb651fdc73ef">c86466d51e8ff14e57a734c1eec5bb651fdc73ef</a></p></li>
+<li><p>Release Artefact: bitbake-c86466d51e8ff14e57a734c1eec5bb651fdc73ef</p></li>
+<li><p>sha: 45c91294c1fa5a0044f1bb72a9bb69456bb458747114115af85c7664bf672d48</p></li>
+<li><p>Download Locations:
+<a class="reference external" href="http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/bitbake-c86466d51e8ff14e57a734c1eec5bb651fdc73ef.tar.bz2">http://downloads.yoctoproject.org/releases/yocto/yocto-5.0/bitbake-c86466d51e8ff14e57a734c1eec5bb651fdc73ef.tar.bz2</a>
+<a class="reference external" href="http://mirrors.kernel.org/yocto/yocto/yocto-5.0/bitbake-c86466d51e8ff14e57a734c1eec5bb651fdc73ef.tar.bz2">http://mirrors.kernel.org/yocto/yocto/yocto-5.0/bitbake-c86466d51e8ff14e57a734c1eec5bb651fdc73ef.tar.bz2</a></p></li>
+</ul>
+<p>yocto-docs</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs">https://git.yoctoproject.org/yocto-docs</a></p></li>
+<li><p>Branch: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs/log/?h=scarthgap">scarthgap</a></p></li>
+<li><p>Tag: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs/log/?h=yocto-5.0">yocto-5.0</a></p></li>
+<li><p>Git Revision: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs/commit/?id=0cdc0afd3332459d30cfc8f4c2e62bdcc23f5ed5">0cdc0afd3332459d30cfc8f4c2e62bdcc23f5ed5</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  <hr>
+  <div role="contentinfo">
+    <p> A Linux Foundation Collaborative Project.
+        <br> All Rights Reserved. Linux Foundation® and Yocto Project® are registered trademarks of the Linux Foundation.
+        <br>Linux® is a registered trademark of Linus Torvalds.
+        <br>© Copyright 2010-2026, The Linux Foundation, CC-BY-SA-2.0-UK license
+        <br>Last updated on Aug 25, 2026 from the <a href="https://git.yoctoproject.org/yocto-docs/">yocto-docs</a> git repository<span class="docs_meta_info_placeholder"> (tag <a href="https://git.yoctoproject.org/yocto-docs/log?id=yocto-next"> next</a>)</span>.
+    </p>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+
+</body></html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html -->
+<html class="writer-html5" lang="en" data-content_root="../"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release 5.3 (whinlatter) — The Yocto Project ® next documentation</title>
+      <link rel="stylesheet" type="text/css" href="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/pygments.css">
+      <link rel="stylesheet" type="text/css" href="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/theme.css">
+      <link rel="stylesheet" type="text/css" href="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/copybutton.css">
+      <link rel="stylesheet" type="text/css" href="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/theme_overrides.css">
+
+  
+    <link rel="shortcut icon" href="https://docs.yoctoproject.org/next/_static/favicon.ico">
+      <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/jquery.js.下载"></script>
+      <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/_sphinx_javascript_frameworks_compat.js.下载"></script>
+      <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/documentation_options.js.下载"></script>
+      <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/doctools.js.下载"></script>
+      <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/sphinx_highlight.js.下载"></script>
+      <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/clipboard.min.js.下载"></script>
+      <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/copybutton.js.下载"></script>
+      <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/switchers.js.下载"></script>
+    <script src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/theme.js.下载"></script>
+    <link rel="index" title="Index" href="https://docs.yoctoproject.org/next/genindex.html">
+    <link rel="search" title="Search" href="https://docs.yoctoproject.org/next/search.html">
+    <link rel="next" title="Release notes for 5.3 (whinlatter)" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.3.html">
+    <link rel="prev" title="Release 5.3 (whinlatter)" href="https://docs.yoctoproject.org/next/migration-guides/release-5.3.html"> 
+</head>
+
+<body class="wy-body-for-nav">
+<div id="outdated-warning" style="text-align: center; background-color: #FFBABA; color: #6A0E0E;">
+</div>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="https://docs.yoctoproject.org/next/index.html" class="icon icon-home">
+            The Yocto Project ®
+              <img src="./Release 5.3 (whinlatter) — The Yocto Project ® next documentation_files/YoctoProject_Logo_RGB.jpg" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://docs.yoctoproject.org/next/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction and Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/brief-yoctoprojectqs/index.html">Quick Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/what-i-wish-id-known.html">What I wish I’d known about Yocto Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/transitioning-to-a-custom-environment.html">Transitioning to a custom environment for systems development</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/overview-manual/index.html">Overview and Concepts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributor Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/contributor-guide/index.html">Contributor Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/index.html">Reference Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/bsp-manual/index.html">Board Support Package (BSP) Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/dev-manual/index.html">Development Tasks Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/kernel-dev/index.html">Linux Kernel Development Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/security-manual/index.html">Security Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/profile-manual/index.html">Profile and Tracing Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/sdk-manual/index.html">Application Development and SDKs Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/toaster-manual/index.html">Toaster Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/test-manual/index.html">Test Environment Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/bitbake.html">BitBake User Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Security Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/security-reference/index.html">Yocto Project Security Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Information</span></p>
+<ul class="current" aria-expanded="true">
+<li class="toctree-l1 current" aria-expanded="true"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/index.html"><button class="toctree-expand" title="Open/close menu"></button>Release Notes and Migration Guides</a><ul class="" aria-expanded="false">
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-general.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-6.1.html">Release 6.1 (blacksail)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-6.0.html">Release 6.0 (wrynose)</a></li>
+<li class="toctree-l2 current" aria-expanded="true"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.3.html"><button class="toctree-expand" title="Open/close menu"></button>Release 5.3 (whinlatter)</a><ul class="" aria-expanded="false">
+<li class="toctree-l3 current" aria-expanded="true"><a class="reference internal current" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#" aria-expanded="true"><button class="toctree-expand" title="Open/close menu"></button>Release 5.3 (whinlatter)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#migration-notes-for-yocto-ver-yocto-codename">Migration notes for 5.3 (whinlatter)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.3.html">Release notes for 5.3 (whinlatter)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.3.1.html">Release notes for Yocto-5.3.1 (Whinlatter)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.3.2.html">Release notes for Yocto-5.3.2 (Whinlatter)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.3.3.html">Release notes for Yocto-5.3.3 (Whinlatter)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.3.4.html">Release notes for Yocto-5.3.4 (Whinlatter)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.2.html">Release 5.2 (walnascar)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.1.html">Release 5.1 (styhead)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.0.html">Release 5.0 (scarthgap)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.3.html">Release 4.3 (nanbield)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.2.html">Release 4.2 (mickledore)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.1.html">Release 4.1 (langdale)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.0.html">Release 4.0 (kirkstone)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-3.4.html">Release 3.4 (honister)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.3.html">Release 3.3 (hardknott)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.2.html">Release 3.2 (gatesgarth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.1.html">Release 3.1 (dunfell)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.0.html">Release 3.0 (zeus)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.7.html">Release 2.7 (warrior)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.6.html">Release 2.6 (thud)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.5.html">Release 2.5 (sumo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.4.html">Release 2.4 (rocko)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.3.html">Release 2.3 (pyro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.2.html">Release 2.2 (morty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.1.html">Release 2.1 (krogoth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.0.html">Release 2.0 (jethro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.8.html">Release 1.8 (fido)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.7.html">Release 1.7 (dizzy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.6.html">Release 1.6 (daisy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.5.html">Release 1.5 (dora)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.4.html">Release 1.4 (dylan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.3.html">Release 1.3 (danny)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/releases.html">Supported Release Manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/releases.html#outdated-release-manuals">Outdated Release Manuals</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation Downloads</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/downloads.html">Documentation Downloads</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://docs.yoctoproject.org/next/index.html">The Yocto Project ®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+    <li>
+      <span class="doctype_switcher_placeholder"><select><option value="single" selected="selected">Individual Webpages</option><option value="mega">All-in-one 'Mega' Manual</option></select></span>
+      <span class="version_switcher_placeholder"><select><option value="outdated" selected="selected">Outdated release manuals</option><option value="dev" selected="selected">Unstable (dev)</option><option value="6.0-tip" selected="selected">Wrynose (6.0.2)</option><option value="5.0-tip" selected="selected">Scarthgap (5.0.19)</option><option value="next" selected="selected">next</option></select></span>
+    </li>
+    <li> »</li>
+    
+      <li><a href="https://docs.yoctoproject.org/next/migration-guides/index.html">Release Information</a> »</li>
+    
+      <li><a href="https://docs.yoctoproject.org/next/migration-guides/release-5.3.html">Release 5.3 (whinlatter)</a> »</li>
+    
+    <li>Release 5.3 (whinlatter)</li>
+
+      <li class="wy-breadcrumbs-aside">
+            <a href="https://docs.yoctoproject.org/next/_sources/migration-guides/migration-5.3.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-yocto-ver-yocto-codename">
+<h1>Release 5.3 (whinlatter)<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#release-yocto-ver-yocto-codename" title="Link to this heading"></a></h1>
+<section id="migration-notes-for-yocto-ver-yocto-codename">
+<h2>Migration notes for 5.3 (whinlatter)<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#migration-notes-for-yocto-ver-yocto-codename" title="Link to this heading"></a></h2>
+<p>This section provides migration information for moving to the Yocto
+Project 5.3 Release (codename “whinlatter”) from the prior release.</p>
+<section id="the-poky-repository-master-branch-is-no-longer-updated">
+<h3>The Poky repository master branch is no longer updated<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#the-poky-repository-master-branch-is-no-longer-updated" title="Link to this heading"></a></h3>
+<p>The master branch of the <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky">Poky</a> repository is no longer being
+updated. This does <em>not</em> mean that the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/terms.html#term-Poky"><span class="xref std std-term">Poky</span></a> distribution is deprecated,
+but that the way to clone the base layers and setup the environment for building
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/terms.html#term-Poky"><span class="xref std std-term">Poky</span></a> has changed.</p>
+<p>You can either:</p>
+<ul>
+<li><p>Switch to individual clones of <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake">bitbake</a>,
+<a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core">openembedded-core</a>, <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-yocto">meta-yocto</a> and <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs">yocto-docs</a> by following the
+<a class="reference internal" href="https://docs.yoctoproject.org/next/dev-manual/poky-manual-setup.html"><span class="doc">Setting Up the Poky Reference Distro Manually</span></a> section of the Yocto Project Development
+Tasks Manual.</p></li>
+<li><p>Use the new <code class="docutils literal notranslate"><span class="pre">bitbake-setup</span></code> tool by following the
+<a class="reference internal" href="https://docs.yoctoproject.org/next/brief-yoctoprojectqs/index.html"><span class="doc">Yocto Project Quick Build</span></a> document.</p>
+<p>See the <a class="reference external" href="https://docs.yoctoproject.org/bitbake/next/bitbake-user-manual/bitbake-user-manual-environment-setup.html" title="(in Bitbake Version: next)"><span>Setting Up The Environment With bitbake-setup</span></a>
+of the BitBake User Manual for reference documentation on <code class="docutils literal notranslate"><span class="pre">bitbake-setup</span></code>.</p>
+</li>
+</ul>
+<p>Releases older than Whinlatter will still have their branch on the Poky
+repository updated until they reach end-of-life.</p>
+<p>Some further information on the background of this change can be found
+in: <a class="reference external" href="https://lists.openembedded.org/g/openembedded-architecture/message/2179">https://lists.openembedded.org/g/openembedded-architecture/message/2179</a></p>
+</section>
+<section id="workdir-changes">
+<h3><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a> changes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#workdir-changes" title="Link to this heading"></a></h3>
+<section id="s-workdir-something-no-longer-supported">
+<h4><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=</span> <span class="pre">${WORKDIR}/something</span></code> no longer supported<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#s-workdir-something-no-longer-supported" title="Link to this heading"></a></h4>
+<p>If a recipe has <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> set to be <code class="docutils literal notranslate"><span class="pre">${</span></code><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a><code class="docutils literal notranslate"><span class="pre">}/something</span></code>,
+this is no longer supported, and an error will be issued. The recipe should be
+changed to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell0"><span></span><span class="n">S</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{UNPACKDIR}</span><span class="s2">/something"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+</section>
+<section id="s-workdir-git-and-s-unpackdir-git-should-be-removed">
+<span id="ref-migration-5-3-s-workdir-git"></span><h4><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=</span> <span class="pre">${WORKDIR}/git</span></code> and <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=</span> <span class="pre">${UNPACKDIR}/git</span></code> should be removed<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#s-workdir-git-and-s-unpackdir-git-should-be-removed" title="Link to this heading"></a></h4>
+<p>The Git fetcher now unpacks into the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BB_GIT_DEFAULT_DESTSUFFIX"><span class="xref std std-term">BB_GIT_DEFAULT_DESTSUFFIX</span></a> directory
+rather than the <code class="docutils literal notranslate"><span class="pre">git/</span></code> directory under <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-UNPACKDIR"><span class="xref std std-term">UNPACKDIR</span></a>.
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BB_GIT_DEFAULT_DESTSUFFIX"><span class="xref std std-term">BB_GIT_DEFAULT_DESTSUFFIX</span></a> is set in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/terms.html#term-OpenEmbedded-Core-OE-Core"><span class="xref std std-term">OpenEmbedded-Core
+(OE-Core)</span></a>’s <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/tree/meta/conf/bitbake.conf">bitbake.conf</a> to <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BP"><span class="xref std std-term">BP</span></a>.</p>
+<p>This location matches the default value of <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> set by bitbake.conf, so <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a>
+setting in recipes can and should be removed.</p>
+<p>Note that when <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> is set to a subdirectory of the git checkout, then it
+should be instead adjusted according to the previous point:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell1"><span></span><span class="n">S</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{UNPACKDIR}</span><span class="s2">/$</span><span class="si">{BP}</span><span class="s2">/something"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell1">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>Note that “git” as the source checkout location can be hardcoded
+in other places in recipes; when it’s in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRC_URI"><span class="xref std std-term">SRC_URI</span></a>, replace with
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BB_GIT_DEFAULT_DESTSUFFIX"><span class="xref std std-term">BB_GIT_DEFAULT_DESTSUFFIX</span></a>, otherwise replace with <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BP"><span class="xref std std-term">BP</span></a>.</p>
+</section>
+<section id="how-to-make-those-adjustments-without-tedious-manual-editing">
+<h4>How to make those adjustments without tedious manual editing<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#how-to-make-those-adjustments-without-tedious-manual-editing" title="Link to this heading"></a></h4>
+<p>The following sed command can be used to remove S = “${WORKDIR}/git
+across a whole layer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell2"><span></span>sed -i "/^S = \"\${WORKDIR}\/git\"/d" `find . -name '*.bb' -o -name '*.inc' -o -name '*.bbclass'`
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>Then, the following command can tweak the remaining <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> assignments to
+refer to <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-UNPACKDIR"><span class="xref std std-term">UNPACKDIR</span></a> instead of <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell3"><span></span>sed -i "s/^S = \"\${WORKDIR}\//S = \"\${UNPACKDIR}\//g" `find . -name '*.bb' -o -name '*.inc' -o -name '*.bbclass'`
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>The first change can introduce a lot of consecutive empty lines, so those can be removed with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell4"><span></span>sed -i -z -E 's/([ \t\f\v\r]*\n){3,}/\n\n/g' `find . -name '*.bb' -o -name '*.inc'`
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+</section>
+</section>
+<section id="bitbake-git-fetcher-tag-parameter">
+<h3>BitBake Git fetcher <code class="docutils literal notranslate"><span class="pre">tag</span></code> parameter<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#bitbake-git-fetcher-tag-parameter" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">tag=</span></code> parameter of the Git fetcher (<code class="docutils literal notranslate"><span class="pre">git://</span></code>) was updated. The tag
+commit SHA will be compared against the value supplied by the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRCREV"><span class="xref std std-term">SRCREV</span></a>
+variable or the <code class="docutils literal notranslate"><span class="pre">rev=</span></code> parameter in the URI in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRC_URI"><span class="xref std std-term">SRC_URI</span></a>. This is
+strongly recommended to add to the URIs when using the Git fetcher for
+repositories using tag releases.</p>
+</section>
+<section id="space-around-equal-assignment">
+<h3>Space around equal assignment<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#space-around-equal-assignment" title="Link to this heading"></a></h3>
+<p>A new warning is now printed when there are no whitespaces around an <code class="docutils literal notranslate"><span class="pre">=</span></code>
+assignment in recipes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell5"><span></span><span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">line</span> <span class="n">number</span><span class="o">&gt;</span> <span class="n">has</span> <span class="n">a</span> <span class="n">lack</span> <span class="n">of</span> <span class="n">whitespace</span> <span class="n">around</span> <span class="n">the</span> <span class="n">assignment</span><span class="p">:</span> <span class="s1">'&lt;assignment&gt;'</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell5">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>For example, the following assignments would print a warning:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell6"><span></span><span class="n">FOO</span><span class="o">=</span><span class="s2">"bar"</span>
+<span class="n">FOO</span><span class="o">=</span> <span class="s2">"bar"</span>
+<span class="n">FOO</span> <span class="o">=</span><span class="s2">"bar"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell6">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>These should be replaced by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell7"><span></span><span class="n">FOO</span> <span class="o">=</span> <span class="s2">"bar"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell7">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+</section>
+<section id="wic-plugins-containing-dashes-should-be-renamed">
+<h3>Wic plugins containing dashes should be renamed<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#wic-plugins-containing-dashes-should-be-renamed" title="Link to this heading"></a></h3>
+<p>After a Python upgrade, <a class="reference internal" href="https://docs.yoctoproject.org/next/dev-manual/wic.html#creating-partitioned-images-using-wic"><span class="std std-ref">Wic</span></a> plugins containing dashes (<code class="docutils literal notranslate"><span class="pre">-</span></code>) for their filenames are <strong>no
+longer supported</strong>. One must rename the plugin file and convert the dashes to
+underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>).</p>
+<p>It is also recommended to update any WKS file to convert dashes to underscores.
+For example, the <code class="docutils literal notranslate"><span class="pre">bootimg-partition.py</span></code> plugin was renamed to
+<code class="docutils literal notranslate"><span class="pre">bootimg_partition.py</span></code>. This means that any WKS file using this plugin must
+change each <code class="docutils literal notranslate"><span class="pre">--source</span> <span class="pre">bootimg-partition</span></code> to <code class="docutils literal notranslate"><span class="pre">--source</span> <span class="pre">bootimg_partition</span></code>.</p>
+<p>However, the current WIC code automatically converts dashes to underscore for
+any <code class="docutils literal notranslate"><span class="pre">--source</span></code> call, so existing WKS files will not break if they use upstream
+plugins from <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/terms.html#term-OpenEmbedded-Core-OE-Core"><span class="xref std std-term">OpenEmbedded-Core (OE-Core)</span></a>.</p>
+</section>
+<section id="fitimage-no-longer-supported-for-kernel-imagetype">
+<h3><code class="docutils literal notranslate"><span class="pre">fitImage</span></code> no longer supported for <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-KERNEL_IMAGETYPE"><span class="xref std std-term">KERNEL_IMAGETYPE</span></a><a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#fitimage-no-longer-supported-for-kernel-imagetype" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">fitImage</span></code> type for <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-KERNEL_IMAGETYPE"><span class="xref std std-term">KERNEL_IMAGETYPE</span></a> is no longer supported. The
+logic for creating a FIT image was moved out of the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-kernel"><span class="std std-ref">kernel</span></a>
+class. Instead, one should create a new recipe to build this FIT image, as
+described in the <a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#removed-classes"><span class="std std-ref">Removed Classes</span></a> section of the Migration notes for 5.3 (whinlatter).</p>
+</section>
+<section id="systemd-predictable-interface-names-no-longer-mac-policy-by-default">
+<h3>systemd Predictable Interface Names no longer MAC policy by default<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#systemd-predictable-interface-names-no-longer-mac-policy-by-default" title="Link to this heading"></a></h3>
+<p>The <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/tree/meta/recipes-core/systemd">systemd recipe</a>
+used to forcibly set the “mac” policy by default when the <code class="docutils literal notranslate"><span class="pre">pni-names</span></code>
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-DISTRO_FEATURES"><span class="xref std std-term">distro feature</span></a> is enabled.</p>
+<p>This is no longer the case as this was not following upstream changes. Now when
+the <code class="docutils literal notranslate"><span class="pre">pni-names</span></code> <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-DISTRO_FEATURES"><span class="xref std std-term">distro feature</span></a> is enabled, the
+default policy from systemd is selected (from
+<a class="reference external" href="https://github.com/systemd/systemd/blob/v257.8/network/99-default.link">https://github.com/systemd/systemd/blob/v257.8/network/99-default.link</a>).</p>
+<p>To set back the “mac” policy in systemd (version 257.8 at the time of writing
+this note), you should set the <code class="docutils literal notranslate"><span class="pre">NamePolicy</span></code> and <code class="docutils literal notranslate"><span class="pre">AlternativeNamesPolicy</span></code> as
+detailed in <em class="manpage"><a class="manpage reference external" href="https://manpages.debian.org/systemd.link(5)">systemd.link(5)</a></em>.</p>
+</section>
+<section id="removal-of-unlicensed-linux-kernel-firmware">
+<h3>Removal of unlicensed Linux kernel firmware<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#removal-of-unlicensed-linux-kernel-firmware" title="Link to this heading"></a></h3>
+<p>By default, the <code class="docutils literal notranslate"><span class="pre">linux-firmware</span></code> recipe now excludes firmware that do not
+provide any license information. The recipe holds an internal list of firmware
+to exclude via a variable named <code class="docutils literal notranslate"><span class="pre">REMOVE_UNLICENSED</span></code>, this variable may be
+overridden if unlicensed firmware is needed. See <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/tree/meta/recipes-kernel/linux-firmware">the recipe</a> for a complete
+overview of the removed firmware.</p>
+</section>
+<section id="flags-variables-behavior-change-for-ref-classes-native-and-ref-classes-nativesdk-classes">
+<h3><code class="docutils literal notranslate"><span class="pre">*FLAGS</span></code> variables behavior change for <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-native"><span class="std std-ref">native</span></a> and <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-nativesdk"><span class="std std-ref">nativesdk</span></a> classes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#flags-variables-behavior-change-for-ref-classes-native-and-ref-classes-nativesdk-classes" title="Link to this heading"></a></h3>
+<p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-CPPFLAGS"><span class="xref std std-term">CPPFLAGS</span></a>, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-CFLAGS"><span class="xref std std-term">CFLAGS</span></a>, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-CXXFLAGS"><span class="xref std std-term">CXXFLAGS</span></a> and <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LDFLAGS"><span class="xref std std-term">LDFLAGS</span></a>
+variables used to have hard assignments in the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-native"><span class="std std-ref">native</span></a> and
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-nativesdk"><span class="std std-ref">nativesdk</span></a> classes, respectively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell8"><span></span><span class="n">CPPFLAGS</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{BUILD_CPPFLAGS}</span><span class="s2">"</span>
+<span class="n">CFLAGS</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{BUILD_CFLAGS}</span><span class="s2">"</span>
+<span class="n">CXXFLAGS</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{BUILD_CXXFLAGS}</span><span class="s2">"</span>
+<span class="n">LDFLAGS</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{BUILD_LDFLAGS}</span><span class="s2">"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell8">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell9"><span></span><span class="n">CPPFLAGS</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{BUILDSDK_CPPFLAGS}</span><span class="s2">"</span>
+<span class="n">CFLAGS</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{BUILDSDK_CFLAGS}</span><span class="s2">"</span>
+<span class="n">CXXFLAGS</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{BUILDSDK_CXXFLAGS}</span><span class="s2">"</span>
+<span class="n">LDFLAGS</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{BUILDSDK_LDFLAGS}</span><span class="s2">"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell9">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>This caused races when recipes tried to append to any of these variables using
+the <code class="docutils literal notranslate"><span class="pre">+=</span></code> operator, so recipes could use <code class="docutils literal notranslate"><span class="pre">:append</span></code> instead if they wanted the
+change to apply to the target, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-native"><span class="std std-ref">native</span></a> and
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-nativesdk"><span class="std std-ref">nativesdk</span></a> contexts.</p>
+<p>Recipes can now safely use the <code class="docutils literal notranslate"><span class="pre">+=</span></code> operator to achieve this.</p>
+<p>What this change also means is that previous assignments using the <code class="docutils literal notranslate"><span class="pre">+=</span></code>
+operator, which only used to apply to the target context, <strong>now apply to all
+three</strong>: target, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-native"><span class="std std-ref">native</span></a> and <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-nativesdk"><span class="std std-ref">nativesdk</span></a>
+contexts.</p>
+<p>Recipes that unknowingly relied on this behavior should change these assignments
+to use <code class="docutils literal notranslate"><span class="pre">TARGET_</span></code> variables instead, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell10"><span></span><span class="n">CFLAGS</span> <span class="o">+=</span> <span class="s2">"something"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell10">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell11"><span></span><span class="n">TARGET_CFLAGS</span> <span class="o">+=</span> <span class="s2">"something"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell11">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>See <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/commit/?id=a157b2f9d93428ca21265cc860a3b58b3698b3aa">https://git.openembedded.org/openembedded-core/commit/?id=a157b2f9d93428ca21265cc860a3b58b3698b3aa</a>.</p>
+</section>
+<section id="supported-kernel-versions">
+<h3>Supported kernel versions<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#supported-kernel-versions" title="Link to this heading"></a></h3>
+<p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-OLDEST_KERNEL"><span class="xref std std-term">OLDEST_KERNEL</span></a> setting is 5.15 in this release, meaning that
+out the box, older kernels are not supported. See <a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-4.3.html#migration-4-3-supported-kernel-versions"><span class="std std-ref">4.3 migration notes</span></a> for details.</p>
+</section>
+<section id="supported-distributions">
+<h3>Supported distributions<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#supported-distributions" title="Link to this heading"></a></h3>
+<p>Compared to the previous releases, running BitBake is supported on new
+GNU/Linux distributions:</p>
+<ul class="simple">
+<li><p>Debian 13 (Trixie)</p></li>
+<li><p>Fedora 42</p></li>
+<li><p>Ubuntu 25.04</p></li>
+<li><p>Ubuntu 25.10</p></li>
+</ul>
+<p>See <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/system-requirements.html#system-requirements-supported-distros"><span class="std std-ref">all supported distributions</span></a>.</p>
+</section>
+<section id="removed-variables">
+<h3>Removed variables<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#removed-variables" title="Link to this heading"></a></h3>
+<p>The following variables have been removed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BUILDHISTORY_RESET</span></code>: Setting this to non-empty used to remove the old
+content of the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-buildhistory"><span class="std std-ref">buildhistory</span></a> as part of the current
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/terms.html#term-BitBake"><span class="xref std std-term">BitBake</span></a> invocation and replace it with information about what was
+built during the build. This was partly broken and hard to maintain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPE_MIRROR</span></code>: this variable used to contain the
+“<a class="reference external" href="https://web.archive.org/web/20160319203545/http://gpe.linuxtogo.org/download/source/">https://web.archive.org/web/20160319203545/http://gpe.linuxtogo.org/download/source/</a>” URL, but was not used by any
+recipe in OE-Core.</p></li>
+</ul>
+</section>
+<section id="removed-recipes">
+<h3>Removed recipes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#removed-recipes" title="Link to this heading"></a></h3>
+<p>The following recipes have been removed in this release:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">libsoup-2.4</span></code>: The last user in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/terms.html#term-OpenEmbedded-Core-OE-Core"><span class="xref std std-term">OpenEmbedded-Core (OE-Core)</span></a> was
+<code class="docutils literal notranslate"><span class="pre">gst-examples</span></code>, which has been upgraded with its <code class="docutils literal notranslate"><span class="pre">libsoup-2.4</span></code> dependency
+dropped. The recipe has been moved to <code class="docutils literal notranslate"><span class="pre">meta-oe</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc-y2038-tests</span></code>: removed as the recipe only provides tests which are
+now provided by <code class="docutils literal notranslate"><span class="pre">glibc-testsuite</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-ndg-httpsclient</span></code>: The last dependency in core on this recipe was
+removed in May 2024 with dfa482f1998 (“python3-requests: cleanup RDEPENDS”),
+and there is no other user of this variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xf86-input-mouse</span></code>: The project has stopped supporting Linux.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xf86-input-vmmouse</span></code>: It has a runtime dependency on <code class="docutils literal notranslate"><span class="pre">xf86-input-mouse</span></code>,
+which stopped supporting Linux.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">babeltrace</span></code>: Removed in favour of <code class="docutils literal notranslate"><span class="pre">babeltrace2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cwautomacros</span></code>: A long-obsolete set of custom <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-autotools"><span class="std std-ref">autotools*</span></a>
+macros, not used by any other recipe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rust-llvm</span></code>: removed after the Rust and LLVM recipes were reworked to
+depend on the <code class="docutils literal notranslate"><span class="pre">llvm</span></code> recipe instead.</p></li>
+</ul>
+</section>
+<section id="removed-packageconfig-entries">
+<h3>Removed <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGECONFIG"><span class="xref std std-term">PACKAGECONFIG</span></a> entries<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#removed-packageconfig-entries" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dropbear</span></code>: <code class="docutils literal notranslate"><span class="pre">enable-x11-forwarding</span></code> (renamed to <code class="docutils literal notranslate"><span class="pre">x11</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxml2</span></code>: <code class="docutils literal notranslate"><span class="pre">ipv6</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">squashfs-tools</span></code>: <code class="docutils literal notranslate"><span class="pre">reproducible</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mesa</span></code>: <code class="docutils literal notranslate"><span class="pre">kmsro</span></code>, <code class="docutils literal notranslate"><span class="pre">osmesa</span></code>, <code class="docutils literal notranslate"><span class="pre">xa</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd</span></code>: <code class="docutils literal notranslate"><span class="pre">dbus</span></code></p></li>
+</ul>
+</section>
+<section id="removed-classes">
+<h3>Removed classes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#removed-classes" title="Link to this heading"></a></h3>
+<p>The following classes have been removed in this release:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel-fitimage.bbclass</span></code>: the class has been replaced by the
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-kernel-fit-image"><span class="std std-ref">kernel-fit-image</span></a> class. The new implementation resolves
+the long-standing <a class="extlink-yocto_bugs reference external" href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12912">bug 12912</a>.</p>
+<p>If you are using the kernel FIT image support, you will need to:</p>
+<ol class="arabic">
+<li><p>Make sure to include <code class="docutils literal notranslate"><span class="pre">kernel-fit-extra-artifacts</span></code> in your <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-KERNEL_CLASSES"><span class="xref std std-term">KERNEL_CLASSES</span></a>
+variable to ensure the required files are exposed to the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-DEPLOY_DIR_IMAGE"><span class="xref std std-term">DEPLOY_DIR_IMAGE</span></a>
+directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell12"><span></span><span class="n">KERNEL_CLASSES</span> <span class="o">+=</span> <span class="s2">"kernel-fit-extra-artifacts"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell12">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+</li>
+<li><p>Use the specific FIT image recipe rather than the base kernel recipe.
+For example, instead of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell13"><span></span><span class="n">bitbake</span> <span class="n">linux</span><span class="o">-</span><span class="n">yocto</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell13">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>the FIT image is now build by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell14"><span></span><span class="n">bitbake</span> <span class="n">linux</span><span class="o">-</span><span class="n">yocto</span><span class="o">-</span><span class="n">fitimage</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell14">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>For custom kernel recipes, creating a corresponding custom FIT image recipe
+is usually a good approach.</p>
+</li>
+<li><p>If a FIT image is used as a replacement for the kernel image in the root
+filesystem, add the following configuration to your machine configuration
+file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell15"><span></span># Create and deploy the vmlinux artifact which gets included into the FIT image
+KERNEL_CLASSES += "kernel-fit-extra-artifacts"
+
+# Do not install the kernel image package
+RRECOMMENDS:${KERNEL_PACKAGE_NAME}-base = ""
+# Install the FIT image package
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "linux-yocto-fitimage"
+
+# Configure the image.bbclass to depend on the FIT image instead of only
+# the kernel to ensure the FIT image is built and deployed with the image
+KERNEL_DEPLOY_DEPEND = "linux-yocto-fitimage:do_deploy"
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell15">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+</li>
+</ol>
+<p>See the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-kernel-fit-image"><span class="std std-ref">kernel-fit-image</span></a> section for more information.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">icecc.bbclass</span></code>: Reports show that this class has been broken since Yocto
+Mickledore which suggests there are limited numbers of users. It doesn’t have
+any automated testing and it would be hard to setup and maintain a testing
+environment for it. The original users/maintainers aren’t using it now.</p></li>
+</ul>
+</section>
+<section id="miscellaneous-changes">
+<h3>Miscellaneous changes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.3.html#miscellaneous-changes" title="Link to this heading"></a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">xserver-xorg</span></code>: remove sub-package <code class="docutils literal notranslate"><span class="pre">${PN}-xwayland</span></code>, as <code class="docutils literal notranslate"><span class="pre">xwayland</span></code> is
+now its own recipe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdk-pixbuf</span></code>: drop the <code class="docutils literal notranslate"><span class="pre">GDK_PIXBUF_LOADERS</span></code> variable, which was part of
+the recipe’s <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGECONFIG"><span class="xref std std-term">PACKAGECONFIG</span></a>. Instead the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGECONFIG"><span class="xref std std-term">PACKAGECONFIG</span></a> can be
+modified directly to achieve the same result.</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">meta/conf/distro/include/distro_alias.inc</span></code> include file,
+which associated a recipe name to one or more Distribution package name.
+This file is not used and maintained anymore.</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">nghttp2-proxy</span></code> package from the <code class="docutils literal notranslate"><span class="pre">nghttp2</span></code> recipe as the
+<code class="docutils literal notranslate"><span class="pre">nghttp2-proxy</span></code> package became empty after an upgrade that makes it a
+library recipe only (due to
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-EXTRA_OEMAKE"><span class="xref std std-term">EXTRA_OEMAKE</span></a> containing <code class="docutils literal notranslate"><span class="pre">-DENABLE_APP=OFF</span></code> by default in the
+recipe).</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">util-linux-fcntl-lock</span></code> package (in the <code class="docutils literal notranslate"><span class="pre">util-linux</span></code> recipe) as
+<code class="docutils literal notranslate"><span class="pre">util-linux</span></code> now supports the <code class="docutils literal notranslate"><span class="pre">--fcntl</span></code> flag for the <code class="docutils literal notranslate"><span class="pre">flock</span></code> command.</p>
+<p>Recipes currently using the <code class="docutils literal notranslate"><span class="pre">fcntl-lock</span></code> command should replace these by
+<code class="docutils literal notranslate"><span class="pre">flock</span> <span class="pre">--fcntl</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">barebox</span></code> has been updated from v2025.02.0 to v2025.09.0. Refer to the
+<a class="reference external" href="https://barebox.org/doc/latest/migration-guides/">upstream migration guides</a>
+for migration advice.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  <hr>
+  <div role="contentinfo">
+    <p> A Linux Foundation Collaborative Project.
+        <br> All Rights Reserved. Linux Foundation® and Yocto Project® are registered trademarks of the Linux Foundation.
+        <br>Linux® is a registered trademark of Linus Torvalds.
+        <br>© Copyright 2010-2026, The Linux Foundation, CC-BY-SA-2.0-UK license
+        <br>Last updated on Aug 25, 2026 from the <a href="https://git.yoctoproject.org/yocto-docs/">yocto-docs</a> git repository<span class="docs_meta_info_placeholder"> (tag <a href="https://git.yoctoproject.org/yocto-docs/log?id=yocto-next"> next</a>)</span>.
+    </p>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+
+</body></html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html -->
+<html class="writer-html5" lang="en" data-content_root="../"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release 5.1 (styhead) — The Yocto Project ® next documentation</title>
+      <link rel="stylesheet" type="text/css" href="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/pygments.css">
+      <link rel="stylesheet" type="text/css" href="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/theme.css">
+      <link rel="stylesheet" type="text/css" href="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/copybutton.css">
+      <link rel="stylesheet" type="text/css" href="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/theme_overrides.css">
+
+  
+    <link rel="shortcut icon" href="https://docs.yoctoproject.org/next/_static/favicon.ico">
+      <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/jquery.js.下载"></script>
+      <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/_sphinx_javascript_frameworks_compat.js.下载"></script>
+      <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/documentation_options.js.下载"></script>
+      <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/doctools.js.下载"></script>
+      <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/sphinx_highlight.js.下载"></script>
+      <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/clipboard.min.js.下载"></script>
+      <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/copybutton.js.下载"></script>
+      <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/switchers.js.下载"></script>
+    <script src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/theme.js.下载"></script>
+    <link rel="index" title="Index" href="https://docs.yoctoproject.org/next/genindex.html">
+    <link rel="search" title="Search" href="https://docs.yoctoproject.org/next/search.html">
+    <link rel="next" title="Release notes for 5.1 (styhead)" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html">
+    <link rel="prev" title="Release 5.1 (styhead)" href="https://docs.yoctoproject.org/next/migration-guides/release-5.1.html"> 
+</head>
+
+<body class="wy-body-for-nav">
+<div id="outdated-warning" style="text-align: center; background-color: #FFBABA; color: #6A0E0E;">
+</div>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="https://docs.yoctoproject.org/next/index.html" class="icon icon-home">
+            The Yocto Project ®
+              <img src="./Release 5.1 (styhead) — The Yocto Project ® next documentation_files/YoctoProject_Logo_RGB.jpg" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://docs.yoctoproject.org/next/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction and Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/brief-yoctoprojectqs/index.html">Quick Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/what-i-wish-id-known.html">What I wish I’d known about Yocto Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/transitioning-to-a-custom-environment.html">Transitioning to a custom environment for systems development</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/overview-manual/index.html">Overview and Concepts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributor Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/contributor-guide/index.html">Contributor Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/index.html">Reference Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/bsp-manual/index.html">Board Support Package (BSP) Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/dev-manual/index.html">Development Tasks Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/kernel-dev/index.html">Linux Kernel Development Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/security-manual/index.html">Security Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/profile-manual/index.html">Profile and Tracing Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/sdk-manual/index.html">Application Development and SDKs Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/toaster-manual/index.html">Toaster Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/test-manual/index.html">Test Environment Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/bitbake.html">BitBake User Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Security Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/security-reference/index.html">Yocto Project Security Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Information</span></p>
+<ul class="current" aria-expanded="true">
+<li class="toctree-l1 current" aria-expanded="true"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/index.html"><button class="toctree-expand" title="Open/close menu"></button>Release Notes and Migration Guides</a><ul class="" aria-expanded="false">
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-general.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-6.1.html">Release 6.1 (blacksail)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-6.0.html">Release 6.0 (wrynose)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.3.html">Release 5.3 (whinlatter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.2.html">Release 5.2 (walnascar)</a></li>
+<li class="toctree-l2 current" aria-expanded="true"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.1.html"><button class="toctree-expand" title="Open/close menu"></button>Release 5.1 (styhead)</a><ul class="" aria-expanded="false">
+<li class="toctree-l3 current" aria-expanded="true"><a class="reference internal current" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#" aria-expanded="true"><button class="toctree-expand" title="Open/close menu"></button>Release 5.1 (styhead)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#migration-notes-for-5-1-styhead">Migration notes for 5.1 (styhead)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html">Release notes for 5.1 (styhead)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.1.html">Release notes for Yocto-5.1.1 (Styhead)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.2.html">Release notes for Yocto-5.1.2 (Styhead)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.3.html">Release notes for Yocto-5.1.3 (Styhead)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.4.html">Release notes for Yocto-5.1.4 (Styhead)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.0.html">Release 5.0 (scarthgap)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.3.html">Release 4.3 (nanbield)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.2.html">Release 4.2 (mickledore)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.1.html">Release 4.1 (langdale)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.0.html">Release 4.0 (kirkstone)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-3.4.html">Release 3.4 (honister)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.3.html">Release 3.3 (hardknott)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.2.html">Release 3.2 (gatesgarth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.1.html">Release 3.1 (dunfell)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.0.html">Release 3.0 (zeus)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.7.html">Release 2.7 (warrior)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.6.html">Release 2.6 (thud)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.5.html">Release 2.5 (sumo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.4.html">Release 2.4 (rocko)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.3.html">Release 2.3 (pyro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.2.html">Release 2.2 (morty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.1.html">Release 2.1 (krogoth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.0.html">Release 2.0 (jethro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.8.html">Release 1.8 (fido)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.7.html">Release 1.7 (dizzy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.6.html">Release 1.6 (daisy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.5.html">Release 1.5 (dora)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.4.html">Release 1.4 (dylan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.3.html">Release 1.3 (danny)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/releases.html">Supported Release Manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/releases.html#outdated-release-manuals">Outdated Release Manuals</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation Downloads</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/downloads.html">Documentation Downloads</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://docs.yoctoproject.org/next/index.html">The Yocto Project ®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+    <li>
+      <span class="doctype_switcher_placeholder"><select><option value="single" selected="selected">Individual Webpages</option><option value="mega">All-in-one 'Mega' Manual</option></select></span>
+      <span class="version_switcher_placeholder"><select><option value="outdated" selected="selected">Outdated release manuals</option><option value="dev" selected="selected">Unstable (dev)</option><option value="6.0-tip" selected="selected">Wrynose (6.0.2)</option><option value="5.0-tip" selected="selected">Scarthgap (5.0.19)</option><option value="next" selected="selected">next</option></select></span>
+    </li>
+    <li> »</li>
+    
+      <li><a href="https://docs.yoctoproject.org/next/migration-guides/index.html">Release Information</a> »</li>
+    
+      <li><a href="https://docs.yoctoproject.org/next/migration-guides/release-5.1.html">Release 5.1 (styhead)</a> »</li>
+    
+    <li>Release 5.1 (styhead)</li>
+
+      <li class="wy-breadcrumbs-aside">
+            <a href="https://docs.yoctoproject.org/next/_sources/migration-guides/migration-5.1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-5-1-styhead">
+<h1>Release 5.1 (styhead)<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#release-5-1-styhead" title="Link to this heading"></a></h1>
+<section id="migration-notes-for-5-1-styhead">
+<h2>Migration notes for 5.1 (styhead)<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#migration-notes-for-5-1-styhead" title="Link to this heading"></a></h2>
+<p>This section provides migration information for moving to the Yocto
+Project 5.1 Release (codename “styhead”) from the prior release.</p>
+<section id="workdir-changes">
+<span id="migration-5-1-workdir-changes"></span><h3><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a> changes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#workdir-changes" title="Link to this heading"></a></h3>
+<section id="s-workdir-no-longer-supported">
+<h4>S = ${WORKDIR} no longer supported<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#s-workdir-no-longer-supported" title="Link to this heading"></a></h4>
+<p>If a recipe has <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> set to be <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a>, this is no longer
+supported, and an error will be issued. The recipe should be changed to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell0"><span></span><span class="n">S</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{UNPACKDIR}</span><span class="s2">"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>Any <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a> references where files from <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRC_URI"><span class="xref std std-term">SRC_URI</span></a> are referenced
+should be changed to <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a>. These are commonly in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-configure"><span class="std std-ref">do_configure</span></a>,
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-compile"><span class="std std-ref">do_compile</span></a>, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-install"><span class="std std-ref">do_install</span></a> and <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LIC_FILES_CHKSUM"><span class="xref std std-term">LIC_FILES_CHKSUM</span></a>.</p>
+</section>
+<section id="workdir-references-in-recipes">
+<h4><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a> references in recipes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#workdir-references-in-recipes" title="Link to this heading"></a></h4>
+<p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a> references in other recipes need auditing. If they reference
+files from <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRC_URI"><span class="xref std std-term">SRC_URI</span></a>, they likely need changing to <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-UNPACKDIR"><span class="xref std std-term">UNPACKDIR</span></a>.
+These are commonly in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-compile"><span class="std std-ref">do_compile</span></a> and <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-install"><span class="std std-ref">do_install</span></a>
+for things like service or configuration files. One unusual case is
+<code class="docutils literal notranslate"><span class="pre">${WORKDIR}/${BP}</span></code> which should probably be set to <code class="docutils literal notranslate"><span class="pre">${S}</span></code>.</p>
+<p>References to <code class="docutils literal notranslate"><span class="pre">../</span></code> in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LIC_FILES_CHKSUM"><span class="xref std std-term">LIC_FILES_CHKSUM</span></a> or elsewhere may need changing
+to <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-UNPACKDIR"><span class="xref std std-term">UNPACKDIR</span></a>. References to <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a> in <code class="docutils literal notranslate"><span class="pre">sed</span></code> commands are
+usually left as they are.</p>
+</section>
+<section id="general-notes">
+<h4>General notes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#general-notes" title="Link to this heading"></a></h4>
+<p>Files from <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-unpack"><span class="std std-ref">do_unpack</span></a> now unpack to <code class="docutils literal notranslate"><span class="pre">WORKDIR/sources-unpack/</span></code>
+rather than <code class="docutils literal notranslate"><span class="pre">WORKDIR/</span></code>.</p>
+<p>If <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> is set to a subdirectory under <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a> and that
+subdirectory exists in <code class="docutils literal notranslate"><span class="pre">sources-unpack</span></code> after <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-unpack"><span class="std std-ref">do_unpack</span></a> runs,
+it is moved to <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a>. This means that <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=</span> <span class="pre">"${WORKDIR}/${BP}"</span></code>,
+<code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=</span> <span class="pre">"${WORKDIR}/git"</span></code> and also deeper paths continue to work as expected
+without changes. We cannot use symlinks to do this as it breaks autotools
+based recipes. Keeping all sources under <code class="docutils literal notranslate"><span class="pre">sources-unpack</span></code> wasn’t considered
+as it meant more invasive recipes changes. The key objective was separating the
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-unpack"><span class="std std-ref">do_unpack</span></a> task output from <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a>.</p>
+<p>Previously, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> was always created but after the recent changes it is no
+longer the case. This means the check in <code class="docutils literal notranslate"><span class="pre">do_unpack_qa</span></code> triggers where
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> is not created by a recipe while it didn’t happen before. This can
+require to add an <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> definition to a recipe that only uses
+<code class="docutils literal notranslate"><span class="pre">file://</span></code> <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRC_URI"><span class="xref std std-term">SRC_URI</span></a> entries. To be consistent, the following pattern is
+recommended:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell1"><span></span><span class="n">S</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{UNPACKDIR}</span><span class="s2">"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell1">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+<p>Building C files from <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-UNPACKDIR"><span class="xref std std-term">UNPACKDIR</span></a> without setting <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> to point at
+it does not work as the debug prefix mapping doesn’t handle that.</p>
+<p><code class="docutils literal notranslate"><span class="pre">devtool</span></code>  and <code class="docutils literal notranslate"><span class="pre">recipetool</span></code> have been updated to handle this and their
+support for <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">=</span> <span class="pre">WORKDIR</span></code> and <code class="docutils literal notranslate"><span class="pre">oe-local-files</span></code> has been removed.</p>
+</section>
+</section>
+<section id="supported-kernel-versions">
+<span id="migration-5-1-supported-kernel-versions"></span><h3>Supported kernel versions<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#supported-kernel-versions" title="Link to this heading"></a></h3>
+<p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-OLDEST_KERNEL"><span class="xref std std-term">OLDEST_KERNEL</span></a> setting is still “5.15” in this release, meaning that
+out the box, older kernels are not supported. See <a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-4.3.html#migration-4-3-supported-kernel-versions"><span class="std std-ref">4.3 migration notes</span></a> for details.</p>
+</section>
+<section id="supported-distributions">
+<span id="migration-5-1-supported-distributions"></span><h3>Supported distributions<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#supported-distributions" title="Link to this heading"></a></h3>
+<p>Compared to the previous releases, running BitBake is supported on new
+GNU/Linux distributions:</p>
+<ul class="simple">
+<li><p>Ubuntu 24.10</p></li>
+<li><p>Fedora 40</p></li>
+<li><p>OpenSUSE Leap 15.5</p></li>
+<li><p>OpenSUSE Leap 15.6</p></li>
+</ul>
+<p>On the other hand, some earlier distributions are no longer supported:</p>
+<ul class="simple">
+<li><p>Ubuntu 23.04</p></li>
+</ul>
+<p>See <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/system-requirements.html#system-requirements-supported-distros"><span class="std std-ref">all supported distributions</span></a>.</p>
+</section>
+<section id="go-language-changes">
+<span id="migration-5-1-go-changes"></span><h3>Go language changes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#go-language-changes" title="Link to this heading"></a></h3>
+<ul>
+<li><p>After dropping the custom <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-unpack"><span class="std std-ref">do_unpack</span></a> from the
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-go"><span class="std std-ref">go</span></a> class, go recipes should now add
+<code class="docutils literal notranslate"><span class="pre">destsuffix=${GO_SRCURI_DESTSUFFIX}</span></code> to their <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SRC_URI"><span class="xref std std-term">SRC_URI</span></a> to extract
+them in the appropriate path. An example would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell2"><span></span><span class="n">SRC_URI</span> <span class="o">=</span> <span class="s2">"git://go.googlesource.com/example;branch=master;protocol=https;destsuffix=$</span><span class="si">{GO_SRCURI_DESTSUFFIX}</span><span class="s2">"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+</li>
+<li><p>Go modules are no longer compiled with <code class="docutils literal notranslate"><span class="pre">--linkmode=external</span></code>.</p></li>
+</ul>
+</section>
+<section id="systemd-changes">
+<span id="migration-5-1-systemd-changes"></span><h3>systemd changes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#systemd-changes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>New <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGECONFIG"><span class="xref std std-term">PACKAGECONFIG</span></a> value <code class="docutils literal notranslate"><span class="pre">bpf-framework</span></code> used to pre-compile eBPFs
+that are required for the systemd.resource-control features
+<code class="docutils literal notranslate"><span class="pre">RestrictFileSystems</span></code> and <code class="docutils literal notranslate"><span class="pre">RestrictNetworkInterfaces</span></code>.</p></li>
+</ul>
+</section>
+<section id="recipe-changes">
+<span id="migration-5-1-recipe-changes"></span><h3>Recipe changes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#recipe-changes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gobject-introspection</span></code>: the <code class="docutils literal notranslate"><span class="pre">giscanner</span></code> utility is now shipped as a
+separate package in <code class="docutils literal notranslate"><span class="pre">gobject-introspection-tools</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perf</span></code> no longer uses <code class="docutils literal notranslate"><span class="pre">libnewt</span></code> for compiling its TUI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span></code>: do not build the test suite unless ptests are enabled.</p></li>
+</ul>
+</section>
+<section id="removed-variables">
+<span id="migration-5-1-removed-variables"></span><h3>Removed variables<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#removed-variables" title="Link to this heading"></a></h3>
+<p>The following variables have been removed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TCLIBCAPPEND</span></code> is now removed as sharing <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-TMPDIR"><span class="xref std std-term">TMPDIR</span></a> for multiple libc
+providers has been supported for years.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOLATILE_LOG_DIR</span></code>: <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-FILESYSTEM_PERMS_TABLES"><span class="xref std std-term">FILESYSTEM_PERMS_TABLES</span></a> is now used instead.
+By default, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-FILESYSTEM_PERMS_TABLES"><span class="xref std std-term">FILESYSTEM_PERMS_TABLES</span></a> now contains the value
+<code class="docutils literal notranslate"><span class="pre">files/fs-perms-volatile-log.txt</span></code>, which means that volatile log is
+enabled. Users can disable the volatile log by removing the value
+<code class="docutils literal notranslate"><span class="pre">files/fs-perms-volatile-log.txt</span></code> from <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-FILESYSTEM_PERMS_TABLES"><span class="xref std std-term">FILESYSTEM_PERMS_TABLES</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOLATILE_TMP_DIR</span></code>: <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-FILESYSTEM_PERMS_TABLES"><span class="xref std std-term">FILESYSTEM_PERMS_TABLES</span></a> is now used instead.
+By default, <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-FILESYSTEM_PERMS_TABLES"><span class="xref std std-term">FILESYSTEM_PERMS_TABLES</span></a> now contains the value
+<code class="docutils literal notranslate"><span class="pre">files/fs-perms-volatile-tmp.txt</span></code>, which means that volatile tmp is
+enabled. Users can disable the volatile tmp by removing the value
+<code class="docutils literal notranslate"><span class="pre">files/fs-perms-volatile-tmp.txt</span></code> from <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-FILESYSTEM_PERMS_TABLES"><span class="xref std std-term">FILESYSTEM_PERMS_TABLES</span></a>.</p></li>
+</ul>
+</section>
+<section id="removed-recipes">
+<span id="migration-5-1-removed-recipes"></span><h3>Removed recipes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#removed-recipes" title="Link to this heading"></a></h3>
+<p>The following recipes have been removed in this release:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">liba52</span></code>: superseded by <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">libomxil</span></code>: recipe removed as its only consumer, the gstreamer omx plugin,</dt><dd><p>was removed and has not been developed for several years</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnewt</span></code>: moved to meta-oe</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpeg2dec</span></code>: inactive for 10 years and superseded by <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pytest-runner</span></code>: moved to meta-python</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-importlib-metadata</span></code>: moved to meta-python</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pathlib2</span></code>: moved to meta-python</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-py</span></code>: moved to meta-python</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-rfc3986-validator</span></code>: moved to meta-python</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-toml</span></code>: moved to meta-python</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-tomli</span></code>: moved to meta-python</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usbinit</span></code>: recipe was poorly named as it is a gadget Ethernet driver.
+Gadget Ethernet is of questionable use now and usbinit isn’t referenced/used
+anywhere within OE-Core.</p></li>
+</ul>
+</section>
+<section id="removed-classes">
+<span id="migration-5-1-removed-classes"></span><h3>Removed classes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#removed-classes" title="Link to this heading"></a></h3>
+<p>The following classes have been removed in this release:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">siteconfig</span></code>:  removed as it was only used by <code class="docutils literal notranslate"><span class="pre">ncurses</span></code> and <code class="docutils literal notranslate"><span class="pre">zlib</span></code> and
+adding minimal added-value for a considerable amount of added runtime.</p></li>
+</ul>
+</section>
+<section id="miscellaneous-changes">
+<span id="migration-5-1-misc-changes"></span><h3>Miscellaneous changes<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html#miscellaneous-changes" title="Link to this heading"></a></h3>
+<ul>
+<li><p><cite>oe-selftest</cite> now only rewrites environment variable paths that absolutely
+point to builddir (i.e <code class="docutils literal notranslate"><span class="pre">X=$BUILDDIR/conf/</span></code> is still rewritten to point to
+the <cite>oe-selftest</cite> <code class="docutils literal notranslate"><span class="pre">conf/</span></code> directory but not <code class="docutils literal notranslate"><span class="pre">Y=$BUILDDIR/../bitbake/</span></code> which
+still point to the <code class="docutils literal notranslate"><span class="pre">bitbake/</span></code> directory)</p>
+<p>For example (taken from <a class="extlink-yocto_ab reference external" href="https://autobuilder.yoctoproject.org/">autobuilder</a> environment):
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BB_LOGCONFIG"><span class="xref std std-term">BB_LOGCONFIG</span></a> is set as:
+<code class="docutils literal notranslate"><span class="pre">BB_LOGCONFIG="${BUILDDIR}/../bitbake/contrib/autobuilderlog.json"</span></code>.
+Note the relative path starting from the build directory to outside of it.
+This path is not changed by <cite>oe-selftest</cite> anymore.</p>
+<p>Environment variables containing relative paths from tested build directory
+to outside of the original build directory may need to be updated as they
+won’t be changed by <cite>oe-selftest</cite>.</p>
+</li>
+<li><p>Several sanity checks from the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-insane"><span class="std std-ref">insane</span></a> class, such as
+<code class="docutils literal notranslate"><span class="pre">buildpaths</span></code>, have been promoted to errors instead of warnings.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">license-incompatible</span></code> <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-ERROR_QA"><span class="xref std std-term">ERROR_QA</span></a> sanity check was renamed to
+<code class="docutils literal notranslate"><span class="pre">license-exception</span></code>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  <hr>
+  <div role="contentinfo">
+    <p> A Linux Foundation Collaborative Project.
+        <br> All Rights Reserved. Linux Foundation® and Yocto Project® are registered trademarks of the Linux Foundation.
+        <br>Linux® is a registered trademark of Linus Torvalds.
+        <br>© Copyright 2010-2026, The Linux Foundation, CC-BY-SA-2.0-UK license
+        <br>Last updated on Aug 25, 2026 from the <a href="https://git.yoctoproject.org/yocto-docs/">yocto-docs</a> git repository<span class="docs_meta_info_placeholder"> (tag <a href="https://git.yoctoproject.org/yocto-docs/log?id=yocto-next"> next</a>)</span>.
+    </p>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+
+</body></html>

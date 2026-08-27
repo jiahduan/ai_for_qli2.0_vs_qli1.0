@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html -->
+<html class="writer-html5" lang="en" data-content_root="../"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release notes for 5.1 (styhead) — The Yocto Project ® next documentation</title>
+      <link rel="stylesheet" type="text/css" href="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/pygments.css">
+      <link rel="stylesheet" type="text/css" href="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/theme.css">
+      <link rel="stylesheet" type="text/css" href="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/copybutton.css">
+      <link rel="stylesheet" type="text/css" href="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/theme_overrides.css">
+
+  
+    <link rel="shortcut icon" href="https://docs.yoctoproject.org/next/_static/favicon.ico">
+      <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/jquery.js.下载"></script>
+      <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/_sphinx_javascript_frameworks_compat.js.下载"></script>
+      <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/documentation_options.js.下载"></script>
+      <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/doctools.js.下载"></script>
+      <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/sphinx_highlight.js.下载"></script>
+      <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/clipboard.min.js.下载"></script>
+      <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/copybutton.js.下载"></script>
+      <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/switchers.js.下载"></script>
+    <script src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/theme.js.下载"></script>
+    <link rel="index" title="Index" href="https://docs.yoctoproject.org/next/genindex.html">
+    <link rel="search" title="Search" href="https://docs.yoctoproject.org/next/search.html">
+    <link rel="next" title="Release notes for Yocto-5.1.1 (Styhead)" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.1.html">
+    <link rel="prev" title="Release 5.1 (styhead)" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html"> 
+</head>
+
+<body class="wy-body-for-nav">
+<div id="outdated-warning" style="text-align: center; background-color: #FFBABA; color: #6A0E0E;">
+</div>
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+          
+          
+          <a href="https://docs.yoctoproject.org/next/index.html" class="icon icon-home">
+            The Yocto Project ®
+              <img src="./Release notes for 5.1 (styhead) — The Yocto Project ® next documentation_files/YoctoProject_Logo_RGB.jpg" class="logo" alt="Logo">
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://docs.yoctoproject.org/next/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction and Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/brief-yoctoprojectqs/index.html">Quick Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/what-i-wish-id-known.html">What I wish I’d known about Yocto Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/transitioning-to-a-custom-environment.html">Transitioning to a custom environment for systems development</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/overview-manual/index.html">Overview and Concepts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributor Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/contributor-guide/index.html">Contributor Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/index.html">Reference Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/bsp-manual/index.html">Board Support Package (BSP) Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/dev-manual/index.html">Development Tasks Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/kernel-dev/index.html">Linux Kernel Development Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/security-manual/index.html">Security Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/profile-manual/index.html">Profile and Tracing Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/sdk-manual/index.html">Application Development and SDKs Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/toaster-manual/index.html">Toaster Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/test-manual/index.html">Test Environment Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/bitbake.html">BitBake User Manual</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Security Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/security-reference/index.html">Yocto Project Security Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Information</span></p>
+<ul class="current" aria-expanded="true">
+<li class="toctree-l1 current" aria-expanded="true"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/index.html"><button class="toctree-expand" title="Open/close menu"></button>Release Notes and Migration Guides</a><ul class="" aria-expanded="false">
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-general.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-6.1.html">Release 6.1 (blacksail)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-6.0.html">Release 6.0 (wrynose)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.3.html">Release 5.3 (whinlatter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.2.html">Release 5.2 (walnascar)</a></li>
+<li class="toctree-l2 current" aria-expanded="true"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.1.html"><button class="toctree-expand" title="Open/close menu"></button>Release 5.1 (styhead)</a><ul class="" aria-expanded="false">
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-5.1.html">Release 5.1 (styhead)</a></li>
+<li class="toctree-l3 current" aria-expanded="true"><a class="reference internal current" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#" aria-expanded="true"><button class="toctree-expand" title="Open/close menu"></button>Release notes for 5.1 (styhead)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#new-features-enhancements-in-5-1">New Features / Enhancements in 5.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#known-issues-in-5-1">Known Issues in 5.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#recipe-license-changes-in-5-1">Recipe License changes in 5.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#security-fixes-in-5-1">Security Fixes in 5.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#recipe-upgrades-in-5-1">Recipe Upgrades in 5.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#contributors-to-5-1">Contributors to 5.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#repositories-downloads-for-yocto-5-1">Repositories / Downloads for Yocto-5.1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.1.html">Release notes for Yocto-5.1.1 (Styhead)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.2.html">Release notes for Yocto-5.1.2 (Styhead)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.3.html">Release notes for Yocto-5.1.3 (Styhead)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.4.html">Release notes for Yocto-5.1.4 (Styhead)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-5.0.html">Release 5.0 (scarthgap)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.3.html">Release 4.3 (nanbield)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.2.html">Release 4.2 (mickledore)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.1.html">Release 4.1 (langdale)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-4.0.html">Release 4.0 (kirkstone)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/release-3.4.html">Release 3.4 (honister)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.3.html">Release 3.3 (hardknott)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.2.html">Release 3.2 (gatesgarth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.1.html">Release 3.1 (dunfell)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-3.0.html">Release 3.0 (zeus)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.7.html">Release 2.7 (warrior)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.6.html">Release 2.6 (thud)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.5.html">Release 2.5 (sumo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.4.html">Release 2.4 (rocko)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.3.html">Release 2.3 (pyro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.2.html">Release 2.2 (morty)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.1.html">Release 2.1 (krogoth)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-2.0.html">Release 2.0 (jethro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.8.html">Release 1.8 (fido)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.7.html">Release 1.7 (dizzy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.6.html">Release 1.6 (daisy)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.5.html">Release 1.5 (dora)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.4.html">Release 1.4 (dylan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://docs.yoctoproject.org/next/migration-guides/migration-1.3.html">Release 1.3 (danny)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Release Manuals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/releases.html">Supported Release Manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/releases.html#outdated-release-manuals">Outdated Release Manuals</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation Downloads</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://docs.yoctoproject.org/next/downloads.html">Documentation Downloads</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://docs.yoctoproject.org/next/index.html">The Yocto Project ®</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+    <li>
+      <span class="doctype_switcher_placeholder"><select><option value="single" selected="selected">Individual Webpages</option><option value="mega">All-in-one 'Mega' Manual</option></select></span>
+      <span class="version_switcher_placeholder"><select><option value="outdated" selected="selected">Outdated release manuals</option><option value="dev" selected="selected">Unstable (dev)</option><option value="6.0-tip" selected="selected">Wrynose (6.0.2)</option><option value="5.0-tip" selected="selected">Scarthgap (5.0.19)</option><option value="next" selected="selected">next</option></select></span>
+    </li>
+    <li> »</li>
+    
+      <li><a href="https://docs.yoctoproject.org/next/migration-guides/index.html">Release Information</a> »</li>
+    
+      <li><a href="https://docs.yoctoproject.org/next/migration-guides/release-5.1.html">Release 5.1 (styhead)</a> »</li>
+    
+    <li>Release notes for 5.1 (styhead)</li>
+
+      <li class="wy-breadcrumbs-aside">
+            <a href="https://docs.yoctoproject.org/next/_sources/migration-guides/release-notes-5.1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-notes-for-5-1-styhead">
+<h1>Release notes for 5.1 (styhead)<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#release-notes-for-5-1-styhead" title="Link to this heading"></a></h1>
+<section id="new-features-enhancements-in-5-1">
+<h2>New Features / Enhancements in 5.1<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#new-features-enhancements-in-5-1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Linux kernel 6.10, gcc 14.2, glibc 2.40, LLVM 18.1.18, and over 300 other
+recipe upgrades.</p></li>
+<li><p>New variables:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">CVE_CHECK_MANIFEST_JSON_SUFFIX</span></code>: suffix for the CVE JSON manifest file.</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PRSERV_UPSTREAM"><span class="xref std std-term">PRSERV_UPSTREAM</span></a>: Upstream PR service (<code class="docutils literal notranslate"><span class="pre">host:port</span></code>) for the local
+PR server to connect to.</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-RECIPE_UPGRADE_EXTRA_TASKS"><span class="xref std std-term">RECIPE_UPGRADE_EXTRA_TASKS</span></a>: space-delimited list of tasks to run
+after the new sources have been unpacked in the
+<code class="docutils literal notranslate"><span class="pre">scripts/lib/devtool/upgrade.py</span></code> upgrade() method.</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-UNPACKDIR"><span class="xref std std-term">UNPACKDIR</span></a>: allow change of the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-unpack"><span class="std std-ref">do_unpack</span></a> task
+directory.</p></li>
+</ul>
+</li>
+<li><p>Kernel-related changes:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The default kernel is the current stable (6.10), and there is also support
+for the latest long-term release (6.6).</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>New core recipes:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://fmt.dev/">fmt</a>: an open-source formatting library for C++
+(imported from meta-oe).</p></li>
+<li><p><a class="reference external" href="http://xcb.freedesktop.org/XcbUtil/">xcb-util-errors</a>: gives human
+readable names to error codes and event codes</p></li>
+</ul>
+</li>
+<li><p>QEMU / <code class="docutils literal notranslate"><span class="pre">runqemu</span></code> changes:</p>
+<ul class="simple">
+<li><p>runqemu: <code class="docutils literal notranslate"><span class="pre">QB_DRIVE_TYPE</span></code> now supports sd card (<code class="docutils literal notranslate"><span class="pre">/dev/mmcblk</span></code>)</p></li>
+<li><p>Trigger <code class="docutils literal notranslate"><span class="pre">write_qemuboot_conf</span></code> task on changes of kernel image realpath
+(<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-KERNEL_IMAGE_NAME"><span class="xref std std-term">KERNEL_IMAGE_NAME</span></a>).</p></li>
+</ul>
+</li>
+<li><p>Go changes:</p>
+<ul class="simple">
+<li><p>New Go module fetcher (<code class="docutils literal notranslate"><span class="pre">gomod://</span></code>) for downloading module dependencies
+to the module cache from a module proxy.</p></li>
+<li><p>New Go module fetcher (<code class="docutils literal notranslate"><span class="pre">gomodgit://</span></code>) for downloading module
+dependencies to the module cache directly from a git repository.</p></li>
+<li><p>The old 1.4 Go bootstrap written in C has been dropped. The default
+Go bootstrap provider is now <code class="docutils literal notranslate"><span class="pre">go-binary-native</span></code> only.</p></li>
+</ul>
+</li>
+<li><p>Rust changes:</p>
+<ul class="simple">
+<li><p>Cargo dependencies specified as git repositories now also have their git
+submodules checked out.</p></li>
+<li><p>Rust is now built with its default set of tools instead of just
+<code class="docutils literal notranslate"><span class="pre">rust-demangler</span></code>.</p></li>
+</ul>
+</li>
+<li><p>wic Image Creator changes:</p>
+<ul class="simple">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">truncate</span></code> utility in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-HOSTTOOLS"><span class="xref std std-term">HOSTTOOLS</span></a>, needed by some wic
+commands.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">get_boot_files</span></code> function is no longer part of the
+<code class="docutils literal notranslate"><span class="pre">bootimg-partition</span></code> plugin and is part of the common <code class="docutils literal notranslate"><span class="pre">bootfiles.py</span></code>
+library.</p></li>
+</ul>
+</li>
+<li><p>SDK-related changes:</p>
+<ul class="simple">
+<li><p>Included <code class="docutils literal notranslate"><span class="pre">nativesdk-python3-pip</span></code> in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/terms.html#term-buildtools"><span class="xref std std-term">buildtools</span></a> by default.</p></li>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-nativesdk"><span class="std std-ref">nativesdk</span></a> now have <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-package-qa"><span class="std std-ref">do_package_qa</span></a> run when
+calling <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-populate-sdk"><span class="std std-ref">do_populate_sdk</span></a>.</p></li>
+<li><p>A new 7zip archive type can be used to create the SDK by setting
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SDK_ARCHIVE_TYPE"><span class="xref std std-term">SDK_ARCHIVE_TYPE</span></a> to <code class="docutils literal notranslate"><span class="pre">7zip</span></code>.</p></li>
+<li><p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-toolchain-scripts"><span class="std std-ref">toolchain-scripts</span></a> class now exports the target
+endianness and wordsize in environment variables <code class="docutils literal notranslate"><span class="pre">OECORE_TARGET_BITS</span></code>
+and <code class="docutils literal notranslate"><span class="pre">OECORE_TARGET_ENDIAN</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Testing-related changes:</p>
+<ul class="simple">
+<li><p>oeqa/selftest: Only rewrite envvars paths that absolutely point to
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BUILDDIR"><span class="xref std std-term">BUILDDIR</span></a>.</p></li>
+<li><p>oeqa/manual: remove obsolete CROPS and Eclipse manually testing scripts</p></li>
+<li><p>Enable ptests for <code class="docutils literal notranslate"><span class="pre">python3-cffi</span></code>, <code class="docutils literal notranslate"><span class="pre">python3-idna</span></code>,
+<code class="docutils literal notranslate"><span class="pre">python3-libarchive-c</span></code>, <code class="docutils literal notranslate"><span class="pre">python3-mako</span></code>, <code class="docutils literal notranslate"><span class="pre">python3-packaging</span></code>,
+<code class="docutils literal notranslate"><span class="pre">python3-uritools</span></code> and <code class="docutils literal notranslate"><span class="pre">python3-rpds-py</span></code>.</p></li>
+<li><p>Running tests on target with <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-testimage"><span class="std std-ref">testimage</span></a> can now be done
+over a serial connection.</p></li>
+<li><p>Artifact collection when using the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-testimage"><span class="std std-ref">testimage</span></a> class is
+now optional and allowed by making <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-TESTIMAGE_FAILED_QA_ARTIFACTS"><span class="xref std std-term">TESTIMAGE_FAILED_QA_ARTIFACTS</span></a>
+empty.</p></li>
+<li><p>Artifacts from <code class="docutils literal notranslate"><span class="pre">oeqa</span></code> post-actions are now retrieved as whole archives
+instead of individual copies. The archive is left uncompressed on the
+host.</p></li>
+<li><p>A test for the <code class="docutils literal notranslate"><span class="pre">minidebuginfo</span></code> feature of <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-DISTRO_FEATURES"><span class="xref std std-term">DISTRO_FEATURES</span></a> is now
+part of the test suite.</p></li>
+<li><p>A test for building a kernel module was added to the SDK test suite.</p></li>
+<li><p>oeqa/selftest: run test serially if neither the <code class="docutils literal notranslate"><span class="pre">testtools</span></code> or
+<code class="docutils literal notranslate"><span class="pre">subunit</span></code> Python modules have been found.</p></li>
+<li><p>Artifact collection and test result collection are now separated and
+artifact collection can be controlled with the <code class="docutils literal notranslate"><span class="pre">OEQA_ARTEFACT_DIR</span></code>
+variable.</p></li>
+</ul>
+</li>
+<li><p>Utility script changes:</p>
+<ul class="simple">
+<li><p>New <code class="docutils literal notranslate"><span class="pre">cve-json-to-text</span></code> script that converts the <code class="docutils literal notranslate"><span class="pre">cve-check</span></code> result
+from the JSON format to the TEXT format as <code class="docutils literal notranslate"><span class="pre">cve-check</span></code> removed text
+format.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">makefile-getvar</span></code> script to extract value from a Makefile.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">pull-spdx-licenses</span></code> script to pull SPDX license data, update
+license list JSON data and update license directory.</p></li>
+<li><p>Several improvements in <code class="docutils literal notranslate"><span class="pre">oe-build-perf-report</span></code> report.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oe-debuginfod</span></code>: add parameter “-d” to store debuginfod files in project
+sub-directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resulttool</span></code>: support test report generation in JUnit XML format.</p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">install-buildtools</span></code> “test installation” step harmless error
+messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitbake-layers</span></code>: add a new subcommand <code class="docutils literal notranslate"><span class="pre">show-machines</span></code> to list the
+machines available in the currently configured layers.</p></li>
+</ul>
+</li>
+<li><p>BitBake changes:</p>
+<ul>
+<li><p>Fetcher for Rust crates: added a check for latest upstream version.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">syncrpc</span></code> now requires a minimum version of the websockets module depend
+on Python version.</p></li>
+<li><p>Improve <code class="docutils literal notranslate"><span class="pre">bitbake-hashclient</span></code> stress statistics reporting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitbake-hashserv</span></code> added <code class="docutils literal notranslate"><span class="pre">reuseport</span></code> parameter to enable SO_REUSEPORT,
+allowing multiple servers to bind to the same port for load balancing</p></li>
+<li><p>Improve cloning speed with <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BB_GIT_SHALLOW"><span class="xref std std-term">BB_GIT_SHALLOW</span></a> and
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BB_GENERATE_MIRROR_TARBALLS"><span class="xref std std-term">BB_GENERATE_MIRROR_TARBALLS</span></a>.</p></li>
+<li><p><cite>BitBake</cite> UI now includes log paths for failed task.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fetcher2</span></code>: support for wget and wget2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fetcher2</span></code>: support npm package name with ‘@’ character.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fetcher2</span></code>: remote name for <code class="docutils literal notranslate"><span class="pre">git://</span></code> is now <code class="docutils literal notranslate"><span class="pre">origin</span></code> by default.</p></li>
+<li><p>Codeparser now supports shell substitution in quotes, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre id="codecell0"><span></span><span class="n">var1</span><span class="o">=</span><span class="s2">"$(cmd1 ...)"</span>
+</pre><button class="copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#codecell0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <title>Copy to clipboard</title>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+</svg>
+    </button></div>
+</div>
+</li>
+<li><p>Function code of pylib functions are now taken into account when computing
+taskhashes.</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">_test_devtool_add_git_url</span></code> test</p></li>
+<li><p>Hashserv: add a batch stream API that reduces the round trip latency on the
+server.</p></li>
+<li><p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-prserv"><span class="std std-ref">prserv</span></a> class now uses a shared sqlite3 database to
+allow multiple processes to access the database.</p></li>
+<li><p>The Python codeparser now skips the checksumming of external Python
+modules imported with <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">module</span> <span class="pre">import</span> <span class="pre">something</span></code>.</p></li>
+<li><p>Enable batching of <code class="docutils literal notranslate"><span class="pre">unihash</span></code> queries to reduce the effect of latency
+when making multiple queries to the server.</p></li>
+<li><p>Parser: improve cache invalidation reliability by using the mtime’s
+nanoseconds, inode number and size of files.</p></li>
+<li><p>When using the syntax <code class="docutils literal notranslate"><span class="pre">addtask</span> <span class="pre">do_XXX</span> <span class="pre">before</span> <span class="pre">YYY</span> <span class="pre">after</span> <span class="pre">ZZZ</span></code>, bitbake now
+ensures that <code class="docutils literal notranslate"><span class="pre">YYY</span></code> and <code class="docutils literal notranslate"><span class="pre">ZZZ</span></code> are prefixed with <code class="docutils literal notranslate"><span class="pre">do_</span></code>, to avoid
+unexpected failures.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">devtool</span></code> changes:</p>
+<ul class="simple">
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">_test_devtool_add_git_url</span></code> test</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update-recipe</span></code>, <code class="docutils literal notranslate"><span class="pre">finish</span></code>: fix error when calling on another layer and
+having a localfile.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">devtool</span> <span class="pre">check-upgrade-status</span></code> now groups recipes when they need to be
+upgraded together.</p></li>
+</ul>
+</li>
+<li><p>Packaging changes:</p>
+<ul class="simple">
+<li><p>When processing <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code>’s <code class="docutils literal notranslate"><span class="pre">pc</span></code> files, also process
+“Requires.private” in addition to “Requires”. This fixes a broken
+dependency list for IPKs and avoids installing unecessary recommended
+additional packages (and save disk usage).</p></li>
+<li><p>Package management: make the extraction of IPK packages not depend on
+<code class="docutils literal notranslate"><span class="pre">zst</span></code> compression, as it can be changed with <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-OPKGBUILDCMD"><span class="xref std std-term">OPKGBUILDCMD</span></a>.</p></li>
+<li><p>Remove support for <code class="docutils literal notranslate"><span class="pre">DIRFILES</span></code> of <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-package-rpm"><span class="std std-ref">package_rpm</span></a> as it is
+rpm-specific and untested.</p></li>
+<li><p>Bump <code class="docutils literal notranslate"><span class="pre">abi_version</span></code> and <code class="docutils literal notranslate"><span class="pre">package</span></code> versions after recent <code class="docutils literal notranslate"><span class="pre">pkgconfig</span></code>
+changes.</p></li>
+</ul>
+</li>
+<li><p>Security changes:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">busybox</span></code> default configuration now disables internal TLS code to
+use the <code class="docutils literal notranslate"><span class="pre">openssl</span></code> backend instead, for a more secure initial set of
+settings.</p></li>
+<li><p>Limit ssh host keys pre-generation to qemu machines by default, for
+security purposes.</p></li>
+</ul>
+</li>
+<li><p>LLVM related changes:</p>
+<ul class="simple">
+<li><p>Enable <code class="docutils literal notranslate"><span class="pre">libllvm</span></code> in <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGECONFIG"><span class="xref std std-term">PACKAGECONFIG</span></a> for native builds.</p></li>
+<li><p>Fetch release tarballs instead of git checkouts to reduce disk usage.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cve-check</span></code> changes:</p>
+<ul class="simple">
+<li><p>The class <code class="docutils literal notranslate"><span class="pre">cve-check</span></code> now uses a local copy of the NVD
+database during builds.</p></li>
+<li><p>New statuses can be reported by <code class="docutils literal notranslate"><span class="pre">cve-check</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">fix-file-included</span></code>: when a fix file has been included (set automatically)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version-not-in-range</span></code>: version number NOT in the vulnerable range (set automatically)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version-in-range</span></code>: version number IS in the vulnerable range (set automatically)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unknown</span></code>: impossible to conclude if the vulnerability is present or not</p></li>
+</ul>
+</li>
+<li><p>The TEXT output format was removed to favor the JSON format which offers
+more features.</p></li>
+<li><p>Allow overriding the default “policies” from
+<code class="docutils literal notranslate"><span class="pre">meta/conf/cve-check-map.conf</span></code> by including it before distro include
+files in <code class="docutils literal notranslate"><span class="pre">meta/conf/bitbake.conf</span></code>.</p></li>
+</ul>
+</li>
+<li><p>SPDX-related changes:</p>
+<ul class="simple">
+<li><p>Update the SPDX license set too version 3.24.0, and produce SPDX output in
+version 3.0 by default, instead of 2.2.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">create-spdx-3.0</span></code> class to generate SPDX 3.0 output (used by generic
+class <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-create-spdx"><span class="std std-ref">create-spdx</span></a>). New <code class="docutils literal notranslate"><span class="pre">create-spdx-image-3.0</span></code>
+class that is used when generating images and <code class="docutils literal notranslate"><span class="pre">create-spdx-sdk-3.0</span></code> for SDK
+based recipes.</p></li>
+<li><p>New <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-nospdx"><span class="std std-ref">nospdx</span></a> class that allows recipes to opt out of
+generating SPDX.</p></li>
+<li><p>Specify the SPDX image purposes for <code class="docutils literal notranslate"><span class="pre">tar</span></code>, <code class="docutils literal notranslate"><span class="pre">cpio</span></code> and <code class="docutils literal notranslate"><span class="pre">wic</span></code> images.</p></li>
+<li><p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-create-spdx"><span class="std std-ref">create-spdx</span></a> class now reports for
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-multilib"><span class="std std-ref">multilib*</span></a> classes.</p></li>
+</ul>
+</li>
+<li><p>Miscellaneous changes:</p>
+<ul class="simple">
+<li><p>Fix reproducibility for <code class="docutils literal notranslate"><span class="pre">spirv-tools</span></code></p></li>
+<li><p>Allow selection of host key types used by openssh.</p></li>
+<li><p>New glibc task <code class="docutils literal notranslate"><span class="pre">do_symlist</span></code> to list exported symbols.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initramfs-framework</span></code> support for force reboot in the case of fatal error.</p></li>
+<li><p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-insane"><span class="std std-ref">insane</span></a> class now checks for <code class="docutils literal notranslate"><span class="pre">patch-status</span></code> and
+<code class="docutils literal notranslate"><span class="pre">pep517-backend</span></code> by default.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">yocto-space-optimize</span></code> include file to allow turning off debug compiler options
+for a small set of recipes to reduce build on disk footprint and package/sstate sizes.</p></li>
+<li><p>Image creation tasks inheriting from the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-image"><span class="std std-ref">image</span></a> class
+now produce a <code class="docutils literal notranslate"><span class="pre">manifest.json</span></code> file listing the images created. The
+output manifest path is defined by the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-IMAGE_OUTPUT_MANIFEST"><span class="xref std std-term">IMAGE_OUTPUT_MANIFEST</span></a>
+variable.</p></li>
+<li><p>New <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-vex"><span class="std std-ref">vex</span></a> class generates the minimum information that is necessary
+for VEX generation by an external CVE checking tool.</p></li>
+<li><p>New <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-retain"><span class="std std-ref">retain</span></a> class creates a tarball of the work directory for a recipe
+when one of its tasks fails, or any other nominated directories.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">localpkgfeed</span></code> class in meta-selftest to create a subset of the
+package feed that just contain the packages depended on by this recipe.</p></li>
+<li><p>New <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGECONFIG"><span class="xref std std-term">PACKAGECONFIG</span></a> options for individual recipes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">appstream</span></code>: qt6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cronie</span></code>: inotify</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1</span></code>.0-plugins-bad: gtk3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libsdl2</span></code>: libsamplerate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mesa</span></code>: tegra</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssh</span></code>: hostkey-rsa hostkey-ecdsa hostkey-ed25519</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pciutils</span></code>: kmod zlib</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">piglit</span></code>: wayland</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pulseaudio</span></code>: oss-output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span></code>: staticlibpython</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-jsonschema</span></code>: format-nongpl (previously “nongpl”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd</span></code>: bpf-framework</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util-linux</span></code>: libmount-mountfd-support</p></li>
+</ul>
+</li>
+<li><p>Stop referring to <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a> for <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> and <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-B"><span class="xref std std-term">B</span></a> and trigger
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-insane"><span class="std std-ref">insane</span></a> errors when <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-S"><span class="xref std std-term">S</span></a> or <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-B"><span class="xref std std-term">B</span></a> are equal to
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-WORKDIR"><span class="xref std std-term">WORKDIR</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">picolibc</span></code> can now be used with <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-TCLIBC"><span class="xref std std-term">TCLIBC</span></a> to build with
+<code class="docutils literal notranslate"><span class="pre">picolibc</span></code> as the C library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssh</span></code> now uses <code class="docutils literal notranslate"><span class="pre">sd_notify</span></code> patch from upstream instead of custom
+one, which does not depend on libsystemd and is standalone.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span></code> now uses the <code class="docutils literal notranslate"><span class="pre">${COREBASE}/scripts/git</span></code> wrapper instead of the
+host’s, which is required during <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-install"><span class="std std-ref">do_install</span></a> to call git
+while disabling fakeroot, and avoid “dubious ownership” git errors.</p></li>
+<li><p>Default compiler option changes:</p>
+<ul>
+<li><p><a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-BUILD_CFLAGS"><span class="xref std std-term">BUILD_CFLAGS</span></a> now includes the <cite>-pipe</cite> option by default.</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">eliminate-unused-debug-types</span></code> option from
+the default compiler options since it is now included by default.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uninative</span></code> updated to 4.6 for glibc 2.40</p></li>
+<li><p>Mark recipe <code class="docutils literal notranslate"><span class="pre">meta-ide-support</span></code> as machine specific with
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGE_ARCH"><span class="xref std std-term">PACKAGE_ARCH</span></a>.</p></li>
+<li><p>sstate: Drop intercept functions support which was only used by now
+removed <code class="docutils literal notranslate"><span class="pre">siteconfig</span></code> class.</p></li>
+<li><p>sstate: Drop support for <code class="docutils literal notranslate"><span class="pre">SSTATEPOSTINSTFUNC</span></code> variable now that
+<code class="docutils literal notranslate"><span class="pre">postfunc</span></code> is available.</p></li>
+<li><p>openssl: strip the test suite after building, reducing the build tree of
+50% after installation.</p></li>
+<li><p>u-boot: Refactor some of the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-configure"><span class="std std-ref">do_configure</span></a> tasks into new
+functions, making it easier to modify using a bbappend.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">musl</span></code> recipe now shows an error if used with
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-multilib"><span class="std std-ref">multilib*</span></a> enabled (<code class="docutils literal notranslate"><span class="pre">musl</span></code> does not support multilib).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">git</span></code> recipe is now configured with default configuration pointing to
+<code class="docutils literal notranslate"><span class="pre">/etc/gitconfig</span></code> for <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-native"><span class="std std-ref">native</span></a> recipes.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">apt-native</span></code> recipe, used to compile <code class="docutils literal notranslate"><span class="pre">dpkg</span></code> and handle <code class="docutils literal notranslate"><span class="pre">deb</span></code>
+packages, was modified to avoid files being overridden by other packages when
+they share common files. Instead, prompt an error.</p></li>
+<li><p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/tasks.html#ref-tasks-savedefconfig"><span class="std std-ref">do_savedefconfig</span></a> was moved from the u-boot and kernel
+recipes to the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-cml1"><span class="std std-ref">cml1</span></a> class, so that more kbuild-based
+recipes can use it.</p></li>
+<li><p>The <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-sanity"><span class="std std-ref">sanity</span></a> class now checks if user namespaces are
+enabled on the host as they are required for network isolation.</p></li>
+<li><p>The recipe <code class="docutils literal notranslate"><span class="pre">os-release</span></code> is now part of
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-SIGGEN_EXCLUDERECIPES_ABISAFE"><span class="xref std std-term">SIGGEN_EXCLUDERECIPES_ABISAFE</span></a> and does not trigger a rebuild on a
+change for dependent tasks.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">kernel-fitimage</span></code>, the existence of
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-EXTERNAL_KERNEL_DEVICETREE"><span class="xref std std-term">EXTERNAL_KERNEL_DEVICETREE</span></a> is checked more thoroughly to avoid
+false positives.</p></li>
+<li><p>rootfs: ensure <code class="docutils literal notranslate"><span class="pre">run-postinsts</span></code> is not uninstalled when the
+<em>read-only-rootfs-delayed-postinsts</em> and <em>read-only-rootfs</em>
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-IMAGE_FEATURES"><span class="xref std std-term">IMAGE_FEATURES</span></a> are enabled.</p></li>
+<li><p>Gcc can now use <code class="docutils literal notranslate"><span class="pre">libc++</span></code> as its runtime.</p></li>
+<li><p>The variable <code class="docutils literal notranslate"><span class="pre">CMDLINE_CONSOLE</span></code> was removed from the
+<a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-kernel"><span class="std std-ref">kernel</span></a> class, as it wasn’t used anywhere.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span></code>: make <code class="docutils literal notranslate"><span class="pre">-core</span></code> depend on <code class="docutils literal notranslate"><span class="pre">-compression</span></code> as it needs to
+import the <code class="docutils literal notranslate"><span class="pre">zipfile</span></code> module.</p></li>
+<li><p>The classes <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-native"><span class="std std-ref">native</span></a> and <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-nativesdk"><span class="std std-ref">nativesdk</span></a> do
+not override the <code class="docutils literal notranslate"><span class="pre">*FLAGS</span></code> variables anymore, allowing users to use the
+<code class="docutils literal notranslate"><span class="pre">+=</span></code> syntax in recipes.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">multilib_script</span></code> class (part of <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/classes.html#ref-classes-multilib"><span class="std std-ref">multilib*</span></a>)
+now expands the <code class="docutils literal notranslate"><span class="pre">MULTILIB_SCRIPTS</span></code> variable before splitting the
+scripts, fixing some issues seen when <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-PACKAGECONFIG"><span class="xref std std-term">PACKAGECONFIG</span></a> would
+conditionally modify it.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="known-issues-in-5-1">
+<h2>Known Issues in 5.1<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#known-issues-in-5-1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">oeqa/runtime</span></code>: the <code class="docutils literal notranslate"><span class="pre">beaglebone-yocto</span></code> target fails the <code class="docutils literal notranslate"><span class="pre">parselogs</span></code>
+runtime test due to unexpected kernel error messages in the log (see
+<a class="extlink-yocto_bugs reference external" href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=15624">bug 15624</a> on Bugzilla).</p></li>
+</ul>
+</section>
+<section id="recipe-license-changes-in-5-1">
+<h2>Recipe License changes in 5.1<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#recipe-license-changes-in-5-1" title="Link to this heading"></a></h2>
+<p>The following corrections have been made to the <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LICENSE"><span class="xref std std-term">LICENSE</span></a> values set by recipes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ccache</span></code>: <code class="docutils literal notranslate"><span class="pre">GPL-3.0-or-later</span></code> to <code class="docutils literal notranslate"><span class="pre">GPL-3.0-or-later</span> <span class="pre">&amp;</span> <span class="pre">MIT</span> <span class="pre">&amp;</span> <span class="pre">BSL-1.0</span> <span class="pre">&amp;</span> <span class="pre">ISC</span></code> after adding third-party licenses.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dejagnu</span></code>: update to <code class="docutils literal notranslate"><span class="pre">GPL-3.0-only</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcr</span></code>: update to <code class="docutils literal notranslate"><span class="pre">LGPL-2.0-only</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc</span></code>: update to <code class="docutils literal notranslate"><span class="pre">GPL-2.0-only</span> <span class="pre">&amp;</span> <span class="pre">LGPL-2.1-or-later</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpgme</span></code>: update for different packages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iw</span></code>: update to <code class="docutils literal notranslate"><span class="pre">ISC</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">json-glib</span></code>: <code class="docutils literal notranslate"><span class="pre">LGPL-2.1-only</span></code> to <code class="docutils literal notranslate"><span class="pre">LGPL-2.1-or-later</span></code> after update to 1.10.0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libgcrypt</span></code>: <code class="docutils literal notranslate"><span class="pre">GPL-2.0-or-later</span> <span class="pre">&amp;</span> <span class="pre">LGPL-2.1-or-later</span></code> to <code class="docutils literal notranslate"><span class="pre">GPL-2.0-or-later</span> <span class="pre">&amp;</span> <span class="pre">LGPL-2.1-or-later</span> <span class="pre">&amp;</span> <span class="pre">BSD-3-Clause</span></code>. Add BSD-3-Clause for poly1305-amd64-avx512.S.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-firmware</span></code>: set package <a class="reference internal" href="https://docs.yoctoproject.org/next/ref-manual/variables.html#term-LICENSE"><span class="xref std std-term">LICENSE</span></a> for following firmware packages:
+-  <code class="docutils literal notranslate"><span class="pre">cc33xx</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">ath10k-wcn3990</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">qcom-adreno-g750</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">qcom-x1e80100-adreno</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">wfx</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">qcom-vpu</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">qcom-sm8550-audio-tplg</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">qcom-sm8650-audio-tplg</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">linaro-license</span></code>
+-  <code class="docutils literal notranslate"><span class="pre">mali-csffw-arch108</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lz4</span></code>: <code class="docutils literal notranslate"><span class="pre">BSD-2-Clause</span> <span class="pre">|</span> <span class="pre">GPL-2.0-only</span></code> to <code class="docutils literal notranslate"><span class="pre">BSD-2-Clause</span> <span class="pre">|</span> <span class="pre">GPL-2.0-or-later</span></code> after update to 1.10.0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ppp</span></code>: add license <code class="docutils literal notranslate"><span class="pre">RSA-MD</span></code> .</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-docutils</span></code>: <code class="docutils literal notranslate"><span class="pre">PSF-2.0</span> <span class="pre">&amp;</span> <span class="pre">BSD-2-Clause</span> <span class="pre">&amp;</span> <span class="pre">GPL-3.0-only</span></code> to <code class="docutils literal notranslate"><span class="pre">CC0-1.0</span> <span class="pre">&amp;</span> <span class="pre">ZPL-2.1</span> <span class="pre">&amp;</span> <span class="pre">BSD-2-Clause</span> <span class="pre">&amp;</span> <span class="pre">GPL-3.0-only</span></code>. Add CC0 after update to 0.21.2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tiff</span></code>: update to <code class="docutils literal notranslate"><span class="pre">libtiff</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unzip</span></code>: update to <code class="docutils literal notranslate"><span class="pre">Info-ZIP</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util-linux</span></code>: Add <code class="docutils literal notranslate"><span class="pre">GPL-2.0-only</span></code>  after update to 2.40.1 (<code class="docutils literal notranslate"><span class="pre">GPL-2.0</span></code> changed to <code class="docutils literal notranslate"><span class="pre">GPL-2.0-only</span></code> in README.licensing).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xz</span></code>: <code class="docutils literal notranslate"><span class="pre">PD</span></code> removed and <code class="docutils literal notranslate"><span class="pre">0BSD</span></code> added after update to 5.6.2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xz</span></code>: add <code class="docutils literal notranslate"><span class="pre">PD</span></code> for xz, xz-dev and xz-doc package.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zip</span></code>: update to <code class="docutils literal notranslate"><span class="pre">Info-ZIP</span></code>.</p></li>
+</ul>
+</section>
+<section id="security-fixes-in-5-1">
+<h2>Security Fixes in 5.1<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#security-fixes-in-5-1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">apr</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-49582">CVE-2023-49582</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">busybox</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2021-42380">CVE-2021-42380</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-42363">CVE-2023-42363</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-42364">CVE-2023-42364</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-42365">CVE-2023-42365</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-42366">CVE-2023-42366</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cups</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-35235">CVE-2024-35235</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curl</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-6197">CVE-2024-6197</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-6874">CVE-2024-6874</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-7264">CVE-2024-7264</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expat</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-45490">CVE-2024-45490</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-45491">CVE-2024-45491</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-45492">CVE-2024-45492</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4039">CVE-2023-4039</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdk-pixbuf</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2022-48622">CVE-2022-48622</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ghostscript</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-33869">CVE-2024-33869</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-52722">CVE-2023-52722</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-33870">CVE-2024-33870</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-33871">CVE-2024-33871</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-29510">CVE-2024-29510</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-32002">CVE-2024-32002</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-32004">CVE-2024-32004</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-32020">CVE-2024-32020</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-32021">CVE-2024-32021</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-32465">CVE-2024-32465</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-2961">CVE-2024-2961</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-33599">CVE-2024-33599</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-33600">CVE-2024-33600</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-33601">CVE-2024-33601</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-33602">CVE-2024-33602</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">go</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-24790">CVE-2024-24790</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gtk+3</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-6655">CVE-2024-6655</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-yocto/6.10</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2020-16119">CVE-2020-16119</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-yocto/6.6</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2020-16119">CVE-2020-16119</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">llvm</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-0151">CVE-2024-0151</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ncurses</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-50495">CVE-2023-50495</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-45918">CVE-2023-45918</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssh</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-6387">CVE-2024-6387</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-4603">CVE-2024-4603</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-4741">CVE-2024-4741</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ovmf</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-45236">CVE-2023-45236</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-45237">CVE-2023-45237</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-25742">CVE-2024-25742</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-7592">CVE-2024-7592</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-8088">CVE-2024-8088</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-6232">CVE-2024-6232</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ruby</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-27282">CVE-2024-27282</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-27281">CVE-2024-27281</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-27280">CVE-2024-27280</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tiff</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-7006">CVE-2024-7006</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vim</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-41957">CVE-2024-41957</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-41965">CVE-2024-41965</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-43374">CVE-2024-43374</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-43790">CVE-2024-43790</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-43802">CVE-2024-43802</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-38428">CVE-2024-38428</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpa-supplicant</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-5290">CVE-2024-5290</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2023-52160">CVE-2023-52160</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xserver-xorg</span></code>: <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-31080">CVE-2024-31080</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-31081">CVE-2024-31081</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-31082">CVE-2024-31082</a>, <a class="extlink-cve_nist reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2024-31083">CVE-2024-31083</a></p></li>
+</ul>
+</section>
+<section id="recipe-upgrades-in-5-1">
+<h2>Recipe Upgrades in 5.1<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#recipe-upgrades-in-5-1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">acpica</span></code> 20240322 -&gt; 20240827</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">adwaita-icon-theme</span></code> 45.0 -&gt; 46.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alsa-lib</span></code> 1.2.11 -&gt; 1.2.12</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alsa-plugins</span></code> 1.2.7.1 -&gt; 1.2.12</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alsa-ucm-conf</span></code> 1.2.11 -&gt; 1.2.12</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alsa-utils</span></code> 1.2.11 -&gt; 1.2.12</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asciidoc</span></code> 10.2.0 -&gt; 10.2.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">at-spi2-core</span></code> 2.50.1 -&gt; 2.52.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attr</span></code> 2.5.1 -&gt; 2.5.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">automake</span></code> 1.16.5 -&gt; 1.17</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base-passwd</span></code> 3.6.3 -&gt; 3.6.4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bash</span></code> 5.2.21 -&gt; 5.2.32</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bash-completion</span></code> 2.12.0 -&gt; 2.14.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind</span></code> 9.18.28 -&gt; 9.20.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binutils</span></code> 2.42 -&gt; 2.43.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binutils-cross</span></code> 2.42 -&gt; 2.43.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binutils-cross-canadian</span></code> 2.42 -&gt; 2.43.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binutils-crosssdk</span></code> 2.42 -&gt; 2.43.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bluez5</span></code> 5.72 -&gt; 5.78</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">boost</span></code> 1.84.0 -&gt; 1.86.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">boost-build-native</span></code> 1.84.0 -&gt; 1.86.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">btrfs-tools</span></code> 6.7.1 -&gt; 6.10.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build-appliance-image</span></code> 15.0.0 (bf88a67b4523…) -&gt; 15.0.0 (7cc8bf7af794…)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ca-certificates</span></code> 20211016 -&gt; 20240203</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cairo</span></code> 1.18.0 -&gt; 1.18.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cargo</span></code> 1.75.0 -&gt; 1.79.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cargo-c-native</span></code> 0.9.30+cargo-0.77.0 -&gt; 0.10.3+cargo-0.81.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ccache</span></code> 4.9.1 -&gt; 4.10.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span></code> 3.28.3 -&gt; 3.30.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake-native</span></code> 3.28.3 -&gt; 3.30.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connman</span></code> 1.42 -&gt; 1.43</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coreutils</span></code> 9.4 -&gt; 9.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cracklib</span></code> 2.9.11 -&gt; 2.10.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">createrepo-c</span></code> 1.0.4 -&gt; 1.1.4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cross-localedef-native</span></code> 2.39+git -&gt; 2.40+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cryptodev-linux</span></code> 1.13+gitX -&gt; 1.14</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cryptodev-module</span></code> 1.13+gitX -&gt; 1.14</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cryptodev-tests</span></code> 1.13+gitX -&gt; 1.14</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curl</span></code> 8.7.1 -&gt; 8.9.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">debianutils</span></code> 5.16 -&gt; 5.20</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dhcpcd</span></code> 10.0.6 -&gt; 10.0.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diffoscope</span></code> 259 -&gt; 277</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dmidecode</span></code> 3.5 -&gt; 3.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dnf</span></code> 4.19.0 -&gt; 4.21.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dpkg</span></code> 1.22.0 -&gt; 1.22.11</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropbear</span></code> 2022.83 -&gt; 2024.85</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">e2fsprogs</span></code> 1.47.0 -&gt; 1.47.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ell</span></code> 0.64 -&gt; 0.68</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enchant2</span></code> 2.6.7 -&gt; 2.8.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encodings</span></code> 1.0.7 -&gt; 1.1.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epiphany</span></code> 46.0 -&gt; 46.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">erofs-utils</span></code> 1.7.1 -&gt; 1.8.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ethtool</span></code> 6.7 -&gt; 6.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> 6.1.1 -&gt; 7.0.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">findutils</span></code> 4.9.0 -&gt; 4.10.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freetype</span></code> 2.13.2 -&gt; 2.13.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fribidi</span></code> 1.0.14 -&gt; 1.0.15</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-cross</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-cross-canadian</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-crosssdk</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-runtime</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-sanitizers</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc-source</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcr</span></code> 4.2.1 -&gt; 4.3.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdb</span></code> 14.2 -&gt; 15.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdb-cross</span></code> 14.2 -&gt; 15.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdb-cross-canadian</span></code> 14.2 -&gt; 15.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gdbm</span></code> 1.23 -&gt; 1.24</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gi-docgen</span></code> 2023.3 -&gt; 2024.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span></code> 2.44.1 -&gt; 2.46.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glib-2.0</span></code> 2.78.6 -&gt; 2.82.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glib-networking</span></code> 2.78.1 -&gt; 2.80.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc</span></code> 2.39+git -&gt; 2.40+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc-locale</span></code> 2.39+git -&gt; 2.40+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc-mtrace</span></code> 2.39+git -&gt; 2.40+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc-scripts</span></code> 2.39+git -&gt; 2.40+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc-testsuite</span></code> 2.39+git -&gt; 2.40+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glibc-y2038-tests</span></code> 2.39+git -&gt; 2.40+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glslang</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gnu-config</span></code> 20240101+git -&gt; 20240823+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gnu-efi</span></code> 3.0.17 -&gt; 3.0.18</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gnupg</span></code> 2.4.4 -&gt; 2.5.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gnutls</span></code> 3.8.4 -&gt; 3.8.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">go-helloworld</span></code> 0.1 (d9923f6970e9…) -&gt; 0.1 (39e772fc2670…)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gobject-introspection</span></code> 1.78.1 -&gt; 1.80.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gptfdisk</span></code> 1.0.9 -&gt; 1.0.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gsettings-desktop-schemas</span></code> 46.0 -&gt; 47.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gst-devtools</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0-libav</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0-plugins-bad</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0-plugins-base</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0-plugins-good</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0-plugins-ugly</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0-python</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0-rtsp-server</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gstreamer1.0-vaapi</span></code> 1.22.12 -&gt; 1.24.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gtk+3</span></code> 3.24.41 -&gt; 3.24.43</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gtk-doc</span></code> 1.33.2 -&gt; 1.34.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gtk4</span></code> 4.14.1 -&gt; 4.16.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">harfbuzz</span></code> 8.3.0 -&gt; 9.0.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hicolor-icon-theme</span></code> 0.17 -&gt; 0.18</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hwlatdetect</span></code> 2.6 -&gt; 2.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">icu</span></code> 74-2 -&gt; 75-1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ifupdown</span></code> 0.8.41 -&gt; 0.8.43</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iproute2</span></code> 6.7.0 -&gt; 6.10.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iputils</span></code> 20240117 -&gt; 20240905</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iw</span></code> 6.7 -&gt; 6.9</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">json-glib</span></code> 1.8.0 -&gt; 1.10.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kea</span></code> 2.4.1 -&gt; 2.6.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kexec-tools</span></code> 2.0.28 -&gt; 2.0.29</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kmod</span></code> 31 -&gt; 33</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kmscube</span></code> 0.0.1+git (6ab022fdfcfe…) -&gt; 0.0.1+git (467e86c5cbeb…)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">less</span></code> 643 -&gt; 661</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libadwaita</span></code> 1.5.2 -&gt; 1.6.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libassuan</span></code> 2.5.6 -&gt; 3.0.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libbsd</span></code> 0.12.1 -&gt; 0.12.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libcap</span></code> 2.69 -&gt; 2.70</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libcomps</span></code> 0.1.20 -&gt; 0.1.21</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libdnf</span></code> 0.73.2 -&gt; 0.73.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libdrm</span></code> 2.4.120 -&gt; 2.4.123</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libedit</span></code> 20230828-3.1 -&gt; 20240808-3.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libevdev</span></code> 1.13.1 -&gt; 1.13.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libfontenc</span></code> 1.1.7 -&gt; 1.1.8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libgcc</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libgcc-initial</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libgcrypt</span></code> 1.10.3 -&gt; 1.11.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libgfortran</span></code> 13.3.0 -&gt; 14.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libgit2</span></code> 1.7.2 -&gt; 1.8.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libgpg-error</span></code> 1.48 -&gt; 1.50</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libical</span></code> 3.0.17 -&gt; 3.0.18</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libinput</span></code> 1.25.0 -&gt; 1.26.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libjitterentropy</span></code> 3.4.1 -&gt; 3.5.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libksba</span></code> 1.6.6 -&gt; 1.6.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnl</span></code> 3.9.0 -&gt; 3.10.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libpam</span></code> 1.5.3 -&gt; 1.6.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libpcap</span></code> 1.10.4 -&gt; 1.10.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libpciaccess</span></code> 0.18 -&gt; 0.18.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libpcre2</span></code> 10.43 -&gt; 10.44</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libpng</span></code> 1.6.42 -&gt; 1.6.43</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libportal</span></code> 0.7.1 -&gt; 0.8.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libproxy</span></code> 0.5.4 -&gt; 0.5.8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">librepo</span></code> 1.17.0 -&gt; 1.18.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">librsvg</span></code> 2.57.1 -&gt; 2.58.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libsdl2</span></code> 2.30.1 -&gt; 2.30.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libslirp</span></code> 4.7.0 -&gt; 4.8.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libsolv</span></code> 0.7.28 -&gt; 0.7.30</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libsoup</span></code> 3.4.4 -&gt; 3.6.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libstd-rs</span></code> 1.75.0 -&gt; 1.79.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libtirpc</span></code> 1.3.4 -&gt; 1.3.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libtool</span></code> 2.4.7 -&gt; 2.5.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libtool-cross</span></code> 2.4.7 -&gt; 2.5.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libtool-native</span></code> 2.4.7 -&gt; 2.5.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libtraceevent</span></code> 1.7.3 -&gt; 1.8.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">liburcu</span></code> 0.14.0 -&gt; 0.14.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">liburi-perl</span></code> 5.27 -&gt; 5.28</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libva</span></code> 2.20.0 -&gt; 2.22.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libva-initial</span></code> 2.20.0 -&gt; 2.22.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libva-utils</span></code> 2.20.1 -&gt; 2.22.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libwebp</span></code> 1.3.2 -&gt; 1.4.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libwpe</span></code> 1.14.2 -&gt; 1.16.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libx11</span></code> 1.8.9 -&gt; 1.8.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxcb</span></code> 1.16 -&gt; 1.17.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxdmcp</span></code> 1.1.4 -&gt; 1.1.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxfont2</span></code> 2.0.6 -&gt; 2.0.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxkbcommon</span></code> 1.6.0 -&gt; 1.7.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxml2</span></code> 2.12.8 -&gt; 2.13.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxmlb</span></code> 0.3.15 -&gt; 0.3.19</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxmu</span></code> 1.1.4 -&gt; 1.2.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxslt</span></code> 1.1.39 -&gt; 1.1.42</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libxtst</span></code> 1.2.4 -&gt; 1.2.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lighttpd</span></code> 1.4.74 -&gt; 1.4.76</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-firmware</span></code> 20240312 -&gt; 20240909</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-libc-headers</span></code> 6.6 -&gt; 6.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-yocto</span></code> 6.6.35+git -&gt; 6.6.50+git, 6.10.8+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-yocto-dev</span></code> 6.9+git -&gt; 6.11+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-yocto-rt</span></code> 6.6.35+git -&gt; 6.6.50+git, 6.10.8+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linux-yocto-tiny</span></code> 6.6.35+git -&gt; 6.6.50+git, 6.10.8+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">llvm</span></code> 18.1.6 -&gt; 18.1.8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logrotate</span></code> 3.21.0 -&gt; 3.22.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ltp</span></code> 20240129 -&gt; 20240524</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lttng-modules</span></code> 2.13.12 -&gt; 2.13.14</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lttng-tools</span></code> 2.13.13 -&gt; 2.13.14</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lua</span></code> 5.4.6 -&gt; 5.4.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lz4</span></code> 1.9.4 -&gt; 1.10.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lzip</span></code> 1.24 -&gt; 1.24.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">man-db</span></code> 2.12.0 -&gt; 2.12.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">man-pages</span></code> 6.06 -&gt; 6.9.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mc</span></code> 4.8.31 -&gt; 4.8.32</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mdadm</span></code> 4.2 -&gt; 4.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">meson</span></code> 1.3.1 -&gt; 1.5.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mkfontscale</span></code> 1.2.2 -&gt; 1.2.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mmc-utils</span></code> 0.1+git (b5ca140312d2…) -&gt; 0.1+git (123fd8b2ac39…)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpg123</span></code> 1.32.6 -&gt; 1.32.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msmtp</span></code> 1.8.25 -&gt; 1.8.26</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtd-utils</span></code> 2.1.6 -&gt; 2.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtdev</span></code> 1.1.6 -&gt; 1.1.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtools</span></code> 4.0.43 -&gt; 4.0.44</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">musl</span></code> 1.2.4+git -&gt; 1.2.5+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nativesdk-libtool</span></code> 2.4.7 -&gt; 2.5.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ncurses</span></code> 6.4 -&gt; 6.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nettle</span></code> 3.9.1 -&gt; 3.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nfs-utils</span></code> 2.6.4 -&gt; 2.7.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nghttp2</span></code> 1.61.0 -&gt; 1.63.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ninja</span></code> 1.11.1 -&gt; 1.12.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">npth</span></code> 1.6 -&gt; 1.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ofono</span></code> 2.4 -&gt; 2.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opensbi</span></code> 1.4 -&gt; 1.5.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssh</span></code> 9.6p1 -&gt; 9.8p1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span></code> 3.2.3 -&gt; 3.3.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opkg</span></code> 0.6.3 -&gt; 0.7.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opkg-utils</span></code> 0.6.3 -&gt; 0.7.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ovmf</span></code> edk2-stable202402 -&gt; edk2-stable202408</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p11-kit</span></code> 0.25.3 -&gt; 0.25.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pango</span></code> 1.52.1 -&gt; 1.54.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pciutils</span></code> 3.11.1 -&gt; 3.13.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perl</span></code> 5.38.2 -&gt; 5.40.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perlcross</span></code> 1.5.2 -&gt; 1.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">piglit</span></code> 1.0+gitr (22eaf6a91cfd…) -&gt; 1.0+gitr (c11c9374c144…)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinentry</span></code> 1.2.1 -&gt; 1.3.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pkgconf</span></code> 2.1.1 -&gt; 2.3.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">psmisc</span></code> 23.6 -&gt; 23.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ptest-runner</span></code> 2.4.4+git -&gt; 2.4.5+git</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">puzzles</span></code> 0.0+git (80aac3104096…) -&gt; 0.0+git (1c1899ee1c4e…)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-alabaster</span></code> 0.7.16 -&gt; 1.0.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-attrs</span></code> 23.2.0 -&gt; 24.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-babel</span></code> 2.14.0 -&gt; 2.16.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-bcrypt</span></code> 4.1.2 -&gt; 4.2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-beartype</span></code> 0.17.2 -&gt; 0.18.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-build</span></code> 1.1.1 -&gt; 1.2.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-certifi</span></code> 2024.2.2 -&gt; 2024.8.30</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-cffi</span></code> 1.16.0 -&gt; 1.17.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-cryptography</span></code> 42.0.5 -&gt; 42.0.8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-cryptography-vectors</span></code> 42.0.5 -&gt; 42.0.8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-cython</span></code> 3.0.8 -&gt; 3.0.11</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-dbusmock</span></code> 0.31.1 -&gt; 0.32.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-docutils</span></code> 0.20.1 -&gt; 0.21.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-dtschema</span></code> 2024.2 -&gt; 2024.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-git</span></code> 3.1.42 -&gt; 3.1.43</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-hatchling</span></code> 1.21.1 -&gt; 1.25.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-hypothesis</span></code> 6.98.15 -&gt; 6.111.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-idna</span></code> 3.7 -&gt; 3.8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-jsonpointer</span></code> 2.4 -&gt; 3.0.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-jsonschema</span></code> 4.21.1 -&gt; 4.23.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-libarchive-c</span></code> 5.0 -&gt; 5.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-license-expression</span></code> 30.2.0 -&gt; 30.3.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-lxml</span></code> 5.0.0 -&gt; 5.3.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-mako</span></code> 1.3.2 -&gt; 1.3.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-markdown</span></code> 3.5.2 -&gt; 3.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-maturin</span></code> 1.4.0 -&gt; 1.7.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-meson-python</span></code> 0.15.0 -&gt; 0.16.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-more-itertools</span></code> 10.2.0 -&gt; 10.4.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-packaging</span></code> 23.2 -&gt; 24.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pbr</span></code> 6.0.0 -&gt; 6.1.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pip</span></code> 24.0 -&gt; 24.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pluggy</span></code> 1.4.0 -&gt; 1.5.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-psutil</span></code> 5.9.8 -&gt; 6.0.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pyasn1</span></code> 0.5.1 -&gt; 0.6.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pycairo</span></code> 1.26.0 -&gt; 1.26.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pycparser</span></code> 2.21 -&gt; 2.22</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pyelftools</span></code> 0.30 -&gt; 0.31</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pygments</span></code> 2.17.2 -&gt; 2.18.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pygobject</span></code> 3.46.0 -&gt; 3.48.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pyopenssl</span></code> 24.0.0 -&gt; 24.2.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pyparsing</span></code> 3.1.1 -&gt; 3.1.4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pyproject-metadata</span></code> 0.7.1 -&gt; 0.8.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pytest</span></code> 8.0.2 -&gt; 8.3.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pytest-subtests</span></code> 0.11.0 -&gt; 0.13.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pyyaml</span></code> 6.0.1 -&gt; 6.0.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-referencing</span></code> 0.33.0 -&gt; 0.35.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-requests</span></code> 2.31.0 -&gt; 2.32.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-rpds-py</span></code> 0.18.0 -&gt; 0.20.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-scons</span></code> 4.6.0 -&gt; 4.8.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-setuptools</span></code> 69.1.1 -&gt; 72.1.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-setuptools-rust</span></code> 1.9.0 -&gt; 1.10.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-setuptools-scm</span></code> 8.0.4 -&gt; 8.1.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-sphinx</span></code> 7.2.6 -&gt; 8.0.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-sphinxcontrib-applehelp</span></code> 1.0.8 -&gt; 2.0.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-sphinxcontrib-devhelp</span></code> 1.0.6 -&gt; 2.0.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-sphinxcontrib-htmlhelp</span></code> 2.0.5 -&gt; 2.1.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-sphinxcontrib-qthelp</span></code> 1.0.7 -&gt; 2.0.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-sphinxcontrib-serializinghtml</span></code> 1.1.10 -&gt; 2.0.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-testtools</span></code> 2.7.1 -&gt; 2.7.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-trove-classifiers</span></code> 2024.2.23 -&gt; 2024.7.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-typing-extensions</span></code> 4.10.0 -&gt; 4.12.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-uritools</span></code> 4.0.2 -&gt; 4.0.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-urllib3</span></code> 2.2.1 -&gt; 2.2.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-webcolors</span></code> 1.13 -&gt; 24.8.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-websockets</span></code> 12.0 -&gt; 13.0.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-wheel</span></code> 0.42.0 -&gt; 0.44.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-zipp</span></code> 3.17.0 -&gt; 3.20.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qemu</span></code> 8.2.3 -&gt; 9.0.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qemu-native</span></code> 8.2.3 -&gt; 9.0.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qemu-system-native</span></code> 8.2.3 -&gt; 9.0.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">quilt</span></code> 0.67 -&gt; 0.68</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">quilt-native</span></code> 0.67 -&gt; 0.68</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">readline</span></code> 8.2 -&gt; 8.2.13</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">repo</span></code> 2.42 -&gt; 2.46</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rng-tools</span></code> 6.16 -&gt; 6.17</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rpcbind</span></code> 1.2.6 -&gt; 1.2.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rsync</span></code> 3.2.7 -&gt; 3.3.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rt-tests</span></code> 2.6 -&gt; 2.7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ruby</span></code> 3.2.2 -&gt; 3.3.4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rust</span></code> 1.75.0 -&gt; 1.79.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rust-cross-canadian</span></code> 1.75.0 -&gt; 1.79.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rust-llvm</span></code> 1.75.0 -&gt; 1.79.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shaderc</span></code> 2023.8 -&gt; 2024.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shadow</span></code> 4.14.2 -&gt; 4.16.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spirv-headers</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spirv-tools</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> 3.45.1 -&gt; 3.46.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">strace</span></code> 6.7 -&gt; 6.10</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stress-ng</span></code> 0.17.05 -&gt; 0.18.02</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sysklogd</span></code> 2.5.2 -&gt; 2.6.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sysstat</span></code> 12.7.5 -&gt; 12.7.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd</span></code> 255.4 -&gt; 256.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd-boot</span></code> 255.4 -&gt; 256.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemd-boot-native</span></code> 255.4 -&gt; 256.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemtap</span></code> 5.0 -&gt; 5.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">systemtap-native</span></code> 5.0 -&gt; 5.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taglib</span></code> 2.0.1 -&gt; 2.0.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tcl</span></code> 8.6.13 -&gt; 8.6.14</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">texinfo</span></code> 7.0.3 -&gt; 7.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ttyrun</span></code> 2.31.0 -&gt; 2.34.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u-boot</span></code> 2024.01 -&gt; 2024.07</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u-boot-tools</span></code> 2024.01 -&gt; 2024.07</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util-linux</span></code> 2.39.3 -&gt; 2.40.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util-linux-libuuid</span></code> 2.39.3 -&gt; 2.40.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util-macros</span></code> 1.20.0 -&gt; 1.20.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vala</span></code> 0.56.15 -&gt; 0.56.17</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valgrind</span></code> 3.22.0 -&gt; 3.23.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vte</span></code> 0.74.2 -&gt; 0.76.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vulkan-headers</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vulkan-loader</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vulkan-samples</span></code> git (2307c3eb5608…) -&gt; git (fdce530c0295…)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vulkan-tools</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vulkan-utility-libraries</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vulkan-validation-layers</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vulkan-volk</span></code> 1.3.275.0 -&gt; 1.3.290.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">waffle</span></code> 1.7.2 -&gt; 1.8.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wayland</span></code> 1.22.0 -&gt; 1.23.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wayland-protocols</span></code> 1.33 -&gt; 1.37</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">webkitgtk</span></code> 2.44.1 -&gt; 2.44.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weston</span></code> 13.0.1 -&gt; 13.0.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span></code> 1.21.4 -&gt; 1.24.5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wpa-supplicant</span></code> 2.10 -&gt; 2.11</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x264</span></code> r3039+git (baee400fa9ce…) -&gt; r3039+git (31e19f92f00c…)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xauth</span></code> 1.1.2 -&gt; 1.1.3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xcb-proto</span></code> 1.16.0 -&gt; 1.17.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xev</span></code> 1.2.5 -&gt; 1.2.6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xkeyboard-config</span></code> 2.41 -&gt; 2.42</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xmlto</span></code> 0.0.28+0.0.29+git -&gt; 0.0.29</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xorgproto</span></code> 2023.2 -&gt; 2024.1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xwayland</span></code> 23.2.5 -&gt; 24.1.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xz</span></code> 5.4.6 -&gt; 5.6.2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zstd</span></code> 1.5.5 -&gt; 1.5.6</p></li>
+</ul>
+</section>
+<section id="contributors-to-5-1">
+<h2>Contributors to 5.1<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#contributors-to-5-1" title="Link to this heading"></a></h2>
+<p>Thanks to the following people who contributed to this release:</p>
+<ul class="simple">
+<li><p>Adithya Balakumar</p></li>
+<li><p>Adriaan Schmidt</p></li>
+<li><p>Adrian Freihofer</p></li>
+<li><p>Alban Bedel</p></li>
+<li><p>Alejandro Hernandez Samaniego</p></li>
+<li><p>Aleksandar Nikolic</p></li>
+<li><p>Alessandro Pecugi</p></li>
+<li><p>Alexander Kanavin</p></li>
+<li><p>Alexander Sverdlin</p></li>
+<li><p>Alexandre Belloni</p></li>
+<li><p>Alexandre Truong</p></li>
+<li><p>Alexis Lothoré</p></li>
+<li><p>Andrew Fernandes</p></li>
+<li><p>Andrew Oppelt</p></li>
+<li><p>Andrey Zhizhikin</p></li>
+<li><p>Anton Almqvist</p></li>
+<li><p>Antonin Godard</p></li>
+<li><p>Anuj Mittal</p></li>
+<li><p>Archana Polampalli</p></li>
+<li><p>Bartosz Golaszewski</p></li>
+<li><p>Benjamin Bara</p></li>
+<li><p>Benjamin Szőke</p></li>
+<li><p>Bruce Ashfield</p></li>
+<li><p>Carlos Alberto Lopez Perez</p></li>
+<li><p>Changhyeok Bae</p></li>
+<li><p>Changqing Li</p></li>
+<li><p>Chen Qi</p></li>
+<li><p>Chris Laplante</p></li>
+<li><p>Chris Spencer</p></li>
+<li><p>Christian Bräuner Sørensen</p></li>
+<li><p>Christian Lindeberg</p></li>
+<li><p>Christian Taedcke</p></li>
+<li><p>Clara Kowalsky</p></li>
+<li><p>Clément Péron</p></li>
+<li><p>Colin McAllister</p></li>
+<li><p>Corentin Lévy</p></li>
+<li><p>Daniel Klauer</p></li>
+<li><p>Daniel Semkowicz</p></li>
+<li><p>Daniil Batalov</p></li>
+<li><p>Dan McGregor</p></li>
+<li><p>Deepesh Varatharajan</p></li>
+<li><p>Deepthi Hemraj</p></li>
+<li><p>Denys Dmytriyenko</p></li>
+<li><p>Divya Chellam</p></li>
+<li><p>Dmitry Baryshkov</p></li>
+<li><p>Emil Kronborg</p></li>
+<li><p>Enguerrand de Ribaucourt</p></li>
+<li><p>Enrico Jörns</p></li>
+<li><p>Esben Haabendal</p></li>
+<li><p>Etienne Cordonnier</p></li>
+<li><p>Fabio Estevam</p></li>
+<li><p>Felix Nilsson</p></li>
+<li><p>Florian Amstutz</p></li>
+<li><p>Gassner, Tobias.ext</p></li>
+<li><p>Gauthier HADERER</p></li>
+<li><p>Guðni Már Gilbert</p></li>
+<li><p>Harish Sadineni</p></li>
+<li><p>Heiko Thole</p></li>
+<li><p>Het Patel</p></li>
+<li><p>Hongxu Jia</p></li>
+<li><p>Igor Opaniuk</p></li>
+<li><p>Intaek Hwang</p></li>
+<li><p>Iskander Amara</p></li>
+<li><p>Jaeyoon Jung</p></li>
+<li><p>Jan Vermaete</p></li>
+<li><p>Jasper Orschulko</p></li>
+<li><p>Joe Slater</p></li>
+<li><p>Johannes Schneider</p></li>
+<li><p>John Ripple</p></li>
+<li><p>Jonas Gorski</p></li>
+<li><p>Jonas Munsin</p></li>
+<li><p>Jonathan GUILLOT</p></li>
+<li><p>Jon Mason</p></li>
+<li><p>Jookia</p></li>
+<li><p>Jordan Crouse</p></li>
+<li><p>Jörg Sommer</p></li>
+<li><p>Jose Quaresma</p></li>
+<li><p>Joshua Watt</p></li>
+<li><p>Julien Stephan</p></li>
+<li><p>Kai Kang</p></li>
+<li><p>Kari Sivonen</p></li>
+<li><p>Khem Raj</p></li>
+<li><p>Kirill Yatsenko</p></li>
+<li><p>Konrad Weihmann</p></li>
+<li><p>Lee Chee Yang</p></li>
+<li><p>Lei Maohui</p></li>
+<li><p>Leon Anavi</p></li>
+<li><p>Leonard Göhrs</p></li>
+<li><p>Louis Rannou</p></li>
+<li><p>Marc Ferland</p></li>
+<li><p>Marcus Folkesson</p></li>
+<li><p>Marek Vasut</p></li>
+<li><p>Mark Hatle</p></li>
+<li><p>Markus Volk</p></li>
+<li><p>Marlon Rodriguez Garcia</p></li>
+<li><p>Marta Rybczynska</p></li>
+<li><p>Martin Hundebøll</p></li>
+<li><p>Martin Jansa</p></li>
+<li><p>Matthew Bullock</p></li>
+<li><p>Matthias Pritschet</p></li>
+<li><p>Maxin B. John</p></li>
+<li><p>Michael Glembotzki</p></li>
+<li><p>Michael Haener</p></li>
+<li><p>Michael Halstead</p></li>
+<li><p>Michael Opdenacker</p></li>
+<li><p>Michal Sieron</p></li>
+<li><p>Mikko Rapeli</p></li>
+<li><p>Mingli Yu</p></li>
+<li><p>Naveen Saini</p></li>
+<li><p>Niko Mauno</p></li>
+<li><p>Ninette Adhikari</p></li>
+<li><p>Noe Galea</p></li>
+<li><p>Ola x Nilsson</p></li>
+<li><p>Oleksandr Hnatiuk</p></li>
+<li><p>Otavio Salvador</p></li>
+<li><p>Patrick Wicki</p></li>
+<li><p>Paul Barker</p></li>
+<li><p>Paul Eggleton</p></li>
+<li><p>Paul Gerber</p></li>
+<li><p>Pedro Ferreira</p></li>
+<li><p>Peter Kjellerstedt</p></li>
+<li><p>Peter Marko</p></li>
+<li><p>Philip Lorenz</p></li>
+<li><p>Poonam Jadhav</p></li>
+<li><p>Primoz Fiser</p></li>
+<li><p>Quentin Schulz</p></li>
+<li><p>Ralph Siemsen</p></li>
+<li><p>Rasmus Villemoes</p></li>
+<li><p>Ricardo Simoes</p></li>
+<li><p>Richard Purdie</p></li>
+<li><p>Robert Joslyn</p></li>
+<li><p>Robert Kovacsics</p></li>
+<li><p>Robert Yang</p></li>
+<li><p>Ross Burton</p></li>
+<li><p>Rudolf J Streif</p></li>
+<li><p>Ryan Eatmon</p></li>
+<li><p>Sabeeh Khan</p></li>
+<li><p>Sakib Sajal</p></li>
+<li><p>Samantha Jalabert</p></li>
+<li><p>Siddharth Doshi</p></li>
+<li><p>simit.ghane</p></li>
+<li><p>Simone Weiß</p></li>
+<li><p>Soumya Sambu</p></li>
+<li><p>Sreejith Ravi</p></li>
+<li><p>Stefan Mueller-Klieser</p></li>
+<li><p>Sundeep KOKKONDA</p></li>
+<li><p>Sven Schwermer</p></li>
+<li><p>Teresa Remmet</p></li>
+<li><p>Theodore A. Roth</p></li>
+<li><p>Thomas Perrot</p></li>
+<li><p>Tim Orling</p></li>
+<li><p>Tom Hochstein</p></li>
+<li><p>Trevor Gamblin</p></li>
+<li><p>Troels Dalsgaard Hoffmeyer</p></li>
+<li><p>Tronje Krabbe</p></li>
+<li><p>Ulrich Ölmann</p></li>
+<li><p>Victor Kamensky</p></li>
+<li><p>Vijay Anusuri</p></li>
+<li><p>Vincent Kriek</p></li>
+<li><p>Vivek Puar</p></li>
+<li><p>Wadim Egorov</p></li>
+<li><p>Wang Mingyu</p></li>
+<li><p>Weisser, Pascal.ext</p></li>
+<li><p>Willy Tu</p></li>
+<li><p>Xiangyu Chen</p></li>
+<li><p>Yang-Mark Zhang</p></li>
+<li><p>Yash Shinde</p></li>
+<li><p>Yi Zhao</p></li>
+<li><p>Yoann Congal</p></li>
+<li><p>Yogita Urade</p></li>
+<li><p>Yuri D’Elia</p></li>
+<li><p>Zahir Hussain</p></li>
+<li><p>Zev Weiss</p></li>
+<li><p>Zoltan Boszormenyi</p></li>
+</ul>
+</section>
+<section id="repositories-downloads-for-yocto-5-1">
+<h2>Repositories / Downloads for Yocto-5.1<a class="headerlink" href="https://docs.yoctoproject.org/next/migration-guides/release-notes-5.1.html#repositories-downloads-for-yocto-5-1" title="Link to this heading"></a></h2>
+<p>poky</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky">https://git.yoctoproject.org/poky</a></p></li>
+<li><p>Branch: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky/log/?h=styhead">styhead</a></p></li>
+<li><p>Tag:  <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky/log/?h=yocto-5.1">yocto-5.1</a></p></li>
+<li><p>Git Revision: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/poky/commit/?id=8f01ae5c7cba251ed25c80f0141a950ebc8a5f73">8f01ae5c7cba251ed25c80f0141a950ebc8a5f73</a></p></li>
+<li><p>Release Artefact: poky-8f01ae5c7cba251ed25c80f0141a950ebc8a5f73</p></li>
+<li><p>sha: 91f5b2bc8a2be153ac2c358aa8ad71737b4f91e83d2c3ed1aac4f5f087991769</p></li>
+<li><p>Download Locations:
+<a class="reference external" href="http://downloads.yoctoproject.org/releases/yocto/yocto-5.1/poky-8f01ae5c7cba251ed25c80f0141a950ebc8a5f73.tar.bz2">http://downloads.yoctoproject.org/releases/yocto/yocto-5.1/poky-8f01ae5c7cba251ed25c80f0141a950ebc8a5f73.tar.bz2</a>
+<a class="reference external" href="http://mirrors.kernel.org/yocto/yocto/yocto-5.1/poky-8f01ae5c7cba251ed25c80f0141a950ebc8a5f73.tar.bz2">http://mirrors.kernel.org/yocto/yocto/yocto-5.1/poky-8f01ae5c7cba251ed25c80f0141a950ebc8a5f73.tar.bz2</a></p></li>
+</ul>
+<p>openembedded-core</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core">https://git.openembedded.org/openembedded-core</a></p></li>
+<li><p>Branch: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/log/?h=styhead">styhead</a></p></li>
+<li><p>Tag:  <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/log/?h=yocto-5.1">yocto-5.1</a></p></li>
+<li><p>Git Revision: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/openembedded-core/commit/?id=161c5b311f1aeb8f254dca96331b31d5b67fc92d">161c5b311f1aeb8f254dca96331b31d5b67fc92d</a></p></li>
+<li><p>Release Artefact: oecore-161c5b311f1aeb8f254dca96331b31d5b67fc92d</p></li>
+<li><p>sha: 7b8ea61a3b811556f40b0912ee22b3ef37bccead1d65fb7e1c35a47aff4ca718</p></li>
+<li><p>Download Locations:
+<a class="reference external" href="http://downloads.yoctoproject.org/releases/yocto/yocto-5.1/oecore-161c5b311f1aeb8f254dca96331b31d5b67fc92d.tar.bz2">http://downloads.yoctoproject.org/releases/yocto/yocto-5.1/oecore-161c5b311f1aeb8f254dca96331b31d5b67fc92d.tar.bz2</a>
+<a class="reference external" href="http://mirrors.kernel.org/yocto/yocto/yocto-5.1/oecore-161c5b311f1aeb8f254dca96331b31d5b67fc92d.tar.bz2">http://mirrors.kernel.org/yocto/yocto/yocto-5.1/oecore-161c5b311f1aeb8f254dca96331b31d5b67fc92d.tar.bz2</a></p></li>
+</ul>
+<p>meta-mingw</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-mingw">https://git.yoctoproject.org/meta-mingw</a></p></li>
+<li><p>Branch: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-mingw/log/?h=styhead">styhead</a></p></li>
+<li><p>Tag:  <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-mingw/log/?h=yocto-5.1">yocto-5.1</a></p></li>
+<li><p>Git Revision: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/meta-mingw/commit/?id=4ac6cbfdce1f85294bd54bcd8b074f7ef32c378f">4ac6cbfdce1f85294bd54bcd8b074f7ef32c378f</a></p></li>
+<li><p>Release Artefact: meta-mingw-4ac6cbfdce1f85294bd54bcd8b074f7ef32c378f</p></li>
+<li><p>sha: 7759361e141654cc84aad486ad36a9ddaf7ee47feebe2cc6dca3175f1922b7c4</p></li>
+<li><p>Download Locations:
+<a class="reference external" href="http://downloads.yoctoproject.org/releases/yocto/yocto-5.1/meta-mingw-4ac6cbfdce1f85294bd54bcd8b074f7ef32c378f.tar.bz2">http://downloads.yoctoproject.org/releases/yocto/yocto-5.1/meta-mingw-4ac6cbfdce1f85294bd54bcd8b074f7ef32c378f.tar.bz2</a>
+<a class="reference external" href="http://mirrors.kernel.org/yocto/yocto/yocto-5.1/meta-mingw-4ac6cbfdce1f85294bd54bcd8b074f7ef32c378f.tar.bz2">http://mirrors.kernel.org/yocto/yocto/yocto-5.1/meta-mingw-4ac6cbfdce1f85294bd54bcd8b074f7ef32c378f.tar.bz2</a></p></li>
+</ul>
+<p>bitbake</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake">https://git.openembedded.org/bitbake</a></p></li>
+<li><p>Branch: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake/log/?h=2.10">2.10</a></p></li>
+<li><p>Tag:  <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake/log/?h=yocto-5.1">yocto-5.1</a></p></li>
+<li><p>Git Revision: <a class="extlink-oe_git reference external" href="https://git.openembedded.org/bitbake/commit/?id=d3c84198771b7f79aa84dc73061d8ca071fe18f3">d3c84198771b7f79aa84dc73061d8ca071fe18f3</a></p></li>
+<li><p>Release Artefact: bitbake-d3c84198771b7f79aa84dc73061d8ca071fe18f3</p></li>
+<li><p>sha: 4b64120f26878a661d1aaf0b0bb5009a21614e2db0649c728cc9d4c16b1050b6</p></li>
+<li><p>Download Locations:
+<a class="reference external" href="http://downloads.yoctoproject.org/releases/yocto/yocto-5.1/bitbake-d3c84198771b7f79aa84dc73061d8ca071fe18f3.tar.bz2">http://downloads.yoctoproject.org/releases/yocto/yocto-5.1/bitbake-d3c84198771b7f79aa84dc73061d8ca071fe18f3.tar.bz2</a>
+<a class="reference external" href="http://mirrors.kernel.org/yocto/yocto/yocto-5.1/bitbake-d3c84198771b7f79aa84dc73061d8ca071fe18f3.tar.bz2">http://mirrors.kernel.org/yocto/yocto/yocto-5.1/bitbake-d3c84198771b7f79aa84dc73061d8ca071fe18f3.tar.bz2</a></p></li>
+</ul>
+<p>yocto-docs</p>
+<ul class="simple">
+<li><p>Repository Location: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs">https://git.yoctoproject.org/yocto-docs</a></p></li>
+<li><p>Branch: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs/log/?h=styhead">styhead</a></p></li>
+<li><p>Tag: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs/log/?h=yocto-5.1">yocto-5.1</a></p></li>
+<li><p>Git Revision: <a class="extlink-yocto_git reference external" href="https://git.yoctoproject.org/yocto-docs/commit/?id=c32b55b3403dcfd76a4694ff407d4b513e14c8f4">c32b55b3403dcfd76a4694ff407d4b513e14c8f4</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  <hr>
+  <div role="contentinfo">
+    <p> A Linux Foundation Collaborative Project.
+        <br> All Rights Reserved. Linux Foundation® and Yocto Project® are registered trademarks of the Linux Foundation.
+        <br>Linux® is a registered trademark of Linus Torvalds.
+        <br>© Copyright 2010-2026, The Linux Foundation, CC-BY-SA-2.0-UK license
+        <br>Last updated on Aug 25, 2026 from the <a href="https://git.yoctoproject.org/yocto-docs/">yocto-docs</a> git repository<span class="docs_meta_info_placeholder"> (tag <a href="https://git.yoctoproject.org/yocto-docs/log?id=yocto-next"> next</a>)</span>.
+    </p>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+
+</body></html>
