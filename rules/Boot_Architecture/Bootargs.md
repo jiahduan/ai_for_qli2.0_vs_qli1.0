@@ -1,6 +1,6 @@
 # Bootargs —— 规则
 
-> 本文件对应产出文档 [output/Boot_Architecture/Bootargs.md](../../output/Boot_Architecture/Bootargs.md),与全部33份主题规则文件按本次目录重构选择的方式各自完整独立(7条强制规则全文一致,不做共享继承,变更时需同步维护;背景见[Scope_Section_Design.md](../../Scope_Section_Design.md))。全局工作流/与README关系见根目录[Methodology.md](../../Methodology.md)。
+> 本文件对应产出文档 [output/Boot_Architecture/Bootargs/Bootargs.md](../../output/Boot_Architecture/Bootargs/Bootargs.md),与全部33份主题规则文件按本次目录重构选择的方式各自完整独立(7条强制规则全文一致,不做共享继承,变更时需同步维护;背景见[Scope_Section_Design.md](../../Scope_Section_Design.md))。全局工作流/与README关系见根目录[Methodology.md](../../Methodology.md)。
 
 ## 强制规则
 
@@ -78,7 +78,7 @@
 
 - **关键双侧目录/文件锚点**
   - QLI1.0:`pebble.conf`(`CONSOLE_PARAM:qti-distro-perf=""`)、`qcs610-odk-64.conf`(完整cmdline示例)、`src/bootctrl/abctl/libabctl.cpp`(`SLOT_SUFFIX_STR`及`/proc/cmdline`解析)、`fstab-generator-Honor-verity-enabled-cmdline.patch`(改`fstab-generator.c`)、`poky/meta-qti-bsp/classes/`下8个dm-verity/avb相关bbclass(`dm-verity-initramfs.bbclass`、`dm-verity-initramfs-v2/v3.bbclass`、`dm-verity-bootloader.bbclass`、`dm-verity-cpio-cmdline.bbclass`、`dm-verity-none.bbclass`、`avb-verity-initramfs.bbclass`等)
-  - QLI2.0:`esp-qcom-image.bb`(`UKI_CMDLINE`变量)、qcs8300/qcm2290机型的`KERNEL_CMDLINE_EXTRA`追加项(RT内核追加项详见output/System_Architecture/RT.md)、`SERIAL_CONSOLES`/`KERNEL_CONSOLE`标准变量
+  - QLI2.0:`esp-qcom-image.bb`(`UKI_CMDLINE`变量)、qcs8300/qcm2290机型的`KERNEL_CMDLINE_EXTRA`追加项(RT内核追加项详见output/System_Architecture/RT/RT.md)、`SERIAL_CONSOLES`/`KERNEL_CONSOLE`标准变量
   - 交叉引用:`UKI_SB_KEY`/`UKI_SB_CERT`签名钩子(定义于oe-core的`uki.bbclass`,详见Boot_Flow.md);Android安全HAL分区消失证据见Partition_Layout.md
 - **已验证的检索方式**
   - `grep`全局检索`verity=enabled`、`arg_usr_verity`——在QLI2.0侧均零匹配,用于判断dm-verity相关cmdline识别逻辑是否被吸收

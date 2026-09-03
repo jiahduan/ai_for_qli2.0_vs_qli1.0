@@ -1,6 +1,6 @@
 # QLI1.0 vs QLI2.0 源码差异分析方法论
 
-本文档规定本仓库所有主题文档必须遵循的分析方法与文档规范,目的是让新增/深化任何主题时,结论质量不随文档数量增多而衰减。本文档只讲全局性的"怎么分析、怎么写"(工作流、与README汇总表的关系);7条强制规则全文与每个主题专属的取证指引,已下沉到`rules/<分类>/<主题>.md`,与产出文档一一对应(如`rules/Build_Architecture/Toolchain.md`对应`output/Build_Architecture/Toolchain.md`)——重构背景见[Scope_Section_Design.md](Scope_Section_Design.md)。具体结论见各主题文档及README.md。
+本文档规定本仓库所有主题文档必须遵循的分析方法与文档规范,目的是让新增/深化任何主题时,结论质量不随文档数量增多而衰减。本文档只讲全局性的"怎么分析、怎么写"(工作流、与README汇总表的关系);7条强制规则全文与每个主题专属的取证指引,已下沉到`rules/<分类>/<主题>.md`,与产出文档一一对应(如`rules/Build_Architecture/Toolchain.md`对应`output/Build_Architecture/Toolchain/Toolchain.md`)——重构背景见[Scope_Section_Design.md](Scope_Section_Design.md)。具体结论见各主题文档及README.md。
 
 ## 规则文件索引
 

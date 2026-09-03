@@ -1,6 +1,6 @@
 # Kernel_Build —— 规则
 
-> 本文件对应产出文档 [output/Build_Architecture/Kernel_Build.md](../../output/Build_Architecture/Kernel_Build.md),与全部33份主题规则文件按本次目录重构选择的方式各自完整独立(7条强制规则全文一致,不做共享继承,变更时需同步维护;背景见[Scope_Section_Design.md](../../Scope_Section_Design.md))。全局工作流/与README关系见根目录[Methodology.md](../../Methodology.md)。
+> 本文件对应产出文档 [output/Build_Architecture/Kernel_Build/Kernel_Build.md](../../output/Build_Architecture/Kernel_Build/Kernel_Build.md),与全部33份主题规则文件按本次目录重构选择的方式各自完整独立(7条强制规则全文一致,不做共享继承,变更时需同步维护;背景见[Scope_Section_Design.md](../../Scope_Section_Design.md))。全局工作流/与README关系见根目录[Methodology.md](../../Methodology.md)。
 
 ## 强制规则
 
@@ -93,5 +93,5 @@
   - 对9个功能域(mmrm/dsp-adsprpc/wlan/bt/display/touch/security-TEE/eva/audio/synx)在`qcom.cfg`及各层recipe/机型目录做逐一定向grep,而非仅凭"没有-dlkm recipe"一刀切判断为缺口
   - 统计`kernel_platform`目录下`*.patch`总数并按目录分类,排除`bazelbuild-bazel-central-registry/external`等第三方vendored噪声后核实真正的QTI内核补丁数量
 - **已知易错点/纠错记录**:
-  - 补丁统计口径纠正(文档内"补丁统计口径纠正"节,与`output/Code_Composition/Patch_Management.md`互相印证):初步可能被误读为"kernel_platform下5080个`*.patch`都是QTI内核定制补丁";核实后确认其中4890+187≈5077个是bazel模块注册表/u-boot patman测试fixture等第三方vendored噪声,真正的QTI Yocto层内核补丁仅6个(位于`poky/meta-qti-bsp/recipes-kernel/`)
+  - 补丁统计口径纠正(文档内"补丁统计口径纠正"节,与`output/Code_Composition/Patch_Management/Patch_Management.md`互相印证):初步可能被误读为"kernel_platform下5080个`*.patch`都是QTI内核定制补丁";核实后确认其中4890+187≈5077个是bazel模块注册表/u-boot patman测试fixture等第三方vendored噪声,真正的QTI Yocto层内核补丁仅6个(位于`poky/meta-qti-bsp/recipes-kernel/`)
   - 功能域缺口范围纠正:初步判断"mmrm/dsp-adsprpc/wlan/bt/display/touch/security-TEE/eva/audio/synx共9个功能域在QLI2.0均无对应`-dlkm`recipe=9个功能域全部是缺口";核实后确认wlan/bt/display/audio/dsp-adsprpc共5个域走的是标准内核配置内建/mainline驱动路径,天然不需要`-dlkm`recipe,不算缺口;security-TEE有受限对应物(仅open-fw机型变体);真正需要架构师排期决策的缺口收窄为touch/synx/mmrm三个域

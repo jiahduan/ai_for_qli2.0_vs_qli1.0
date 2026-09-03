@@ -16,7 +16,16 @@ cd "$REPO_ROOT"
 fail=0
 warn=0
 
-mapfile -t docs < <(find output/System_Architecture output/Boot_Architecture output/Build_Architecture output/Code_Composition output/Platform_Features -name '*.md' | sort)
+mapfile -t docs < <(
+  find output/System_Architecture output/Boot_Architecture output/Build_Architecture output/Code_Composition output/Platform_Features -mindepth 1 -maxdepth 2 -name '*.md' -print | \
+  awk -F/ '
+    NF == 3 { print; next }                                   # output/<分类>/<主题>.md
+    NF == 4 {                                                  # output/<分类>/<主题目录>/<file>.md
+      parentdir = $3; fname = $4; sub(/\.md$/, "", fname)
+      if (fname == parentdir) print                            # 只认basename与父目录同名的文件为主题文档,docs/等子目录下的文件不算
+    }
+  ' | sort
+)
 
 declare -A doc_by_basename
 for d in "${docs[@]}"; do

@@ -1,6 +1,6 @@
 # Boot_Flow —— 规则
 
-> 本文件对应产出文档 [output/Boot_Architecture/Boot_Flow.md](../../output/Boot_Architecture/Boot_Flow.md),与全部33份主题规则文件按本次目录重构选择的方式各自完整独立(7条强制规则全文一致,不做共享继承,变更时需同步维护;背景见[Scope_Section_Design.md](../../Scope_Section_Design.md))。全局工作流/与README关系见根目录[Methodology.md](../../Methodology.md)。
+> 本文件对应产出文档 [output/Boot_Architecture/Boot_Flow/Boot_Flow.md](../../output/Boot_Architecture/Boot_Flow/Boot_Flow.md),与全部33份主题规则文件按本次目录重构选择的方式各自完整独立(7条强制规则全文一致,不做共享继承,变更时需同步维护;背景见[Scope_Section_Design.md](../../Scope_Section_Design.md))。全局工作流/与README关系见根目录[Methodology.md](../../Methodology.md)。
 
 ## 强制规则
 

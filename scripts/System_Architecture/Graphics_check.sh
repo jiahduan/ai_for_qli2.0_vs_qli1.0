@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 薄包装脚本：对应产出文档 output/System_Architecture/Graphics.md 的范围校验入口。
+# 薄包装脚本：对应产出文档 output/System_Architecture/Graphics/Graphics.md 的范围校验入口。
 #
 # 规则7"范围交叉一致性"天然是跨文档检查(A的排除要在B的覆盖里对上号)，
 # 物理上没法真正拆成34个互相独立、各管一篇的脚本；这里只是调用全局脚本
@@ -17,7 +17,7 @@ out="$("$REPO_ROOT/scripts/check_scope_links.sh" 2>&1 || true)"
 filtered="$(printf '%s\n' "$out" | grep -F "$TOPIC_FILE" || true)"
 
 if [ -z "$filtered" ]; then
-  echo "[output/System_Architecture/Graphics.md] 未在全局校验输出中被提及(可能已合规，也可能是本主题目前还没有《对比范围》节——不能替代人工确认)"
+  echo "[output/System_Architecture/Graphics/Graphics.md] 未在全局校验输出中被提及(可能已合规，也可能是本主题目前还没有《对比范围》节——不能替代人工确认)"
   exit 0
 fi
 
