@@ -5,31 +5,31 @@
 ## 逐项取证过程
 
 ### 1. perf构建cmdline拼接方式
-**做法**:直接读取QLI1.0`pebble.conf`的`CONSOLE_PARAM:qti-distro-perf=""`字段与QLI2.0`esp-qcom-image.bb`的`UKI_CMDLINE`字段,逐字对比两侧拼接cmdline的写法。
+**做法**:直接读取downstream(maili)`pebble.conf`的`CONSOLE_PARAM:qti-distro-perf=""`字段与QLI2.0`esp-qcom-image.bb`的`UKI_CMDLINE`字段,逐字对比两侧拼接cmdline的写法。
 **证据**:前者是构建期把console参数烘焙为空字符串,后者是`UKI_CMDLINE = "root=${QCOM_BOOTIMG_ROOTFS} rw rootwait console=${KERNEL_CONSOLE}"`的显式变量拼接。
 **支撑结论**:《对比总览》表第1行。
 
 ### 2. 真正生效cmdline的产生机制来源
-**做法**:定位QLI1.0侧cmdline并非在Yocto配置里能看全,继续往运行时找,读取`src/bootctrl/abctl/libabctl.cpp`中`SLOT_SUFFIX_STR`及其对`/proc/cmdline`的解析逻辑。
-**证据**:确认QLI1.0的root=、slot_suffix等关键字段是ABL在运行时动态拼出来的,源码仓库本身看不到最终形态;QLI2.0则是`UKI_CMDLINE`一次性构建期确定。
+**做法**:定位downstream(maili)侧cmdline并非在Yocto配置里能看全,继续往运行时找,读取`src/bootctrl/abctl/libabctl.cpp`中`SLOT_SUFFIX_STR`及其对`/proc/cmdline`的解析逻辑。
+**证据**:确认downstream(maili)的root=、slot_suffix等关键字段是ABL在运行时动态拼出来的,源码仓库本身看不到最终形态;QLI2.0则是`UKI_CMDLINE`一次性构建期确定。
 **支撑结论**:《对比总览》表第2行,《关键差异》第1条"审计方式差异"。
 
 ### 3. 其他机型cmdline完整示例
-**做法**:抽样读取QLI1.0`qcs610-odk-64.conf`完整cmdline字符串;QLI2.0侧检索各机型`KERNEL_CMDLINE_EXTRA`追加项,复核`qcom-qcs8300.inc`第12行、`qcom-qcm2290.inc`第11行的具体追加值,RT内核追加项交叉引用RT.md结论而不重新取证。
+**做法**:抽样读取downstream(maili)`qcs610-odk-64.conf`完整cmdline字符串;QLI2.0侧检索各机型`KERNEL_CMDLINE_EXTRA`追加项,复核`qcom-qcs8300.inc`第12行、`qcom-qcm2290.inc`第11行的具体追加值,RT内核追加项交叉引用RT.md结论而不重新取证。
 **支撑结论**:《对比总览》表第3行。
 
 ### 4. root=语法
 **做法**:比较两侧`root=`字段的字面写法。
-**证据**:QLI1.0隐式依赖运行时/分区表决定的A/B slot,QLI2.0显式静态`root=PARTLABEL=rootfs`。
+**证据**:downstream(maili)隐式依赖运行时/分区表决定的A/B slot,QLI2.0显式静态`root=PARTLABEL=rootfs`。
 **支撑结论**:《对比总览》表第4行,《关键差异》第1条。
 
 ### 5. verity/AVB相关cmdline参数与systemd补丁交叉印证
-**做法**:全局检索`verity=enabled`、`avb-verity`、`arg_usr_verity`,范围限定meta-qcom*,并读取QLI1.0`fstab-generator-Honor-verity-enabled-cmdline.patch`确认其识别的正是这些字符串。
-**证据**:QLI2.0侧检索结果为零匹配。进一步读取QLI1.0`poky/meta-qti-bsp/classes/`下8个dm-verity/AVB相关bbclass文件名,确认QLI1.0侧cmdline的verity参数不是孤立存在,而是配合一整套镶像校验机制;QLI2.0中未见任何一个对应class。
+**做法**:全局检索`verity=enabled`、`avb-verity`、`arg_usr_verity`,范围限定meta-qcom*,并读取downstream(maili)`fstab-generator-Honor-verity-enabled-cmdline.patch`确认其识别的正是这些字符串。
+**证据**:QLI2.0侧检索结果为零匹配。进一步读取downstream(maili)`poky/meta-qti-bsp/classes/`下8个dm-verity/AVB相关bbclass文件名,确认downstream(maili)侧cmdline的verity参数不是孤立存在,而是配合一整套镶像校验机制;QLI2.0中未见任何一个对应class。
 **支撑结论**:《对比总览》表第5行,《与systemd补丁的交叉印证》整节,《关键差异》第3条。
 
 ### 6. console参数来源规范化
-**做法**:读取`meta-qcom/conf/machine/include/qcom-base.inc`第19行`SERIAL_CONSOLES ?= "115200;ttyMSM0"`,对比QLI1.0各机型手写字符串的不一致情况。
+**做法**:读取`meta-qcom/conf/machine/include/qcom-base.inc`第19行`SERIAL_CONSOLES ?= "115200;ttyMSM0"`,对比downstream(maili)各机型手写字符串的不一致情况。
 **支撑结论**:《对比总览》表第6行。
 
 ### 7. 根文件系统完整性校验替代方案排查

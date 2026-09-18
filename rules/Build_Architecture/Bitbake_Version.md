@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,13 +78,13 @@
 ## Bitbake_Version专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - 版本自证:`poky/bitbake/lib/bb/__init__.py`(QLI1.0,2.8.1)、`bitbake/lib/bb/__init__.py`(QLI2.0,2.18.0,`git describe --tags`→`yocto-6.0.1`)
+  - 版本自证:`poky/bitbake/lib/bb/__init__.py`(downstream(maili),2.8.1)、`bitbake/lib/bb/__init__.py`(QLI2.0,2.18.0,`git describe --tags`→`yocto-6.0.1`)
   - 覆盖语法硬性检查逻辑:`bb/data_smart.py`第545/553行(`__setvar_keyword__`合法列表判断,`_append`/`_prepend`旧式语法两侧均`bb.fatal`)
-  - 私有API访问模式的排查对象:QLI1.0`meta-qti-*`,QLI2.0`meta-qcom*`/`meta-security`/`meta-updater`
-  - `BB_SIGNATURE_HANDLER`差异链:`oe-core/meta/conf/bitbake.conf`(QLI2.0默认`"OEEquivHash"`) vs `poky/meta/conf/bitbake.conf`(QLI1.0默认同为`"OEEquivHash"`) vs `meta-qti-bsp/conf/machine/pebble.conf:156`(强赋值`=`锁回`"OEBasicHash"`) vs QLI2.0`build/conf/local.conf`(未覆盖)
-  - 实测构建目录:QLI1.0`build-qti-distro-camerastack-debug`(pebble机型),QLI2.0`build`(iq-9075-evk机型)
+  - 私有API访问模式的排查对象:downstream(maili)`meta-qti-*`,QLI2.0`meta-qcom*`/`meta-security`/`meta-updater`
+  - `BB_SIGNATURE_HANDLER`差异链:`oe-core/meta/conf/bitbake.conf`(QLI2.0默认`"OEEquivHash"`) vs `poky/meta/conf/bitbake.conf`(downstream(maili)默认同为`"OEEquivHash"`) vs `meta-qti-bsp/conf/machine/pebble.conf:156`(强赋值`=`锁回`"OEBasicHash"`) vs QLI2.0`build/conf/local.conf`(未覆盖)
+  - 实测构建目录:downstream(maili)`build-qti-distro-camerastack-debug`(pebble机型),QLI2.0`build`(iq-9075-evk机型)
 - **已验证的检索方式**:
-  - `grep`扫描两侧自定义bbclass/recipe是否触碰bitbake私有实现细节,关键字模式:`bb.cooker.`、`bb.runqueue.`、`bb.taskdata.`、`bb.siggen.`、`d.dict[`、`.varhistory.`、`bb.data_smart.`、`d._data`、`bb.parse.ast.`,范围限定`meta-qti-*`(QLI1.0)与`meta-qcom*`/`meta-security`/`meta-updater`(QLI2.0)
+  - `grep`扫描两侧自定义bbclass/recipe是否触碰bitbake私有实现细节,关键字模式:`bb.cooker.`、`bb.runqueue.`、`bb.taskdata.`、`bb.siggen.`、`d.dict[`、`.varhistory.`、`bb.data_smart.`、`d._data`、`bb.parse.ast.`,范围限定`meta-qti-*`(downstream(maili))与`meta-qcom*`/`meta-security`/`meta-updater`(QLI2.0)
   - 实跑`bitbake -e glibc`(两侧各自build目录),对比effective变量`TC_CXX_RUNTIME`/`SECURITY_CFLAGS`/`SRCREV`/`PACKAGE_CLASSES`/`BB_SIGNATURE_HANDLER`,用真实展开结果而非静态猜测判断差异
   - 读取`bb/data_smart.py`第545/553行的条件判断,确认legacy语法(`_append`/`_prepend`)在两侧是否都会触发`bb.fatal`
 - **已知易错点/纠错记录**:(暂无纠错记录)

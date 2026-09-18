@@ -3,8 +3,8 @@
 ## 对比范围
 
 - **覆盖**:
-  - DIAG协议栈/`diag-router`与`libdiag`的整体架构对比:QLI1.0`src/diag/`(`diag_lsm*.c`、`mdlog/diag_mdlog.c`、`klog/diag_klog.c`、`socket_log/`、`uart_log/`、`java/`JNI)vs QLI2.0`meta-qcom/recipes-test/diag/diag_git.bb`(`github.com/linux-msm/diag`)+`diag-router_1.0.2.bb`+`libdiag_1.0.5.bb`。
-  - Android兼容日志(logd/logcat)对比:QLI1.0`src/system/core/logd/`、`src/system/core/logcat/`(已适配systemd,`logd.service`/`logd.path`)vs QLI2.0无对应组件;对`meta-qcom`/`meta-qcom-distro`/`meta-audioreach`/`meta-security`/`meta-updater`全量`grep -rln "logd\|logcat"`实测4处命中均逐行核查为子串误报(`rsyslogd`/`logdir`/`csyslogd`)。
+  - DIAG协议栈/`diag-router`与`libdiag`的整体架构对比:downstream(maili)`src/diag/`(`diag_lsm*.c`、`mdlog/diag_mdlog.c`、`klog/diag_klog.c`、`socket_log/`、`uart_log/`、`java/`JNI)vs QLI2.0`meta-qcom/recipes-test/diag/diag_git.bb`(`github.com/linux-msm/diag`)+`diag-router_1.0.2.bb`+`libdiag_1.0.5.bb`。
+  - Android兼容日志(logd/logcat)对比:downstream(maili)`src/system/core/logd/`、`src/system/core/logcat/`(已适配systemd,`logd.service`/`logd.path`)vs QLI2.0无对应组件;对`meta-qcom`/`meta-qcom-distro`/`meta-audioreach`/`meta-security`/`meta-updater`全量`grep -rln "logd\|logcat"`实测4处命中均逐行核查为子串误报(`rsyslogd`/`logdir`/`csyslogd`)。
   - 基础系统日志(journald/rsyslog)对比:两侧均继承systemd/journald,QLI2.0新增`meta-qcom-distro/recipes-extended/rsyslog/rsyslog_%.bbappend`+`rsyslog.logrotate.qcom`定制(仅轮转/留存策略,不含脱敏规则)。
   - 镜像集成范围核实:`meta-qcom-distro/recipes-products/images/`下7个产品镜像逐一核对`CORE_IMAGE_BASE_INSTALL`,仅`qcom-multimedia-proprietary-image.bb`装`libdiag-bin`;`meta-qcom/ci/qcom-distro.yml`的`target:`量产列表不含`diag-router`。
   - `android_compat`功能定位澄清:`src/android_compat/common/inc/`实测内容(`target.h`/`common_log.h`/`comdef.h`/`rex.h`/`qsocket.h`)确认为头文件级REX/QNX移植兼容层,非logcat/logd再实现。
@@ -14,7 +14,7 @@
 
 ## 对比总览
 
-| 维度 | QLI1.0 | QLI2.0 |
+| 维度 | downstream(maili) | QLI2.0 |
 |---|---|---|
 | DIAG协议栈 | `src/diag/`: `diag_lsm*.c`(DIAG Linux Support Machine库)、`mdlog/diag_mdlog.c`(modem日志抓取)、`klog/diag_klog.c`、`socket_log/`、`uart_log/`、`java/`(JNI,`com.qualcomm.qti.diagservice.libdiagwrapper`),核心组件随发布,用于modem/DSP/子系统与QXDM/QPST等外部工具间的诊断报文路由 | `meta-qcom/recipes-test/diag/diag_git.bb`(拉取`github.com/linux-msm/diag`,BSD-3-Clause开源版)、`diag-router_1.0.2.bb`、`libdiag_1.0.5.bb`,均位于**`recipes-test/`**,闭源预编译包(从`softwarecenter.qualcomm.com`下载),彼此`RCONFLICTS`/`RPROVIDES:virtual-diag-router`互斥 |
 | Android兼容日志 | `src/system/core/logd/`、`src/system/core/logcat/`:完整AOSP logd守护进程源码(`LogBuffer.cpp`/`LogReader.cpp`/`LogListener.cpp`/`LogAudit.cpp`/`LogKlog.cpp`/`CommandListener.cpp`等),已适配systemd(`logd.service`、`earlyinit-logd.service`、`logd.path`,`Alias=logcat.service`),提供`/dev/socket/logdw`、logcat语义环形缓冲 | 无对应组件,未发现Android logd/logcat兼容层 |
@@ -26,7 +26,7 @@
 
 - 依赖logcat/`/dev/socket/logdw`语义读取日志的上层Android兼容应用、AI/HAL组件、以及基于logcat的问题定位脚本,在QLI2.0上没有对应接口,需要迁移到`journalctl`/`rsyslog`或自行移植logd。
 - DIAG从"源码级核心组件"降级为"测试镶像/可选预编译二进制",意味着量产镶像默认可能不含完整DIAG能力(除非显式选择libdiag-bin),对现网依赖QXDM/QPST做售后诊断的流程有直接影响。
-- rsyslog定制的引入表明QLI2.0对日志留存策略(logrotate)做了重新设计,需要与安全/合规团队确认落盘日志的敏感信息处理是否与QLI1.0一致。
+- rsyslog定制的引入表明QLI2.0对日志留存策略(logrotate)做了重新设计,需要与安全/合规团队确认落盘日志的敏感信息处理是否与downstream(maili)一致。
 
 ## 影响与风险
 

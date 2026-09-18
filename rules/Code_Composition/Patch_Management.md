@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,7 +78,7 @@
 ## Patch_Management专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - QLI1.0补丁统计口径:`poky/`4,858个;`src/`5,083个(其中噪声`external/bazelbuild-bazel-central-registry` 4,890、`external/rust` 156、`external/zlib` 19、`external/bazelbuild-rules_rust` 5、`external/bazelbuild-rules_python` 4、`u-boot/tools`patman自测fixture 3、`external/elfutils`/`bazel-skylib`/`rules_cc`各1;真实补丁仅`vendor/qcom/proprietary/video/noship/v4l-utils`3个);`disregard/`废弃备份38个(`meta-qti-agm`/`meta-qti-audio`/`meta-qti-arpal`/`meta-qti-qmmf`);`build-qti-*`构建残留554个(`tmp-glibc/sysroots-components`,如perl-cross-native);真实内核补丁6个在`poky/meta-qti-bsp*/recipes-kernel/`
+  - downstream(maili)补丁统计口径:`poky/`4,858个;`src/`5,083个(其中噪声`external/bazelbuild-bazel-central-registry` 4,890、`external/rust` 156、`external/zlib` 19、`external/bazelbuild-rules_rust` 5、`external/bazelbuild-rules_python` 4、`u-boot/tools`patman自测fixture 3、`external/elfutils`/`bazel-skylib`/`rules_cc`各1;真实补丁仅`vendor/qcom/proprietary/video/noship/v4l-utils`3个);`disregard/`废弃备份38个(`meta-qti-agm`/`meta-qti-audio`/`meta-qti-arpal`/`meta-qti-qmmf`);`build-qti-*`构建残留554个(`tmp-glibc/sysroots-components`,如perl-cross-native);真实内核补丁6个在`poky/meta-qti-bsp*/recipes-kernel/`
   - QLI2.0补丁统计口径(按层):`meta-openembedded/` 2,416;`meta-ros/` 1,044;`oe-core/` 1,116;`meta-virtualization/` 121;`meta-security/` 90;`meta-selinux/` 77;`meta-qcom/` 61;`meta-qcom-robotics-sdk/` 43;`meta-qcom-distro/` 18;`meta-updater/` 8;`meta-audioreach/` 1
   - 跨仓补丁机制样例:`meta-qcom/patches/meta-oe/0001-mariadb-fix-building-for-the-ARMv8.3-A-and-later-sys.patch`;补丁治理脚本`meta-qcom-robotics-sdk/ci/yocto-patchreview.sh`
   - Systemd补丁去向追踪三例:`Disable-unused-mount-points.patch`、`fstab-generator-Honor-verity-enabled-cmdline.patch`、`sd-bus-Allow-extra-users-to-communicate.patch`
@@ -92,5 +92,5 @@
   - 抽样统计内核commit标签前缀频次(`git log`配合`FROMLIST:`/`BACKPORT:`/`QCLINUX:`/`PENDING:`/`WORKAROUND:`分类计数)
 - **已知易错点/纠错记录**(本主题在README《曾纠正过的结论》表中有"补丁总量"条目,是全库最完整的纠错案例):
   - 初步判断:"补丁总量,src下约5,083个"(且最初总计曾报10,533个)
-  - 核实后结论:src中约5,080个是第三方vendored库/patman测试噪声,真实仅3个(v4l-utils);另有6个真实内核补丁实际在`poky/meta-qti-bsp*`(此前误记为"从src中筛出",与src口径重复计入,现已订正为不重复计数);`disregard/`废弃备份38个、`build-qti-*`构建残留554个均需排除;QLI1.0全量补丁纠正后约4,861个
+  - 核实后结论:src中约5,080个是第三方vendored库/patman测试噪声,真实仅3个(v4l-utils);另有6个真实内核补丁实际在`poky/meta-qti-bsp*`(此前误记为"从src中筛出",与src口径重复计入,现已订正为不重复计数);`disregard/`废弃备份38个、`build-qti-*`构建残留554个均需排除;downstream(maili)全量补丁纠正后约4,861个
   - 抽样对象的二次纠偏:最初以为要看`meta-qti-bsp-prop`和`meta-qti-core`两层的patch密度,后发现这两层实际patch数为0(全用`SRC_URI="file://xxx"`整树拷贝私有源码),遂改为扫描全部`meta-qti-*`层patch密度,才定位到`meta-qti-gst`(144个,最高)作为抽样对象——提示"选抽样对象前先验证该层是否真的有patch文件",不能凭layer名称猜测

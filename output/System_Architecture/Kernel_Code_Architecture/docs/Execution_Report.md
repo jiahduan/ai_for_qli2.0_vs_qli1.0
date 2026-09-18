@@ -4,20 +4,20 @@
 
 ## 1. 版本与源码获取机制核实
 
-**做法**:核对QLI1.0`kernel_platform/common/Makefile`的VERSION/PATCHLEVEL/SUBLEVEL赋值、`.repo/manifests/*.xml`的镶像标签、`SRC_URI file://`整树拷贝机制;核对QLI2.0`linux-qcom_6.18.bb`的`LINUX_VERSION`/`SRCREV`/`tag`三者是否一致。
+**做法**:核对downstream(maili)`kernel_platform/common/Makefile`的VERSION/PATCHLEVEL/SUBLEVEL赋值、`.repo/manifests/*.xml`的镶像标签、`SRC_URI file://`整树拷贝机制;核对QLI2.0`linux-qcom_6.18.bb`的`LINUX_VERSION`/`SRCREV`/`tag`三者是否一致。
 **证据**:6.18.21 vs 6.18.30版本号;QLI2.0侧`SRCREV=5086fd78561b...`与`tag=qcom-6.18.y-20260615.1`及本地HEAD commit三者完全一致。
 **落到结论**:对比总览表"内核版本""源码来源""引用机制"三行。
 
 ## 2. 仓库治理与源码组织核实(庭院多仓 vs 单一仓库)
 
-**做法**:逐一确认QLI1.0`kernel_platform/common`(ACK)、`soc-repo`(SoC覆盖层,含`ack2soc.sh`)、`common-modules`(树外GKI模块)、`devices/google`、`external`各自的remote与git仓库身份;核实第5个庭院仓库`kernel_platform/qcom/opensource/devicetree`(独立git,remote`quic`,6726个dts文件)是否被`linux-common-soc_6.18.bb`的`SRC_URI`真实引用。
+**做法**:逐一确认downstream(maili)`kernel_platform/common`(ACK)、`soc-repo`(SoC覆盖层,含`ack2soc.sh`)、`common-modules`(树外GKI模块)、`devices/google`、`external`各自的remote与git仓库身份;核实第5个庭院仓库`kernel_platform/qcom/opensource/devicetree`(独立git,remote`quic`,6726个dts文件)是否被`linux-common-soc_6.18.bb`的`SRC_URI`真实引用。
 **证据**:确认该devicetree仓库不是死配置,而是被`SRC_URI file://qcom/opensource/devicetree`真实引用;QLI2.0侧确认单一仓库`build/downloads/git2/github.com.qualcomm-linux.kernel.git`。
 **落到结论**:对比总览表"源码组织"行,以及"覆盖"字段本次新核实到的第5个庭院仓库记录。
 
 ## 3. GKI vendor-hook基建存废核实
 
 **做法**:对`kernel/sched/core.c`两侧重新grep`android_vh_`/`android_rvh_`/`trace_android`钩子数量及文件字节数。
-**证据**:QLI1.0侧46处钩子、319379字节;QLI2.0侧0处、290393字节,两个数字均精确复现。
+**证据**:downstream(maili)侧46处钩子、319379字节;QLI2.0侧0处、290393字节,两个数字均精确复现。
 **落到结论**:对比总览表"GKI vendor-hook基建"行,"同源性结论"节"中间层完全分叉,置信度高"的判断。
 
 ## 4. commit标签体系抽样统计核实
@@ -28,9 +28,9 @@
 
 ## 5. commit集合级同源性统计与soc-repo盲区纠错(本文档取证重点)
 
-**初步方法**:按目录做commit subject集合diff(如`drivers/soc/qcom/`、`drivers/power/supply/qcom_*`、`drivers/thermal/qcom*`、`drivers/remoteproc/qcom_*`),但只纳入了QLI1.0的`common`仓库,未纳入`kernel_platform/soc-repo`。
+**初步方法**:按目录做commit subject集合diff(如`drivers/soc/qcom/`、`drivers/power/supply/qcom_*`、`drivers/thermal/qcom*`、`drivers/remoteproc/qcom_*`),但只纳入了downstream(maili)的`common`仓库,未纳入`kernel_platform/soc-repo`。
 
-**初步结论**:上述四个目录QLI1.0独有commit数均为0,即"两侧完全打平"。
+**初步结论**:上述四个目录downstream(maili)独有commit数均为0,即"两侧完全打平"。
 
 **发现盲区**:意识到`kernel_platform/soc-repo`(独立git仓库,HEAD`61351abdf37b`,`ack2soc.sh`合并脚本的目标仓库)承载了大量SoC覆盖层改动,未纳入统计会漏掉这部分改动。
 
@@ -38,7 +38,7 @@
 
 **最终结论**:soc-repo确实是此前统计的主要盲区,补入soc-repo后需要把"最底层同源"的结论按目录拆分处理——对gpu/drm/msm、dts、media三个目录仍站得住,对soc/qcom、power、thermal、remoteproc四个目录需要修正为"存在数量可观的QLI1独有改动"。
 
-**落到结论**:"同源性结论"节"补入soc-repo后的复核(原待确认项已解决)"完整段落,"关键差异"节"两代内核同源度高不是一个可以整体外推的结论,必须按子系统分别核实"的判断。这一纠错的教学意义在于:统计范围本身(是否覆盖了QLI1.0的全部代码来源)是同源性判断能否成立的前提,只看主仓库容易得出过于乐观的结论。
+**落到结论**:"同源性结论"节"补入soc-repo后的复核(原待确认项已解决)"完整段落,"关键差异"节"两代内核同源度高不是一个可以整体外推的结论,必须按子系统分别核实"的判断。这一纠错的教学意义在于:统计范围本身(是否覆盖了downstream(maili)的全部代码来源)是同源性判断能否成立的前提,只看主仓库容易得出过于乐观的结论。
 
 ## 6. 三方(mainline)抽样验证
 

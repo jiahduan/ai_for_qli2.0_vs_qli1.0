@@ -9,7 +9,7 @@
 **支撑结论**:《对比总览》表第1行"相同/相同"。
 
 ### 2. 主Bootloader身份
-**做法**:QLI1.0侧读取`abl-squashfs.bb`确认其`require edk2_git.bb`,即ABL基于EDK2定制;QLI2.0侧读取`meta-qcom/recipes-bsp/u-boot/u-boot-qcom_git.bb`的`SRCREV="5a77d4670d8084ada24a2735dda75788ed5ce925"`及`meta-qcom/conf/machine/include/qcom-u-boot-common.inc`第13行`UBOOT_CONFIG[iq-9075-evk]="qcom_lemans_defconfig"`。
+**做法**:downstream(maili)侧读取`abl-squashfs.bb`确认其`require edk2_git.bb`,即ABL基于EDK2定制;QLI2.0侧读取`meta-qcom/recipes-bsp/u-boot/u-boot-qcom_git.bb`的`SRCREV="5a77d4670d8084ada24a2735dda75788ed5ce925"`及`meta-qcom/conf/machine/include/qcom-u-boot-common.inc`第13行`UBOOT_CONFIG[iq-9075-evk]="qcom_lemans_defconfig"`。
 **关键限定条件的发现**:进一步读取`meta-qcom/classes-recipe/image_types_qcom.bbclass`第127-136行,发现u-boot编译产物`u-boot.mbn`只在`iq-9075-evk-open-fw.conf`(开放固件)配置下才被改名为`uefi.elf`打包进uefi_a/b分区;默认`iq-9075-evk.conf`走的是QTI闭源`firmware-qcom-boot-qcs9100_00130.bb`提供的`uefi.elf`,u-boot完全不参与启动。这是"注意区分默认配置与可选配置"这条Boot_Architecture专属取证指引的直接应用——如果只看recipe存在就下结论"QLI2.0默认用u-boot",会漏掉这个关键限定。
 **支撑结论**:《对比总览》表第2行(含"仅在...配置下成立"的限定语)。
 
@@ -18,7 +18,7 @@
 **支撑结论**:《对比总览》表第3行。
 
 ### 4. 内核镜像封装格式
-**做法**:QLI1.0侧确认`mkbootimg`工具与`BOOT_HEADER_VERSION="2"`对应Android boot.img格式;QLI2.0侧读取`esp-qcom-image.bb`的`inherit uki uki-esp-image`。
+**做法**:downstream(maili)侧确认`mkbootimg`工具与`BOOT_HEADER_VERSION="2"`对应Android boot.img格式;QLI2.0侧读取`esp-qcom-image.bb`的`inherit uki uki-esp-image`。
 **支撑结论**:《对比总览》表第4行。
 
 ### 5. cmdline生成时机与UKI签名(本文档证据链核心,含一次纠错)
@@ -34,7 +34,7 @@
 **支撑结论**:《对比总览》表第6行,《关键差异》第3条。
 
 ### 7. root挂载依据的执行主体
-**做法**:QLI1.0侧确认由ABL运行时拼接+用户态`abctl`读取`/proc/cmdline`中`SLOT_SUFFIX`判定槎位;QLI2.0侧确认由systemd PID1挂载单一`PARTLABEL=rootfs`。
+**做法**:downstream(maili)侧确认由ABL运行时拼接+用户态`abctl`读取`/proc/cmdline`中`SLOT_SUFFIX`判定槎位;QLI2.0侧确认由systemd PID1挂载单一`PARTLABEL=rootfs`。
 **支撑结论**:《对比总览》表第7行。
 
 ## 交叉一致性说明

@@ -8,7 +8,7 @@ Distro_Version在本仓库里不是一次成型的,经过了几轮明确的用�
 
 1. 初版:和其余32篇一样,走标准的《对比范围/对比总览/关键差异/影响与风险》四段式,证据密集、逐条罗列。
 2. 用户要求"完全取代现有结构",改成`Comparison`极简格式(仅优势/影响两个bullet列表),面向非技术读者。
-3. 用户要求"重要对比以表格形式呈现"——在优势/影响之上,新增`维度|QLI1.0|QLI2.0`表格承载事实性对比,bullet降级为"表格之上的解读",不逐行复述表格。
+3. 用户要求"重要对比以表格形式呈现"——在优势/影响之上,新增`维度|downstream(maili)|QLI2.0`表格承载事实性对比,bullet降级为"表格之上的解读",不逐行复述表格。
 4. 用户要求"逐个分析,先重新读取规则文件,再重新定义"——推动重新梳理了一遍分析方法论,从"抽象产品维度"收敛到"8步source-level分析法",第7步进一步精确到两个具体机型(8950-pebble/iq-9075-evk)而非抽象产品线覆盖度调查。
 5. 执行"取证要点是否全覆盖"核查,发现4处证据缺口(PACKAGE_CLASSES/GCC锁定悬空引用旧表格、DISTRO_FEATURES具体值未落锚点、camerastack无对应结论缺检索证据、SELinux实际不启用缺具体构建证据),补齐。
 6. 用户要求把产出文档挪进`Distro_Version/`子目录、配套规则文件也挪进去合并存放,后又要求把规则文件挪回`rules/`默认位置——最终态是**只有产出文档(`Distro_Version.md`)搬进子目录,规则文件留在原位**,是全仓库唯一的目录例外。
@@ -18,7 +18,7 @@ Distro_Version在本仓库里不是一次成型的,经过了几轮明确的用�
 
 ### 步骤1:定位物理载体
 **做法**:确认distro层身份由哪个顶层layer承载,并检查`bblayers.conf`是否真的引用了它(不能只看layer目录存在)。
-**证据**:QLI1.0`poky/meta-qti-distro`、QLI2.0`meta-qcom-distro`,均已在各自`bblayers.conf`确认被引用。
+**证据**:downstream(maili)`poky/meta-qti-distro`、QLI2.0`meta-qcom-distro`,均已在各自`bblayers.conf`确认被引用。
 **落到结论**:表格第1行"Distro层物理载体"。
 
 ### 步骤2:核心变量赋值点
@@ -28,12 +28,12 @@ Distro_Version在本仓库里不是一次成型的,经过了几轮明确的用�
 
 ### 步骤3:变体矩阵组织方式
 **做法**:数文件、追`require`/`include`链,并且反过来验证"某产品线是否真的没有承接"要靠遍历检索,不能靠"没搜到就是没有"的默认假设。
-**证据**:QLI1.0 30个静态`.conf`;QLI2.0 4个conf+`meta-qcom-robotics-sdk`专属conf+35个kas yml;遍历全部35个yml及`meta-qcom/ci/`,检索`camerastack`/`xr`/`vnm`/`host`对应kas片段,**确认零命中**——这是一次真实排查得到的结论,不是"没提到就当作没有"的偷懒判断(呼应Methodology规则1的禁止性要求)。
+**证据**:downstream(maili) 30个静态`.conf`;QLI2.0 4个conf+`meta-qcom-robotics-sdk`专属conf+35个kas yml;遍历全部35个yml及`meta-qcom/ci/`,检索`camerastack`/`xr`/`vnm`/`host`对应kas片段,**确认零命中**——这是一次真实排查得到的结论,不是"没提到就当作没有"的偷懒判断(呼应Methodology规则1的禁止性要求)。
 **落到结论**:表格第3、10行,优势第1条,影响第1条。
 
 ### 步骤4:发行版级构建变量
 **做法**:找`PACKAGE_CLASSES`/`GCCVERSION`在distro conf里是否有显式赋值行。
-**证据**:`qti-distro-base.inc`未覆盖`PACKAGE_CLASSES`(继承`poky.conf`默认`package_rpm`);`qcom-distro.conf`显式声明`PACKAGE_CLASSES="package_rpm"`;GCCVERSION:QLI1.0二次锁定`13.4%`,QLI2.0未二次锁定继承`tcmode-default.inc`的`15.%`。
+**证据**:`qti-distro-base.inc`未覆盖`PACKAGE_CLASSES`(继承`poky.conf`默认`package_rpm`);`qcom-distro.conf`显式声明`PACKAGE_CLASSES="package_rpm"`;GCCVERSION:downstream(maili)二次锁定`13.4%`,QLI2.0未二次锁定继承`tcmode-default.inc`的`15.%`。
 **执行中的返工**:这两个值最初在"专属取证要点"里只写了"详见旧版对比总览表",而旧版对比总览表在步骤2(格式迭代)时已被删除——这是"全覆盖"核查环节抓出来的悬空引用,后补上了具体`.conf`文件锚点。
 **落到结论**:表格第4、5行,影响第2条。
 
@@ -45,13 +45,13 @@ Distro_Version在本仓库里不是一次成型的,经过了几轮明确的用�
 
 ### 步骤6:OTA绑定点
 **做法**:找哪个conf`inherit`了哪个更新相关bbclass。
-**证据**:QLI1.0`qti-ab-boot`(A/B分区);QLI2.0`qcom-distro-sota.conf`(OSTree+aktualizr)。
+**证据**:downstream(maili)`qti-ab-boot`(A/B分区);QLI2.0`qcom-distro-sota.conf`(OSTree+aktualizr)。
 **落到结论**:表格第7行,优势第3条,影响第5条。
 
 ### 步骤7:两个具体机型的distro conf链(本主题证据链的核心)
 **做法**:不满足于"产品线抽象覆盖度",要求钉死两个真实存在、且有官方证据支撑其组合合法性的机型。
 **证据链**:
-- QLI1.0侧:先`find`定位到`poky/meta-qti-bsp*/conf/machine/pebble.conf`,确认`MACHINE=pebble`;再从`build-qti-distro-camerastack-debug/conf/auto.conf`的`DISTRO ?= "qti-distro-camerastack-debug"`/`MACHINE ?= "pebble"`实测读出这对组合是**真实用过的构建配置**,不是凭空指定的搭配。
+- downstream(maili)侧:先`find`定位到`poky/meta-qti-bsp*/conf/machine/pebble.conf`,确认`MACHINE=pebble`;再从`build-qti-distro-camerastack-debug/conf/auto.conf`的`DISTRO ?= "qti-distro-camerastack-debug"`/`MACHINE ?= "pebble"`实测读出这对组合是**真实用过的构建配置**,不是凭空指定的搭配。
 - QLI2.0侧:先`find`定位到`meta-qcom/conf/machine/iq-9075-evk.conf`;但发现`meta-qcom/ci/base.yml`本身声明`distro: nodistro`,并不能直接证明"iq-9075-evk配qcom-distro"——进一步查`meta-qcom-distro/.github/workflows/build-yocto.yml`的真实CI矩阵,才找到官方证据`{machine: iq-9075-evk, distro: {name: qcom-distro, yamlfile: ':ci/qcom-distro.yml'}}`,确认这是官方CI**实际构建**的组合。
 **中间的一次自我纠正**:一开始查到`base.yml`写`distro: nodistro`时,差点误以为"iq-9075-evk默认不带distro概念";多查了一层产品级workflow才发现nodistro只是CI base层的占位,真实构建走的是与产品级yml组合后的`qcom-distro`——这一教训已写进取证要点的"已知易错点"提醒。
 **落到结论**:Comparison标题行的机型标注,表格第2、9行。

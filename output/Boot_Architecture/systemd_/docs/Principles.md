@@ -1,6 +1,6 @@
 # systemd_ 原理文档
 
-本文档解释systemd这一层在启动链末端管什么、为什么它的版本/补丁/unit数量差异值得单独对比,以及它与Boot_Flow/Bootargs/Partition_Layout的分工边界原理——不涉及QLI1.0/QLI2.0具体差异结论(结论见`../systemd_.md`)。
+本文档解释systemd这一层在启动链末端管什么、为什么它的版本/补丁/unit数量差异值得单独对比,以及它与Boot_Flow/Bootargs/Partition_Layout的分工边界原理——不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../systemd_.md`)。
 
 ## 1. systemd层管什么
 

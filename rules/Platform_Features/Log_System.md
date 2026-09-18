@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -77,10 +77,10 @@
 ## Log_System专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - QLI1.0 DIAG:`src/diag/`(`diag_lsm*.c`、`mdlog/diag_mdlog.c`、`klog/diag_klog.c`、`socket_log/`、`uart_log/`、`java/`——JNI `com.qualcomm.qti.diagservice.libdiagwrapper`)
-  - QLI1.0 Android兼容日志:`src/system/core/logd/`(`LogBuffer.cpp`/`LogReader.cpp`/`LogListener.cpp`/`LogAudit.cpp`/`LogKlog.cpp`/`CommandListener.cpp`)、`src/system/core/logcat/`;systemd单元`logd.service`、`earlyinit-logd.service`、`logd.path`(`Alias=logcat.service`);接口`/dev/socket/logdw`
-  - QLI1.0基础日志:`poky/meta/recipes-core/systemd/systemd-conf/journald.conf`
-  - QLI1.0排除项:`src/android_compat/common/inc/`(`target.h`、`common_log.h`、`comdef.h`、`rex.h`、`qsocket.h`——头文件级REX/QNX移植兼容层,非logd/logcat再实现)
+  - downstream(maili) DIAG:`src/diag/`(`diag_lsm*.c`、`mdlog/diag_mdlog.c`、`klog/diag_klog.c`、`socket_log/`、`uart_log/`、`java/`——JNI `com.qualcomm.qti.diagservice.libdiagwrapper`)
+  - downstream(maili) Android兼容日志:`src/system/core/logd/`(`LogBuffer.cpp`/`LogReader.cpp`/`LogListener.cpp`/`LogAudit.cpp`/`LogKlog.cpp`/`CommandListener.cpp`)、`src/system/core/logcat/`;systemd单元`logd.service`、`earlyinit-logd.service`、`logd.path`(`Alias=logcat.service`);接口`/dev/socket/logdw`
+  - downstream(maili)基础日志:`poky/meta/recipes-core/systemd/systemd-conf/journald.conf`
+  - downstream(maili)排除项:`src/android_compat/common/inc/`(`target.h`、`common_log.h`、`comdef.h`、`rex.h`、`qsocket.h`——头文件级REX/QNX移植兼容层,非logd/logcat再实现)
   - QLI2.0 DIAG:`meta-qcom/recipes-test/diag/diag_git.bb`(拉取`github.com/linux-msm/diag`,BSD-3-Clause)、`diag-router_1.0.2.bb`、`libdiag_1.0.5.bb`(`RCONFLICTS`/`RPROVIDES:virtual-diag-router`互斥)
   - QLI2.0基础日志:`meta-qcom-distro/recipes-extended/rsyslog/rsyslog_%.bbappend`+`files/rsyslog.logrotate.qcom`
   - QLI2.0镜像证据:`meta-qcom-distro/recipes-products/images/qcom-multimedia-proprietary-image.bb`(唯一显式装`libdiag-bin`的产品镜像)、`meta-qcom/recipes-test/images/initramfs-test-image.bb`(依赖`virtual-diag-router`,测试镜像)、`meta-qcom/ci/qcom-distro.yml`(`target:`产品镜像构建列表,不含diag-router)
@@ -94,4 +94,4 @@
 
 - **已知易错点/纠错记录**:
   - README.md《曾纠正过的结论》表未出现本主题相关条目,文档内部亦未见"初步判断→核实后结论"格式的正式纠错记录。(暂无纠错记录)
-  - 文档内有两处"排除误判"提示,复核时应留意:①`grep -rln "logd\|logcat"`的命中不能直接采信为真实存在,本主题实测命中的4个文件全部是`rsyslogd`/`logdir`/`csyslogd`等子串误报,必须逐行核查;②`src/android_compat/common/inc/`容易被误认为是logcat/logd的QLI1.0再实现,实测只是头文件级REX/QNX移植兼容层,真正的logd/logcat落在`src/system/core`。
+  - 文档内有两处"排除误判"提示,复核时应留意:①`grep -rln "logd\|logcat"`的命中不能直接采信为真实存在,本主题实测命中的4个文件全部是`rsyslogd`/`logdir`/`csyslogd`等子串误报,必须逐行核查;②`src/android_compat/common/inc/`容易被误认为是logcat/logd的downstream(maili)再实现,实测只是头文件级REX/QNX移植兼容层,真正的logd/logcat落在`src/system/core`。

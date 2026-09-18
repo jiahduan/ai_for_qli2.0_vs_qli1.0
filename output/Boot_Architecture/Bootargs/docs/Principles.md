@@ -1,6 +1,6 @@
 # Bootargs 原理文档
 
-本文档解释"cmdline/bootargs"这个概念在启动链体系里到底是什么、为什么值得单独拿出来对比、它和相邻主题的分工边界原理是什么——不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Bootargs.md`)。
+本文档解释"cmdline/bootargs"这个概念在启动链体系里到底是什么、为什么值得单独拿出来对比、它和相邻主题的分工边界原理是什么——不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Bootargs.md`)。
 
 ## 1. cmdline是什么、管什么
 
@@ -9,7 +9,7 @@ Linux内核启动时通过`/proc/cmdline`接收一串由bootloader传入的参�
 ## 2. 为什么要对比这个主题
 
 cmdline的生成方式(运行时动态拼接 vs 构建期静态烘焙)决定了两个现实工程问题:
-- **可审计性**:如果cmdline是bootloader运行时根据分区表/槎位状态动态拼出来的(如QLI1.0的ABL+abctl读取`SLOT_SUFFIX`),仅凭Yocto源码仓库无法还原出设备上实际生效的完整cmdline,必须结合实机抓取;如果cmdline是构建期完全确定并写入镜像(如QLI2.0的`UKI_CMDLINE`),看配置就能还原,但代价是运行时灵活性下降。
+- **可审计性**:如果cmdline是bootloader运行时根据分区表/槎位状态动态拼出来的(如downstream(maili)的ABL+abctl读取`SLOT_SUFFIX`),仅凭Yocto源码仓库无法还原出设备上实际生效的完整cmdline,必须结合实机抓取;如果cmdline是构建期完全确定并写入镜像(如QLI2.0的`UKI_CMDLINE`),看配置就能还原,但代价是运行时灵活性下降。
 - **安全语义**:cmdline里是否携带`verity=enabled`一类的参数,决定了内核初期挂载根设备时是否要求走完整性校验路径;这个参数从"有"到"消失"不是孤立的字符串变化,而是背后一整套校验机制是否还存在的外部体现。
 一个具体config变量的取值差异,能牵出整条链路机制层面的差异,这是本主题存在的意义。
 

@@ -4,8 +4,8 @@
 
 ## 1. 框架层/ACDB/服务器/内核驱动锚点核实
 
-**做法**:逐一确认QLI1.0`meta-iot-audio`(`pal_git.bb`/`agm_git.bb`/`packagegroup-qti-pulseaudio.bb`/`pulseaudio_15.0.bb`)与`meta-iot-audio-prop`(`acdbdata_git.bb`)各自的`SRC_URI`/`LICENSE`字段,以及QLI2.0`meta-audioreach`层的`packagegroup-audioreach.bb`聚合关系、`audioreach-kernel_git.bb`的`SRC_URI`与`VENDOR_QCOM`开关、`audioreach-pipewire-plugin_git.bb`与`wireplumber.conf.d/60-disable-alsa.conf`的搭配关系。
-**证据**:确认QLI1.0侧内部源码树整体拷贝编译、QLI2.0侧`git://`+SRCREV锁定拉取的分发模式差异;`src/audio/vendor/qcom/opensource/audioreach-conf`路径核实存在,证明QLI1.0音频架构本身已是AudioReach血统。
+**做法**:逐一确认downstream(maili)`meta-iot-audio`(`pal_git.bb`/`agm_git.bb`/`packagegroup-qti-pulseaudio.bb`/`pulseaudio_15.0.bb`)与`meta-iot-audio-prop`(`acdbdata_git.bb`)各自的`SRC_URI`/`LICENSE`字段,以及QLI2.0`meta-audioreach`层的`packagegroup-audioreach.bb`聚合关系、`audioreach-kernel_git.bb`的`SRC_URI`与`VENDOR_QCOM`开关、`audioreach-pipewire-plugin_git.bb`与`wireplumber.conf.d/60-disable-alsa.conf`的搭配关系。
+**证据**:确认downstream(maili)侧内部源码树整体拷贝编译、QLI2.0侧`git://`+SRCREV锁定拉取的分发模式差异;`src/audio/vendor/qcom/opensource/audioreach-conf`路径核实存在,证明downstream(maili)音频架构本身已是AudioReach血统。
 **落到结论**:对比总览表"音频框架层""内部血统证据""ACDB校准数据库""音频服务器""内核驱动"五行,以及"关键差异"节的分发模式转变判断。
 
 ## 2. 专有插件/测试工具消失核实(两轮grep)
@@ -16,7 +16,7 @@
 
 ## 3. catf测试框架的功能对比核实
 
-**做法**:读取QLI1.0`catf_git.bb`的`DEPENDS`字段,确认其依赖`qal`(闭源Qualcomm Audio Library)及可选`gstreamer`/`glib`插件;再读QLI2.0`pipewire_1.6.3.bb`带的`pw-cli`/`wpctl`工具定位,逐项功能比对。
+**做法**:读取downstream(maili)`catf_git.bb`的`DEPENDS`字段,确认其依赖`qal`(闭源Qualcomm Audio Library)及可选`gstreamer`/`glib`插件;再读QLI2.0`pipewire_1.6.3.bb`带的`pw-cli`/`wpctl`工具定位,逐项功能比对。
 **证据**:`catf`是针对音频链路的脚本化自动化测试框架,`pw-cli`/`wpctl`只是PipeWire自带的节点查看/音量控制通用CLI,二者能力范畴不同。
 **落到结论**:"影响与风险"节"二者不是同类工具,不能算等价替代"的判断。
 

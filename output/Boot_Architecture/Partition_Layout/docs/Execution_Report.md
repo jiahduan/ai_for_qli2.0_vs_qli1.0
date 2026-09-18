@@ -5,7 +5,7 @@
 ## 逐项取证过程
 
 ### 1. 分区总数(含一次纠错)
-**做法**:不满足于数配置文件里的条目数,坚持以**实际构建产物**为准——QLI1.0读取`build-qti-distro-camerastack-debug/tmp-glibc/deploy/images/pebble/qti-multimedia-image/rawprogram[0-9].xml`,按`label=`字段去重计数;QLI2.0同法读取`build/tmp/deploy/images/iq-9075-evk/partitions/iq-9075-evk/ufs/rawprogram[0-9].xml`。
+**做法**:不满足于数配置文件里的条目数,坚持以**实际构建产物**为准——downstream(maili)读取`build-qti-distro-camerastack-debug/tmp-glibc/deploy/images/pebble/qti-multimedia-image/rawprogram[0-9].xml`,按`label=`字段去重计数;QLI2.0同法读取`build/tmp/deploy/images/iq-9075-evk/partitions/iq-9075-evk/ufs/rawprogram[0-9].xml`。
 **初步判断**:QLI2.0侧首次计数得到67个。
 **核实过程**:重新按`label=`去重复核。
 **核实后结论**:更正为66个。
@@ -17,15 +17,15 @@
 **支撑结论**:《对比范围》"覆盖"第2条,以及分区总数行的注释说明。
 
 ### 3. 同芯片剥离机型因素的控制对比(方法论核心)
-**做法**:为了把"产品形态换代"和"架构选择"两个变量分开(见`Principles.md`第3节),找双侧都覆盖的相同芯片`qrb5165-rb5`,分别读取QLI1.0`poky/meta-qti-bsp/conf/machine/partition/qrb5165-rb5-partition.conf`(90个`--partition`条目)与QLI2.0外部仓库`qcom-ptool`的`platforms/qrb5165-rb5/ufs/partitions.conf`(77个条目),确认两者均为Android式A/B布局(xbl_a/tz_a/hyp_a/aop_a/abl_a/boot_a/boot_b/keymaster_a/dtbo_a/vbmeta_a俱全)。
+**做法**:为了把"产品形态换代"和"架构选择"两个变量分开(见`Principles.md`第3节),找双侧都覆盖的相同芯片`qrb5165-rb5`,分别读取downstream(maili)`poky/meta-qti-bsp/conf/machine/partition/qrb5165-rb5-partition.conf`(90个`--partition`条目)与QLI2.0外部仓库`qcom-ptool`的`platforms/qrb5165-rb5/ufs/partitions.conf`(77个条目),确认两者均为Android式A/B布局(xbl_a/tz_a/hyp_a/aop_a/abl_a/boot_a/boot_b/keymaster_a/dtbo_a/vbmeta_a俱全)。
 **支撑结论**:《关键差异》第1条——证明"156→66"这个数字不能直接读成QLI2.0精简了58%能力,同芯片对比是90 vs 77,说明QLI2.0架构本身并不必然抹掉Android式分区,分区精简主要是iq-9075-evk这个具体机型的选择。
 
 ### 4. 底层固件A/B、OS层A/B、Android安全HAL分区族、新增分区
-**做法**:逐类清点rawprogram xml里的分区label,并读取`pebble.conf`的`MACHINE_FEATURES += "qti-ab-boot"`确认QLI1.0侧A/B模型的配置声明。
+**做法**:逐类清点rawprogram xml里的分区label,并读取`pebble.conf`的`MACHINE_FEATURES += "qti-ab-boot"`确认downstream(maili)侧A/B模型的配置声明。
 **支撑结论**:《对比总览》表对应行。
 
 ### 5. A/B槎位管理组件对比
-**做法**:QLI1.0侧读取`src/bootctrl/abctl/libabctl.cpp`支持的命令行参数(`--set_active`/`--boot_slot`等);QLI2.0侧读取`recipes-support/qbootctl/qbootctl_git.bb`的`SRC_URI`(`github.com/linux-msm/qbootctl`),并复核`rb1-core-kit.conf`的`MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "qbootctl"`仍存在。
+**做法**:downstream(maili)侧读取`src/bootctrl/abctl/libabctl.cpp`支持的命令行参数(`--set_active`/`--boot_slot`等);QLI2.0侧读取`recipes-support/qbootctl/qbootctl_git.bb`的`SRC_URI`(`github.com/linux-msm/qbootctl`),并复核`rb1-core-kit.conf`的`MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "qbootctl"`仍存在。
 **支撑结论**:《对比总览》表"A/B管理组件"行——确认开源等价物已存在于meta-qcom上游但需显式挂载,不是能力缺失。
 
 ### 6. xbl_a/b等低层固件槎位fallback行为的排查(检索范围收窄的教训)

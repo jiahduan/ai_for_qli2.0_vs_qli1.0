@@ -4,13 +4,13 @@
 
 ## 1. 两侧"常见状态"的坐实
 
-**做法**:取证要点列出的QLI1.0八个子仓库锚点(`qc/display-kernel.lnx/cd`、`qc/camx.lnx/cd`、`qc/wlan-cmn.driver.lnx/cd`、`qc/audio-ahal-handset.lnx/cd`、`qc/gfx-kernel.lnx/cd`、`src/security/securemsm`、`poky`、`poky/meta-qti-bsp`),逐仓库执行`git log -1`/`git status`;QLI2.0十三个顶层层逐一`git branch --show-current`+`git log -1`。
-**证据**:QLI1.0全部仍为detached HEAD,commit hash与既有正文一致;QLI2.0侧确认`meta-qcom`/`meta-qcom-distro`/`meta-updater`等六层为具名长期分支`wrynose`,`meta-audioreach`为`master`,`bitbake`为`2.18`,`meta-lts-mixins`为`wrynose/linux-firmware`,`meta-qcom-robotics-sdk`本地detached但remote存在`origin/wrynose`可追溯。
+**做法**:取证要点列出的downstream(maili)八个子仓库锚点(`qc/display-kernel.lnx/cd`、`qc/camx.lnx/cd`、`qc/wlan-cmn.driver.lnx/cd`、`qc/audio-ahal-handset.lnx/cd`、`qc/gfx-kernel.lnx/cd`、`src/security/securemsm`、`poky`、`poky/meta-qti-bsp`),逐仓库执行`git log -1`/`git status`;QLI2.0十三个顶层层逐一`git branch --show-current`+`git log -1`。
+**证据**:downstream(maili)全部仍为detached HEAD,commit hash与既有正文一致;QLI2.0侧确认`meta-qcom`/`meta-qcom-distro`/`meta-updater`等六层为具名长期分支`wrynose`,`meta-audioreach`为`master`,`bitbake`为`2.18`,`meta-lts-mixins`为`wrynose/linux-firmware`,`meta-qcom-robotics-sdk`本地detached但remote存在`origin/wrynose`可追溯。
 **落到结论**:对比总览表"常见状态"行、"抽样证据"行。
 
 ## 2. 版本语义的承载方式
 
-**做法**:在QLI1.0侧子仓库的commit message中检索版本tag字符串。
+**做法**:在downstream(maili)侧子仓库的commit message中检索版本tag字符串。
 **证据**:命中`LA.VENDOR.17.6.0.AU287`、`sec-userspace.lnx.14.17`、`AU_LINUX_KERNEL.PLATFORM.6.0.00.00.00.178.129`等字符串。
 **落到结论**:对比总览表"分支语义体现方式"行,以及《关键差异》第一条"版本可追溯性建立在完全不同的层面"的论证起点。
 

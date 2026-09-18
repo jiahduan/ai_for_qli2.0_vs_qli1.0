@@ -1,12 +1,12 @@
 # Audio 原理文档
 
-本文档解释Audio子系统在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`Audio.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Audio.md`)。
+本文档解释Audio子系统在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`Audio.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Audio.md`)。
 
 ## 1. Audio子系统管的是哪一段信号链
 
 一条完整的音频信号链自上而下是:应用层音频API → 框架层(图管理/路由抽象)→ 音频服务器(混音/策略)→ 校准数据(ACDB,决定各硬件通路的增益/滤波参数)→ 内核驱动(把数据真正推给ADSP/编解码器硬件)。Audio子系统本文档管的正是这整条链路本身"怎么处理音频信号",不管音频数据"通过什么物理/协议通道被传输出去"——这是理解下面分工原理的关键前提。
 
-Qualcomm的音频架构历史上就是AudioReach(PAL/AGM)血统:QLI1.0虽然用的是`meta-iot-audio`这个内部专有层,但其`SRC_URI`指向的本地源码树本身已经是PAL(Platform Abstraction Layer)/AGM(Audio Graph Manager)架构,只是以"内部源码树整体拷贝编译"的方式集成,并未对外公开。这意味着QLI1.0→QLI2.0在架构层面不是推倒重来,而是同一套设计思路换了一种分发方式。
+Qualcomm的音频架构历史上就是AudioReach(PAL/AGM)血统:downstream(maili)虽然用的是`meta-iot-audio`这个内部专有层,但其`SRC_URI`指向的本地源码树本身已经是PAL(Platform Abstraction Layer)/AGM(Audio Graph Manager)架构,只是以"内部源码树整体拷贝编译"的方式集成,并未对外公开。这意味着downstream(maili)→QLI2.0在架构层面不是推倒重来,而是同一套设计思路换了一种分发方式。
 
 ## 2. 为什么要对比这个主题
 

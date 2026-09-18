@@ -1,6 +1,6 @@
 # Security_Architecture 原理文档
 
-本文档解释Security_Architecture(SELinux)主题在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`Security_Architecture.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Security_Architecture.md`)。
+本文档解释Security_Architecture(SELinux)主题在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`Security_Architecture.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Security_Architecture.md`)。
 
 ## 1. 本主题管的是"强制访问控制(MAC)策略",不是安全的全部
 
@@ -10,7 +10,7 @@ SELinux这类MAC策略解决的工程问题是"即便一个进程被攻破,它�
 
 ## 2. 为什么要对比这个主题
 
-QLI1.0覆盖audio/camera/modem/加密/OTA/诊断等数十个高权限daemon的域定义(661个策略文件),QLI2.0仅覆盖相机测试工具和TrustZone/QTEE两小块(约3个策略点),规模差距在两个数量级以上——这直接关系到安全基线是否弱化这一现实工程问题。但"规模小"不等于"完全空白":对比的价值恰恰在于既不夸大也不低估这个差距,给出一个准确的、按策略点逐条核实过的规模对比,而不是简单地用"有/无"二元判断掩盖了"雏形已存在、但覆盖面远未追平"这一更细致的真相。
+downstream(maili)覆盖audio/camera/modem/加密/OTA/诊断等数十个高权限daemon的域定义(661个策略文件),QLI2.0仅覆盖相机测试工具和TrustZone/QTEE两小块(约3个策略点),规模差距在两个数量级以上——这直接关系到安全基线是否弱化这一现实工程问题。但"规模小"不等于"完全空白":对比的价值恰恰在于既不夸大也不低估这个差距,给出一个准确的、按策略点逐条核实过的规模对比,而不是简单地用"有/无"二元判断掩盖了"雏形已存在、但覆盖面远未追平"这一更细致的真相。
 
 ## 3. 与相邻主题的分工边界原理
 

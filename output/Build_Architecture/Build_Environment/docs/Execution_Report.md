@@ -5,8 +5,8 @@
 ## 逐条取证过程
 
 ### 1. 环境搭建入口对比
-**做法**:确认QLI1.0入口脚本身份与体量,并排查QLI2.0是否存在等价封装脚本。
-**证据**:QLI1.0`setup-environment`软链接→`poky/qti-conf/set_bb_env.sh`(`wc -l`确认457行);已grep排查`meta-qcom`/`meta-qcom-distro`/`meta-qcom-robotics-sdk`三层`ci/`目录,无等价交互式封装脚本,官方入口是`meta-qcom/README.md`"Quick build"一节。
+**做法**:确认downstream(maili)入口脚本身份与体量,并排查QLI2.0是否存在等价封装脚本。
+**证据**:downstream(maili)`setup-environment`软链接→`poky/qti-conf/set_bb_env.sh`(`wc -l`确认457行);已grep排查`meta-qcom`/`meta-qcom-distro`/`meta-qcom-robotics-sdk`三层`ci/`目录,无等价交互式封装脚本,官方入口是`meta-qcom/README.md`"Quick build"一节。
 **落到结论**:对比总览表"环境搭建入口"行。
 
 ### 2. Shell/host依赖强制检查
@@ -16,12 +16,12 @@
 
 ### 3. 官方系统最低要求交叉核实
 **做法**:先读取两侧`classes-global/sanity.bbclass`硬编码的Python最低版本,再直接抓取上游`docs.yoctoproject.org/6.0.1/ref-manual/system-requirements.html`(对应本仓库`yocto-6.0.1`/wrynose release)核实官方口径。
-**证据**:`sanity.bbclass`硬编码Python最低3.9(QLI2.0)/3.8(QLI1.0引用值);官方页面给出Python≥3.9.0、磁盘≥140GB、RAM"32GB+4核"起步、受支持host清单(Ubuntu/Debian/Fedora/OpenSUSE/AlmaLinux/CentOS Stream各版本)及headless构建所需apt包清单。
+**证据**:`sanity.bbclass`硬编码Python最低3.9(QLI2.0)/3.8(downstream(maili)引用值);官方页面给出Python≥3.9.0、磁盘≥140GB、RAM"32GB+4核"起步、受支持host清单(Ubuntu/Debian/Fedora/OpenSUSE/AlmaLinux/CentOS Stream各版本)及headless构建所需apt包清单。
 **落到结论**:对比总览表"官方最低要求"行。
 
 ### 4. 内部补丁注入机制逐条比对
 **做法**:读取`apply_poky_patches()`引用的`qti-conf/patches/series`5个补丁内容,逐条与QLI2.0`bitbake`(2.18.0)现状比对,判断是否已随上游重构自然失效。
-**证据**:5个补丁中3个(去重复checksum警告、`LAYERSERIES_COMPAT`缺失时warn/fatal差异、Python 3.11兼容双路径解析)已随上游重构失效;剩2个是真实差异未迁移——`handleLayerDepends`对"qti"字样层名的`LAYERDEPENDS`强校验QLI2.0无等价实现,以及SRC_URI本地文件缺失时QLI2.0仍是`bb.fatal`(比QLI1.0放宽后的`bb.warn`更严格)。
+**证据**:5个补丁中3个(去重复checksum警告、`LAYERSERIES_COMPAT`缺失时warn/fatal差异、Python 3.11兼容双路径解析)已随上游重构失效;剩2个是真实差异未迁移——`handleLayerDepends`对"qti"字样层名的`LAYERDEPENDS`强校验QLI2.0无等价实现,以及SRC_URI本地文件缺失时QLI2.0仍是`bb.fatal`(比downstream(maili)放宽后的`bb.warn`更严格)。
 **落到结论**:对比总览表"内部补丁注入"行,《影响与风险》"这两条真实差异没有带到QLI2.0"一段。
 
 ### 5. 层版本锁定方式对比

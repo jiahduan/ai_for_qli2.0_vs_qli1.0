@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,12 +78,12 @@
 ## Source_Code_Structure专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - QLI1.0顶层`src/`汇聚目录:35个子目录(1个`build-qti-distro-camerastack-debug`为构建残留,排除后剩34个真实组件,包括`security`、`mdm-ss-mgr`、`OTA`、`wlan`、`display`、`kernel-6.18`等)
+  - downstream(maili)顶层`src/`汇聚目录:35个子目录(1个`build-qti-distro-camerastack-debug`为构建残留,排除后剩34个真实组件,包括`security`、`mdm-ss-mgr`、`OTA`、`wlan`、`display`、`kernel-6.18`等)
   - QLI2.0:顶层不存在`src/`;示例recipe`meta-qcom/recipes-multimedia/camx/camx-dlkm_1.0.3.bb`(`SRCREV="56b463cba50c1db1f2cc53ddd8790730f14bd8a8"`)
-  - `src/OTA`(QLI1.0)对应QLI2.0全新独立层`meta-updater`(见Layer_Architecture.md映射表)
+  - `src/OTA`(downstream(maili))对应QLI2.0全新独立层`meta-updater`(见Layer_Architecture.md映射表)
   - 待确认项关键字:`securemsm`、`mink-transport`、`subsys_modem`、`ssreq`、`pdc.daemon`、`trustedui`
 - **已验证的检索方式**:
-  - `find src -maxdepth 1 -mindepth 1 -type d`统计QLI1.0顶层src/子目录数量与名单
+  - `find src -maxdepth 1 -mindepth 1 -type d`统计downstream(maili)顶层src/子目录数量与名单
   - `find <QLI2.0根目录> -maxdepth 1 -iname "src"`确认顶层无同名汇聚目录(无输出)
   - 读取具体recipe文件的`SRC_URI`/`SRCREV`字段,判断是否走"按需拉取"模式(而非查找固定目录)
   - `meta-qcom`/`meta-qcom-distro`/`meta-security`/`meta-updater`等层关键字检索`securemsm`/`mink-transport`/`subsys_modem`/`ssreq`/`pdc.daemon`/`trustedui`(用于判断专有组件是否被公开层收编)

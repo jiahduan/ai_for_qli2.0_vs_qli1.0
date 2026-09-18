@@ -19,7 +19,7 @@
 
 ## 对比总览
 
-| 阶段 | QLI1.0 | QLI2.0 |
+| 阶段 | downstream(maili) | QLI2.0 |
 |---|---|---|
 | PBL→XBL/SBL→TZ/HYP | 相同 | 相同 |
 | 主Bootloader | ABL(基于EDK2定制,`abl-squashfs.bb` require `edk2_git.bb`) | UEFI(仍保留uefi_a/b分区)→u-boot(`u-boot-qcom_git.bb`,SRCREV`5a77d4670d8084ada24a2735dda75788ed5ce925`,`meta-qcom/conf/machine/include/qcom-u-boot-common.inc`第13行`UBOOT_CONFIG[iq-9075-evk]="qcom_lemans_defconfig"`,github.com/qualcomm-linux/u-boot.git)。**仅在`iq-9075-evk-open-fw.conf`(开放固件)配置下成立**——u-boot编译产物`u-boot.mbn`会被直接改名为`uefi.elf`打包进uefi_a/b分区,替换掉闭源UEFI固件;默认`iq-9075-evk.conf`走的是QTI闭源`firmware-qcom-boot-qcs9100_00130.bb`提供的`uefi.elf`,u-boot完全不参与启动(`meta-qcom/classes-recipe/image_types_qcom.bbclass`第127-136行) |
@@ -32,7 +32,7 @@
 ## 关键差异
 
 - 启动链从"专有Android Bootloader(ABL/EDK2,闭源vendor源码)+Android boot.img格式"变为"上游开源u-boot+标准UEFI/systemd-boot+UKI",这不只是格式替换,而是把"谁能改启动参数/谁能验证启动产物"这件事从"ABL vendor闭源二进制"整体搬到了"Yocto构建配置+UKI"上,可审计性和实际安全强度是两件独立的事——前者显著提升,后者需要单独确认。
-- cmdline产生时机反转:QLI1.0运行时动态拼接,灵活但审计困难,仓库里看不到最终形态;QLI2.0构建期静态嵌入UKI,理论上更贴近measured/verified boot的形态,但**当前实际未做secure boot签名**(见上表`UKI_SB_KEY`/`UKI_SB_CERT`零命中的证据),即UKI这套"能装载签名"的机制在本仓库处于"能力在场但未上岗"状态,静态化目前只带来了可复现性/审计性收益,还没有兑现签名带来的防篡改收益。
+- cmdline产生时机反转:downstream(maili)运行时动态拼接,灵活但审计困难,仓库里看不到最终形态;QLI2.0构建期静态嵌入UKI,理论上更贴近measured/verified boot的形态,但**当前实际未做secure boot签名**(见上表`UKI_SB_KEY`/`UKI_SB_CERT`零命中的证据),即UKI这套"能装载签名"的机制在本仓库处于"能力在场但未上岗"状态,静态化目前只带来了可复现性/审计性收益,还没有兑现签名带来的防篡改收益。
 - initramfs/ramdisk层面看似"消失",实质是Android式vendor_boot/ramdisk分区概念被去掉,initrd本体(pivot-to-rootfs用)仍以`initramfs-rootfs-image`形式默认内嵌进UKI,和"root挂载依据从slot动态解析变为单一PARTLABEL"共同指向同一件事:整个OS层的运行时可变性(A/B槎位、initrd来源、cmdline)在QLI2.0里被收敛成构建期固定的单一形态。
 
 ## 影响与风险

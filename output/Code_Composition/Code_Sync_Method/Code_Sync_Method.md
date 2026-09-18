@@ -3,7 +3,7 @@
 ## 对比范围
 
 - **覆盖**:
-  - 代码同步机制整体对照:QLI1.0`.repo/manifests/default.xml`(342KB,380个`<project>`条目)+`repo init`/`repo sync`工作流+`set_bb_env.sh`/`bblayers.conf`手工生成模式,vs QLI2.0各层`ci/*.yml`(`meta-qcom`46个/`meta-qcom-distro`36个)+`kas build`/`kas checkout`工作流
+  - 代码同步机制整体对照:downstream(maili)`.repo/manifests/default.xml`(342KB,380个`<project>`条目)+`repo init`/`repo sync`工作流+`set_bb_env.sh`/`bblayers.conf`手工生成模式,vs QLI2.0各层`ci/*.yml`(`meta-qcom`46个/`meta-qcom-distro`36个)+`kas build`/`kas checkout`工作流
   - `ci/base.lock.yml`集中锁定机制的存在性与作用(不含其锁定的具体12个repo清单及与各产品顶层yml的两层结构细节)
   - repo manifest残留排查(`grep -rl "manifest.xml\|<project \|repo init"`排除build产物目录,零命中)
   - kas鉴权机制的通用实现细节:本机`kas==5.5`发行包源码(`site-packages/kas/libcmds.py`的`SetupHome`/`Macro.__init__`)反查`SSH_PRIVATE_KEY`/`GIT_CREDENTIAL_HELPER`/`NETRC_FILE`/`CI_SERVER_HOST`等环境变量注入逻辑,及QLI2.0快照内是否已配置私有仓库接入(`netrc|GIT_ASKPASS|ssh-agent|known_hosts|credential.helper|KAS_REPO_REF_DIR`全树检索,零命中)
@@ -16,10 +16,10 @@
 
 ## 对比总览
 
-| 维度 | QLI1.0(repo) | QLI2.0(kas) |
+| 维度 | downstream(maili)(repo) | QLI2.0(kas) |
 |---|---|---|
 | 元数据规模 | `.repo/manifests/default.xml`(342KB,380个`<project>`条目,remote包括quic/clo-le/clo-ype等) | 分散在各层`ci/*.yml`(meta-qcom 46个、meta-qcom-distro 36个等),可按machine/distro组合(`a.yml:b.yml`) |
-| 典型命令 | `repo init -u <manifest-url> -b <branch> -m default.xml` + `repo sync -j<N>`(两步,且需手动生成bblayers.conf,QLI1.0用setup-environment脚本动态生成) | `git clone https://github.com/qualcomm-linux/meta-qcom.git -b wrynose` + `kas build meta-qcom/ci/<machine>.yml:meta-qcom/ci/<distro>.yml` |
+| 典型命令 | `repo init -u <manifest-url> -b <branch> -m default.xml` + `repo sync -j<N>`(两步,且需手动生成bblayers.conf,downstream(maili)用setup-environment脚本动态生成) | `git clone https://github.com/qualcomm-linux/meta-qcom.git -b wrynose` + `kas build meta-qcom/ci/<machine>.yml:meta-qcom/ci/<distro>.yml` |
 | 工作树落地方式 | poky及其下所有meta-qti-*层、src/*、qc/*.lnx/cd均是`repo sync`后生成的独立bare仓库(位于`.repo/projects/`),工作树通过符号链接`.git -> ../../.repo/projects/xxx.git`挂载 | `kas checkout`(递归拉取repos:中列出的所有层到锁定commit,并按`patches:`声明打补丁) |
 | 锁定粒度 | manifest revision字段(每project一个SHA/branch),配合`local_manifests`覆盖 | `ci/base.lock.yml`集中锁定所有层SHA,与业务YAML分离,便于CI复现 |
 | 跨仓补丁 | 无原生机制,依赖cherry-pick/脚本 | kas`patches:`声明式跨仓打补丁(详见Patch_Management.md) |
@@ -31,7 +31,7 @@
 
 - 一步完成"拉代码+配层+锁版本",避免repo模式下manifest revision与bblayers.conf手工列表"两处维护、易失配"的问题。
 - `base.lock.yml`使任意开发者/CI可用同一组SHA精确复现构建,而repo manifest虽也能锁SHA,但缺乏与bitbake层加载的自动联动。
-- kas原生支持Yocto语义(machine/distro/target/local_conf_header的YAML合并),repo只管代码拉取,层配置仍需额外脚本(QLI1.0靠`set_bb_env.sh`动态吐出bblayers.conf,增加了一层不透明的胶水逻辑)。
+- kas原生支持Yocto语义(machine/distro/target/local_conf_header的YAML合并),repo只管代码拉取,层配置仍需额外脚本(downstream(maili)靠`set_bb_env.sh`动态吐出bblayers.conf,增加了一层不透明的胶水逻辑)。
 - 上游开源、轻量(meta-qcom已是GitHub上`qualcomm-linux/meta-qcom`独立开源仓库),不再需要访问Qualcomm内部gerrit/repo服务器,降低了对私有基础设施的耦合。
 
 ## 影响与风险

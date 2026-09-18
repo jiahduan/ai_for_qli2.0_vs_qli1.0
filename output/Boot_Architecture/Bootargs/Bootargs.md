@@ -20,7 +20,7 @@
 
 ## 对比总览
 
-| 维度 | QLI1.0 | QLI2.0 |
+| 维度 | downstream(maili) | QLI2.0 |
 |---|---|---|
 | perf构建cmdline | `pebble.conf`: `CONSOLE_PARAM:qti-distro-perf=""`(构建期烘焙为空字符串) | `esp-qcom-image.bb`: `UKI_CMDLINE = "root=${QCOM_BOOTIMG_ROOTFS} rw rootwait console=${KERNEL_CONSOLE}"` |
 | 真正生效的cmdline来源 | ABL运行时动态拼接(root=、androidboot.slot_suffix、skip_initramfs等),证据:`libabctl.cpp`中`SLOT_SUFFIX_STR`及对`/proc/cmdline`的解析 | 构建期完全确定:`root=PARTLABEL=rootfs rw rootwait console=ttyMSM0,115200` |
@@ -31,20 +31,20 @@
 
 ## 与systemd补丁的交叉印证
 
-- QLI1.0的`fstab-generator-Honor-verity-enabled-cmdline.patch`(修改`fstab-generator.c`,识别cmdline中`verity=enabled`/`avb-verity`参数,检测到则强制用`/dev/mapper/root`作为根设备)在QLI2.0全局检索`verity=enabled`、`arg_usr_verity`均零匹配。
-- 决定性证据:QLI1.0的`poky/meta-qti-bsp/classes/`下存在整整8个dm-verity相关bbclass(`dm-verity-initramfs.bbclass`、`dm-verity-initramfs-v2/v3.bbclass`、`dm-verity-bootloader.bbclass`、`dm-verity-cpio-cmdline.bbclass`、`dm-verity-none.bbclass`、`avb-verity-initramfs.bbclass`等),构成一整套AVB/dm-verity镶像签名与校验架构。QLI2.0的meta-qcom中没有任何一个对应class。
+- downstream(maili)的`fstab-generator-Honor-verity-enabled-cmdline.patch`(修改`fstab-generator.c`,识别cmdline中`verity=enabled`/`avb-verity`参数,检测到则强制用`/dev/mapper/root`作为根设备)在QLI2.0全局检索`verity=enabled`、`arg_usr_verity`均零匹配。
+- 决定性证据:downstream(maili)的`poky/meta-qti-bsp/classes/`下存在整整8个dm-verity相关bbclass(`dm-verity-initramfs.bbclass`、`dm-verity-initramfs-v2/v3.bbclass`、`dm-verity-bootloader.bbclass`、`dm-verity-cpio-cmdline.bbclass`、`dm-verity-none.bbclass`、`avb-verity-initramfs.bbclass`等),构成一整套AVB/dm-verity镶像签名与校验架构。QLI2.0的meta-qcom中没有任何一个对应class。
 - 与output/Boot_Architecture/Partition_Layout/Partition_Layout.md(Android安全HAL分区消失)、output/Boot_Architecture/systemd_/systemd_.md三方证据互相印证。
 
 ## 关键差异
 
-- root=语法变化(隐式A/B slot → 显式静态`root=PARTLABEL=rootfs`)和cmdline固化时机变化(运行时拼接 → 构建期烘焙进UKI)看似两条独立的表格行,实际是同一件事的两个侧面:QLI1.0的cmdline是"运行时由ABL+abctl拼出来的",QLI2.0是"构建时就定好、之后不再变"。这直接决定了审计方式的差异——QLI1.0要看实机才能拿到真实cmdline,QLI2.0靠看Yocto配置就能还原,但代价是灵活性(同一镜像切换console/内存布局需要重新构建)。
+- root=语法变化(隐式A/B slot → 显式静态`root=PARTLABEL=rootfs`)和cmdline固化时机变化(运行时拼接 → 构建期烘焙进UKI)看似两条独立的表格行,实际是同一件事的两个侧面:downstream(maili)的cmdline是"运行时由ABL+abctl拼出来的",QLI2.0是"构建时就定好、之后不再变"。这直接决定了审计方式的差异——downstream(maili)要看实机才能拿到真实cmdline,QLI2.0靠看Yocto配置就能还原,但代价是灵活性(同一镜像切换console/内存布局需要重新构建)。
 - 但"构建期固化"不能简单等同于"更安全":cmdline固化只解决了"内容是否可预测",没有回答"内容是否可被篡改后仍然启动"——这需要UKI签名机制配合,而`meta-qcom*`/`build/conf`范围内全局检索`UKI_SB_KEY`/`UKI_SB_CERT`/`sbsign`均零命中(见Boot_Flow.md),说明当前默认构建的UKI没有做secure boot签名。也就是说cmdline固化目前只带来了可预测/可审计收益,还没有带来防篡改收益。
-- 三个独立证据源(cmdline无verity参数、systemd的verity相关补丁未吸收、Android安全分区消失)指向同一个结论:QLI1.0那套"cmdline声明verity状态→fstab-generator识别→dm-verity/AVB校验→安全分区提供密钥"的完整链路,在QLI2.0里不是被等价替换,而是整条链路都不存在了,目前也没有看到功能对等的替代方案在构建配置里落地。
+- 三个独立证据源(cmdline无verity参数、systemd的verity相关补丁未吸收、Android安全分区消失)指向同一个结论:downstream(maili)那套"cmdline声明verity状态→fstab-generator识别→dm-verity/AVB校验→安全分区提供密钥"的完整链路,在QLI2.0里不是被等价替换,而是整条链路都不存在了,目前也没有看到功能对等的替代方案在构建配置里落地。
 
 ## 影响与风险
 
 - 若QLI2.0后续要为某些产品线启用dm-verity/安全启动等价能力,需要重新设计cmdline注入点(目前`esp-qcom-image.bb`里没有对应hook)、补上UKI secure boot签名链路(`UKI_SB_KEY`/`UKI_SB_CERT`,目前零命中),且systemd层面的fstab-generator逻辑也需要重新引入。
-- QLI1.0的运行时动态cmdline意味着仅看Yocto仓库无法还原出设备上实际生效的完整`/proc/cmdline`,审计/合规团队如需精确核对启动参数,必须结合实机抓取或ABL源码。
+- downstream(maili)的运行时动态cmdline意味着仅看Yocto仓库无法还原出设备上实际生效的完整`/proc/cmdline`,审计/合规团队如需精确核对启动参数,必须结合实机抓取或ABL源码。
 - QLI2.0根文件系统完整性校验已确认没有替代方案:就是纯ext4、无任何完整性校验机制,不存在"被fs-verity等价机制替代"的情况——`UKI_CMDLINE`明确是`rw`而非`ro`,`DISTRO_FEATURES`/`EXTRA_IMAGE_FEATURES`都没有加`read-only-rootfs`,全仓检索`fs-verity`/`fsverity`/`veritysetup`/`dm-verity`在`meta-qcom*`范围内零命中。这是output/Platform_Features/OTA_Mechanism/OTA_Mechanism.md中P0级待决策事项的重要组成部分。
 
 ## 待确认

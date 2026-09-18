@@ -4,8 +4,8 @@
 
 ## 1. WLAN驱动栈与平台守护进程核实
 
-**做法**:核对QLI1.0`meta-qti-wlan`(按芯片/项目拆分的多个recipe)与`meta-qti-wlan-prop`(`cnss-daemon`/`qcacld-utils`/`hal-proxy-daemon`/`qsaharaservice`/`ftm`/`wlan-services`)各自recipe;核对QLI2.0`ath10k`/`ath11k`/`ath12k`随`linux-qcom`内核编译的事实,并用`iq-9075-evk`真实构建产物的defconfig与rootfs manifest核实。
-**证据**:QLI1.0侧专有CLD/PRIMA族驱动+CNSS平台守护进程整套闭源栈;QLI2.0侧全树搜索`meta-qti-wlan-prop`对应能力均零命中,内核`.config`中`CONFIG_CNSS`无匹配(先前grep命中的"cnss"字符串核实为`wcnss.mbn`/`wlanmdsp.mbn`文件名子串假阳性,已排除)。
+**做法**:核对downstream(maili)`meta-qti-wlan`(按芯片/项目拆分的多个recipe)与`meta-qti-wlan-prop`(`cnss-daemon`/`qcacld-utils`/`hal-proxy-daemon`/`qsaharaservice`/`ftm`/`wlan-services`)各自recipe;核对QLI2.0`ath10k`/`ath11k`/`ath12k`随`linux-qcom`内核编译的事实,并用`iq-9075-evk`真实构建产物的defconfig与rootfs manifest核实。
+**证据**:downstream(maili)侧专有CLD/PRIMA族驱动+CNSS平台守护进程整套闭源栈;QLI2.0侧全树搜索`meta-qti-wlan-prop`对应能力均零命中,内核`.config`中`CONFIG_CNSS`无匹配(先前grep命中的"cnss"字符串核实为`wcnss.mbn`/`wlanmdsp.mbn`文件名子串假阳性,已排除)。
 **落到结论**:对比总览表"WLAN驱动""WLAN平台守护进程"两行,"关键差异"节"专有仓库→标准开源最彻底的案例之一"的判断。
 
 ## 2. `MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS`实测核实
@@ -20,15 +20,15 @@
 **证据**:确认已声明variant清单——`qrb2210-rb1.dts`(`Thundercomm_RB1`)、`qcs6490-rb3gen2.dts`(`Qualcomm_rb3gen2`)、`talos-evk-som.dtsi`(`QC_QCS615_Ride`)、`lemans-ride-common.dtsi`(`QC_SA8775P_Ride`)。
 **落到结论**:对比总览表"WLAN固件"行,"关键差异"节"定制RF校准数据的通道在QLI2.0是真实可用且已有多个Qualcomm参考板在用的机制,不是完全空白"的判断,以及"待确认"节"iq-9075-evk等尚未声明校准variant的目标板"这一收窄后的开放问题。
 
-## 4. 关于"QLI1.0=全专有驱动"的核实(本文档取证重点)
+## 4. 关于"downstream(maili)=全专有驱动"的核实(本文档取证重点)
 
-**做法**:先确认QLI1.0内核源码树客观携带完整可编译的`drivers/net/wireless/ath/{ath10k,ath11k,ath12k}`源码,`db845c_gki.fragment`显式启用`CONFIG_ATH10K_AHB=y`;对该fragment所在git仓库(`kernel_platform/common`,remote`quic`)跑`git log --all`核实触碰该文件的commit作者全部是`@google.com`/`@linaro.org`(无一个`@qualcomm.com`/`@quicinc.com`);再核对决定性证据`packagegroup-qti-wifi.bb`对所有列出机型是否均为QCACLD32_LL组合。
+**做法**:先确认downstream(maili)内核源码树客观携带完整可编译的`drivers/net/wireless/ath/{ath10k,ath11k,ath12k}`源码,`db845c_gki.fragment`显式启用`CONFIG_ATH10K_AHB=y`;对该fragment所在git仓库(`kernel_platform/common`,remote`quic`)跑`git log --all`核实触碰该文件的commit作者全部是`@google.com`/`@linaro.org`(无一个`@qualcomm.com`/`@quicinc.com`);再核对决定性证据`packagegroup-qti-wifi.bb`对所有列出机型是否均为QCACLD32_LL组合。
 
-**修正结论**:"QLI1.0所有已知量产机型的packagegroup均强制选择QCACLD"(镜像级/产品级结论)成立;"QLI1.0代码库完全没有ath代码"(代码库级结论)不成立,是过度简化——即QLI1.0内核树本身携带完整可编译的ath10k/11k/12k源码,只是从未被任何产品链路的packagegroup挂接使用,这两个层面(代码库存在性 vs 产品链路挂接)是不同问题,不能混为一谈。
+**修正结论**:"downstream(maili)所有已知量产机型的packagegroup均强制选择QCACLD"(镜像级/产品级结论)成立;"downstream(maili)代码库完全没有ath代码"(代码库级结论)不成立,是过度简化——即downstream(maili)内核树本身携带完整可编译的ath10k/11k/12k源码,只是从未被任何产品链路的packagegroup挂接使用,这两个层面(代码库存在性 vs 产品链路挂接)是不同问题,不能混为一谈。
 
 本次进一步读取`.git/packed-refs`确认本地实际只镶了1条远程分支的完整历史,排除了"本地镜像其实有更多分支只是没列出来"的可能性,但仍只能证明"这个本地镜像看不到"其他分支,不能排除Qualcomm内部另有未镶像到这里的分支——这一边界已写入"待确认"节。
 
-**落到结论**:"关于'QLI1.0=全专有驱动'的核实"整节,以及ath6kl legacy路径部分——`iq-9075-evk`实际构建产物defconfig(无`CONFIG_ATH6KL`)与rootfs manifest(0命中)全链路均未激活。
+**落到结论**:"关于'downstream(maili)=全专有驱动'的核实"整节,以及ath6kl legacy路径部分——`iq-9075-evk`实际构建产物defconfig(无`CONFIG_ATH6KL`)与rootfs manifest(0命中)全链路均未激活。
 
 ## 5. ath6kl上游维护状态交叉验证
 

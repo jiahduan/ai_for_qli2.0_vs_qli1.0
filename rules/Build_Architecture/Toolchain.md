@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -81,18 +81,18 @@
   - 用户态工具链版本:`tcmode-default.inc`(GCC 13.%)、`binutils_2.42.bb`/`binutils_2.46.bb`、`glibc_2.39.bb`/`glibc_2.43.bb`
   - distro层二次锁定:`qti-distro-base.inc`(`GCCVERSION="13.4%"`)vs`qcom-base.inc`(未二次锁定)
   - `TC_CXX_RUNTIME`唯一赋值点:`bitbake.conf`(`TC_CXX_RUNTIME ??= "gnu"`)
-  - QLI1.0 meta-clang层:`poky/meta-clang`(`LLVMVERSION="18.1.6"`)
+  - downstream(maili) meta-clang层:`poky/meta-clang`(`LLVMVERSION="18.1.6"`)
   - 内核构建强制clang的recipe:`linux-msm_5.4.bb`(sa410m/sa515m,`TOOLCHAIN="clang"`/`RUNTIME="llvm"`)、`linux-msm_5.10/5.15.bb`/`linux-msm_6.%.bb`/`linux-common_6.12.bb`/`linux-common-soc_6.18.bb`(其余主流机型,`KERNEL_CC=.../clang/bin/clang`无条件)
   - clang来源载体:`kernel-toolchain_{5.10,5.15,6.%}.bb`(provider,原样打包`kernel_platform/prebuilts/clang/host/linux-x86/`AOSP预编译clang,与meta-clang层无关)
   - QLI2.0 clang等价物合并进oe-core:`oe-core/meta/recipes-devtools/clang/{clang_git.bb, llvm_git.bb, libcxx_git.bb, compiler-rt_git.bb, compiler-rt-sanitizers_git.bb, lld_git.bb, lldb_git.bb, clang-crosssdk_git.bb, clang-cross_git.bb, libclc_git.bb}`、`oe-core/meta/classes/toolchain/clang.bbclass`
   - QLI2.0仅两处recipe级clang override:`meta-openembedded/meta-oe/recipes-devtools/perfetto/perfetto.bb`、`meta-ros/meta-ros-common/recipes-devtools/ogre-next/ogre-next_2.2.7.bb`(实际构建路径解析到不带override的`ogre-next_2.3.3.bb`)
   - 孤立clang消费者:`meta-qti-gfx-prop/recipes/adreno/clangtblgen.bb`
-  - 安全加固基线对比:两侧`security_flags.inc`,QLI1.0`meta-qti-distro/conf/distro/include/security_flags.inc`高风险组件清单(`npu`/`ebtables`/`audiohal`/`setools`/`gps-utils`/`loc-hal`/`loc-core`/`bt-app`/`libbt-vendor`/`media`/`lib32-qmmf-sdk`)
+  - 安全加固基线对比:两侧`security_flags.inc`,downstream(maili)`meta-qti-distro/conf/distro/include/security_flags.inc`高风险组件清单(`npu`/`ebtables`/`audiohal`/`setools`/`gps-utils`/`loc-hal`/`loc-core`/`bt-app`/`libbt-vendor`/`media`/`lib32-qmmf-sdk`)
   - migration依据存档:`reference/System_Architecture/Yocto/Migration notes for 6.0 (wrynose)`
 - **已验证的检索方式**:
   - 全文件类型限定搜索`TC_CXX_RUNTIME`赋值点,区分"唯一赋值"与"条件判断",确认全树是否有machine/distro conf把它改成llvm/android
   - `grep -rn PREFERRED_TOOLCHAIN`扫描全部machine/distro层(meta-qcom/meta-qcom-distro/meta-qcom-robotics-sdk/meta-security/meta-updater/meta-virtualization/meta-selinux/meta-audioreach/meta-ros/meta-lts-mixins),确认零override
   - `grep -rln 'TOOLCHAIN[[:space:]]*=[[:space:]]*"clang"'`全层扫描recipe级override,再逐个核实是否真的进入镜像依赖链:①`grep -rl <recipe名>`在meta-qcom系列+meta-ros层查有无依赖方引用;②核对各`PREFERRED_VERSION_<pkg>`及distro yml(`DISTRO_FEATURES:append`/`distro:`)实际选择的版本,排除"存在override但从未被构建路径选中"的假阳性
   - 读取`reference/`下"Migration notes for 6.0 (wrynose)"存档页面breaking change清单,核实GCC/glibc/binutils版本号跳跃本身是否属于Yocto强制迁移动作(结论:不属于,是oe-core逐release的recipe版本迭代)
-  - 读取两侧`security_flags.inc`逐字节对比`SECURITY_CFLAGS`/`SECURITY_STACK_PROTECTOR`/`_FORTIFY_SOURCE`默认逻辑,再grep核实QLI1.0清单里的专有组件名(`npu`/`audiohal`/`gps-utils`/`loc-hal`/`loc-core`/`bt-app`/`libbt-vendor`/`qmmf-sdk`)在QLI2.0是否存在
-- **已知易错点/纠错记录**:README《曾纠正过的结论》表收录本主题条目——"clang使用范围":初步判断"仅是可选项"(默认GCC,clang只是可选路径);核实后结论:该判断仅对用户态包成立,内核构建层面QLI1.0现役主流机型(pineapple/kalama/sun/mdm9607/cinder/qcm2290-mtp/qrb5165-rb5/trustedvm系列/seraph/pebble等)实际强制走AOSP预编译clang,这条路径与meta-clang层无关,体量远大于最初判断的"仅可选项"。
+  - 读取两侧`security_flags.inc`逐字节对比`SECURITY_CFLAGS`/`SECURITY_STACK_PROTECTOR`/`_FORTIFY_SOURCE`默认逻辑,再grep核实downstream(maili)清单里的专有组件名(`npu`/`audiohal`/`gps-utils`/`loc-hal`/`loc-core`/`bt-app`/`libbt-vendor`/`qmmf-sdk`)在QLI2.0是否存在
+- **已知易错点/纠错记录**:README《曾纠正过的结论》表收录本主题条目——"clang使用范围":初步判断"仅是可选项"(默认GCC,clang只是可选路径);核实后结论:该判断仅对用户态包成立,内核构建层面downstream(maili)现役主流机型(pineapple/kalama/sun/mdm9607/cinder/qcm2290-mtp/qrb5165-rb5/trustedvm系列/seraph/pebble等)实际强制走AOSP预编译clang,这条路径与meta-clang层无关,体量远大于最初判断的"仅可选项"。

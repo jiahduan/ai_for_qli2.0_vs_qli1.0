@@ -1,6 +1,6 @@
 # Kernel_Build 原理文档
 
-本文档解释"内核构建"在Yocto/OE体系里管什么范围、为什么要单独对比它——是理解`Kernel_Build.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Kernel_Build.md`)。
+本文档解释"内核构建"在Yocto/OE体系里管什么范围、为什么要单独对比它——是理解`Kernel_Build.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Kernel_Build.md`)。
 
 ## 1. "内核构建"在Yocto里管什么
 

@@ -4,13 +4,13 @@
 
 ## 1. `.git`性质的坐实——符号链接 vs 真实目录
 
-**做法**:`ls -la`检查QLI1.0侧`poky/.git`、`src/security/securemsm/.git`、`qc/display-kernel.lnx/cd/.git`三处的实际指向;`stat -c "%N type=%F"`检查QLI2.0侧`meta-qcom/.git`、`meta-audioreach/.git`、`meta-updater/.git`、`oe-core/.git`、`bitbake/.git`五处的文件类型。
-**证据**:QLI1.0三处均为符号链接,指向`.repo/projects/<path>.git`(`poky/.git` → `../.repo/projects/poky.git`;`src/security/securemsm/.git` → `../../../.repo/projects/src/security/securemsm.git`);QLI2.0五处`stat`结果全部为`type=directory`,即真实完整git仓库。
+**做法**:`ls -la`检查downstream(maili)侧`poky/.git`、`src/security/securemsm/.git`、`qc/display-kernel.lnx/cd/.git`三处的实际指向;`stat -c "%N type=%F"`检查QLI2.0侧`meta-qcom/.git`、`meta-audioreach/.git`、`meta-updater/.git`、`oe-core/.git`、`bitbake/.git`五处的文件类型。
+**证据**:downstream(maili)三处均为符号链接,指向`.repo/projects/<path>.git`(`poky/.git` → `../.repo/projects/poky.git`;`src/security/securemsm/.git` → `../../../.repo/projects/src/security/securemsm.git`);QLI2.0五处`stat`结果全部为`type=directory`,即真实完整git仓库。
 **落到结论**:对比总览表"`.git`性质"行,是《关键差异》第一条"仓库边界从manifest这一个中心化元数据搬到每个层自己是一个完整git仓库"这一判断的直接证据来源。
 
 ## 2. 对象库组织方式的坐实
 
-**做法**:确认QLI1.0侧集中对象库的目录结构与规模(`.repo/projects*`与`.repo/project-objects`)。
+**做法**:确认downstream(maili)侧集中对象库的目录结构与规模(`.repo/projects*`与`.repo/project-objects`)。
 **证据**:`.repo/project-objects`下89个project-object目录,是repo工具标准"分离对象库+多工作树"存储模型的直接体现。
 **落到结论**:对比总览表"对象库组织"行、"存储去重"行。
 
@@ -29,7 +29,7 @@
 ## 5. 存储去重的定性判断与"未做定量对比"的明确标注
 
 **做法**:取证要点记录了`du -sh */.git`这一核实思路,但明确标注为"未做定量对比"。
-**证据**:定性层面可判断——QLI1.0集中对象库支持多project共享pack(去重),QLI2.0polyrepo各自独立`.git`无此能力;定量层面(具体磁盘占用差多少)未执行。
+**证据**:定性层面可判断——downstream(maili)集中对象库支持多project共享pack(去重),QLI2.0polyrepo各自独立`.git`无此能力;定量层面(具体磁盘占用差多少)未执行。
 **落到结论**:对比总览表"存储去重"行按定性结论呈现,并在《对比范围》"待定边界"字段如实标注"polyrepo总体磁盘占用是否确实高于集中对象库去重方案——已提出`du -sh */.git`核实思路但未做定量对比,留待下次修订本文档时补测",遵循规则3"抽样声明"关于不得直接外推为总体结论的要求,不虚构一个未执行的定量结果。
 
 ## 本主题无纠错记录的说明

@@ -1,6 +1,6 @@
 # SDK_eSDK 原理文档
 
-本文档解释SDK/eSDK在Yocto/OE体系里是什么、管什么范围、为什么要对比它——是理解`SDK_eSDK.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../SDK_eSDK.md`)。
+本文档解释SDK/eSDK在Yocto/OE体系里是什么、管什么范围、为什么要对比它——是理解`SDK_eSDK.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../SDK_eSDK.md`)。
 
 ## 1. SDK/eSDK是什么
 

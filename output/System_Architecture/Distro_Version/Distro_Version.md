@@ -1,9 +1,9 @@
 # System Architecture — Distro Version
 
 ## Comparison
-QLI1.0(8950-pebble) vs QLI2.0(iq-9075-evk)
+downstream(maili)(8950-pebble) vs QLI2.0(iq-9075-evk)
 
-| 维度 | QLI1.0 | QLI2.0 |
+| 维度 | downstream(maili) | QLI2.0 |
 |---|---|---|
 | Distro层物理载体 | `poky/meta-qti-distro` | `meta-qcom-distro` |
 | 该机型生效DISTRO | `qti-distro-camerastack-debug`(`auto.conf`实测) | `qcom-distro`(官方CI矩阵`build-yocto.yml`实测) |
@@ -12,7 +12,7 @@ QLI1.0(8950-pebble) vs QLI2.0(iq-9075-evk)
 | GCC版本锁定 | distro层二次锁定`13.4%` | 未二次锁定,继承`tcmode-default.inc`的`15.%` |
 | SELinux启用方式 | 硬编码在distro conf(`PREFERRED_PROVIDER_virtual/refpolicy="refpolicy-mls-robotics"`),默认开 | 独立overlay`qcom-distro-selinux.conf`,`DEFAULT_ENFORCING?="enforcing"`,按需启用 |
 | OTA方案 | `qti-ab-boot`(A/B分区) | `qcom-distro-sota`(OSTree+aktualizr) |
-| DISTRO_FEATURES专有项 | `qti-wifi qti-ab-boot emmc-boot`等 | `tpm2 kvm overlayfs polkit`等,与QLI1.0零重叠 |
+| DISTRO_FEATURES专有项 | `qti-wifi qti-ab-boot emmc-boot`等 | `tpm2 kvm overlayfs polkit`等,与downstream(maili)零重叠 |
 | 机型级override | 未见覆盖distro层默认值 | 未见覆盖distro层默认值(已grep两侧machine conf确认) |
 | 该产品线在对侧的承接 | pebble所在camerastack线 | 无对应distro conf,仅robotics线有承接(`meta-qcom-robotics-sdk`) |
 

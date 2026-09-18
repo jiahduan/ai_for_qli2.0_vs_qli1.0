@@ -1,6 +1,6 @@
 # Code_Submission 原理文档
 
-本文档解释"代码提交与评审"这件事在软件工程体系里管什么范围、为什么值得单独拿出来对比——这是理解`Code_Submission.md`Comparison结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Code_Submission.md`)。
+本文档解释"代码提交与评审"这件事在软件工程体系里管什么范围、为什么值得单独拿出来对比——这是理解`Code_Submission.md`Comparison结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Code_Submission.md`)。
 
 ## 1. Code_Submission层管的是什么
 
@@ -9,10 +9,10 @@
 ## 2. 为什么要对比这个主题
 
 Gerrit与GitHub PR不只是工具换皮,是两种不同的评审模型:
-- **Gerrit(QLI1.0)**:patchset-based,每次修订是对同一个change的迭代,`Change-Id`贯穿全生命周期,天然支持"一个仓统一评审、统一追溯"。
+- **Gerrit(downstream(maili))**:patchset-based,每次修订是对同一个change的迭代,`Change-Id`贯穿全生命周期,天然支持"一个仓统一评审、统一追溯"。
 - **GitHub PR+DCO(QLI2.0)**:commit-based,评审绑定在分支合并请求上,追溯单位是commit/PR而不是跨版本统一的change标识。
 
-这个模型差异会带来实际后果:QLI1.0靠`summary_log.txt`+Gerrit API就能拉出"这次集成包含哪些change"的完整清单,是单一入口;QLI2.0下每个`meta-*`层是独立GitHub仓库、独立CI、独立评审规则,追溯与合规审计(如出口管制、代码来源追查)要跨多个仓库拼装,原有依赖单一Gerrit入口的脚本/流程会失效。谁对"合规检查是否生效"负责这件事,也从"一套内部Gerrit hook"变成"每个层自己的`.github/workflows`+ruleset",责任主体分散化了——这才是这个主题真正值得深挖的工程问题,不是"用了哪个评审工具"这种表面差异。
+这个模型差异会带来实际后果:downstream(maili)靠`summary_log.txt`+Gerrit API就能拉出"这次集成包含哪些change"的完整清单,是单一入口;QLI2.0下每个`meta-*`层是独立GitHub仓库、独立CI、独立评审规则,追溯与合规审计(如出口管制、代码来源追查)要跨多个仓库拼装,原有依赖单一Gerrit入口的脚本/流程会失效。谁对"合规检查是否生效"负责这件事,也从"一套内部Gerrit hook"变成"每个层自己的`.github/workflows`+ruleset",责任主体分散化了——这才是这个主题真正值得深挖的工程问题,不是"用了哪个评审工具"这种表面差异。
 
 ## 3. 与相邻主题的分工边界原理
 

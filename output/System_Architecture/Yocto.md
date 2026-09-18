@@ -4,9 +4,9 @@
 
 - **覆盖**:本文比较双侧所依托的Yocto Project发布版本本身(release/codename/组织范式/官方breaking change),以及由此驱动的meta-qti-*层迁移机械性风险评估;按子方向列出双侧锚点:
   - Yocto Release身份与顶层版本证据:
-    - QLI1.0:`poky/meta-poky/conf/distro/poky.conf`(`DISTRO_VERSION="5.0.19"`/`DISTRO_CODENAME="scarthgap"`)+`poky/meta/conf/layer.conf`(`LAYERSERIES_COMPAT_core="scarthgap"`,已实测核实)+`poky/bitbake/lib/bb/__init__.py`(仅作版本识别锚点,`__version__="2.8.1"`,已实测核实)
+    - downstream(maili):`poky/meta-poky/conf/distro/poky.conf`(`DISTRO_VERSION="5.0.19"`/`DISTRO_CODENAME="scarthgap"`)+`poky/meta/conf/layer.conf`(`LAYERSERIES_COMPAT_core="scarthgap"`,已实测核实)+`poky/bitbake/lib/bb/__init__.py`(仅作版本识别锚点,`__version__="2.8.1"`,已实测核实)
     - QLI2.0:`oe-core/meta/conf/layer.conf`(`LAYERSERIES_CORENAMES="wrynose"`/`LAYERSERIES_COMPAT_core="wrynose"`,已实测核实)+`bitbake/lib/bb/__init__.py`(`__version__="2.18.0"`,已实测核实,`git describe --tags`→`yocto-6.0.1`)+`meta-qcom/README.md`第44-45行("wrynose: LTS branch based on the Yocto Project 6.0 release, used by Qualcomm Linux 2.x.",已核实原文)
-  - 顶层组织形态对比(仅作release范式演进的证据,不深挖仓库机制本身):QLI1.0`poky/`单体仓库(bitbake+meta+meta-poky一体)vs QLI2.0`bitbake/`与`oe-core/`独立顶层仓库,已用`ls -d */`两侧实测核实
+  - 顶层组织形态对比(仅作release范式演进的证据,不深挖仓库机制本身):downstream(maili)`poky/`单体仓库(bitbake+meta+meta-poky一体)vs QLI2.0`bitbake/`与`oe-core/`独立顶层仓库,已用`ls -d */`两侧实测核实
   - 中间版本(5.1 styhead/5.2 walnascar/5.3 whinlatter/6.0 wrynose)官方breaking change逐条核实:已用户存档的`reference/System_Architecture/Yocto/`9份官网migration/release notes页面核实(本地网络受限无法直连docs.yoctoproject.org);覆盖UNPACKDIR迁移、虚拟工具链provider重命名、`DISTRO_FEATURES_DEFAULTS`/`_OPTED_OUT`默认值机制重构、`kernel-fitimage.bbclass`移除、SPDX/cve-check换代、pkgconfig显式inherit要求等具体条目
   - 官方版本基线交叉验证:Yocto Release官方基线(Linux kernel/gcc/glibc/LLVM/Python最低版本)与本仓库实测值的对照表,仅做"是否贴合官方基线"的交叉验证,不重复各专题文档自身的深度分析
   - meta-qti-*层迁移到wrynose规范的机械性风险扫描(前提:`../Code_Composition/Layer_Architecture.md`已完成的旧layer→新layer映射):
@@ -23,7 +23,7 @@
   - 内核代码血统/仓库治理(GKI vs mainline-first、commit标签体系、同源性分析) ——见[Kernel_Code_Architecture](Kernel_Code_Architecture/Kernel_Code_Architecture.md)
   - `meta-qti-*`→`meta-qcom*`逐层映射、层数统计(59→21)、消失layer去向核实 ——见[Layer_Architecture](../Code_Composition/Layer_Architecture/Layer_Architecture.md)
   - 补丁总量统计与补丁存活率抽样分析 ——见[Patch_Management](../Code_Composition/Patch_Management/Patch_Management.md)
-  - distro变体矩阵与DISTRO_FEATURES的QLI1.0/QLI2.0产品级对比 ——见[Distro_Version](Distro_Version/Distro_Version.md)
+  - distro变体矩阵与DISTRO_FEATURES的downstream(maili)/QLI2.0产品级对比 ——见[Distro_Version](Distro_Version/Distro_Version.md)
   - 设备树overlay/FIT image具体实现与rootfs overlayfs方案 ——见[Overlay](Overlay/Overlay.md)
   - OTA/OSTree/aktualizr机制与dm-verity/AVB完整性校验消失结论 ——见[OTA_Mechanism](../Platform_Features/OTA_Mechanism/OTA_Mechanism.md)
   - 代码提交/评审/CI/CVE扫描与许可证合规工具细节 ——见[Code_Submission](../Platform_Features/Code_Submission/Code_Submission.md)
@@ -33,7 +33,7 @@
 
 ## 对比总览
 
-| 维度 | QLI1.0 | QLI2.0 |
+| 维度 | downstream(maili) | QLI2.0 |
 |---|---|---|
 | Yocto Release | 5.0.19,codename scarthgap(LTS) | 6.0.1,codename wrynose(LTS) |
 | 版本证据 | `poky/meta-poky/conf/distro/poky.conf`: `DISTRO_VERSION="5.0.19"`,`DISTRO_CODENAME="scarthgap"`;`layer.conf`: `LAYERSERIES_COMPAT_core="scarthgap"` | `oe-core/meta/conf/layer.conf`: `LAYERSERIES_CORENAMES="wrynose"`,`LAYERSERIES_COMPAT_core="wrynose"` |
@@ -45,7 +45,7 @@
 
 ## 中间版本(5.1/5.2/5.3/6.0)迁移指南核查结果(已用官网存档页面核实)
 
-> 本地代码仓库均未附带5.1及以后版本的迁移指南(QLI1.0的`poky/documentation/migration-guides/`只到migration-5.0;QLI2.0的`oe-core/`没有documentation目录),直连官网也被环境网络限制拦截。用户已把官网`docs.yoctoproject.org`的9份页面(scarthgap/styhead/walnascar/whinlatter/wrynose的Migration notes与部分Release notes)存档到`reference/System_Architecture/Yocto/`目录下,本节内容已基于这些存档页面逐条核实,不再是推测性内容。
+> 本地代码仓库均未附带5.1及以后版本的迁移指南(downstream(maili)的`poky/documentation/migration-guides/`只到migration-5.0;QLI2.0的`oe-core/`没有documentation目录),直连官网也被环境网络限制拦截。用户已把官网`docs.yoctoproject.org`的9份页面(scarthgap/styhead/walnascar/whinlatter/wrynose的Migration notes与部分Release notes)存档到`reference/System_Architecture/Yocto/`目录下,本节内容已基于这些存档页面逐条核实,不再是推测性内容。
 
 ### 版本号交叉验证(存档页面 vs 本仓库实测值)
 
@@ -53,8 +53,8 @@
 
 | Yocto Release | 官网基线(Linux kernel / gcc / glibc / LLVM) | 本仓库实测值 | 对照结论 |
 |---|---|---|---|
-| 5.0 scarthgap | 6.6 / 13.2 / 2.39 / 18.1 | QLI1.0: GCC`13.4%`、glibc`2.39%`(详见output/Build_Architecture/Toolchain/Toolchain.md);meta-clang`LLVMVERSION=18.1.6` | glibc、LLVM与官网基线几乎逐位对上;GCC 13.4是13.x系列内的一个point release,同属官网列出的13.2基线家族;**内核号完全不对应**(QLI1.0实际内核是私有的Android GKI血统6.18.21,不走`linux-yocto`默认recipe,官网"6.6"只是`linux-yocto`参考recipe默认版本,与QLI1.0实际交付内核无关,详见output/System_Architecture/Kernel_Code_Architecture/Kernel_Code_Architecture.md) |
-| 6.0 wrynose | 6.18 / 15.2 / 2.43 / 22.1.2 | QLI2.0: GCC`15.%`、glibc`2.43%`(详见output/Build_Architecture/Toolchain/Toolchain.md);`linux-qcom_6.18.bb`版本6.18.30 | gcc、glibc**精确匹配**官网基线;**内核大版本号6.18也与官网基线一致**(QLI2.0的`linux-qcom`虽然走的是独立git仓库而非标准`linux-yocto`,但版本选型6.18与wrynose默认参考内核版本一致,不像QLI1.0那样完全脱节,侧面印证QLI2.0在整体工具链选型上比QLI1.0更贴合Yocto官方LTS基线) |
+| 5.0 scarthgap | 6.6 / 13.2 / 2.39 / 18.1 | downstream(maili): GCC`13.4%`、glibc`2.39%`(详见output/Build_Architecture/Toolchain/Toolchain.md);meta-clang`LLVMVERSION=18.1.6` | glibc、LLVM与官网基线几乎逐位对上;GCC 13.4是13.x系列内的一个point release,同属官网列出的13.2基线家族;**内核号完全不对应**(downstream(maili)实际内核是私有的Android GKI血统6.18.21,不走`linux-yocto`默认recipe,官网"6.6"只是`linux-yocto`参考recipe默认版本,与downstream(maili)实际交付内核无关,详见output/System_Architecture/Kernel_Code_Architecture/Kernel_Code_Architecture.md) |
+| 6.0 wrynose | 6.18 / 15.2 / 2.43 / 22.1.2 | QLI2.0: GCC`15.%`、glibc`2.43%`(详见output/Build_Architecture/Toolchain/Toolchain.md);`linux-qcom_6.18.bb`版本6.18.30 | gcc、glibc**精确匹配**官网基线;**内核大版本号6.18也与官网基线一致**(QLI2.0的`linux-qcom`虽然走的是独立git仓库而非标准`linux-yocto`,但版本选型6.18与wrynose默认参考内核版本一致,不像downstream(maili)那样完全脱节,侧面印证QLI2.0在整体工具链选型上比downstream(maili)更贴合Yocto官方LTS基线) |
 | 6.0 wrynose(Python) | "Minimum Python version required on the host: 3.9" | `sanity.bbclass`硬编码Python最低3.9(详见output/Build_Architecture/Build_Environment/Build_Environment.md) | 精确匹配,此前的实测发现现已有官方文档依据 |
 
 补充中间版本的基线演进,便于看清QLI2.0选型落在哪个具体节点上(数据来自各版本Release notes的官方New Features摘要,非推测):
@@ -69,7 +69,7 @@
 
 可以看到gcc/glibc/LLVM是逐版本单调递增的一条平滑曲线,QLI2.0实测的GCC 15.x、glibc 2.43精确落在6.0这一端点上,而不是任何中间版本,说明QLI2.0团队是直接对齐到最新LTS(wrynose)而非停留在某个中间过渡版本,这与"QLI2.0没有历史包袱、可以一步到位选型最新基线"的判断吻合。
 
-这组对照本身就是一个值得记录的发现:**QLI1.0虽然名义上是scarthgap(5.0),但其内核版本选型与Yocto官方基线完全脱节(私有Android GKI树);QLI2.0虽然内核也走独立仓库,但版本选型(6.18)与wrynose(6.0)的官方基线保持一致**,说明QLI2.0团队在"要不要贴合上游默认版本"这件事上比QLI1.0团队更谨慎,这也从另一个角度印证了output/System_Architecture/Kernel_Code_Architecture/Kernel_Code_Architecture.md里"mainline-first治理模式"的判断。
+这组对照本身就是一个值得记录的发现:**downstream(maili)虽然名义上是scarthgap(5.0),但其内核版本选型与Yocto官方基线完全脱节(私有Android GKI树);QLI2.0虽然内核也走独立仓库,但版本选型(6.18)与wrynose(6.0)的官方基线保持一致**,说明QLI2.0团队在"要不要贴合上游默认版本"这件事上比downstream(maili)团队更谨慎,这也从另一个角度印证了output/System_Architecture/Kernel_Code_Architecture/Kernel_Code_Architecture.md里"mainline-first治理模式"的判断。
 
 ### 各版本关键breaking change(与本次审计强相关的项,已逐条核实原文)
 
@@ -114,14 +114,14 @@
 ## meta-qti-*层迁移工作量评估
 
 > 前提:output/Code_Composition/Layer_Architecture/Layer_Architecture.md已完成"旧layer→新layer"逐层映射核实,大部分meta-qti-*层(约38个)已能在meta-qcom/meta-qcom-distro/meta-audioreach/meta-security等新层中找到功能对应物,这部分属于"标准迁移"。**但"标准迁移"不等于"零风险的机械劳动"**——结合上一节从官网存档页面核实到的breaking change,这38个层的recipe搬迁过程中至少要过以下几道具体的坎,建议列入排期而不是笼统地写"改一下语法":
-> 1. **`S = ${WORKDIR}/xxx`→`S = ${UNPACKDIR}/xxx`审查**(5.1+5.3引入):QLI1.0的meta-qti-*层里有大量`file://`本地拷贝型recipe(如`mmrm-kernel_1.1.bb`这类`inherit linux-kernel-base`的vendor驱动,详见output/Build_Architecture/Kernel_Build/Kernel_Build.md),这类recipe历史上很容易直接写`S = "${WORKDIR}"`或`S = "${WORKDIR}/某子目录"`,是本次核实到的、影响面最广的单一机械性风险点,需要对约4,864个真实补丁(详见output/Code_Composition/Patch_Management/Patch_Management.md)所依附的recipe逐一做`grep -rn 'S[[:space:]]*=[[:space:]]*"\${WORKDIR}'`扫描。
+> 1. **`S = ${WORKDIR}/xxx`→`S = ${UNPACKDIR}/xxx`审查**(5.1+5.3引入):downstream(maili)的meta-qti-*层里有大量`file://`本地拷贝型recipe(如`mmrm-kernel_1.1.bb`这类`inherit linux-kernel-base`的vendor驱动,详见output/Build_Architecture/Kernel_Build/Kernel_Build.md),这类recipe历史上很容易直接写`S = "${WORKDIR}"`或`S = "${WORKDIR}/某子目录"`,是本次核实到的、影响面最广的单一机械性风险点,需要对约4,864个真实补丁(详见output/Code_Composition/Patch_Management/Patch_Management.md)所依附的recipe逐一做`grep -rn 'S[[:space:]]*=[[:space:]]*"\${WORKDIR}'`扫描。
 > 2. **虚拟工具链provider重命名审查**(5.2引入):任何`DEPENDS`/`PREFERRED_PROVIDER`里写死`virtual/${TARGET_PREFIX}gcc`等旧语法的recipe需要改为`virtual/cross-cc`等新语法。
 > 3. **`inherit pkgconfig`审查**(6.0引入):隐式依赖`PKG_CONFIG_PATH`等变量导出但未显式inherit pkgconfig的recipe会直接构建失败。
 > 4. **kernel-fitimage.bbclass用法审查**(5.3移除,已被kernel-fit-image替代):若meta-qti-*层里有任何vendor驱动/BSP recipe用了旧的`KERNEL_IMAGETYPE = "fitImage"`机制,搬到QLI2.0后必须改造为独立的FIT image recipe(QLI2.0侧`meta-qcom/classes-recipe/dtb-fit-image.bbclass`正是这套新规范下的实现,详见output/System_Architecture/Overlay/Overlay.md)。
 >
 > 这4项都是"确定会遇到、确定要改"的机械性工作,区别于下表列出的、需要业务/架构决策才能启动的7个层/能力点。
 
-### 三项机械性风险的实际扫描结果(已用grep在QLI1.0 poky/meta-qti-*层实测,非估算)
+### 三项机械性风险的实际扫描结果(已用grep在downstream(maili) poky/meta-qti-*层实测,非估算)
 
 | 风险项 | 扫描命令 | 命中文件数 | 结论 |
 |---|---|---|---|
@@ -139,13 +139,13 @@
 | meta-qti-ss-mgr-prop(MDM/QMI专属栈:ssreq-server/pdc-daemon/psm/qmi-shutdown-modem/diag-reboot-app) | 整套用户态QMI守护进程 | 产品线取舍 | **零工作量或整套移植**,二者之一 | 取决于QLI2.0产品roadmap是否包含独立调制解调器(MDM)SKU;若不包含则零工作量,若包含则需要整套移植到新架构(QMI框架本身在meta-qcom中还在,详见recipes-support/qmi-framework,但这几个具体daemon需要重新适配) |
 | meta-qti-cta-internal(CTA测试工具) | 测试App本体 | 随ss-mgr-prop联动 | **零工作量**(若MDM SKU不在范围内则该测试工具自然不需要) | 与上一条同一决策 |
 | meta-qti-ss-mgr(用户态reboot-daemon,SSR失败后slot切换/EDL恢复) | 故障恢复策略与实现 | **需要重新架构设计,不是简单迁移** | 中-高:原逻辑依赖A/B分区切换(abctl),但QLI2.0确认是单一rootfs分区(详见output/Boot_Architecture/Partition_Layout/Partition_Layout.md),原方案在新分区模型下不成立,需要重新设计SSR持续失败后的恢复策略(选项包括:仅靠systemd/watchdog自动重启remoteproc、触发OSTree历史commit回滚、或走aktualizr远程干预),涉及安全/可靠性架构决策+中等量的新开发(一个systemd path unit或守护进程+可能的aktualizr API调用) | 需先有OTA/分区终态方案(详见output/Platform_Features/OTA_Mechanism/OTA_Mechanism.md的P0待决策项),该决策会直接决定这里怎么设计 |
-| meta-qti-sv-internal/-prop(EVA计算机视觉引擎:libeva固件+驱动+测试套件) | 整套闭源硬件加速能力 | **硬件确认存在,纯软件栈缺失**:`meta-qcom/conf/machine/kaanapali-mtp.conf`是QLI2.0真实定义的机型,QLI1.0的`eva-kernel`驱动里有专为"kaanapali"芯片写的`cvp_kaanapali_hal.c`,两边指向同一SoC,证明该芯片确实带EVA硬件IP(详见output/Code_Composition/Layer_Architecture/Layer_Architecture.md)。工作量:**高,且依赖Qualcomm内部资源**(闭源固件/驱动需针对新内核ABI和TrustZone接口重新编译,libeva可能需要从AOSP HAL风格重写为glib/camx风格接口,只有Qualcomm内部团队能做) | QLI1.0`meta-qti-eva-devicetree`标记`x-ship="hy11"`,EVA本就是HY11(fullstack)专属能力,QLI2.0现在机器人产品线定位下是否还需要这块能力,需产品团队拍板 |
+| meta-qti-sv-internal/-prop(EVA计算机视觉引擎:libeva固件+驱动+测试套件) | 整套闭源硬件加速能力 | **硬件确认存在,纯软件栈缺失**:`meta-qcom/conf/machine/kaanapali-mtp.conf`是QLI2.0真实定义的机型,downstream(maili)的`eva-kernel`驱动里有专为"kaanapali"芯片写的`cvp_kaanapali_hal.c`,两边指向同一SoC,证明该芯片确实带EVA硬件IP(详见output/Code_Composition/Layer_Architecture/Layer_Architecture.md)。工作量:**高,且依赖Qualcomm内部资源**(闭源固件/驱动需针对新内核ABI和TrustZone接口重新编译,libeva可能需要从AOSP HAL风格重写为glib/camx风格接口,只有Qualcomm内部团队能做) | downstream(maili)`meta-qti-eva-devicetree`标记`x-ship="hy11"`,EVA本就是HY11(fullstack)专属能力,QLI2.0现在机器人产品线定位下是否还需要这块能力,需产品团队拍板 |
 | meta-qti-internal(kernel-tests/stability-tests/sat-module/memory-error-tests等QA工具) | 内部质量保证/基准测试工具集 | 视具体测试项决定移植或替换 | 低-中,且**优先级低**(不影响产品功能,只影响内部测试流程) | 建议按测试项拆分:部分可能有开源等价物可直接采用(如kselftest/LTP/stress-ng对应部分内核压测场景),部分Qualcomm专有的需要单独评估是否还有维护团队;不建议整层照搬迁移 |
 | meta-qti-security-internal(minktransport-test/qtvm-test/TUI资源/GPTEE测试) | 内部测试工具(底层Mink IPC/TEE能力本身已迁移到位) | 测试代码重写 | 低-中:底层API已从QSEECom+mink-transport换成主线TEE子系统+qcom-tee+生产版minkipc(详见Layer_Architecture.md),旧测试代码本身无法复用(API完全不同),需要针对新API重写测试用例,难度低于EVA场景但仍需专人投入;**TUI(Trusted UI)生产能力**是否存在是独立更大的问题,若产品需要支付/生物识别等安全UI场景,需与安全团队单独立项确认 | 先确认是否仍需要对TEE/Mink IPC路径做常态化回归测试,若需要则安排重写工作;TUI能力缺口需要先由产品/安全团队定priority |
 
 ## 关键差异
 
-- `LAYERSERIES_COMPAT`由scarthgap变为wrynose不是版本号往上挪一格,而是跨过了5.1/5.2/5.3三个完整release的breaking change(UNPACKDIR迁移、虚拟工具链provider重命名、DISTRO_FEATURES默认值机制重构、SPDX/cve-check机制换代等),叠加顶层组织从"厂商fork单体poky"转为"上游oe-core+独立BSP/distro层"的社区化拓扑,是一次架构范式转变而不只是版本升级;但版本号交叉验证表也说明,QLI2.0对Yocto官方基线的贴合程度(GCC/glibc/LLVM/内核大版本号全部精确对上wrynose官方基线)反而比表面上仍标注5.0(scarthgap)、但内核完全私有脱节的QLI1.0更高——版本号本身不能反映"是否真的活在Yocto生态里",要看具体组件版本是否贴基线。
+- `LAYERSERIES_COMPAT`由scarthgap变为wrynose不是版本号往上挪一格,而是跨过了5.1/5.2/5.3三个完整release的breaking change(UNPACKDIR迁移、虚拟工具链provider重命名、DISTRO_FEATURES默认值机制重构、SPDX/cve-check机制换代等),叠加顶层组织从"厂商fork单体poky"转为"上游oe-core+独立BSP/distro层"的社区化拓扑,是一次架构范式转变而不只是版本升级;但版本号交叉验证表也说明,QLI2.0对Yocto官方基线的贴合程度(GCC/glibc/LLVM/内核大版本号全部精确对上wrynose官方基线)反而比表面上仍标注5.0(scarthgap)、但内核完全私有脱节的downstream(maili)更高——版本号本身不能反映"是否真的活在Yocto生态里",要看具体组件版本是否贴基线。
 - 三个中间版本的breaking change逐条核实后,真正需要投入工程量的机械性风险高度集中在一个维度上:`S=${WORKDIR}`→`UNPACKDIR`迁移实测510个文件命中,而虚拟工具链provider改写(0个文件)、`inherit pkgconfig`补齐(3个文件)都只是零星几处。"跨版本升级=处处踩坑"的直觉在数据上不成立,风险高度集中,这对排期估算比笼统的"过一遍breaking change清单"更有用。
 - 38个已找到新家的meta-qti-*层和卡在决策的7项之间界限清晰:后者没有一项是纯技术难度问题,全部卡在产品线取舍(MDM SKU、EVA机器人产品定位)、架构决策(OTA终态方案先落地才能定SSR恢复策略设计)或事实确认(EVA芯片是否真的要继续支持)三类非技术门槛上——"BSP团队按清单逐层迁移"本身不是瓶颈,瓶颈是决策链没跑完。
 

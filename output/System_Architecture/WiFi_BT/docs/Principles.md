@@ -1,6 +1,6 @@
 # WiFi_BT 原理文档
 
-本文档解释WiFi_BT主题在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`WiFi_BT.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../WiFi_BT.md`)。
+本文档解释WiFi_BT主题在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`WiFi_BT.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../WiFi_BT.md`)。
 
 ## 1. WiFi_BT管的是两条连接技术线各自的完整软件栈
 

@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -79,8 +79,8 @@
 
 - **关键双侧目录/文件锚点**:
   - 底层标准SDK类(两侧未改动):`populate_sdk_base.bbclass`、`populate_sdk_ext.bbclass`、`testsdk.bbclass`
-  - QLI1.0二次封装:`poky/meta-qti-bsp/classes/populate_sdk_qti.bbclass`(`inherit populate_sdk_ext`),覆盖产品镜像`qti-multimedia-image.bb`、`qti-robotics-image.bb`、`qti-xreality-image.bb`、`qti-xreality2-base-image.bb`/`qti-xreality2-image.bb`
-  - QLI1.0其他细节:`meta-qti-customizations/core/recipes-core/meta/meta-extsdk-toolchain.bbappend`(`DEPENDS:remove = "qemu-native qemu-helper-native"`)
+  - downstream(maili)二次封装:`poky/meta-qti-bsp/classes/populate_sdk_qti.bbclass`(`inherit populate_sdk_ext`),覆盖产品镜像`qti-multimedia-image.bb`、`qti-robotics-image.bb`、`qti-xreality-image.bb`、`qti-xreality2-base-image.bb`/`qti-xreality2-image.bb`
+  - downstream(maili)其他细节:`meta-qti-customizations/core/recipes-core/meta/meta-extsdk-toolchain.bbappend`(`DEPENDS:remove = "qemu-native qemu-helper-native"`)
   - QLI2.0二次封装:`meta-qcom-robotics-sdk/classes/psdk-image.bbclass`(`addtask do_generate_qirp_sdk after do_populate_sdk`)、`recipes-sdk/qirp-sdk.bb`、`qcom-robotics-sdk.inc`
   - SDK_VERSION管理对照:`meta-qcom-distro/conf/distro/include/qcom-base.inc`(`SDK_VERSION = "${DISTRO_VERSION}"`)vs`psdk-image.bbclass`硬编码`SDK_VERSION = "2.7.0"`覆盖
 - **已验证的检索方式**:

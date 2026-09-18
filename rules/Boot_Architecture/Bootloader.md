@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -77,7 +77,7 @@
 ## Bootloader专属取证要点
 
 - **关键双侧目录/文件锚点**
-  - QLI1.0:`SRC_URI=file://edk2`(ABL本地打包,无公开版本号)、`SIGNING_FUNCTION="sectoolv2_sign_abl"`/`QSIGN_TARGET="pebble"`、`qsigning.bbclass`(`do_compose_vmimage`调用sectools,硬编码`--signing-mode TEST`)、`src/vendor/qcom/proprietary/sectools`(`public/example/plugin_signer_example.py`、`example_resources/README.md`,示例PLUGIN模式对接HSM)
+  - downstream(maili):`SRC_URI=file://edk2`(ABL本地打包,无公开版本号)、`SIGNING_FUNCTION="sectoolv2_sign_abl"`/`QSIGN_TARGET="pebble"`、`qsigning.bbclass`(`do_compose_vmimage`调用sectools,硬编码`--signing-mode TEST`)、`src/vendor/qcom/proprietary/sectools`(`public/example/plugin_signer_example.py`、`example_resources/README.md`,示例PLUGIN模式对接HSM)
   - QLI2.0:`meta-qcom/recipes-bsp/u-boot/u-boot-qcom_git.bb`(`PV="2026.04+2026.07-rc2+git"`,`SRCREV="5a77d4670d8084ada24a2735dda75788ed5ce925"`)、`meta-qcom/conf/machine/include/qcom-u-boot-common.inc`第13行(`UBOOT_CONFIG[iq-9075-evk]="qcom_lemans_defconfig"`)、`iq-9075-evk-open-fw.conf`(`PREFERRED_PROVIDER_virtual/bootloader = "u-boot-qcom"` + `trusted-firmware-a-qcom`)、`meta-qcom/recipes-devtools/qtestsign/qtestsign_git.bb`(`SRC_URI="git://github.com/msm8916-mainline/qtestsign.git"`,社区维护测试签名工具)
 - **已验证的检索方式**
   - 读取`u-boot-qcom_git.bb`的`PV`/`SRCREV`字段,确认是否指向公开GitHub固定commit(可追溯/可复现)
@@ -87,4 +87,4 @@
   - 读取`sectools`自带`public/example/plugin_signer_example.py`注释及`example_resources/README.md`原文,确认`--signing-mode PLUGIN`是量产签名对接HSM的样板机制,但不随BSP recipe分发
 - **已知易错点/纠错记录**
   - (暂无本文档内部的"初步判断→核实后结论"纠错记录,README《曾纠正过的结论》表亦未收录Bootloader相关条目)
-  - 需注意的易读错点(非纠错,是文档已强调的辨析):签名机制表面看是`sectoolv2_sign_abl`私有工具 vs `qtestsign`社区工具的对立,但实质两侧仓库范围内都只到测试签名(`--signing-mode TEST`/`qtestsign`),量产签名均不在本仓库范围内,不应误读为"QLI1.0已具备完整量产签名能力而QLI2.0退步"
+  - 需注意的易读错点(非纠错,是文档已强调的辨析):签名机制表面看是`sectoolv2_sign_abl`私有工具 vs `qtestsign`社区工具的对立,但实质两侧仓库范围内都只到测试签名(`--signing-mode TEST`/`qtestsign`),量产签名均不在本仓库范围内,不应误读为"downstream(maili)已具备完整量产签名能力而QLI2.0退步"

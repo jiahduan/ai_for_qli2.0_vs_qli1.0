@@ -1,6 +1,6 @@
 # Display 原理文档
 
-本文档解释Display子系统在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`Display.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Display.md`)。
+本文档解释Display子系统在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`Display.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Display.md`)。
 
 ## 1. Display管的是"合成"这一层,不是"渲染"
 

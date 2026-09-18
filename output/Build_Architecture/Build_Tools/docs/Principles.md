@@ -1,11 +1,11 @@
 # Build_Tools 原理文档
 
-本文档解释kas这类"声明式构建组合工具"在Yocto/OE体系里管什么范围、为什么要单独对比它——是理解`Build_Tools.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Build_Tools.md`)。
+本文档解释kas这类"声明式构建组合工具"在Yocto/OE体系里管什么范围、为什么要单独对比它——是理解`Build_Tools.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Build_Tools.md`)。
 
 ## 1. kas是什么、解决什么工程问题
 
 标准bitbake本身不管"代码怎么拉取"和"`local.conf`/`bblayers.conf`怎么生成"这两件事,历史上Yocto项目常见两条路线填补这一空白:
-- **脚本式**:用一个人工维护的shell脚本(如QLI1.0的`set_bb_env.sh`)在repo sync完成后,动态扫描磁盘上的meta*目录、交互式询问MACHINE/DISTRO、拼接生成配置文件。
+- **脚本式**:用一个人工维护的shell脚本(如downstream(maili)的`set_bb_env.sh`)在repo sync完成后,动态扫描磁盘上的meta*目录、交互式询问MACHINE/DISTRO、拼接生成配置文件。
 - **声明式**:用kas这类工具,把"要拉取哪些repo、用哪些layer、追加哪些local.conf片段"写成显式的yaml文件,一条命令(`kas build <yaml组合>`)同时完成拉代码+生成配置+触发构建。
 
 kas要解决的核心工程问题是:让"构建配置"变成可diff、可版本化、可被CI和本地开发者复用同一份输入的声明式文件,而不是依赖脚本运行时对磁盘状态的动态探测(后者天然是不可复现的,因为同一份代码在不同签出方式下可能生成不同的bblayers.conf)。

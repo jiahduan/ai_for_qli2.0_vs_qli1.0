@@ -1,6 +1,6 @@
 # Bitbake_Version 原理文档
 
-本文档解释"bitbake版本"在Yocto/OpenEmbedded体系里管什么范围、为什么要单独对比这一项——是理解`Bitbake_Version.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体版本号/差异结论(结论见`../Bitbake_Version.md`)。
+本文档解释"bitbake版本"在Yocto/OpenEmbedded体系里管什么范围、为什么要单独对比这一项——是理解`Bitbake_Version.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体版本号/差异结论(结论见`../Bitbake_Version.md`)。
 
 ## 1. bitbake是什么、管什么范围
 
@@ -15,7 +15,7 @@ bitbake版本本身不参与生成最终固件的内容,但决定了"能不能�
 
 ## 3. 与相邻主题的分工边界
 
-- bitbake"这个引擎本身的版本/行为"归本主题;bitbake"作为源码以什么形式被纳入构建"(QLI1.0内嵌在poky内部 vs QLI2.0独立`bitbake/`仓库,这是组织形式而非引擎行为)——归[Yocto](../../System_Architecture/Yocto.md)。
+- bitbake"这个引擎本身的版本/行为"归本主题;bitbake"作为源码以什么形式被纳入构建"(downstream(maili)内嵌在poky内部 vs QLI2.0独立`bitbake/`仓库,这是组织形式而非引擎行为)——归[Yocto](../../System_Architecture/Yocto.md)。
 - bitbake"作为kas声明式repo被拉取"(kas yaml里`bitbake: branch: "2.18"`这一条声明及其在整套kas组合构建流程中的角色)——归[Build_Tools](../Build_Tools/Build_Tools.md)。
 
 判断原则:凡是"引擎自身解析/执行/签名行为"的问题归本主题;凡是"这个引擎的源码放在哪个仓库/被谁以什么方式拉取"的问题,归组织形式相关的主题。

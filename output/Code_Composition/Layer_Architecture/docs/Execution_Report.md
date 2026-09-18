@@ -4,13 +4,13 @@
 
 ## 1. 基础统计:两侧激活层数量与`meta-qti-*`全量普查
 
-**做法**:逐行统计QLI1.0`build-qti-distro-camerastack-debug/conf/bblayers.conf`的`BBLAYERS`变量路径条目数,以及QLI2.0`build/conf/bblayers.conf`的`BBLAYERS`条目数;`find poky -maxdepth 1 -iname "meta-qti-*"`统计QLI1.0侧`meta-qti-*`层全量。
-**证据**:QLI1.0 59条,QLI2.0 21条;`meta-qti-*`实测49个子目录(文档正文用"约45个"的宽松估计,是本次报告需要如实指出的口径偏差,详见下方)。
+**做法**:逐行统计downstream(maili)`build-qti-distro-camerastack-debug/conf/bblayers.conf`的`BBLAYERS`变量路径条目数,以及QLI2.0`build/conf/bblayers.conf`的`BBLAYERS`条目数;`find poky -maxdepth 1 -iname "meta-qti-*"`统计downstream(maili)侧`meta-qti-*`层全量。
+**证据**:downstream(maili) 59条,QLI2.0 21条;`meta-qti-*`实测49个子目录(文档正文用"约45个"的宽松估计,是本次报告需要如实指出的口径偏差,详见下方)。
 **落到结论**:对比总览表"激活层数量"行、"层数降幅"行(约64%)。
 
 ## 纠错记录一:激活层数量——51条订正为59条
 
-**初步判断**:此前统计QLI1.0`BBLAYERS`条目数为51条。
+**初步判断**:此前统计downstream(maili)`BBLAYERS`条目数为51条。
 **发现问题的过程**:重新执行"逐行统计"这一动作(不是凭经验估算,取证要点特别强调"不能凭经验估算,需真正逐行数"),得到与此前不同的结果。
 **修正结论**:59条。现有正文对比总览表明确标注"非此前误记的51",把订正过程留痕在文档里,不是静默覆盖。
 **这条纠错说明的方法论问题**:大规模列表类证据(如`BBLAYERS`变量的条目数)即使看起来是"数数"这种低风险操作,也存在人工计数误差,唯一可靠的做法是重新逐行核实,而不是信任此前的记忆或估算值。

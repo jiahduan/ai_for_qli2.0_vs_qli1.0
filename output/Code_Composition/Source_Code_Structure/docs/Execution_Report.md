@@ -2,9 +2,9 @@
 
 本文档复盘`../Source_Code_Structure.md`的结论是怎么从取证要点(见`rules/Code_Composition/Source_Code_Structure.md`"Source_Code_Structure专属取证要点"节)一步步落地的——按锚点/检索方式逐条展开"做了什么检索→得到什么证据→支撑了哪个结论"。原理性背景见同目录`Principles.md`,具体差异结论本身见`../Source_Code_Structure.md`。
 
-## 1. QLI1.0顶层`src/`汇聚目录的坐实与构建残留的剔除
+## 1. downstream(maili)顶层`src/`汇聚目录的坐实与构建残留的剔除
 
-**做法**:`find src -maxdepth 1 -mindepth 1 -type d`统计QLI1.0顶层`src/`子目录数量与名单。
+**做法**:`find src -maxdepth 1 -mindepth 1 -type d`统计downstream(maili)顶层`src/`子目录数量与名单。
 **证据**:实测35个子目录,其中1个(`build-qti-distro-camerastack-debug`)经核实是构建工作目录残留,不是专有源码组件,剔除后剩34个真实组件目录(`adsprpc`、`android_compat`、`security`、`mdm-ss-mgr`、`OTA`、`kernel-6.18`等)。
 **落到结论**:对比总览表"顶层src/汇聚目录"行——这个"35个中剔除1个构建残留"的处理,是规则1"禁止仅凭目录名断言"精神的延伸应用:不能看到目录存在就直接计入统计,要先核实这个目录本身是不是真实的专有源码组件。
 

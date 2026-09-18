@@ -9,13 +9,13 @@
 **支撑结论**:《对比总览》表第1行。
 
 ### 2. vendor层.service定制数量与分布
-**做法**:清点QLI1.0`meta-qti-*`系列下的`.service`文件数量并按层归类(meta-qti-bsp 41、meta-qti-wlan(-prop) 16等);QLI2.0侧复核meta-qcom*仅`format-tee-partition.service`1个,meta-updater层6个具名unit。
+**做法**:清点downstream(maili)`meta-qti-*`系列下的`.service`文件数量并按层归类(meta-qti-bsp 41、meta-qti-wlan(-prop) 16等);QLI2.0侧复核meta-qcom*仅`format-tee-partition.service`1个,meta-updater层6个具名unit。
 **支撑结论**:《对比总览》表第2行,《关键差异》第1条(强调更可能是层成熟度差异而非架构精简)。
 
-### 3. 三个QLI1.0补丁的吸收/消失判定过程(补丁去向追踪表)
+### 3. 三个downstream(maili)补丁的吸收/消失判定过程(补丁去向追踪表)
 - **`Disable-unused-mount-points.patch`**:读取补丁改动内容(`src/shared/mount-setup.c`把securityfs挂载点注释掉);随后全局检索`securityfs`,范围限定**实际参与构建的层**(`meta-security`本体、`meta-security/meta-tpm`、`meta-qcom*`、`oe-core/meta`)——零命中。另发现有命中的`meta-integrity`(IMA appraisal),但进一步核实`build/conf/bblayers.conf`未收录该层,因此该命中不构成"功能仍被使用"的反例,判定为"功能不再需要"。
 - **`fstab-generator-Honor-verity-enabled-cmdline.patch`**:读取补丁改动内容(`src/fstab-generator/fstab-generator.c`识别`verity=enabled`/`avb-verity`);全局检索`verity=enabled`、`arg_usr_verity`——零匹配,该结论**引用**自Bootargs.md已完成的取证(不重复检索,见`Principles.md`第3节分工原理),判定为"功能不再需要",并与Partition_Layout.md的Android安全分区消失结论构成三方证据链。
-- **`sd-bus-Allow-extra-users-to-communicate.patch`**:读取补丁改动内容(`src/libsystemd/sd-bus/bus-convenience.c`的`sd_bus_query_sender_privilege()`硬编码放行uid 1000/1001);全局检索`sender_uid == 1001`——零匹配,判定为"服务于QLI1.0特定Android风格uid体系,QLI2.0全树无该私有uid体系痕迹"。
+- **`sd-bus-Allow-extra-users-to-communicate.patch`**:读取补丁改动内容(`src/libsystemd/sd-bus/bus-convenience.c`的`sd_bus_query_sender_privilege()`硬编码放行uid 1000/1001);全局检索`sender_uid == 1001`——零匹配,判定为"服务于downstream(maili)特定Android风格uid体系,QLI2.0全树无该私有uid体系痕迹"。
 **支撑结论**:《systemd补丁去向追踪》整张表。
 
 ### 4. NEWS逐行diff与筛选

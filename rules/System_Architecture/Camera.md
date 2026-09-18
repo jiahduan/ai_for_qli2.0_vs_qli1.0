@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,12 +78,12 @@
 ## Camera专属取证要点
 
 - **关键双侧目录/文件锚点**
-  - QLI1.0:`meta-qti-camera/cameradlkm_git.bb`、`meta-qti-camera-prop`(`camx_0.1.bb`/`camxmainline`/`chicdk_git.bb`)、`meta-qti-qmmf`(QMMF-SDK)、`meta-qti-qmmf-prop`(`qti-auto-framing-stabilization`/`qti-umd-gadget`,源码在`src/vendor/qcom/proprietary/iot-core-algs/`)、`qc/camera-SnapdragonCamera.lnx`、`meta-qti-sv-internal`/`meta-qti-sv-prop`(`libeva`/`evass-fw_git.bb`)、`eva-kernel`/`eva-devicetree`/`meta-qti-eva`/`meta-qti-eva-devicetree`四个repo(后者标记`x-ship="hy11"`)、`src/vendor/qcom/opensource/eva-kernel/msm/eva/target/cvp_kaanapali_hal.c`
+  - downstream(maili):`meta-qti-camera/cameradlkm_git.bb`、`meta-qti-camera-prop`(`camx_0.1.bb`/`camxmainline`/`chicdk_git.bb`)、`meta-qti-qmmf`(QMMF-SDK)、`meta-qti-qmmf-prop`(`qti-auto-framing-stabilization`/`qti-umd-gadget`,源码在`src/vendor/qcom/proprietary/iot-core-algs/`)、`qc/camera-SnapdragonCamera.lnx`、`meta-qti-sv-internal`/`meta-qti-sv-prop`(`libeva`/`evass-fw_git.bb`)、`eva-kernel`/`eva-devicetree`/`meta-qti-eva`/`meta-qti-eva-devicetree`四个repo(后者标记`x-ship="hy11"`)、`src/vendor/qcom/opensource/eva-kernel/msm/eva/target/cvp_kaanapali_hal.c`
   - QLI2.0:`kernel-module-qcom-camss`、`meta-qcom/dynamic-layers/openembedded-layer/recipes-multimedia/camx/camxlib-{hamoa,kodiak,lemans,talos}_1.0.x.bb`、`camera-service_1.0.2.bb`(`github.com/qualcomm/camera-service`)、`meta-openembedded/meta-multimedia/libcamera_0.6.0.bb`、`meta-qcom-robotics-sdk/ci/qcom-robotics-distro.yml`、专有blob`camxfirmware-lemans_1.0.7_armv8-2a.tar.gz`、`meta-qcom/conf/machine/kaanapali-mtp.conf`、`qrb-ros-camera`/`orbbec-camera`
 - **已验证的检索方式**
-  - 先按包名再改用QLI1.0源码符号名(`umd_gadget_new`/`UmdGadget`/`umd_video_init`、`auto-framing`相关符号)两轮grep全部bitbake层,确认`auto-framing`/`umd-gadget`零命中
+  - 先按包名再改用downstream(maili)源码符号名(`umd_gadget_new`/`UmdGadget`/`umd_video_init`、`auto-framing`相关符号)两轮grep全部bitbake层,确认`auto-framing`/`umd-gadget`零命中
   - 读取解包后的`camxfirmware-lemans_1.0.7_armv8-2a.tar.gz`内容,确认只含`CAMERA_ICP.mbn`固件与license文件
   - 读取`libcamera_0.6.0.bb`的`LIBCAMERA_PIPELINES`字段,确认无msm/camss专属pipeline(仅通用管线)
   - 全内核树grep`compatible.*cvp`及`memory-region`引用(零命中),另行grep dts下`cvp@`保留内存节点(16个文件命中`pil-cvp@`/`cvp@`)
   - 读取hamoa(`iq-x7181-evk.conf`)/talos(`iq-615-evk.conf`)机型`KERNEL_DEVICETREE`字段,确认默认挂载IMX577摄像头dtbo
-- **已知易错点/纠错记录**:有,两轮纠错(已同步README《曾纠正过的结论》表)——初步判断:dts里`cvp@`保留内存节点=硅片仍带EVA/CVP硬件IP;第一轮核实(`compatible.*cvp`零命中)收窄为"证据不足,更像样板声明";第二轮核实(核查`src/vendor/qcom/opensource/eva-kernel/`路径后)发现QLI1.0真实存在`cvp_kaanapali_hal.c`功能级驱动,且QLI2.0`kaanapali-mtp.conf`证实kaanapali是真实在用机型,两侧交叉印证。最终结论:硅片大概率带IP,但QLI2.0内核基线未随之移植驱动——"硅片带IP"与"软件栈未启用"是两个独立命题。
+- **已知易错点/纠错记录**:有,两轮纠错(已同步README《曾纠正过的结论》表)——初步判断:dts里`cvp@`保留内存节点=硅片仍带EVA/CVP硬件IP;第一轮核实(`compatible.*cvp`零命中)收窄为"证据不足,更像样板声明";第二轮核实(核查`src/vendor/qcom/opensource/eva-kernel/`路径后)发现downstream(maili)真实存在`cvp_kaanapali_hal.c`功能级驱动,且QLI2.0`kaanapali-mtp.conf`证实kaanapali是真实在用机型,两侧交叉印证。最终结论:硅片大概率带IP,但QLI2.0内核基线未随之移植驱动——"硅片带IP"与"软件栈未启用"是两个独立命题。

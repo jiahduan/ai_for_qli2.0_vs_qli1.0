@@ -1,14 +1,14 @@
 # Boot_Flow 原理文档
 
-本文档解释"启动链阶段划分"这件事在Qualcomm BSP体系里是什么、为什么要按阶段而不是按组件去对比,以及它作为Boot_Architecture分类"骨架文档"与相邻主题的分工边界原理——不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Boot_Flow.md`)。
+本文档解释"启动链阶段划分"这件事在Qualcomm BSP体系里是什么、为什么要按阶段而不是按组件去对比,以及它作为Boot_Architecture分类"骨架文档"与相邻主题的分工边界原理——不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Boot_Flow.md`)。
 
 ## 1. 启动链阶段划分是什么
 
-Qualcomm SoC的启动链是一条严格顺序执行、逐级验证/加载下一级的链条:芯片上电后先执行片内ROM里的PBL(Primary Boot Loader),PBL加载并跳转到XBL/SBL,建立TZ(TrustZone)/HYP(Hypervisor)安全执行环境,再由这层跳转到"主Bootloader"(用户可定制的第一个较完整的软件bootloader),主Bootloader再加载内核镜像(可能经过二级引导层),内核起来后进入用户态。这条链每一级都比上一级更"软件可控",也更接近最终对比的焦点:PBL/XBL/TZ/HYP这几级几乎是SoC芯片固化行为,QLI1.0/QLI2.0在这几级通常没有差异空间;真正的架构选型差异出现在"主Bootloader往后"——用什么bootloader、内核镜像用什么封装格式、有没有二级引导层、initrd机制怎么接入。
+Qualcomm SoC的启动链是一条严格顺序执行、逐级验证/加载下一级的链条:芯片上电后先执行片内ROM里的PBL(Primary Boot Loader),PBL加载并跳转到XBL/SBL,建立TZ(TrustZone)/HYP(Hypervisor)安全执行环境,再由这层跳转到"主Bootloader"(用户可定制的第一个较完整的软件bootloader),主Bootloader再加载内核镜像(可能经过二级引导层),内核起来后进入用户态。这条链每一级都比上一级更"软件可控",也更接近最终对比的焦点:PBL/XBL/TZ/HYP这几级几乎是SoC芯片固化行为,downstream(maili)/QLI2.0在这几级通常没有差异空间;真正的架构选型差异出现在"主Bootloader往后"——用什么bootloader、内核镜像用什么封装格式、有没有二级引导层、initrd机制怎么接入。
 
 ## 2. 为什么要对比这个主题,以及它为何是"骨架文档"
 
-Boot_Flow回答的是"整条启动链长什么样、每一级谁负责",这是理解Boot_Architecture分类下其余4个主题(Bootargs/Bootloader/Partition_Layout/systemd_)各自结论的前置坐标系——比如"cmdline在哪个阶段被写定"(Bootargs)、"bootloader自身来源可追溯性"(Bootloader)、"分区表在哪个阶段被读取"(Partition_Layout)、"systemd作为哪一阶段的产物启动"(systemd_),都需要先知道整条链的阶段划分才谈得上。QLI1.0(ABL/EDK2+Android boot.img)与QLI2.0(u-boot+UEFI/systemd-boot+UKI)在"主Bootloader往后"几乎每一级都换了实现,这不只是格式替换,而是把"谁能改启动参数、谁能验证启动产物"这件事从"vendor闭源二进制"整体搬到了"开源社区维护的构建配置"上——这直接决定了后续可审计性、可维护性、安全责任主体的归属,是需要专门梳理的工程问题。
+Boot_Flow回答的是"整条启动链长什么样、每一级谁负责",这是理解Boot_Architecture分类下其余4个主题(Bootargs/Bootloader/Partition_Layout/systemd_)各自结论的前置坐标系——比如"cmdline在哪个阶段被写定"(Bootargs)、"bootloader自身来源可追溯性"(Bootloader)、"分区表在哪个阶段被读取"(Partition_Layout)、"systemd作为哪一阶段的产物启动"(systemd_),都需要先知道整条链的阶段划分才谈得上。downstream(maili)(ABL/EDK2+Android boot.img)与QLI2.0(u-boot+UEFI/systemd-boot+UKI)在"主Bootloader往后"几乎每一级都换了实现,这不只是格式替换,而是把"谁能改启动参数、谁能验证启动产物"这件事从"vendor闭源二进制"整体搬到了"开源社区维护的构建配置"上——这直接决定了后续可审计性、可维护性、安全责任主体的归属,是需要专门梳理的工程问题。
 
 ## 3. 与相邻主题的分工边界原理
 

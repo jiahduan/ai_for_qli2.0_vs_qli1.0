@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -77,11 +77,11 @@
 ## Flash_Process专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - QLI1.0:`release/`(`syncbuild.sh`、`create_bin_projects.sh`、`updatepack`、`diffpack`)、`framework_release/`(`build_levm.sh`、`syncbuild.sh`)——内部构建/发布基建脚本
-  - QLI1.0:`sdk-tools/`("QIM SDK"):`Docker.md`、`Host.md`、`scripts/host/{docker_env_setup.sh,host_env_setup.sh}`、`scripts/image/{common,device,layers,remote}`、`targets/*.json`(`LE.PRODUCT.*.json`、`LE.QCLINUX.1.0.json`)
-  - QLI1.0真正的刷机工具链:`poky/meta-qti-bsp/classes/qimage.bbclass`(`do_gen_partition_bin`任务)+`poky/meta-qti-bsp/recipes-devtools/qdl/qdl_git.bb`(qdl-native,拉取内部CAF镜像`abozhinov444.qdl.git`分支`caf_migration/abozhinov444/sparse_image_format`)+`poky/meta-qti-bsp-prop/recipes-devtools/partition-utils/`(`ptool.py`,ptool-native)+`recipes-devtools/gen-partitions-tool/`(gen-partitions-tool-native)
-  - QLI1.0该class的inherit方:`qti-camera-image.bb`/`qti-generic-image.bb`/`qti-robotics-image.bb`等约20个真实产品镜像
-  - QLI1.0:`summary_log.txt`(Gerrit Change-Id清单)、`sec_aus.txt`(仅两行:`AU_LINUX_KERNEL.PLATFORM.6.0.00.00.00.178.129`、`AU_LINUX_EMBEDDED_LE.FRAMEWORK.3.0_TARGET_ALL.01.310.237`,对应`.repo/manifest.xml`的image tag)
+  - downstream(maili):`release/`(`syncbuild.sh`、`create_bin_projects.sh`、`updatepack`、`diffpack`)、`framework_release/`(`build_levm.sh`、`syncbuild.sh`)——内部构建/发布基建脚本
+  - downstream(maili):`sdk-tools/`("QIM SDK"):`Docker.md`、`Host.md`、`scripts/host/{docker_env_setup.sh,host_env_setup.sh}`、`scripts/image/{common,device,layers,remote}`、`targets/*.json`(`LE.PRODUCT.*.json`、`LE.QCLINUX.1.0.json`)
+  - downstream(maili)真正的刷机工具链:`poky/meta-qti-bsp/classes/qimage.bbclass`(`do_gen_partition_bin`任务)+`poky/meta-qti-bsp/recipes-devtools/qdl/qdl_git.bb`(qdl-native,拉取内部CAF镜像`abozhinov444.qdl.git`分支`caf_migration/abozhinov444/sparse_image_format`)+`poky/meta-qti-bsp-prop/recipes-devtools/partition-utils/`(`ptool.py`,ptool-native)+`recipes-devtools/gen-partitions-tool/`(gen-partitions-tool-native)
+  - downstream(maili)该class的inherit方:`qti-camera-image.bb`/`qti-generic-image.bb`/`qti-robotics-image.bb`等约20个真实产品镜像
+  - downstream(maili):`summary_log.txt`(Gerrit Change-Id清单)、`sec_aus.txt`(仅两行:`AU_LINUX_KERNEL.PLATFORM.6.0.00.00.00.178.129`、`AU_LINUX_EMBEDDED_LE.FRAMEWORK.3.0_TARGET_ALL.01.310.237`,对应`.repo/manifest.xml`的image tag)
   - QLI2.0:`meta-qcom/docs/flashing.md`(终端刷机整合文档)
   - QLI2.0:`meta-qcom/recipes-bsp/partition/qcom-partition-conf_git.bb`(产出`rawprogram*.xml`/`patch*.xml`/GPT bin)
   - QLI2.0:`meta-qcom/ci/base.lock.yml`(由`build-yocto.yml`的`kas-setup` job执行`kas lock`自动生成,取代`sec_aus.txt`)
@@ -90,7 +90,7 @@
 
 - **已验证的检索方式**:
   - 全库检索`QDL`/`9008`关键字:命中结果需人工逐条排查,已知会命中大量无关的第三方测试向量文件(误报),不能直接以命中数判断工具链是否存在
-  - 定位"某工具链是否真实存在"类问题时的教训:不能只搜`sdk-tools/`、`release/`、`framework_release/`、`qc/`、`vendor/`、`src/`,必须把`poky/meta-qti-bsp*`也纳入搜索范围(该路径下才是QLI1.0真正的产线刷机实现)
+  - 定位"某工具链是否真实存在"类问题时的教训:不能只搜`sdk-tools/`、`release/`、`framework_release/`、`qc/`、`vendor/`、`src/`,必须把`poky/meta-qti-bsp*`也纳入搜索范围(该路径下才是downstream(maili)真正的产线刷机实现)
   - 读取`sec_aus.txt`具体两行内容,与`.repo/manifest.xml`里的image tag做逐字比对
   - 读取`qimage.bbclass`确认`do_gen_partition_bin`任务依赖哪些recipe(qdl-native/ptool-native/gen-partitions-tool-native)
   - 检索`meta-qcom-distro`/`meta-qcom`下`qti-*-image.bb`等镜像文件,确认某bbclass/recipe是否被约20个真实产品镜像inherit,以此区分"量产真实使用"与"测试/开发态工具"
@@ -98,4 +98,4 @@
 
 - **已知易错点/纠错记录**:
   - README.md《曾纠正过的结论》表未出现本主题相关条目。
-  - 文档内部有一条明确的"初步判断→核实后结论"纠错记录:初步曾认为QLI1.0缺少产线刷机工具链、需要向产线团队额外索取外部工具;后核实是复核路径遗漏了`poky/meta-qti-bsp*`目录(之前只搜索了`sdk-tools/`、`release/`、`framework_release/`、`qc/`、`vendor/`、`src/`),真正的工具链(`qimage.bbclass`+`qdl_git.bb`+`partition-utils`+`gen-partitions-tool`)其实一直存在且被约20个产品镜像真实inherit,并非缺失。复核本主题时应优先确认搜索范围已覆盖`poky/meta-qti-bsp*`。
+  - 文档内部有一条明确的"初步判断→核实后结论"纠错记录:初步曾认为downstream(maili)缺少产线刷机工具链、需要向产线团队额外索取外部工具;后核实是复核路径遗漏了`poky/meta-qti-bsp*`目录(之前只搜索了`sdk-tools/`、`release/`、`framework_release/`、`qc/`、`vendor/`、`src/`),真正的工具链(`qimage.bbclass`+`qdl_git.bb`+`partition-utils`+`gen-partitions-tool`)其实一直存在且被约20个产品镜像真实inherit,并非缺失。复核本主题时应优先确认搜索范围已覆盖`poky/meta-qti-bsp*`。

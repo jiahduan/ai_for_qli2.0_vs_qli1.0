@@ -10,14 +10,14 @@
 **落到结论**:对比总览表"meta-clang默认生效范围"行,用户态工具链纠正表第1行——确认不是仅凭"没搜到就下结论",是真实做过override扫描的空结果。
 
 ### 2. 内核构建强制clang范围的最初判断与纠正
-**最初判断**:仅看`TC_CXX_RUNTIME`/`PREFERRED_TOOLCHAIN`默认值均为gnu/gcc,容易得出"clang在QLI1.0只是可选项,默认GCC"的结论,且这个结论看起来对整个工具链主题都成立。
-**核实过程**:`grep KERNEL_CC.*clang`命中QLI1.0`linux-msm_5.4.bb`(sa410m/sa515m,显式`TOOLCHAIN="clang"`/`RUNTIME="llvm"`)、`linux-msm_5.10/5.15.bb`、`linux-msm_6.%.bb`、`linux-common_6.12.bb`、`linux-common-soc_6.18.bb`共9个recipe文件;进一步核实这些recipe覆盖的机型清单(pineapple/kalama/sun/mdm9607/cinder/qcm2290-mtp/qrb5165-rb5/trustedvm系列/seraph/pebble等)是QLI1.0现役主流机型,而非边缘配置。
-**修正结论**:"clang只是可选项,默认GCC"这一判断**仅对用户态包成立**;内核构建层面QLI1.0现役主流机型实际**强制**走AOSP预编译clang(`kernel-toolchain_{5.10,5.15,6.%}.bb`原样打包`kernel_platform/prebuilts/clang/host/linux-x86/`下的谷歌AOSP预编译二进制,与meta-clang层完全无关,不依赖LLVM 18.1.6源码构建),这条路径体量远大于最初判断的"仅可选项"。该纠错已收录进README《曾纠正过的结论》表。
+**最初判断**:仅看`TC_CXX_RUNTIME`/`PREFERRED_TOOLCHAIN`默认值均为gnu/gcc,容易得出"clang在downstream(maili)只是可选项,默认GCC"的结论,且这个结论看起来对整个工具链主题都成立。
+**核实过程**:`grep KERNEL_CC.*clang`命中downstream(maili)`linux-msm_5.4.bb`(sa410m/sa515m,显式`TOOLCHAIN="clang"`/`RUNTIME="llvm"`)、`linux-msm_5.10/5.15.bb`、`linux-msm_6.%.bb`、`linux-common_6.12.bb`、`linux-common-soc_6.18.bb`共9个recipe文件;进一步核实这些recipe覆盖的机型清单(pineapple/kalama/sun/mdm9607/cinder/qcm2290-mtp/qrb5165-rb5/trustedvm系列/seraph/pebble等)是downstream(maili)现役主流机型,而非边缘配置。
+**修正结论**:"clang只是可选项,默认GCC"这一判断**仅对用户态包成立**;内核构建层面downstream(maili)现役主流机型实际**强制**走AOSP预编译clang(`kernel-toolchain_{5.10,5.15,6.%}.bb`原样打包`kernel_platform/prebuilts/clang/host/linux-x86/`下的谷歌AOSP预编译二进制,与meta-clang层完全无关,不依赖LLVM 18.1.6源码构建),这条路径体量远大于最初判断的"仅可选项"。该纠错已收录进README《曾纠正过的结论》表。
 **落到结论**:《关键差异》第一条,用户态工具链纠正表第2、3行。
 
 ### 3. meta-clang层组织形式变化核实
-**做法**:核对`oe-core/meta/recipes-devtools/clang/`recipe清单与`toolchain/clang.bbclass`,与QLI1.0`meta-clang`层同名recipe逐一对照。
-**证据**:`clang_git.bb`/`llvm_git.bb`等recipe名几乎与QLI1.0`meta-clang/recipes-devtools/clang/`同名,逻辑高度一致。
+**做法**:核对`oe-core/meta/recipes-devtools/clang/`recipe清单与`toolchain/clang.bbclass`,与downstream(maili)`meta-clang`层同名recipe逐一对照。
+**证据**:`clang_git.bb`/`llvm_git.bb`等recipe名几乎与downstream(maili)`meta-clang/recipes-devtools/clang/`同名,逻辑高度一致。
 **落到结论**:对比总览表"meta-clang独立层"行,《关键差异》第二条——组织形式变化(升级进oe-core主干),不是能力删除。
 
 ### 4. QLI2.0 clang override的实际使用面核实
@@ -26,8 +26,8 @@
 **落到结论**:用户态工具链纠正表"其他clang消费者"行——这两处override目前都不在QLI2.0任何已知镜像的实际依赖链里,不能算作"QLI2.0存在clang默认使用点"。
 
 ### 5. 安全加固基线对比
-**做法**:`find -iname security_flags.inc`确认两侧文件数量差异,逐字节对比`SECURITY_CFLAGS`等默认逻辑,再grep核实QLI1.0清单里的专有组件名在QLI2.0的存在情况。
-**证据**:QLI1.0侧5份`security_flags.inc`(含4份自定义覆盖),QLI2.0仅1份oe-core默认;QLI1.0专有组件清单(npu/audiohal/gps-utils/loc-hal/loc-core/bt-app/libbt-vendor/qmmf-sdk)在QLI2.0全树零命中(唯一字面命中`gpsd`通用包的`gps-utils`子包,与Qualcomm定位服务无关)。
+**做法**:`find -iname security_flags.inc`确认两侧文件数量差异,逐字节对比`SECURITY_CFLAGS`等默认逻辑,再grep核实downstream(maili)清单里的专有组件名在QLI2.0的存在情况。
+**证据**:downstream(maili)侧5份`security_flags.inc`(含4份自定义覆盖),QLI2.0仅1份oe-core默认;downstream(maili)专有组件清单(npu/audiohal/gps-utils/loc-hal/loc-core/bt-app/libbt-vendor/qmmf-sdk)在QLI2.0全树零命中(唯一字面命中`gpsd`通用包的`gps-utils`子包,与Qualcomm定位服务无关)。
 **落到结论**:《影响与风险》"验证工作目前无对象可测,风险是潜在的、跟随迁移动作出现"结论。
 
 ### 6. Yocto迁移指南交叉核实

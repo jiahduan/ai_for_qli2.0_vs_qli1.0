@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,7 +78,7 @@
 ## Security_Architecture专属取证要点
 
 - **关键双侧目录/文件锚点**
-  - QLI1.0:`poky/meta-qti-sepolicy`(661个`.te`/`.fc`/`.if`文件,`BBFILE_PRIORITY="11"`)、其下`common/`(361)/`alor/`(52)/`kera/`(51)/`pebble/`(47)/`sdmsteppe/`(26)/`generic/`(2)/`robotics/`(空)/`patches/`(12)、`refpolicy_git.inc`(`SRCREV_refpolicy="71f4bd1992e05bcd79dc5234f8a30deeb141aa3d"`)、`disable-mls-constraints.patch`、`qti-distro-camerastack-debug.conf`
+  - downstream(maili):`poky/meta-qti-sepolicy`(661个`.te`/`.fc`/`.if`文件,`BBFILE_PRIORITY="11"`)、其下`common/`(361)/`alor/`(52)/`kera/`(51)/`pebble/`(47)/`sdmsteppe/`(26)/`generic/`(2)/`robotics/`(空)/`patches/`(12)、`refpolicy_git.inc`(`SRCREV_refpolicy="71f4bd1992e05bcd79dc5234f8a30deeb141aa3d"`)、`disable-mls-constraints.patch`、`qti-distro-camerastack-debug.conf`
   - QLI2.0:`meta-selinux`(版本升至3.10)、`meta-qcom/dynamic-layers/selinux/`(以patch内嵌refpolicy-targeted源码树,含`qcom_nhx`策略模块246行、`tee_supplicant_qtee` tunable、曾有的pd-mapper backport已移除)、`refpolicy_git.inc`(`SRCREV_refpolicy="fbae939176fed7163730506878d92d3b1da433e4"`)、`qcom-distro-selinux.conf`/`qcom-robotics-distro-selinux.conf`、`create-spdx-image-3.0.bbclass`(`SPDX_INCLUDE_KERNEL_CONFIG`)、`build/tmp/deploy/spdx/3.0.1/`
 - **已验证的检索方式**
   - 按`.te`/`.fc`/`.if`扩展名全量检索(这是导致初步误判的方法,仅命中6个mariadb自带通用策略文件)

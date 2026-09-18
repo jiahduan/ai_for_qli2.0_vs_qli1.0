@@ -5,8 +5,8 @@
 ## 逐条取证过程
 
 ### 1. DIAG协议栈两侧实现对比
-**做法**:定位QLI1.0`src/diag/`目录结构,以及QLI2.0对应recipe。
-**证据**:QLI1.0`diag_lsm*.c`/`mdlog/diag_mdlog.c`/`klog/diag_klog.c`/`socket_log/`/`uart_log/`/`java/`(JNI`com.qualcomm.qti.diagservice.libdiagwrapper`);QLI2.0`meta-qcom/recipes-test/diag/diag_git.bb`(拉取`github.com/linux-msm/diag`,BSD-3-Clause)+`diag-router_1.0.2.bb`+`libdiag_1.0.5.bb`,两者`RCONFLICTS`/`RPROVIDES:virtual-diag-router`互斥。
+**做法**:定位downstream(maili)`src/diag/`目录结构,以及QLI2.0对应recipe。
+**证据**:downstream(maili)`diag_lsm*.c`/`mdlog/diag_mdlog.c`/`klog/diag_klog.c`/`socket_log/`/`uart_log/`/`java/`(JNI`com.qualcomm.qti.diagservice.libdiagwrapper`);QLI2.0`meta-qcom/recipes-test/diag/diag_git.bb`(拉取`github.com/linux-msm/diag`,BSD-3-Clause)+`diag-router_1.0.2.bb`+`libdiag_1.0.5.bb`,两者`RCONFLICTS`/`RPROVIDES:virtual-diag-router`互斥。
 **落到结论**:对比总览表"DIAG协议栈"行、关键差异第2条("源码级核心组件"降级为"测试镶像/可选预编译二进制")。
 
 ### 2. Android兼容日志检索——命中后逐一排除误报
@@ -27,12 +27,12 @@
 ### 5. rsyslog定制内容核实
 **做法**:完整读取`meta-qcom-distro/recipes-extended/rsyslog/files/rsyslog.logrotate.qcom`。
 **证据**:只解决轮转/留存策略(`/var/log/syslog`等按满100MB或7天轮转,保留20份归档),不包含任何脱敏/过滤规则。
-**落到结论**:关键差异第3条——"需要与安全/合规团队确认落盘日志的敏感信息处理是否与QLI1.0一致",这个待办本身是基于"读了实际内容确认没有脱敏规则"而非猜测。
+**落到结论**:关键差异第3条——"需要与安全/合规团队确认落盘日志的敏感信息处理是否与downstream(maili)一致",这个待办本身是基于"读了实际内容确认没有脱敏规则"而非猜测。
 
 ### 6. android_compat功能定位澄清
 **做法**:读取`src/android_compat/common/inc/`目录下头文件实际内容,而非只看目录名。
 **证据**:`target.h`/`common_log.h`/`comdef.h`/`rex.h`/`qsocket.h`,确认为头文件级REX/QNX移植兼容层,用于让modem侧代码在Linux上编译。
-**落到结论**:对比总览表"android_compat澄清"行——排除了"这是logcat/logd的QLI1.0再实现"这一容易望文生义的误判,真正的logd/logcat落在`src/system/core`。
+**落到结论**:对比总览表"android_compat澄清"行——排除了"这是logcat/logd的downstream(maili)再实现"这一容易望文生义的误判,真正的logd/logcat落在`src/system/core`。
 
 ## 关于纠错记录
 

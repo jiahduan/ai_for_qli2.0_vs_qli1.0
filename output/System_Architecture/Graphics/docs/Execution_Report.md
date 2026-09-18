@@ -4,13 +4,13 @@
 
 ## 1. kgsl内核驱动分发链路核实
 
-**做法**:核对QLI1.0`graphicsdlkm_git.bb`的`SRC_URI=file://vendor/qcom/opensource/graphics-kernel`本地编译方式,与QLI2.0`kgsl-dlkm_1.0.4.bb`的`SRC_URI="git://github.com/qualcomm-linux/kgsl.git;..."`。
-**证据**:两侧`LICENSE`均为`GPL-2.0-only`,但QLI1.0即使目录名带"opensource"字样,实际仍是内部vendor源码树本地编译,并非真正对外公开的拉取源;QLI2.0改为公开GitHub仓库、SRCREV锁定。
+**做法**:核对downstream(maili)`graphicsdlkm_git.bb`的`SRC_URI=file://vendor/qcom/opensource/graphics-kernel`本地编译方式,与QLI2.0`kgsl-dlkm_1.0.4.bb`的`SRC_URI="git://github.com/qualcomm-linux/kgsl.git;..."`。
+**证据**:两侧`LICENSE`均为`GPL-2.0-only`,但downstream(maili)即使目录名带"opensource"字样,实际仍是内部vendor源码树本地编译,并非真正对外公开的拉取源;QLI2.0改为公开GitHub仓库、SRCREV锁定。
 **落到结论**:对比总览表"GPU内核驱动(kgsl)"行,"关键差异"节"功能上大体延续,但分发链路真正开源化"的判断。
 
 ## 2. GPU用户态3D驱动仍为专有二进制的核实
 
-**做法**:核对QLI1.0`adreno_6.0.bb`(`LICENSE="Qualcomm-Technologies-Inc.-Proprietary"`,内部编译)与QLI2.0`qcom-adreno_1.855.5.bb`(`LICENSE="LICENSE.qcom-2"`,从qartifactory URL下载)的LICENSE字段与SRC_URI来源。
+**做法**:核对downstream(maili)`adreno_6.0.bb`(`LICENSE="Qualcomm-Technologies-Inc.-Proprietary"`,内部编译)与QLI2.0`qcom-adreno_1.855.5.bb`(`LICENSE="LICENSE.qcom-2"`,从qartifactory URL下载)的LICENSE字段与SRC_URI来源。
 **证据**:两侧均为专有二进制黑盒,仅下载渠道从内部编译变为qartifactory下载。
 **落到结论**:对比总览表"GPU用户态3D驱动"行,"关键差异"节"在两侧均为专有二进制黑盒,未发生开源化"的判断。
 

@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,7 +78,7 @@
 ## Yocto专属取证要点
 
 - **关键双侧目录/文件锚点**
-  - QLI1.0:`poky/meta-poky/conf/distro/poky.conf`(`DISTRO_VERSION="5.0.19"`,`DISTRO_CODENAME="scarthgap"`)、`poky/bitbake/lib/bb/__init__.py`(2.8.1)、`poky/documentation/migration-guides/`(仅到migration-5.0)
+  - downstream(maili):`poky/meta-poky/conf/distro/poky.conf`(`DISTRO_VERSION="5.0.19"`,`DISTRO_CODENAME="scarthgap"`)、`poky/bitbake/lib/bb/__init__.py`(2.8.1)、`poky/documentation/migration-guides/`(仅到migration-5.0)
   - QLI2.0:`oe-core/meta/conf/layer.conf`(`LAYERSERIES_CORENAMES="wrynose"`)、`bitbake/lib/bb/__init__.py`(2.18.0)、`meta-qcom-distro/README.md`(Qualcomm Linux 2.x↔wrynose对照)、`oe-core/meta/conf/distro/include/default-distrovars.inc`(`DISTRO_FEATURES_DEFAULTS`完整列表)、`meta-qcom-distro/conf/distro/include/qcom-base.inc`(`DISTRO_FEATURES:append`)、`oe-core/meta/classes-recipe/uboot-config.bbclass`、`meta-qcom/conf/machine/include/qcom-u-boot-common.inc`、官网存档`reference/System_Architecture/Yocto/`(9份scarthgap/styhead/walnascar/whinlatter/wrynose migration/release notes页面)
 - **已验证的检索方式**
   - `grep -rlE 'S[[:space:]]*=[[:space:]]*"\$\{WORKDIR\}' meta-qti-*`(实测510个命中:裸引用39个+带子路径471个)

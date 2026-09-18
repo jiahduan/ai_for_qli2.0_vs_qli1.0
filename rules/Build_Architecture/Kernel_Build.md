@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,17 +78,17 @@
 ## Kernel_Build专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - QLI1.0 ko编译框架:`inherit linux-kernel-base deploy`+自研`build_module.sh`;源码布局`SRC_URI=file://vendor/qcom/opensource/mmrm-driver/`等Android vendor目录
-  - QLI2.0标准module recipe(仅4个-dlkm):`kgsl-dlkm_1.0.4.bb`(gfx)、`camx-dlkm_1.0.3.bb`(相机)、`iris-video-dlkm_1.0.15.bb`(视频编解码)、`qps615-dlkm_git.bb`(以太网PHY,QLI1.0无对应物)
-  - dts/dtb编译:QLI1.0`linux-common-soc_6.18.bb`的`do_compile_dtb`+机型侧`TARGET_DTBS`;QLI2.0`KERNEL_DEVICETREE`变量+`linux-qcom-dtbbin.bbclass`+`meta-qcom/classes-recipe/dtb-fit-image.bbclass`(`do_generate_qcom_fitimage`任务)
-  - 模块黑名单:QLI1.0`modules-lists/modules.list.msm.pebble-le`、`modules.vendor_blocklist.msm.pebble-le`(58条,仅3条真正Qualcomm相关:`mmrm_test_module`、`qca_cld3_kiwi`、`qcom_q6v5_pas`);QLI2.0标准`KERNEL_MODULE_PROBECONF`/`module_conf_<name>`,全树唯一命中`kgsl-dlkm_1.0.4.bb`里的`module_conf_msm_kgsl`
+  - downstream(maili) ko编译框架:`inherit linux-kernel-base deploy`+自研`build_module.sh`;源码布局`SRC_URI=file://vendor/qcom/opensource/mmrm-driver/`等Android vendor目录
+  - QLI2.0标准module recipe(仅4个-dlkm):`kgsl-dlkm_1.0.4.bb`(gfx)、`camx-dlkm_1.0.3.bb`(相机)、`iris-video-dlkm_1.0.15.bb`(视频编解码)、`qps615-dlkm_git.bb`(以太网PHY,downstream(maili)无对应物)
+  - dts/dtb编译:downstream(maili)`linux-common-soc_6.18.bb`的`do_compile_dtb`+机型侧`TARGET_DTBS`;QLI2.0`KERNEL_DEVICETREE`变量+`linux-qcom-dtbbin.bbclass`+`meta-qcom/classes-recipe/dtb-fit-image.bbclass`(`do_generate_qcom_fitimage`任务)
+  - 模块黑名单:downstream(maili)`modules-lists/modules.list.msm.pebble-le`、`modules.vendor_blocklist.msm.pebble-le`(58条,仅3条真正Qualcomm相关:`mmrm_test_module`、`qca_cld3_kiwi`、`qcom_q6v5_pas`);QLI2.0标准`KERNEL_MODULE_PROBECONF`/`module_conf_<name>`,全树唯一命中`kgsl-dlkm_1.0.4.bb`里的`module_conf_msm_kgsl`
   - 内核配置片段:`meta-qcom/recipes-kernel/linux/linux-yocto-6.18/bsp/qcom-armv8a/qcom.cfg`(9个功能域逐一核实用的配置文件,含`CONFIG_QCOM_Q6V5_PAS=m`)
   - kernel provider双轨判定:`meta-qcom/conf/machine/qcom-armv8a.conf`(默认`linux-yocto`)vs`qcm6490-idp.conf`经`qcom-base.inc`强制`PREFERRED_PROVIDER_virtual/kernel`为`linux-qcom`
   - security-TEE受限对应物:`meta-qcom/dynamic-layers/meta-arm/recipes-security/optee/optee-os-qcom_git.bb`、`minkipc_1.2.8.bb`,仅挂在`rb3gen2-core-kit-open-fw.conf`/`iq-9075-evk-open-fw.conf`
-  - QLI1.0 Yocto层内核补丁:`poky/meta-qti-bsp/recipes-kernel/`(6个,dtc编译/lk指令集扩展/ALSA uapi重复include修复等)
+  - downstream(maili) Yocto层内核补丁:`poky/meta-qti-bsp/recipes-kernel/`(6个,dtc编译/lk指令集扩展/ALSA uapi重复include修复等)
   - 补丁统计噪声源:`bazelbuild-bazel-central-registry/external`、`u-boot/tools/patman/test`
 - **已验证的检索方式**:
-  - `grep -rl "inherit linux-kernel-base"`全树扫描(不限`meta-qti-bsp*`)统计QLI1.0 vendor驱动recipe覆盖范围(得到15个层、40+个recipe,远超仅扫`meta-qti-bsp*`得到的8个)
+  - `grep -rl "inherit linux-kernel-base"`全树扫描(不限`meta-qti-bsp*`)统计downstream(maili) vendor驱动recipe覆盖范围(得到15个层、40+个recipe,远超仅扫`meta-qti-bsp*`得到的8个)
   - `bitbake -e linux-qcom`(或对应机型实际kernel provider recipe)dump effective变量,核实`KERNEL_MODULE_PROBECONF`等变量在全部layer/bbappend/override合并后的最终生效值,排除"间接赋值未被grep到"的可能性,作为静态grep的交叉验证
   - 对9个功能域(mmrm/dsp-adsprpc/wlan/bt/display/touch/security-TEE/eva/audio/synx)在`qcom.cfg`及各层recipe/机型目录做逐一定向grep,而非仅凭"没有-dlkm recipe"一刀切判断为缺口
   - 统计`kernel_platform`目录下`*.patch`总数并按目录分类,排除`bazelbuild-bazel-central-registry/external`等第三方vendored噪声后核实真正的QTI内核补丁数量

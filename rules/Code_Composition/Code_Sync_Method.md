@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,7 +78,7 @@
 ## Code_Sync_Method专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - QLI1.0:`.repo/manifests/default.xml`(342KB,380个`<project>`条目);`set_bb_env.sh`/`bblayers.conf`模板;Gerrit`review-android.quicinc.com`
+  - downstream(maili):`.repo/manifests/default.xml`(342KB,380个`<project>`条目);`set_bb_env.sh`/`bblayers.conf`模板;Gerrit`review-android.quicinc.com`
   - QLI2.0:各层`ci/*.yml`(如`meta-qcom`46个、`meta-qcom-distro`36个)、`ci/base.lock.yml`;三个顶层产品`meta-qcom`/`meta-qcom-robotics-sdk`/`meta-audioreach`
   - kas工具源码本体:本机安装的pip包`kas==5.5`,`site-packages/kas/libcmds.py`里的`SetupHome`/`Macro.__init__`
   - kas鉴权相关环境变量:`SSH_PRIVATE_KEY`/`SSH_PRIVATE_KEY_FILE`、`GIT_CREDENTIAL_HELPER`/`GITCONFIG_FILE`、`NETRC_FILE`、`CI_SERVER_HOST`/`CI_JOB_TOKEN`、`KAS_REPO_REF_DIR`

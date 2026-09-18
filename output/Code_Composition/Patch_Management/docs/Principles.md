@@ -1,6 +1,6 @@
 # Patch_Management 原理文档
 
-本文档解释"补丁管理"在Yocto/OE recipe体系里管什么、为什么补丁数量/组织方式的变化值得单独对比——是理解`../Patch_Management.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论本身(结论见该文档)。
+本文档解释"补丁管理"在Yocto/OE recipe体系里管什么、为什么补丁数量/组织方式的变化值得单独对比——是理解`../Patch_Management.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论本身(结论见该文档)。
 
 ## 1. 补丁在Yocto recipe体系里解决什么问题
 

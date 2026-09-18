@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -77,7 +77,7 @@
 ## Boot_Flow专属取证要点
 
 - **关键双侧目录/文件锚点**
-  - QLI1.0:`abl-squashfs.bb`(require `edk2_git.bb`)、`mkbootimg`/`BOOT_HEADER_VERSION="2"`(Android boot.img格式)
+  - downstream(maili):`abl-squashfs.bb`(require `edk2_git.bb`)、`mkbootimg`/`BOOT_HEADER_VERSION="2"`(Android boot.img格式)
   - QLI2.0:`meta-qcom/recipes-bsp/u-boot/u-boot-qcom_git.bb`(`SRCREV="5a77d4670d8084ada24a2735dda75788ed5ce925"`,github.com/qualcomm-linux/u-boot.git)、`meta-qcom/conf/machine/include/qcom-u-boot-common.inc`第13行(`UBOOT_CONFIG[iq-9075-evk]="qcom_lemans_defconfig"`)、`iq-9075-evk.conf`(默认闭源固件路径)与`iq-9075-evk-open-fw.conf`(开放固件路径)、`firmware-qcom-boot-qcs9100_00130.bb`(闭源uefi.elf来源)、`meta-qcom/classes-recipe/image_types_qcom.bbclass`第127-136行、`EFI_PROVIDER ?= "systemd-boot"`、`esp-qcom-image.bb`(`inherit uki uki-esp-image`)、`oe-core/meta/classes-recipe/uki.bbclass`第85-87行(`UKI_SB_KEY`/`UKI_SB_CERT`)、`meta-qcom-distro/conf/distro/include/qcom-base.inc`第56行(`INITRAMFS_IMAGE = "initramfs-rootfs-image"`)、`meta-qcom/recipes-kernel/images/initramfs-rootfs-image.bb`
 - **已验证的检索方式**
   - 全局检索`UKI_SB_KEY`/`UKI_SB_CERT`/`sbsign`,范围`meta-qcom*`/`meta-security*`/`meta-updater`/`build/conf`——零命中,用于判定UKI是否已签名

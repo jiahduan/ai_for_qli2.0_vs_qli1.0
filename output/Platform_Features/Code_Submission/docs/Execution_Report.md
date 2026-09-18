@@ -7,7 +7,7 @@
 ### 1. 版本管理拓扑与评审系统绑定关系
 **做法**:读取`.repo/manifest.xml`的`remote`节点属性。
 **证据**:`remote fetch="git://git-android.quicinc.com/" name="quic" review="review-android.quicinc.com"`,证实Gerrit review server与manifest的绑定是通过`review=`属性统一配置,不是每个子项目各自配置hook。
-**落到结论**:对比总览表"评审系统"行、"许可证合规检查"行(用于说明QLI1.0侧gerrit集成的配置方式)。
+**落到结论**:对比总览表"评审系统"行、"许可证合规检查"行(用于说明downstream(maili)侧gerrit集成的配置方式)。
 
 ### 2. 提交追溯载体:summary_log.txt的Change-Id清单
 **做法**:重新读取`summary_log.txt`并对Change-Id条目做轻量核对统计。
@@ -39,7 +39,7 @@
 ### 7. 静态代码扫描能力缺口
 **做法**:对`meta-qcom`、`meta-qcom-distro`、`meta-audioreach`的`.github/workflows`执行`grep -rln "codeql|klocwork|coverity|static.analysis|SAST"`。
 **证据**:零命中。
-**落到结论**:影响与风险第3条——"是能力缺口而非尚不确定",与QLI1.0`release/linux_base_klocwork_control_template.txt`+`release/kw`形成对照。
+**落到结论**:影响与风险第3条——"是能力缺口而非尚不确定",与downstream(maili)`release/linux_base_klocwork_control_template.txt`+`release/kw`形成对照。
 
 ## 交叉一致性说明
 

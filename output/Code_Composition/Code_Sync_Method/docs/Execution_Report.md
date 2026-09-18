@@ -4,7 +4,7 @@
 
 ## 1. 元数据规模的坐实
 
-**做法**:直接查看QLI1.0`.repo/manifests/default.xml`文件大小与`<project>`条目数;查看QLI2.0各层`ci/*.yml`文件数量。
+**做法**:直接查看downstream(maili)`.repo/manifests/default.xml`文件大小与`<project>`条目数;查看QLI2.0各层`ci/*.yml`文件数量。
 **证据**:`default.xml`342KB、380个`<project>`条目;`meta-qcom`46个yml、`meta-qcom-distro`36个yml。
 **落到结论**:对比总览表"元数据规模"行,是《关键差异》"一步完成拉代码+配层+锁版本"这一判断的规模对比基础。
 

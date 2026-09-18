@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -83,11 +83,11 @@
   - CI消费同一套配置的佐证:`meta-qcom/ci/ci.yml`、`meta-qcom/ci/world.yml`、`meta-qcom/ci/schemacheck.py`
   - 层锁定文件:`base.lock.yml`(等价lock文件,对每个依赖仓库锁定精确commit)
   - 生成产物核对对象:`build/conf/local.conf`(按local_conf_header字典键分段)、`build/conf/bblayers.conf`(BBLAYERS列表)
-  - QLI1.0对照入口:`poky/qti-conf/set_bb_env.sh`(含`get_bblayers.py "meta*" --lookup-paths`动态扫描逻辑)
+  - downstream(maili)对照入口:`poky/qti-conf/set_bb_env.sh`(含`get_bblayers.py "meta*" --lookup-paths`动态扫描逻辑)
   - kas工具自身:本机安装的kas 5.5包`kas/schema-kas.json`+`kas/repos.py`/`libkas.py`
 - **已验证的检索方式**:
   - 全树`find -iname '*kas*'`(注意需要人工排除误报:boringssl的KAS-ECC-SSC/KAS-FFC-SSC测试向量、Linux内核`skas`/`sys_mikasa.c`/`kasprintf.c`、devicetree binding`asahi-kasei,ak*.yaml`)
   - `git remote -v`核实`meta-security`/`meta-updater`两层各自是独立git checkout(分别指向`git.yoctoproject.org/meta-security`、`github.com/uptane/meta-updater`,均`wrynose`分支),证明其`kas/`目录内容是上游自带而非QLI2.0团队添加
   - 逐条比对kas yml的`repos:`/`layers:`声明集合与实际生成的`build/conf/bblayers.conf`的BBLAYERS列表是否精确对应,以及`local_conf_header`字典键与`build/conf/local.conf`分段是否逐条对应,验证"该工程确实通过kas build一步生成"
-  - 读取本机安装kas包的`kas/schema-kas.json`,核对`repos:`条目schema字段范围(`name`/`url`/`type`/`commit`/`branch`/`tag`/`refspec`/`signed`/`allowed_signers`/`path`/`layers`/`patches`,且`additionalProperties: false`),判断kas原生能否承载QLI1.0 manifest的扩展属性
+  - 读取本机安装kas包的`kas/schema-kas.json`,核对`repos:`条目schema字段范围(`name`/`url`/`type`/`commit`/`branch`/`tag`/`refspec`/`signed`/`allowed_signers`/`path`/`layers`/`patches`,且`additionalProperties: false`),判断kas原生能否承载downstream(maili) manifest的扩展属性
 - **已知易错点/纠错记录**:文档内明确记录一处误判纠正——最初"题目最初指向的目录"是`meta-security/kas`、`meta-updater/kas`,若只看这两个目录会得出"kas只是零星测试用途"的误判;核实后确认这两处实为上游社区层自带的自测/CI配置(面向qemux86-64等仿真机型的oe-selftest,与整机构建无关),真正承载"一键搭建整机"职责的是`meta-qcom`/`meta-qcom-distro`/`meta-qcom-robotics-sdk`系列层的`ci/*.yml`。

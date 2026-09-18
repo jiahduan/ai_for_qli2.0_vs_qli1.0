@@ -1,31 +1,31 @@
 # System Architecture — Display
 
-> 背景:QLI2.0的机器列表面向Qualcomm开源的IoT/机器人/汽车/PC级(Snapdragon X Elite)参考板,QLI1.0面向手机(handset)/LA+LE产品线,以下差异叠加了产品线切换因素。
+> 背景:QLI2.0的机器列表面向Qualcomm开源的IoT/机器人/汽车/PC级(Snapdragon X Elite)参考板,downstream(maili)面向手机(handset)/LA+LE产品线,以下差异叠加了产品线切换因素。
 
 ## 对比范围
 
 - **覆盖**:本文比较显示合成服务层/图形栈整合方式的架构转变,以及支撑"合成能力缺口"结论的两处硬件/能力实证(并发多显示拓扑、QDCM色彩管理与HDR tone-mapping);按子项列出双侧锚点:
   - 合成服务层整体消失(SDM Composer/HWC专有栈 → 标准DRM/KMS+Wayland/Weston):
-    - QLI1.0:`meta-qti-display`(`display-hal-linux_git.bb`/`sdm-comp-linux_git.bb`/`mmdlkm_git.bb`/`displaydlkm_git.bb`)、`meta-qti-display-prop`(`display-noship-linux_git.bb`/`display-ship`/`display-fw`)、`src/display/{hardware,vendor}`
+    - downstream(maili):`meta-qti-display`(`display-hal-linux_git.bb`/`sdm-comp-linux_git.bb`/`mmdlkm_git.bb`/`displaydlkm_git.bb`)、`meta-qti-display-prop`(`display-noship-linux_git.bb`/`display-ship`/`display-fw`)、`src/display/{hardware,vendor}`
     - QLI2.0:全库(`meta-audioreach`/`meta-lts-mixins`/`meta-openembedded`/`meta-qcom`/`meta-qcom-distro`/`meta-qcom-robotics-sdk`/`meta-ros`/`meta-security`/`meta-selinux`/`meta-updater`/`meta-virtualization`/`oe-core`,排除`build`/`downloads`)检索`sdm|displayengine|libdisplayconfig|display-hal|display composer`零命中
   - 硬件合成offload/plane能力缺口:
     - SDM/HWC特有的多层硬件合成offload、动态刷新率切换等能力,是否有DRM/KMS通用plane/property等效方案,本文结论止步于"新栈缺对应组件、需确认能否覆盖"这一开放问题(见"影响与风险"),未做逐property级核实
     - 与Overlay.md的设备树dtbo overlay是同名不同物("叠加层"概念层面的排除,不是同一机制),不重复引用
   - 图形栈整合(display侧集成对象:GBM后端+合成器,不含GPU用户态驱动内部深度):
-    - QLI1.0:`gbm_21.1.1.bb`(厂商fork libgbm)、`weston_13.0.1.bbappend`
+    - downstream(maili):`gbm_21.1.1.bb`(厂商fork libgbm)、`weston_13.0.1.bbappend`
     - QLI2.0:`meta-qcom/recipes-graphics/msm-gbm-backend/msm-gbm-backend.bb`(`git://github.com/qualcomm-linux/gbm-msm-backend.git`,已核实文件存在)、`meta-qcom/recipes-graphics/wayland/weston_15.0.0.bbappend`(已核实文件存在)、`meta-qcom/recipes-graphics/mesa/mesa.bbappend`(已核实文件存在,启用freedreno)
   - glvnd多EGL vendor共存机制对显示合成绑定结果的影响(与Graphics.md共用同一份底层源码证据,但落点不同——本文关注"显示合成/多输出场景下最终绑定给谁",Graphics.md关注"GPU用户态驱动与开源mesa如何共存",两文不互相转述):
     - 锚点:`10_adreno.json`(`qcom-adreno_1.855.5.bb`固定安装)vs `50_mesa.json`(mesa/freedreno产出,`build/tmp/sysroots-components/armv8-2a/mesa/usr/share/glvnd/egl_vendor.d/50_mesa.json`)
     - 证据:libglvnd源码(`build/downloads/git2_gitlab.freedesktop.org.glvnd.libglvnd.git.tar.gz`取出的`src/EGL/libeglvendor.c`的`LoadVendorsFromConfigDir()`、`libegl.c`的`GetPlatformDisplayCommon()`)
-  - 离线shader编译遗留工具clangtblgen的淘汰判定(QLI1.0专有,QLI2.0全树未见依赖,已在"关键差异"给出结论,不留待Graphics.md)
-  - 并发多显示拓扑硬件实证(用于支撑"影响与风险"节推翻"单一输出场景故不需要"这一假设的结论,是QLI2.0侧参考板硬件事实核查,非严格的双侧对比维度——QLI1.0面向handset产品线,代码库内未见对应的多路DP/eDP dts配置):
+  - 离线shader编译遗留工具clangtblgen的淘汰判定(downstream(maili)专有,QLI2.0全树未见依赖,已在"关键差异"给出结论,不留待Graphics.md)
+  - 并发多显示拓扑硬件实证(用于支撑"影响与风险"节推翻"单一输出场景故不需要"这一假设的结论,是QLI2.0侧参考板硬件事实核查,非严格的双侧对比维度——downstream(maili)面向handset产品线,代码库内未见对应的多路DP/eDP dts配置):
     - `build/tmp/work-shared/iq-9075-evk/kernel-source/arch/arm64/boot/dts/qcom/lemans-evk.dts`:`&mdss0_dp0`/`&mdss0_dp1`两个DP controller节点分别驱动`edp0-connector`/`edp1-connector`(label`"EDP0"`/`"EDP1"`),已用`grep -n "mdss0_dp\|edp"`实测核实,确认为双路eDP
     - `build/tmp/work-shared/iq-9075-evk/kernel-source/arch/arm64/boot/dts/qcom/hamoa.dtsi`:`mdss_dp0`~`mdss_dp3`四个`displayport-controller`节点(第6115/6203/6291/6378行),已用`grep -n "mdss_dp"`实测核实,确认为四路DP
     - `build/tmp/work-shared/iq-9075-evk/kernel-source/arch/arm64/boot/dts/qcom/sm8550-hdk.dts`:`&mdss_dp0`(DP)+`lt9611_codec: hdmi-bridge@2b`经`&mdss_dsi0`桥接的`hdmi-connector`(第60/880/1001行),已实测核实,确认为HDMI+DP组合
   - QDCM色彩管理/HDR tone-mapping能力缺口(用于支撑"影响与风险"节"SDM/HWC特有能力在新栈中无直接对应组件"的结论):
-    - QLI1.0 recipe层锚点:`meta-qti-display-prop/recipes/display-noship/display-noship_git.bb`及`display-noship-linux_git.bb`(`QDCM_S`路径、`--enable-qdcm_socket`、`-I${S}/qdcm/apis`、`qdcm_calib_data_*.json`、`snapdragon_color_libs_config.xml`)、`meta-qti-display/recipes/display-hal/display-services-linux_git.bb`(同样引用`QDCM_S`)
-    - QLI1.0预编译库锚点:`src/display/vendor/qcom/proprietary/techpack/artifacts/display-le/trustedvm-{v3,v4,v5}/usr/lib/`下`libhdr_tm.so`(HDR tone-mapping)、`libsnapdragoncolor-qdcm.so`、`libqdcm-mode-parser.so`、`libsdm-color.so`等预编译库
-    - QLI1.0检索验证:全树(排除`sstate-cache`)检索`qdcm`共303个文件命中
+    - downstream(maili) recipe层锚点:`meta-qti-display-prop/recipes/display-noship/display-noship_git.bb`及`display-noship-linux_git.bb`(`QDCM_S`路径、`--enable-qdcm_socket`、`-I${S}/qdcm/apis`、`qdcm_calib_data_*.json`、`snapdragon_color_libs_config.xml`)、`meta-qti-display/recipes/display-hal/display-services-linux_git.bb`(同样引用`QDCM_S`)
+    - downstream(maili)预编译库锚点:`src/display/vendor/qcom/proprietary/techpack/artifacts/display-le/trustedvm-{v3,v4,v5}/usr/lib/`下`libhdr_tm.so`(HDR tone-mapping)、`libsnapdragoncolor-qdcm.so`、`libqdcm-mode-parser.so`、`libsdm-color.so`等预编译库
+    - downstream(maili)检索验证:全树(排除`sstate-cache`)检索`qdcm`共303个文件命中
     - QLI2.0:全库(范围同上,排除`build`/`downloads`)检索`qdcm`零命中
 - **明确排除**:
   - GPU内核驱动(kgsl)与用户态3D驱动(GLES/Vulkan/OpenCL)的专有交付形态/许可深度对比、GBM厂商实现细节、A704等GPU代际支持细节、X11子驱动 ——见[Graphics](../Graphics/Graphics.md)
@@ -35,7 +35,7 @@
 
 ## 对比总览
 
-| 维度 | QLI1.0 | QLI2.0 |
+| 维度 | downstream(maili) | QLI2.0 |
 |---|---|---|
 | 合成服务层 | `meta-qti-display`: `display-hal-linux_git.bb`、`sdm-comp-linux_git.bb`(SDM Composer)、`mmdlkm_git.bb`(mm-drivers内核外置模块)、`displaydlkm_git.bb` | 无对应物,全库搜索`sdm|displayengine|libdisplayconfig|display-hal|display composer`零命中——SDM Composer/HWC合成服务层已完全消失 |
 | 私有display栈 | `meta-qti-display-prop`: `display-noship-linux_git.bb`(`LICENSE="Qualcomm-Technologies-Inc.-Proprietary"`,依赖`libvmmem qmi-framework binder mink-transport`)、`display-ship`、`display-fw` | 不适用 |

@@ -6,11 +6,11 @@
 
 ### 1. 底层标准SDK类与二次封装class确认
 **做法**:确认底层标准类(`populate_sdk_base.bbclass`/`populate_sdk_ext.bbclass`/`testsdk.bbclass`)两侧均未改动,再分别定位两侧的下游二次封装class。
-**证据**:QLI1.0`poky/meta-qti-bsp/classes/populate_sdk_qti.bbclass`(`inherit populate_sdk_ext`);QLI2.0`meta-qcom-robotics-sdk/classes/psdk-image.bbclass`(`addtask do_generate_qirp_sdk after do_populate_sdk`)。
+**证据**:downstream(maili)`poky/meta-qti-bsp/classes/populate_sdk_qti.bbclass`(`inherit populate_sdk_ext`);QLI2.0`meta-qcom-robotics-sdk/classes/psdk-image.bbclass`(`addtask do_generate_qirp_sdk after do_populate_sdk`)。
 **落到结论**:对比总览表前两行,《关键差异》"若审计报告只搜`do_populate_sdk`关键字本身,会得出两侧完全一样的错误结论"一段——差异隐藏在下游二次封装层,必须往下追层才能发现。
 
 ### 2. 产品线活跃度取证
-**做法**:`find`确认QLI1.0 4条产品镜像(`qti-multimedia-image.bb`/`qti-robotics-image.bb`/`qti-xreality-image.bb`/`qti-xreality2-base-image.bb`)均存在且都`inherit populate_sdk_qti`;读取`qti-xreality2-image.bb`的`require qti-xreality2-base-image.bb`引用链确认xreality2同样在用该机制;对每个recipe文件用`git log`取最后一次真实改动时间(剔除本地`[DNM]`临时commit)。
+**做法**:`find`确认downstream(maili) 4条产品镜像(`qti-multimedia-image.bb`/`qti-robotics-image.bb`/`qti-xreality-image.bb`/`qti-xreality2-base-image.bb`)均存在且都`inherit populate_sdk_qti`;读取`qti-xreality2-image.bb`的`require qti-xreality2-base-image.bb`引用链确认xreality2同样在用该机制;对每个recipe文件用`git log`取最后一次真实改动时间(剔除本地`[DNM]`临时commit)。
 **证据**:`qti-multimedia-image.bb`2026-07-27、`qti-xreality2-base-image.bb`2026-05-27均近3个月内活跃;`qti-robotics-image.bb`2025-07-28约13个月未改动;`qti-xreality-image.bb`2023-01-09距今约3年7个月,是4条里明显最久未改动的一条。
 **落到结论**:对比总览表"覆盖产品线"行,《影响与风险》"`qti-xreality`……是4条SKU里唯一长期无代码变更、事实上处于停止维护状态的一条"结论。
 

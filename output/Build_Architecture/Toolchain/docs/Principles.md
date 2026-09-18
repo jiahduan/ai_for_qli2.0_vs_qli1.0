@@ -1,6 +1,6 @@
 # Toolchain 原理文档
 
-本文档解释"工具链"在Yocto/OE体系里管什么范围、为什么要对比它——是理解`Toolchain.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Toolchain.md`)。
+本文档解释"工具链"在Yocto/OE体系里管什么范围、为什么要对比它——是理解`Toolchain.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Toolchain.md`)。
 
 ## 1. 工具链在Yocto里管什么
 

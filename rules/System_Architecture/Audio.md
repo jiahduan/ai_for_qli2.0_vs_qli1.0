@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,10 +78,10 @@
 ## Audio专属取证要点
 
 - **关键双侧目录/文件锚点**
-  - QLI1.0:`meta-iot-audio`(`pal_git.bb`/`agm_git.bb`/`tinyalsa`/`packagegroup-qti-pulseaudio.bb`/`pulseaudio_15.0.bb`)、`meta-iot-audio-prop/acdbdata_git.bb`、`src/audio/vendor/qcom/opensource/audioreach-conf`(内部血统证据)、`meta-qti-atf/recipes/audio-test-framework/catf_git.bb`
+  - downstream(maili):`meta-iot-audio`(`pal_git.bb`/`agm_git.bb`/`tinyalsa`/`packagegroup-qti-pulseaudio.bb`/`pulseaudio_15.0.bb`)、`meta-iot-audio-prop/acdbdata_git.bb`、`src/audio/vendor/qcom/opensource/audioreach-conf`(内部血统证据)、`meta-qti-atf/recipes/audio-test-framework/catf_git.bb`
   - QLI2.0:`meta-audioreach`(`github.com/Audioreach/meta-audioreach`)、`packagegroup-audioreach.bb`、`audioreach-kernel_git.bb`(`git://github.com/AudioReach/audioreach-kernel.git`,`EXTRA_OEMAKE:append:qcom=" VENDOR_QCOM=1"`)、`audioreach-pipewire-plugin_git.bb`+`wireplumber.conf.d/60-disable-alsa.conf`、公开仓库`audioreach-conf`(`github.com/Audioreach/audioreach-conf`)、`pipewire_1.6.3.bb`
 - **已验证的检索方式**
   - 全层(含所有子目录)grep`pa-qti-sourcetrack`/`pa-pal-voiceui`/`catf`关键词,确认零命中且WirePlumber lua脚本目录为空
-  - 读取QLI1.0`catf_git.bb`的`DEPENDS`字段(`qal`闭源库+可选`gstreamer`/`glib`),与QLI2.0`pipewire_1.6.3.bb`带的`pw-cli`/`wpctl`逐项功能对比,确认非同类工具
+  - 读取downstream(maili)`catf_git.bb`的`DEPENDS`字段(`qal`闭源库+可选`gstreamer`/`glib`),与QLI2.0`pipewire_1.6.3.bb`带的`pw-cli`/`wpctl`逐项功能对比,确认非同类工具
   - 读取各QLI2.0机型conf里`are_on_apps` PACKAGECONFIG的实际赋值,确认所有Qualcomm机型均未启用(仅raspberrypi4 CI参考配置启用)
 - **已知易错点/纠错记录**:(暂无纠错记录)

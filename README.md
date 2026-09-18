@@ -1,7 +1,7 @@
-# QLI2.0 vs QLI1.0 架构对比 — 总览
+# QLI2.0 vs downstream(maili) 架构对比 — 总览
 
 QLI2.0代码根:`/local/mnt/workspace/jiahduan/qli2.0/0817`
-QLI1.0代码根:`/local/mnt/workspace/jiahduan/8950/0804_ko_in_bak4_copy1`
+downstream(maili)代码根:`/local/mnt/workspace/jiahduan/8950/0804_ko_in_bak4_copy1`
 
 ## 文档索引
 
@@ -15,7 +15,7 @@ QLI1.0代码根:`/local/mnt/workspace/jiahduan/8950/0804_ko_in_bak4_copy1`
 
 ## 专有栈 → 开源栈对照表
 
-| 子系统 | QLI1.0 | QLI2.0 | 详见 |
+| 子系统 | downstream(maili) | QLI2.0 | 详见 |
 |---|---|---|---|
 | 内核治理 | Google ACK多仓庭院模式,Android vendor-hook基建 | 单一GitHub仓库,mainline-first(FROMLIST/QCLINUX标签) | Kernel_Code_Architecture |
 | WLAN | QCACLD/PRIMA/CNSS | mac80211(ath10k/11k/12k)+标准linux-firmware | WiFi_BT |
@@ -32,7 +32,7 @@ QLI1.0代码根:`/local/mnt/workspace/jiahduan/8950/0804_ko_in_bak4_copy1`
 
 ## 安全/合规风险清单
 
-| 项目 | QLI1.0 | QLI2.0 | 风险等级 | 详见 |
+| 项目 | downstream(maili) | QLI2.0 | 风险等级 | 详见 |
 |---|---|---|---|---|
 | SELinux策略 | 661文件,默认MLS enforcing | 约3个策略点(camera+TrustZone/QTEE),默认不启用 | P1 | Security_Architecture |
 | Android安全HAL分区 | keystore/secretkeeper/hwcrypto等 | 全部消失 | P0 | Partition_Layout |
@@ -59,14 +59,14 @@ QLI1.0代码根:`/local/mnt/workspace/jiahduan/8950/0804_ko_in_bak4_copy1`
 | P1 | MDM/QMI专属栈(meta-qti-ss-mgr-prop套件:ssreq-server/pdc-daemon等)产品线SKU取舍 | 产品+BSP团队 |
 | P1 | 多媒体资源管理器(mmrm)在QLI2.0全部已检出层及内核历史均0命中,确认无承接,是否需要重新实现 | 多媒体+内核团队 |
 | P1 | camerastack/xr/vnm/host产品线在QLI2.0的迁移规划(30个变体里目前仅robotics线已承接) | 产品+系统架构团队 |
-| P1 | QLI1.0`release/kw`(Klocwork)静态扫描在QLI2.0没有替代物,`meta-qcom`/`meta-qcom-distro`/`meta-audioreach`的`.github/workflows`已核实对`codeql/klocwork/coverity/static.analysis/SAST`零命中,现有CI只做license header与build/DCO检查,是能力缺口而非尚不确定 | 质量/安全团队 |
+| P1 | downstream(maili)`release/kw`(Klocwork)静态扫描在QLI2.0没有替代物,`meta-qcom`/`meta-qcom-distro`/`meta-audioreach`的`.github/workflows`已核实对`codeql/klocwork/coverity/static.analysis/SAST`零命中,现有CI只做license header与build/DCO检查,是能力缺口而非尚不确定 | 质量/安全团队 |
 | P1 | SDM/HWC消失后的合成能力缺口(QDCM色彩管理/HDR tone-mapping、并发多显示拓扑)在DRM/KMS+Weston下是否有等效方案——已核实"单一输出故不需要"的假设不成立,lemans-evk(2路eDP)、hamoa-iot-evk(4路DP)、sm8550-hdk(HDMI+DP)等板级是真实多输出硬件配置 | 显示/图形团队 |
 | P1 | WLAN/BT量产制造测试工具链缺口——`qsaharaservice`(固件下载协议)/`ftm`(工厂测试模式)在QLI2.0无对应物,`diag-router`/`libdiag`只覆盖诊断日志路由;已核实linux-firmware的ath10k/11k/12k固件里也没有UTF类工厂测试固件变体,代码与物料侧均空白 | 制造测试团队 |
 | P2 | 迁移私有内核栈需重建clang工具链体系 | Toolchain+Kernel团队 |
 | P2 | 非机器人产品线是否需要补齐eSDK能力 | 产品团队 |
 | P2 | meta-qti-*层迁移wrynose规范的机械性改造(`S=${WORKDIR}`→`UNPACKDIR`等,已量化510个文件) | BSP/Build团队 |
 | P2 | logd/logcat兼容层在QLI2.0确认不存在(代码库全量检索零真实命中),依赖logcat语义的现有工具链/问题定位脚本迁移到journalctl/rsyslog的方案 | 平台/工具链团队 |
-| P2 | QLI1.0是否有迁移到kas的计划;技术侧已查清kas原生schema(`additionalProperties: false`)无法承载QLI1.0 manifest里`x-quic-distributable`/`x-ship`等内网扩展属性及repo凭证机制,只能靠kas之外的wrapper脚本/CI层补,若要迁移需先定这部分怎么做 | 构建/工具链团队 |
+| P2 | downstream(maili)是否有迁移到kas的计划;技术侧已查清kas原生schema(`additionalProperties: false`)无法承载downstream(maili) manifest里`x-quic-distributable`/`x-ship`等内网扩展属性及repo凭证机制,只能靠kas之外的wrapper脚本/CI层补,若要迁移需先定这部分怎么做 | 构建/工具链团队 |
 | P2 | touch、synx两个内核功能域在QLI2.0(`meta-qcom`内核配置/recipe/层目录)零命中,确认无承接;`security-TEE`(optee+minkipc)当前只挂在`rb3gen2-core-kit-open-fw`/`iq-9075-evk-open-fw`等open-fw机型变体,默认/主流机型不启用,是否要扩展到默认机型需要决策(mmrm缺口已在上表单独跟踪) | BSP/内核团队 |
 | P3 | gstreamer补丁去向不明问题 | 多媒体团队 |
 
@@ -77,7 +77,7 @@ QLI1.0代码根:`/local/mnt/workspace/jiahduan/8950/0804_ko_in_bak4_copy1`
 | SELinux | QLI2.0完全空白 | 有真实但规模远小的雏形 |
 | Display overlay | 是否参与最终构建未知 | 确认参与,证据链完整 |
 | clang使用范围 | 仅是可选项 | 用户态可选,内核构建曾强制使用 |
-| 补丁总量 | src下约5,083个 | src中约5,080个是第三方vendored库/patman测试噪声,真实仅3个(v4l-utils);另有6个真实内核补丁实际在poky/meta-qti-bsp(而非src,此前误记为从src筛出);加上disregard/废弃备份layer 38个、build-qti-*构建残留554个均需排除,QLI1.0全量补丁纠正后约4,861个 |
+| 补丁总量 | src下约5,083个 | src中约5,080个是第三方vendored库/patman测试噪声,真实仅3个(v4l-utils);另有6个真实内核补丁实际在poky/meta-qti-bsp(而非src,此前误记为从src筛出);加上disregard/废弃备份layer 38个、build-qti-*构建残留554个均需排除,downstream(maili)全量补丁纠正后约4,861个 |
 | EVA/CVP硬件证据(Camera) | 初步:kernel dts里16个文件的`cvp@`保留内存节点=硅片仍带EVA/CVP硬件IP;一度复核收窄为"证据不足",误判`cvp_kaanapali_hal.c`两侧代码库检索不到、系无效引用 | 经output/Code_Composition/Layer_Architecture/Layer_Architecture.md实测,`src/vendor/qcom/opensource/eva-kernel/msm/eva/target/cvp_kaanapali_hal.c`确实存在(Qualcomm/Linux Foundation署名,600+行含寄存器访问/PM QoS/TZ交互的完整功能代码,非样板),专为kaanapali芯片实现的CVP HAL,与QLI2.0`meta-qcom/conf/machine/kaanapali-mtp.conf`真实在用机型指向同一SoC代号,可作为硅片带EVA/CVP IP的有效交叉证据;之前"检索不到"是复核路径疏漏(未搜索`src/vendor/qcom/opensource/`路径)。结论收敛为:硅片大概率带IP,但QLI2.0内核基线未随之移植驱动(`compatible.*cvp`/`memory-region`引用仍是零命中) |
 | QLI2.0 UKI是否签名(Boot_Flow/Bootargs) | 初步表述为"构建期静态烘焙进UKI,签名后不可变",暗示UKI已走secure boot签名流程 | 核实后更正:`oe-core/meta/classes-recipe/uki.bbclass`提供的`UKI_SB_KEY`/`UKI_SB_CERT`签名钩子,在`meta-qcom*`/`meta-security*`/`meta-updater`/`build/conf`范围内全局检索(含`sbsign`)均零命中,当前默认构建的UKI实际未签名;cmdline构建期固化目前只带来可预测性/可审计性,尚未带来防篡改能力 |
 

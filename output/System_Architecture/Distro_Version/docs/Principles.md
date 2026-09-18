@@ -1,6 +1,6 @@
 # Distro_Version 原理文档
 
-本文档解释"Distro"在Yocto/OpenEmbedded体系里到底是什么、它管什么、为什么要按"两个具体机型"而不是抽象产品线去对比——这是理解`Distro_Version.md`Comparison结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Distro_Version.md`)。
+本文档解释"Distro"在Yocto/OpenEmbedded体系里到底是什么、它管什么、为什么要按"两个具体机型"而不是抽象产品线去对比——这是理解`Distro_Version.md`Comparison结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Distro_Version.md`)。
 
 ## 1. Distro层是什么
 
@@ -28,7 +28,7 @@ Yocto/OpenEmbedded的构建配置分三层,各管一件事,互不越权:
 
 同一个产品往往需要debug/release、含安全加固/不含、含虚拟化/不含等多种构建形态,每种形态就是一个"变体"。Yocto本身不强制"一个产品一个distro conf",工程组织方式有两种路线:
 
-- **穷举式**:每种维度组合各写一份完整`.conf`文件——QLI1.0`meta-qti-distro`的30个`qti-distro-{产品线}-{模式}[-开关].conf`就是这条路线,文件数=维度组合数,新增一个维度就要成倍增加文件。
+- **穷举式**:每种维度组合各写一份完整`.conf`文件——downstream(maili)`meta-qti-distro`的30个`qti-distro-{产品线}-{模式}[-开关].conf`就是这条路线,文件数=维度组合数,新增一个维度就要成倍增加文件。
 - **拼装式**:少量基础conf+外部声明式片段(kas yaml)按需组合——QLI2.0`meta-qcom-distro`的4个conf+35个kas yml就是这条路线,基础配置只写一份,变体差异表达在拼装层,不放大文件数。
 
 这不是QCOM专属发明,是kas工具本身推广的Yocto工程实践演进方向(用声明式yaml替代人工维护的conf矩阵)。理解这一点,才能判断"变体数量从30降到4"是不是真的"能力变少了"——不是,是同样的组合能力换了一种更省文件的表达方式。
@@ -40,7 +40,7 @@ Distro conf里对某个变量赋值,本质是"用distro层的选择覆盖上游�
 1. 该变量在`conf/distro/include/*.inc`或`.conf`里有没有出现赋值/`?=`/`.=`；
 2. 有赋值,才算"distro层管控";没有,就是"继承上游/oe-core默认值,distro层没管这件事"。
 
-这是为什么"GCC版本锁定方式改变"(QLI1.0 distro层二次锁定`13.4%` vs QLI2.0未锁定)是一条有意义的差异,而不是噪音——它意味着"谁对编译器版本负责"这件事的责任主体变了,不是版本号本身的变化。
+这是为什么"GCC版本锁定方式改变"(downstream(maili) distro层二次锁定`13.4%` vs QLI2.0未锁定)是一条有意义的差异,而不是噪音——它意味着"谁对编译器版本负责"这件事的责任主体变了,不是版本号本身的变化。
 
 ## 5. 为什么SELinux这类能力要看"是否真的被引用",不能只看"文件存在"
 

@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,7 +78,7 @@
 ## Build_Environment专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - QLI1.0环境入口:`setup-environment`软链接→`poky/qti-conf/set_bb_env.sh`(457行),内含`apply_poky_patches()`+`qti-conf/patches/series`(5个补丁,均打在bitbake自身)
+  - downstream(maili)环境入口:`setup-environment`软链接→`poky/qti-conf/set_bb_env.sh`(457行),内含`apply_poky_patches()`+`qti-conf/patches/series`(5个补丁,均打在bitbake自身)
   - QLI2.0环境入口:`kas-container build <yaml>`;已排查meta-qcom/meta-qcom-distro/meta-qcom-robotics-sdk三层`ci/`目录无等价封装脚本,官方入口是`meta-qcom/README.md`"Quick build"一节
   - 最低要求硬编码点:`sanity.bbclass`(Python最低3.9)
   - 官方系统要求页面存档:`docs.yoctoproject.org/6.0.1/ref-manual/system-requirements.html`(对应本仓库`yocto-6.0.1`/wrynose release)
@@ -86,7 +86,7 @@
   - 本机实测基线依据:两侧`build/`目录下`cache/sanity_info`(记录`NATIVELSBSTRING`)、host`/etc/os-release`
 - **已验证的检索方式**:
   - grep/find核实meta-qcom、meta-qcom-distro、meta-qcom-robotics-sdk三层`ci/`目录下是否存在类似`set_bb_env.sh`的交互式/自动探测封装脚本(结果为无)
-  - 逐条比对QLI1.0`apply_poky_patches`引用的5个补丁内容与QLI2.0`bitbake`(2.18.0)代码现状,判断每条补丁是否已随上游重构自然失效(确认3个失效,2个是真实未迁移差异)
+  - 逐条比对downstream(maili)`apply_poky_patches`引用的5个补丁内容与QLI2.0`bitbake`(2.18.0)代码现状,判断每条补丁是否已随上游重构自然失效(确认3个失效,2个是真实未迁移差异)
   - 读取两侧`build/`目录下`cache/sanity_info`的`NATIVELSBSTRING`字段,与当前host`/etc/os-release`、`python3 --version`、`df -h`、`nproc`/`free -h`交叉核对,验证本机基线是否满足官方最低要求门槛
   - 直接抓取上游`docs.yoctoproject.org/6.0.1/ref-manual/system-requirements.html`核实官方Python/磁盘/内存/受支持host清单口径(而非依赖本仓库内可能过期的说明)
 - **已知易错点/纠错记录**:(暂无纠错记录)

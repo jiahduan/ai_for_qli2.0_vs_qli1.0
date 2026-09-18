@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,7 +78,7 @@
 ## Display专属取证要点
 
 - **关键双侧目录/文件锚点**
-  - QLI1.0:`meta-qti-display`(`display-hal-linux_git.bb`/`sdm-comp-linux_git.bb`/`mmdlkm_git.bb`/`displaydlkm_git.bb`)、`meta-qti-display-prop`(`display-noship-linux_git.bb`/`display-ship`/`display-fw`)、`gbm_21.1.1.bb`、`weston_13.0.1.bbappend`、`src/display/{hardware,vendor}`
+  - downstream(maili):`meta-qti-display`(`display-hal-linux_git.bb`/`sdm-comp-linux_git.bb`/`mmdlkm_git.bb`/`displaydlkm_git.bb`)、`meta-qti-display-prop`(`display-noship-linux_git.bb`/`display-ship`/`display-fw`)、`gbm_21.1.1.bb`、`weston_13.0.1.bbappend`、`src/display/{hardware,vendor}`
   - QLI2.0:`mesa.bbappend`(启用freedreno+A704支持补丁)、`msm-gbm-backend`(`git://github.com/qualcomm-linux/gbm-msm-backend.git`)、`wayland/weston_15.0.0.bbappend`、`qcom-adreno_1.855.5.bb`、glvnd产物`10_adreno.json`/`50_mesa.json`(`build/tmp/sysroots-components/armv8-2a/mesa/usr/share/glvnd/egl_vendor.d/`)、libglvnd源码(`build/downloads/git2_gitlab.freedesktop.org.glvnd.libglvnd.git.tar.gz`的`src/EGL/libeglvendor.c`/`libegl.c`)、多输出dts:`lemans-evk.dts`(`mdss0_dp0`/`mdss0_dp1`)、`hamoa.dtsi`(`mdss_dp0`~`mdss_dp3`)
 - **已验证的检索方式**
   - 全库检索`sdm|displayengine|libdisplayconfig|display-hal|display composer`关键词,零命中,据此判定SDM Composer/HWC合成服务层整体消失

@@ -1,6 +1,6 @@
 # Kernel_Code_Architecture 原理文档
 
-本文档解释Kernel_Code_Architecture在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`Kernel_Code_Architecture.md`具体差异结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Kernel_Code_Architecture.md`)。
+本文档解释Kernel_Code_Architecture在Qualcomm Linux BSP体系里管什么、为什么要对比它、以及它与相邻主题的分工原理——这是理解`Kernel_Code_Architecture.md`具体差异结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Kernel_Code_Architecture.md`)。
 
 ## 1. 本主题管的是"代码血统",不是"功能达标"
 

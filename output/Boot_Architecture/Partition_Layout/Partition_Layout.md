@@ -1,15 +1,15 @@
 # Boot Architecture — Partition Layout
 
-> 说明:QLI1.0默认样例构建目标为`pebble`(手机/平板类SoC,Android血统浓厚),QLI2.0默认目标为`iq-9075-evk`(基于QCS9100的机器人开发板)。下文差异既包含架构选型因素,也包含目标硬件世代/产品形态不同的因素。
+> 说明:downstream(maili)默认样例构建目标为`pebble`(手机/平板类SoC,Android血统浓厚),QLI2.0默认目标为`iq-9075-evk`(基于QCS9100的机器人开发板)。下文差异既包含架构选型因素,也包含目标硬件世代/产品形态不同的因素。
 
 ## 对比范围
 
 - **覆盖**:
-  - 分区总数对比,以实际构建产物计数(QLI1.0:`build-qti-distro-camerastack-debug/tmp-glibc/deploy/images/pebble/qti-multimedia-image/rawprogram[0-9].xml`按`label=`去重,已重新计数复核仍为156个;QLI2.0:`build/tmp/deploy/images/iq-9075-evk/partitions/iq-9075-evk/ufs/rawprogram[0-9].xml`同法复核仍为66个,与本文已记录的67→66纠错一致)
+  - 分区总数对比,以实际构建产物计数(downstream(maili):`build-qti-distro-camerastack-debug/tmp-glibc/deploy/images/pebble/qti-multimedia-image/rawprogram[0-9].xml`按`label=`去重,已重新计数复核仍为156个;QLI2.0:`build/tmp/deploy/images/iq-9075-evk/partitions/iq-9075-evk/ufs/rawprogram[0-9].xml`同法复核仍为66个,与本文已记录的67→66纠错一致)
   - 上游`qcom-ptool`源码`partitions.conf`条目数与实际构建产物分区数的差异说明(已在`build/downloads/git2/github.com.qualcomm-linux.qcom-ptool.git`重新核对:`platforms/iq-9075-evk/ufs/partitions.conf`72个`--partition`、`platforms/qrb5165-rb5/ufs/partitions.conf`77个,均与本文数字一致)
-  - 同芯片(qrb5165-rb5)剥离机型因素后的对比基准(QLI1.0`poky/meta-qti-bsp/conf/machine/partition/qrb5165-rb5-partition.conf`已复核仍为90个`--partition`条目)
+  - 同芯片(qrb5165-rb5)剥离机型因素后的对比基准(downstream(maili)`poky/meta-qti-bsp/conf/machine/partition/qrb5165-rb5-partition.conf`已复核仍为90个`--partition`条目)
   - 底层固件A/B分区(`xbl_a/b`/`tz_a/b`/`hyp_a/b`/`aop_a/b`/`uefi_a/b`)、OS层A/B分区存续情况、Android安全HAL分区族(keystore/secretkeeper/hwcrypto等)去向、新增分区(gearvm_a/b等)
-  - A/B槎位管理组件对比(QLI1.0`libabctl.cpp`命令行能力;QLI2.0`qbootctl`开源等价物及其在`rb1-core-kit.conf`的挂载方式,已复核`MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "qbootctl"`仍存在)
+  - A/B槎位管理组件对比(downstream(maili)`libabctl.cpp`命令行能力;QLI2.0`qbootctl`开源等价物及其在`rb1-core-kit.conf`的挂载方式,已复核`MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "qbootctl"`仍存在)
   - xbl_a/b等低层固件槎位fallback行为的排查过程(`trusted-firmware-a-qcom`/`meta-qcom*`范围`BOOT_ROM`关键字复核仍零命中;u-boot上游`doc/board/qualcomm/rdp.rst`作为旁证的适用范围说明)
 - **明确排除**:
   - dm-verity/AVB完整性校验机制本身(cmdline verity参数、8个dm-verity相关bbclass的消失取证) ——见[Bootargs](../Bootargs/Bootargs.md)
@@ -20,7 +20,7 @@
 
 ## 对比总览
 
-| 维度 | QLI1.0(pebble) | QLI2.0(iq-9075-evk) |
+| 维度 | downstream(maili)(pebble) | QLI2.0(iq-9075-evk) |
 |---|---|---|
 | 分区总数 | 156个(来自实际构建产物`tmp-glibc/deploy/images/pebble/qti-multimedia-image/rawprogram[0-9].xml`,对`label=`去重计数,QFIL/Firehose格式) | 66个(**初步判断67个,核实后更正为66个**——来自实际构建产物`build/tmp/deploy/images/iq-9075-evk/partitions/iq-9075-evk/ufs/rawprogram[0-9].xml`,同样对`label=`去重计数;与上游`qcom-ptool`源码`platforms/iq-9075-evk/ufs/partitions.conf`里72个`--partition`条目不完全一致,原因是source配置里部分条目对应GPT/backup/占位段而非实际下发的独立分区,以实际构建产物计数为准) |
 | 底层固件A/B | `xbl_a/b`、`tz_a/b`、`hyp_a/b`、`aop_a/b`、`uefi_a/b`(SoC启动ROM强制要求) | 同样保留:`xbl_a/b`、`tz_a/b`、`hyp_a/b`、`aop_a/b`、`uefi_a/b` |
@@ -32,7 +32,7 @@
 
 ## 关键差异
 
-- 分区精简的实质是两件相互独立的事叠在一起,不能混为一谈:一是产品形态从Android血统的手机SoC(pebble)换成了单rootfs的机器人开发板(iq-9075-evk),这部分是"选了另一种分区哲学"而非架构统一进步——剥离机型因素后同芯片对比(均为`qrb5165-rb5`)是90 vs 77(QLI1.0`poky/meta-qti-bsp/conf/machine/partition/qrb5165-rb5-partition.conf`90个`--partition`条目;QLI2.0外部仓库`qcom-ptool`的`platforms/qrb5165-rb5/ufs/partitions.conf`77个条目,同样是Android式A/B布局,xbl_a/tz_a/hyp_a/aop_a/abl_a/boot_a/boot_b/keymaster_a/dtbo_a/vbmeta_a俱全),说明"QLI2.0"本身并不必然抹掉Android式分区。二是iq-9075-evk这个具体机型选择放弃了Android安全HAL分区族(keystore/secretkeeper/hwcrypto等)和OS层A/B,这才是真正的能力/架构差异。把这两件事分开看,"156→66"这个数字本身不能直接读成"QLI2.0比QLI1.0精简了58%的安全/管理能力",顶多能读成"iq-9075-evk这个产品形态没有带上这些能力",能否补回来要看是否愿意挂载`qrb5165-rb5`那条Android兼容路线。
+- 分区精简的实质是两件相互独立的事叠在一起,不能混为一谈:一是产品形态从Android血统的手机SoC(pebble)换成了单rootfs的机器人开发板(iq-9075-evk),这部分是"选了另一种分区哲学"而非架构统一进步——剥离机型因素后同芯片对比(均为`qrb5165-rb5`)是90 vs 77(downstream(maili)`poky/meta-qti-bsp/conf/machine/partition/qrb5165-rb5-partition.conf`90个`--partition`条目;QLI2.0外部仓库`qcom-ptool`的`platforms/qrb5165-rb5/ufs/partitions.conf`77个条目,同样是Android式A/B布局,xbl_a/tz_a/hyp_a/aop_a/abl_a/boot_a/boot_b/keymaster_a/dtbo_a/vbmeta_a俱全),说明"QLI2.0"本身并不必然抹掉Android式分区。二是iq-9075-evk这个具体机型选择放弃了Android安全HAL分区族(keystore/secretkeeper/hwcrypto等)和OS层A/B,这才是真正的能力/架构差异。把这两件事分开看,"156→66"这个数字本身不能直接读成"QLI2.0比downstream(maili)精简了58%的安全/管理能力",顶多能读成"iq-9075-evk这个产品形态没有带上这些能力",能否补回来要看是否愿意挂载`qrb5165-rb5`那条Android兼容路线。
 - OS层A/B消失和Android安全HAL分区消失虽然是表里两件事(前者是升级模型,后者是安全能力),但根源是同一个:iq-9075-evk走的是"单rootfs+meta-updater"这条新的OTA/安全模型,而不是延续Android AVB/Keystore那条体系。这意味着安全团队不能只关注"哪些分区没了",而要判断meta-updater/OSTree这条新路线整体上能否覆盖原来AVB+Keystore组合要解决的问题(镶像完整性+密钥硬件隔离),目前看两者都没有对应替代(详见Bootargs.md的dm-verity/AVB结论),即分区精简和安全能力缺失是同一次架构选择的两个可观察侧面,而非两个独立风险。
 
 ## 影响与风险

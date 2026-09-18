@@ -5,7 +5,7 @@
 ## 逐条取证过程
 
 ### 1. ko编译框架与vendor驱动recipe覆盖面统计纠正
-**最初判断**:仅扫`meta-qti-bsp*`层,得到8个使用`inherit linux-kernel-base`的recipe,容易低估QLI1.0 vendor驱动的实际规模。
+**最初判断**:仅扫`meta-qti-bsp*`层,得到8个使用`inherit linux-kernel-base`的recipe,容易低估downstream(maili) vendor驱动的实际规模。
 **核实过程**:改用全树`grep -rl "inherit linux-kernel-base"`(不限`meta-qti-bsp*`),命中59处文件、分布在15个`meta-qti-*`层。
 **修正结论**:真实规模是至少15个层、40+个recipe,远超仅扫`meta-qti-bsp*`得到的8个;覆盖mmrm/video/dsp-adsprpc/wlan/bt/display/touch/camera/security-TEE/gfx/eva/audio/synx等功能域。
 **落到结论**:对比总览表"抽样vendor驱动recipe数"行。

@@ -6,7 +6,7 @@
 
 ### 1. kas作为整机构建入口的文件分布判定
 **做法**:全树`find -iname '*kas*'`,人工排除误报。
-**证据**:QLI1.0命中全部为误报(boringssl的`KAS-ECC-SSC`/`KAS-FFC-SSC`测试向量、Linux内核`skas`/`sys_mikasa.c`/`kasprintf.c`、devicetree binding`asahi-kasei,ak*.yaml`);QLI2.0侧计数`meta-qcom/ci`(46个yml)、`meta-qcom-distro/ci`(36个)、`meta-qcom-robotics-sdk/ci`(19个)、`meta-security/kas`(21个)、`meta-updater/kas`(10个)。
+**证据**:downstream(maili)命中全部为误报(boringssl的`KAS-ECC-SSC`/`KAS-FFC-SSC`测试向量、Linux内核`skas`/`sys_mikasa.c`/`kasprintf.c`、devicetree binding`asahi-kasei,ak*.yaml`);QLI2.0侧计数`meta-qcom/ci`(46个yml)、`meta-qcom-distro/ci`(36个)、`meta-qcom-robotics-sdk/ci`(19个)、`meta-security/kas`(21个)、`meta-updater/kas`(10个)。
 **落到结论**:对比总览表"kas文件分布"行。
 
 ### 2. 主入口层误判的发现与纠正
@@ -18,7 +18,7 @@
 ### 3. kas工具自身机制核实
 **做法**:读取本机安装kas 5.5包的`kas/schema-kas.json`与`kas/repos.py`/`libkas.py`。
 **证据**:`repos:`条目schema字段严格限定在`name`/`url`/`type`/`commit`/`branch`/`tag`/`refspec`/`signed`/`allowed_signers`/`path`/`layers`/`patches`,且`additionalProperties: false`;认证方式靠`SSH_AUTH_SOCK`等环境变量透传,不在yaml里存token。
-**落到结论**:《影响与风险》"kas原生没有能直接承载QLI1.0 manifest扩展属性的位置"一段。
+**落到结论**:《影响与风险》"kas原生没有能直接承载downstream(maili) manifest扩展属性的位置"一段。
 
 ### 4. 生成产物与声明的对应关系核对
 **做法**:逐条比对kas yml的`repos:`/`layers:`声明集合与实际生成的`build/conf/bblayers.conf`的BBLAYERS列表,以及`local_conf_header`字典键与`build/conf/local.conf`分段是否逐条对应。

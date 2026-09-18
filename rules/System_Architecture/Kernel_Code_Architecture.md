@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,11 +78,11 @@
 ## Kernel_Code_Architecture专属取证要点
 
 - **关键双侧目录/文件锚点**
-  - QLI1.0:`src/kernel-6.18/kernel_platform/common`(真实git仓库,remote`quic/keystone/android17-6.18-keystone-qcom-release`)、`kernel_platform/soc-repo`(独立git,remote`quic/qcom-6.18`,含`ack2soc.sh`合并脚本,HEAD`61351abdf37b`)、`kernel_platform/common-modules`、`.repo/manifests/.../manifest.xml`(`AU_LINUX_KERNEL.PLATFORM.6.0.00.00.00.178.129`标签)、`drivers/soc/qcom/socinfo.c`、`kernel/sched/core.c`(46处`android_vh_`/`android_rvh_`钩子)
+  - downstream(maili):`src/kernel-6.18/kernel_platform/common`(真实git仓库,remote`quic/keystone/android17-6.18-keystone-qcom-release`)、`kernel_platform/soc-repo`(独立git,remote`quic/qcom-6.18`,含`ack2soc.sh`合并脚本,HEAD`61351abdf37b`)、`kernel_platform/common-modules`、`.repo/manifests/.../manifest.xml`(`AU_LINUX_KERNEL.PLATFORM.6.0.00.00.00.178.129`标签)、`drivers/soc/qcom/socinfo.c`、`kernel/sched/core.c`(46处`android_vh_`/`android_rvh_`钩子)
   - QLI2.0:`linux-qcom_6.18.bb`(`git://github.com/qualcomm-linux/kernel.git`,tag`qcom-6.18.y-20260615.1`,SRCREV`5086fd78561b1a8824806decd2e9bf2cfe3d6f`)、`linux-qcom-rt_6.18.bb`、`linux-qcom-next_git.bb`、`build/downloads/git2/github.com.qualcomm-linux.kernel.git`(完整历史镜像)、`build/tmp/work-shared/iq-9075-evk/kernel-source`、`drivers/soc/qcom/qmi-cooling.c`(新增驱动直接commit进kernel.git的例子)
 - **已验证的检索方式**
   - 按目录做commit subject集合diff(如`drivers/soc/qcom/`、`drivers/gpu/drm/msm/`、`arch/arm64/boot/dts/qcom/`、`drivers/media/platform/qcom/`、`drivers/remoteproc/qcom_*`),统计两侧唯一subject数及QLI1独有条数
   - 三方diff:拉取mainline`v6.18.21`点版本tag(`github.com/gregkh/linux`stable树镜像),对`socinfo.c`/`pmic_glink.c`做逐字节diff
   - grep统计commit标签占比:`FROMLIST:`(488条)/`BACKPORT:`(102条)/`QCLINUX:`(41条)/`PENDING:`(32条)/`WORKAROUND:`(11条)
   - `git log --all -i --grep=mmrm`across全部bitbake层及内核完整git历史,确认多媒体资源管理器(mmrm)是否存在(零命中,唯一命中是AMD GPU寄存器命名巧合子串)
-- **已知易错点/纠错记录**:有(文档内部,未写入README)——最初只用QLI1.0`common`仓库做commit subject集合diff,得出`drivers/soc/qcom`/`drivers/power/supply`/`drivers/thermal`/`drivers/remoteproc`四个目录"QLI1独有条数为0,两侧完全打平"的结论;补入`kernel_platform/soc-repo`后复核("补入soc-repo后的复核(原待确认项已解决)"一节),发现这四个目录实际各有成百上千条QLI1独有commit(如`drivers/soc/qcom`从0跳到1560条),原"完全打平"结论对这四个目录不成立,已在文档内更正为"存在数量可观的QLI1独有改动";`gpu/drm/msm`、`dts`、`media`三个目录"几乎全部被QLI2覆盖"的结论则补入soc-repo后依然成立。
+- **已知易错点/纠错记录**:有(文档内部,未写入README)——最初只用downstream(maili)`common`仓库做commit subject集合diff,得出`drivers/soc/qcom`/`drivers/power/supply`/`drivers/thermal`/`drivers/remoteproc`四个目录"QLI1独有条数为0,两侧完全打平"的结论;补入`kernel_platform/soc-repo`后复核("补入soc-repo后的复核(原待确认项已解决)"一节),发现这四个目录实际各有成百上千条QLI1独有commit(如`drivers/soc/qcom`从0跳到1560条),原"完全打平"结论对这四个目录不成立,已在文档内更正为"存在数量可观的QLI1独有改动";`gpu/drm/msm`、`dts`、`media`三个目录"几乎全部被QLI2覆盖"的结论则补入soc-repo后依然成立。

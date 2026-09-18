@@ -26,7 +26,7 @@
    - **待定边界**:暂时定不下来该归哪篇、先记录别漏掉的项;为空写"(无)"——如果是"核实过确认没有"而非"没检查",可以写成"(无,已核实XX)"这种形式简要说明核实范围,不算违反"为空写(无)"的要求;随本文档下次修订顺带复核,不单开复核周期;若长期悬而未决,同步进README《待拍板事项汇总》
 
    本节是文字化元信息(管辖边界、目录锚点、排除去向),不重复下面《对比总览》表已有的对比结论;《对比总览》也不解释某项为何不在表里——两节不互相转述。
-1. `## 对比总览` — 一张`维度 | QLI1.0 | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
+1. `## 对比总览` — 一张`维度 | downstream(maili) | QLI2.0`表格,是文档骨架,让读者10秒内看到全貌
 2. (可选)主题专属深挖章节 — 追踪表、抽样统计、专项验证等
 3. `## 关键差异` — 综合性洞察,**不是对总览表的复述**,要回答"这些差异放在一起意味着什么"
 4. `## 影响与风险` — 对下游团队/决策的具体影响,不做纯技术总结
@@ -78,8 +78,8 @@
 ## Layer_Architecture专属取证要点
 
 - **关键双侧目录/文件锚点**:
-  - 层数统计:QLI1.0`build-qti-distro-camerastack-debug/conf/bblayers.conf`的`BBLAYERS`变量(59条,此前误记51);QLI2.0`build/conf/bblayers.conf`的`BBLAYERS`变量(21条)
-  - QLI1.0约45个`meta-qti-*`系列层(按prop/internal/core/kernel后缀细分,如`meta-qti-bsp(-prop)`、`meta-qti-camera(-prop)`、`meta-qti-display(-internal/-prop)`、`meta-qti-security(...)`、`meta-qti-ss-mgr(-prop)`);QLI2.0主要层:`meta-qcom`、`meta-qcom-distro`、`meta-qcom-robotics-sdk`、`meta-audioreach`、`meta-updater`、`meta-security`(含`meta-tpm`)、`meta-selinux`、`meta-virtualization`、`meta-ros`(`meta-ros-common`/`meta-ros2`/`meta-ros2-jazzy`)、`meta-lts-mixins`、`oe-core`、`meta-openembedded`
+  - 层数统计:downstream(maili)`build-qti-distro-camerastack-debug/conf/bblayers.conf`的`BBLAYERS`变量(59条,此前误记51);QLI2.0`build/conf/bblayers.conf`的`BBLAYERS`变量(21条)
+  - downstream(maili)约45个`meta-qti-*`系列层(按prop/internal/core/kernel后缀细分,如`meta-qti-bsp(-prop)`、`meta-qti-camera(-prop)`、`meta-qti-display(-internal/-prop)`、`meta-qti-security(...)`、`meta-qti-ss-mgr(-prop)`);QLI2.0主要层:`meta-qcom`、`meta-qcom-distro`、`meta-qcom-robotics-sdk`、`meta-audioreach`、`meta-updater`、`meta-security`(含`meta-tpm`)、`meta-selinux`、`meta-virtualization`、`meta-ros`(`meta-ros-common`/`meta-ros2`/`meta-ros2-jazzy`)、`meta-lts-mixins`、`oe-core`、`meta-openembedded`
   - ss-mgr相关:`init-mss_2.0.bb`、`init_rproc_mss.service`、`init_mss.rules`、`reboot-daemon`(`SlotSwitchReboot()`);内核config`CONFIG_REMOTEPROC`/`CONFIG_QCOM_RPROC_COMMON`/`CONFIG_QCOM_Q6V5_COMMON`/`CONFIG_QCOM_Q6V5_MSS`/`CONFIG_QCOM_Q6V5_PAS`/`CONFIG_QCOM_Q6V5_ADSP`/`CONFIG_QCOM_PIL_INFO`/`CONFIG_QCOM_SYSMON`;内核驱动`drivers/remoteproc/qcom_q6v5_pas.c`(`.auto_boot`)、`drivers/remoteproc/remoteproc_sysfs.c`、`remoteproc_core.c`、`qcom_sysmon.c`;机型配置`meta-qcom/conf/machine/{qcm6490-idp,iq-8275-evk,iq-9075-evk,rb3gen2-core-kit}.conf`(`MACHINE_FEATURES += "...phone"`);`meta-qcom-distro/recipes-products/images/qcom-console-image.bb`(拉取`modemmanager`)
   - aosphal相关:`libhardware_1.0.bb`、`camera-metadata_1.1.bb`;QLI2.0交叉验证`android-tools_5.1.1.r37.bb`(与HAL无关)、`camxlib-kodiak_1.0.24.bb`的`DEPENDS`
   - CTA/SV/EVA相关:`meta-qti-cta-internal/recipes/cta/cta_1.1_git.bb`;`meta-qti-sv-internal/recipes/sv-internal/sv-internal_git.bb`、`meta-qti-sv-prop/recipes/sv-noship/sv-noship_1.0.bb`、`evass-fw_git.bb`;硬件交叉证据`src/vendor/qcom/opensource/eva-kernel/msm/eva/target/cvp_kaanapali_hal.c`;`meta-qti-eva-devicetree`(`x-ship="hy11"`);QLI2.0机型`meta-qcom/conf/machine/kaanapali-mtp.conf`;共享内核源码树`build/tmp/work-shared/iq-9075-evk/kernel-source`

@@ -1,6 +1,6 @@
 # Flash_Process 原理文档
 
-本文档解释"首次产线刷机"在设备生命周期里管什么范围、为什么要单独对比——这是理解`Flash_Process.md`Comparison结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Flash_Process.md`)。
+本文档解释"首次产线刷机"在设备生命周期里管什么范围、为什么要单独对比——这是理解`Flash_Process.md`Comparison结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Flash_Process.md`)。
 
 ## 1. Flash_Process管的是什么
 

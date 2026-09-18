@@ -10,7 +10,7 @@
 
 ## 2. 图形栈整合方式核实
 
-**做法**:核对QLI1.0`gbm_21.1.1.bb`(厂商fork libgbm)、`weston_13.0.1.bbappend`与QLI2.0`msm-gbm-backend.bb`(`git://github.com/qualcomm-linux/gbm-msm-backend.git`)、`weston_15.0.0.bbappend`、`mesa.bbappend`(启用freedreno)三份文件是否真实存在。
+**做法**:核对downstream(maili)`gbm_21.1.1.bb`(厂商fork libgbm)、`weston_13.0.1.bbappend`与QLI2.0`msm-gbm-backend.bb`(`git://github.com/qualcomm-linux/gbm-msm-backend.git`)、`weston_15.0.0.bbappend`、`mesa.bbappend`(启用freedreno)三份文件是否真实存在。
 **证据**:三份QLI2.0侧文件均已核实真实存在(非规划中的占位)。
 **落到结论**:对比总览表"图形栈"行,"关键差异"节"libgbm被独立开源项目msm-gbm-backend取代"的判断。
 
@@ -29,8 +29,8 @@
 
 ## 5. QDCM色彩管理/HDR tone-mapping能力缺口核实
 
-**做法**:全树(排除`sstate-cache`)检索`qdcm`关键词,分别统计QLI1.0与QLI2.0侧命中数。
-**证据**:QLI1.0侧303个文件命中(recipe层`QDCM_S`路径/`--enable-qdcm_socket`,预编译库`libhdr_tm.so`/`libsnapdragoncolor-qdcm.so`等);QLI2.0侧全库零命中。
+**做法**:全树(排除`sstate-cache`)检索`qdcm`关键词,分别统计downstream(maili)与QLI2.0侧命中数。
+**证据**:downstream(maili)侧303个文件命中(recipe层`QDCM_S`路径/`--enable-qdcm_socket`,预编译库`libhdr_tm.so`/`libsnapdragoncolor-qdcm.so`等);QLI2.0侧全库零命中。
 **落到结论**:"覆盖"字段QDCM锚点小节与"影响与风险"节"SDM/HWC特有能力在新栈中无直接对应组件"判断的其中一项具体支撑证据。
 
 ## 纠错记录说明

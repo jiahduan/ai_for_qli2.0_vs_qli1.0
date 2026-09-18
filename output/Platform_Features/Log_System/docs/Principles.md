@@ -1,6 +1,6 @@
 # Log_System 原理文档
 
-本文档解释"日志/诊断体系"在平台级功能机制里管什么范围、为什么要拆成几个不同层次对比——这是理解`Log_System.md`Comparison结论的前置知识,不涉及QLI1.0/QLI2.0具体差异结论(结论见`../Log_System.md`)。
+本文档解释"日志/诊断体系"在平台级功能机制里管什么范围、为什么要拆成几个不同层次对比——这是理解`Log_System.md`Comparison结论的前置知识,不涉及downstream(maili)/QLI2.0具体差异结论(结论见`../Log_System.md`)。
 
 ## 1. Log_System管的是什么
 
@@ -18,11 +18,11 @@
 
 日志/诊断接口的消费方不是文档作者自己,而是大量下游工具和流程。任何接口的"降级"或"消失",现实后果是这些下游工具能否继续工作,而不是抽象意义上"日志能力变弱了"多少:
 
-- DIAG从"源码级核心组件"(QLI1.0`src/diag/`随发布交付)降级为QLI2.0`recipes-test/`目录下的可选闭源预编译包,意味着量产镶像默认可能不包含完整DIAG能力——这直接关系到现网依赖QXDM/QPST做售后诊断的流程是否还能正常运作,必须逐一核实哪些量产镜像真的打包了`libdiag-bin`,而不能停在"代码库里有对应recipe"就下结论。
+- DIAG从"源码级核心组件"(downstream(maili)`src/diag/`随发布交付)降级为QLI2.0`recipes-test/`目录下的可选闭源预编译包,意味着量产镶像默认可能不包含完整DIAG能力——这直接关系到现网依赖QXDM/QPST做售后诊断的流程是否还能正常运作,必须逐一核实哪些量产镜像真的打包了`libdiag-bin`,而不能停在"代码库里有对应recipe"就下结论。
 - logd/logcat这层Android兼容接口在QLI2.0完全没有对应组件,意味着任何依赖logcat语义/`/dev/socket/logdw`接口的上层应用、AI/HAL组件、基于logcat的问题定位脚本,都需要迁移到`journalctl`/`rsyslog`语义或自行移植——这是一次接口契约层面的断裂,不是"换了个日志格式"这种表面差异。
 
 ## 3. 与相邻主题的分工边界原理
 
-- **journald存储模式默认值本身的变化**(v259起`Storage=`由`auto`改为`persistent`,影响`/var/log/journal`是否落盘)是journald/systemd这个组件自身版本演进带来的行为变化,与QLI1.0/QLI2.0在"日志体系怎么分工"上的差异无关——本主题关心"两侧各用了哪些日志子系统",不关心某个子系统内部某个版本的默认值怎么变,归[systemd_](../../../Boot_Architecture/systemd_/systemd_.md)。
+- **journald存储模式默认值本身的变化**(v259起`Storage=`由`auto`改为`persistent`,影响`/var/log/journal`是否落盘)是journald/systemd这个组件自身版本演进带来的行为变化,与downstream(maili)/QLI2.0在"日志体系怎么分工"上的差异无关——本主题关心"两侧各用了哪些日志子系统",不关心某个子系统内部某个版本的默认值怎么变,归[systemd_](../../../Boot_Architecture/systemd_/systemd_.md)。
 
 判断原则:**"两侧分别用什么组件覆盖DIAG/Android兼容/基础系统日志这三层,以及量产镶像真实打包范围"归本主题;某个具体组件(如journald)自身版本演进带来的内部行为变化细节归该组件的专属主题文档**。这条原则的价值在于:遇到"某个日志相关组件的某个具体行为变了"这类新发现时,先问"这是两侧分工选择的差异,还是同一个组件自身版本升级带来的差异"——前者归本主题,后者归组件专题。
